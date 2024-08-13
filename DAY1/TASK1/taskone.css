@@ -12,6 +12,18 @@ body {
     place-items: center;
 }
 
+/* h3 {
+    border: 1px solid;
+    text-align: center;
+} */
+
+main {
+    width: 70vw;
+    height: 100%;
+    display: flex;
+    list-style-position: inside;
+}
+
 nav {
     margin-left: 15px;
     margin-bottom: 15px;
@@ -26,29 +38,30 @@ nav {
     justify-content: space-evenly;
 }
 
-nav ul {
+nav li {
     display: inline-block;
     padding-left: 75px;
     padding-right: 75px;
 }
 
-main {
-    height: 55vh;
+main table {
+    height: fit-content;
+    border: 1px solid;
+    width: 500px;
+}
+
+td {
+    text-align: center;
+    border: 1px solid;
+}
+
+dt, dd {
+    display: inline-block;
+}
+
+.table-container {
     width: 70vw;
-}
-
-input {
-    width: 250px;
-}
-
-#coments {
-    height: 120px;
-    width: 750px;
-}
-
-button {
-    height: 30px;
-    width: 85px;
-    margin: 30px;
-    margin-left: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
 }
