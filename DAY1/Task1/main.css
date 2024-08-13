@@ -1,4 +1,5 @@
 * {
+    /*border: 1px solid red;*/
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -18,7 +19,7 @@ body {
 } */
 
 main {
-    width: 70vw;
+    width: 950px;
     height: 100%;
     display: flex;
     list-style-position: inside;
@@ -56,12 +57,16 @@ td {
     border: 1px solid;
 }
 
+aside {
+    width: 250px;
+}
+
 dt, dd {
     display: inline-block;
 }
 
 .table-container {
-    width: 70vw;
+    width: 550px;
     height: 100%;
     display: flex;
     justify-content: center;

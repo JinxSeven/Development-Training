@@ -58,11 +58,3 @@ form {
     display: flex;
     flex-direction: column;
 }
-
-#name-field {
-    margin-left: 3px;
-}
-
-#email-field {
-    margin-left: 6px;
-}
