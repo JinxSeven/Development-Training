@@ -30,7 +30,7 @@ aside {
 }
 
 aside dt, dd {
-    display: flexbox;
+    display: inline-block;
 }
 
 main {
