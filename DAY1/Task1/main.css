@@ -21,7 +21,7 @@ nav {
 
 nav li {
     display: inline;
-    margin-left: 20%;
+    margin-left: 21%;
     font-weight: bold;
 }
 
@@ -30,7 +30,7 @@ aside {
 }
 
 aside dt, dd {
-    display: inline;
+    display: flexbox;
 }
 
 main {
