@@ -1,0 +1,23 @@
+* {
+    font-family: 'Ubuntu';
+}
+
+.relative-pos-container {
+    position: relative;
+    border: 2px solid darkgray;
+    height: 75vh;
+}
+
+.drag-me-box {
+    position: absolute;
+    height:100px;
+    width: 300px;
+    border: 1px solid darkolivegreen;
+}
+
+.drag-me-window {
+    position: fixed;
+    height:100px;
+    width: 300px;
+    border: 1px solid darkolivegreen;
+}
