@@ -17,7 +17,8 @@
 
 .drag-me-window {
     position: fixed;
-    height:100px;
-    width: 300px;
-    border: 1px solid darkolivegreen;
+}
+
+.fixed-pos-container {
+    position: fixed;
 }
