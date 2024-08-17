@@ -88,7 +88,7 @@ aside p {
     -webkit-appearance: none;
     outline: none;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 14px;
 }
 
 .busy-mode-chkbx:checked {
@@ -99,7 +99,8 @@ aside p {
     border-radius: 5px;
     width:50%;
     height: 45em;
-    margin: 5px
+    margin: 5px;
+    background-color: #D9AFD9;
 }
 
 /* * { border: 1px solid red; } */
