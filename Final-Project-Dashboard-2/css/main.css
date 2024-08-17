@@ -1,0 +1,105 @@
+body {
+    /* background: rgb(36,0,25); */
+    background-color: #D9AFD9;
+    background-image: linear-gradient(258deg, #D9AFD9 0%, #97D9E1 100%);
+    /* background: linear-gradient(137deg, rgba(36,0,25,0.7133053050321692) 0%, rgba(121,9,114,0.39957981483609073) 37%, rgba(255,0,140,0.6880952209985557) 100%);  */
+    margin: 2%;
+}
+
+main {
+    width: 100%;
+    height: 46em;
+    border-radius: 10px;
+    background-color: aliceblue;
+    display: flex;
+}
+
+aside {
+    width: 20%;
+    height: 45em;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+aside img {
+    margin: 25px;
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+aside .btns {
+    height: fit-content;
+    width: fit-content;
+    padding: 5px;
+    padding-left: 35px;
+}
+
+aside .btns button {
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 400;
+    font-style: normal;
+    width: 165px;
+    height: 48px;
+    color: grey;
+    border: none;
+    text-align: left;
+    padding-left: 25px;
+    background-color: aliceblue;
+}
+
+aside div button:focus {
+    color: rgb(231, 10, 10);
+    background-color: rgb(228, 196, 196);
+    border-radius: 5px;
+}
+
+aside .btns button:hover {
+    cursor: pointer;
+}
+
+aside .btns:hover{
+    border-left: 5px solid rgb(231, 10, 10);
+    padding-left: 30px;
+    transition: border-left 0.25s;
+}
+
+aside p {
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 400;
+    font-style: normal;
+    margin-left: 35px;
+    font-size: smaller;
+}
+
+.busy-mode {
+    display: flex;
+    margin: 3%;
+    margin-top: 18%;
+}
+
+.busy-mode-chkbx {
+    width: 1.3em;
+    height: 1.3em;
+    background-color: darkgray;
+    border-radius: 50%;
+    vertical-align: middle;
+    border: 1px solid white;
+    appearance: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.busy-mode-chkbx:checked {
+    background-color: rgb(120, 224, 120);
+}
+
+.main-content {
+    border-radius: 5px;
+    width:50%;
+    height: 45em;
+    margin: 5px
+}
+
+/* * { border: 1px solid red; } */
