@@ -42,13 +42,8 @@ nav ul {
 main {
     margin-top: 15px;
     width: 100%;
-    display: grid;
-    grid-template-columns: 2fr 2fr 2fr;
-    grid-template-rows: auto ;
-    grid-gap: 2px;
-    grid-template-areas: 
-        "box1 box2 box3"
-        "box4 box5 box6";
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .content-box1 {
@@ -91,29 +86,6 @@ main {
     height: 2cm;
     background-color: crimson;
     grid-area: box6;
-}
-
-@media (max-width: 910px) {
-    main {
-        grid-template-columns: 2fr 2fr;
-        grid-template-areas: 
-            "box1 box2"
-            "box3 box4"
-            "box5 box6";
-    }
-}
-
-@media (max-width: 610px) {
-    main {
-        grid-template-columns: auto;
-        grid-template-areas: 
-            "box1"
-            "box2"
-            "box3"
-            "box4"
-            "box5"
-            "box6";
-    }
 }
 
 footer {
