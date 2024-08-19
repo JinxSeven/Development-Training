@@ -1,98 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final-Project-Dashboard-2</title>
-    <link rel="stylesheet" href="./css/main.css">
-    <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="main-block">
-        <aside class="sidebar">
-            <img style="border-radius: 5px;" src="https://placehold.co/200x45">
-            <div class="btns"><button class="aside-button1">
-                <i style="margin-right: 5px;" class="fa-solid fa-boxes-stacked fa-xl"></i>
-                Live Orders</button></div>
-            <div class="btns"><button class="aside-button2">
-                <i style="margin-right: 5px;" class="fa-solid fa-bag-shopping fa-xl"></i>
-                Order History</button></div>
-            <div class="btns"><button class="aside-button3">
-                <i style="margin-right: 5px;" class="fa-solid fa-percent fa-xl"></i>
-                Offers</button></div>
-            <div class="btns"><button class="aside-button4">
-                <i style="margin-right: 5px;" class="fa-solid fa-box-archive fa-xl"></i>
-                Products</button></div>
-            <div class="btns"><button class="aside-button5">
-                <i style="margin-right: 5px;" class="fa-solid fa-boxes-packing fa-xl"></i>
-                Stock</button></div>
-            <div class="btns"><button class="aside-button6">
-                <i style="margin-right: 5px;" class="fa-solid fa-message fa-xl"></i>
-                Message</button></div>
-            <div class="btns"><button class="aside-button7">
-                <i style="margin-right: 5px;" class="fa-solid fa-gear fa-xl"></i>
-                Settings</button></div> 
-            <div class="busy-mode">
-                <p>Busy Mode</p><input class="busy-mode-chkbx" type="checkbox"></div>
-        </aside>
-        <main>
-            <div class="top-block">
-                <div class="search-bar">
-                    <span><i class="fa-solid fa-magnifying-glass fa-sm"></i></span>
-                    <input class="search" type="search" placeholder="Search">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Final-Project-Dashboard-2</title>
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="main-block">
+            <aside class="sidebar">
+                <img style="border-radius: 5px; height: 50px;" src="../Final-Project-Dashboard-2/images/bringova-logo.png" alt="bringova-logo">
+                <div class="btns"><button class="aside-button1">
+                    <i style="margin-right: 5px;" class="fa-solid fa-boxes-stacked fa-xl"></i>
+                    Live Orders</button>
                 </div>
-                <div class="open-for-orders">
-                    <p>Open For Orders</p>
-                    <input type="checkbox" class="open-for-orders-chkbx">
+                <div class="btns"><button class="aside-button2">
+                    <i style="margin-right: 5px;" class="fa-solid fa-bag-shopping fa-xl"></i>
+                    Order History</button>
                 </div>
-                <div class="notify">
-                    <i class="fa-regular fa-bell"></i>
+                <div class="btns"><button class="aside-button3">
+                    <i style="margin-right: 5px;" class="fa-solid fa-percent fa-xl"></i>
+                    Offers</button>
                 </div>
-                <div class="profile">
-                    <img src="https://placehold.co/35x35">
-                    <span><p style="margin-left: 10px;">Lubomir Dvorak</p></span>
-                    <button class="profile-opt">
+                <div class="btns"><button class="aside-button4">
+                    <i style="margin-right: 5px;" class="fa-solid fa-box-archive fa-xl"></i>
+                    Products</button>
+                </div>
+                <div class="btns"><button class="aside-button5">
+                    <i style="margin-right: 5px;" class="fa-solid fa-boxes-packing fa-xl"></i>
+                    Stock</button>
+                </div>
+                <div class="btns"><button class="aside-button6">
+                    <i style="margin-right: 5px;" class="fa-solid fa-message fa-xl"></i>
+                    Message</button>
+                </div>
+                <div class="btns"><button class="aside-button7">
+                    <i style="margin-right: 5px;" class="fa-solid fa-gear fa-xl"></i>
+                    Settings</button>
+                </div>
+                <div class="busy-mode">
+                    <p>Busy Mode</p>
+                    <input class="busy-mode-chkbx" type="checkbox">
+                </div>
+            </aside>
+            <main>
+                <div class="top-block">
+                    <div class="search-bar">
+                        <span><i class="fa-solid fa-magnifying-glass fa-sm"></i></span>
+                        <input class="search" type="search" placeholder="Search">
+                    </div>
+                    <div class="open-for-orders">
+                        <p>Open For Orders</p>
+                        <input type="checkbox" class="open-for-orders-chkbx">
+                    </div>
+                    <div class="notify">
+                        <i class="fa-regular fa-bell"></i>
+                    </div>
+                    <div class="profile">
+                        <img src="../Final-Project-Dashboard-2/images/profile.png">
+                        <p class="profile-name" style="margin-left: 7px;">Lubomír Dvořák</p>
+                        <button class="profile-opt">
                         <i class="fa-solid fa-chevron-down"></i>
-                    </button>
+                        </button>
+                    </div>
                 </div>
-            </div>
-            <div class="main-center">
-                <div class="ord-info">
-                    <p>Order Number</p>
-                    <p class="ord-num">#256894</p>
-                </div>
-                <div class="ord-items-list">
-                    <table>
-                        <tr>
-                            <th>Items summary</th>
-                            <th>QTY</th>
-                            <th>Price</th>
-                            <th>Total Price</th>
-                        </tr>
-                        <tr>
-                            <td>Chocolate Milkshake</td>
-                            <td>x 1</td>
-                            <td>£150.00</td>
-                            <td>£150.00</td>
-                        </tr>
-                        <tr>
-                            <td>Chocolate Milkshake</td>
-                            <td>x 2</td>
-                            <td>£7.50</td>
-                            <td>£15.00</td>
-                        </tr>
-                        <tr>
-                            <td>Finish Washer Large 3Kg</td>
-                            <td>x 3</td>
-                            <td>£70</td>
-                            <td>£210.00</td>
-                        </tr>
-                    </table>
-                </div>
-                                    <div class="cx-dtls-list">
+                <div class="main-center">
+                    <div class="ord-info">
+                        <p>Order Number</p>
+                        <p class="ord-num">#256894</p>
+                    </div>
+                    <div class="ord-items-list">
+                        <table>
+                            <tr>
+                                <th>Items summary</th>
+                                <th>QTY</th>
+                                <th>Price</th>
+                                <th>Total Price</th>
+                            </tr>
+                            <tr>
+                                <td><img src=""></td>
+                                <td>Chocolate Milkshake</td>
+                                <td>x 1</td>
+                                <td>£150.00</td>
+                                <td>£150.00</td>
+                            </tr>
+                            <tr>
+                                <td>Chocolate Milkshake</td>
+                                <td>x 2</td>
+                                <td>£7.50</td>
+                                <td>£15.00</td>
+                            </tr>
+                            <tr>
+                                <td>Finish Washer Large 3Kg</td>
+                                <td>x 3</td>
+                                <td>£70</td>
+                                <td>£210.00</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="cx-dtls-list">
                         <table>
                             <tr>
                                 <th>Customer And Order Details</th>
@@ -119,8 +129,8 @@
                             </tr>
                         </table>
                     </div>
-            </div>
-        </main>
-    </div>
-</body>
+                </div>
+            </main>
+        </div>
+    </body>
 </html>
