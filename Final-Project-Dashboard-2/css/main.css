@@ -179,7 +179,6 @@ aside p {
 
 .main-content {
     padding: 25px;
-    /* height: 100%; */
     height: fit-content;
     padding-bottom: 50px;
 }
@@ -387,14 +386,37 @@ main .main-center {
 main .main-center .ord-info {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 600;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     display: flex;
     margin-top: -25px;
 }
 
+/* * {
+    border: 1px solid blue;
+} */
+
+.main-center .msg-cx i {
+    margin: 3px;
+}
+
+.main-center .msg-cx {
+    font-size: 0.7rem;
+    background-color: black;
+    color: white;
+    height: fit-content;
+    margin: 3px;
+    font-weight: 300;
+    width: fit-content;
+    padding: 7px;
+    border-radius: 10px;
+    margin-top: 15px;
+}
+
+
 main .main-center .ord-info .ord-num {
     color: #ff3d41;
     margin-left: 5px;
+    margin-right: 5px;
 }
 
 main .main-center th {
@@ -652,6 +674,12 @@ main .main-side .rider-dtls h2 {
         margin-top: -10px;
         position: sticky;
         top: 0;
+    }
+}
+
+@media only screen and (max-width: 1236px) {
+    .msg-cx-txt {
+        display: none;
     }
 }
 
