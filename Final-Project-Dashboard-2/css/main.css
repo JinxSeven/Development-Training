@@ -81,6 +81,10 @@ aside p {
     margin-left: 20px; 
 }
 
+.busy-mode i {
+    display: none;
+}
+
 .busy-mode {
     display: flex;
     align-items: center;
@@ -184,6 +188,10 @@ aside p {
 
 .top-block .search-bar input.search:focus {
     outline: none;
+}
+
+.open-for-orders i {
+    display: none;
 }
 
 .top-block .open-for-orders {
@@ -436,7 +444,6 @@ main .main-side .rider-dtls h2 {
 .main-side table {
     background-color: white;
     padding: 10px;
-    /* border-radius: 10px; */
     width: 100%;
 }
 
@@ -459,7 +466,10 @@ main .main-side .rider-dtls h2 {
     background-color: #ecedee;
     border-radius: 10px;
     color: #ffb21e;
+    font-size: 0.75rem;
+    text-align: center;
     height: 30px;
+    margin-bottom: 10px;
 }
 
 .ord-summary th div p {
@@ -469,9 +479,41 @@ main .main-side .rider-dtls h2 {
 .ord-summary th {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 500;
+    text-align: left;
+    font-size: 0.875rem;
+    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    padding: 10px;
+}
+
+.total td {
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 300;
     font-size: 0.75rem;
     border-bottom: 1px solid rgba(218, 219, 222, 1);
     padding: 10px;
+    padding-right: 85px;
+}
+
+.total {
+    border: 1px solid rgba(218, 219, 222, 1);
+    border-radius: 10px;
+    overflow-x: auto;
+    margin-top: 5%;
+}
+
+.address {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid rgba(218, 219, 222, 1);
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 300;
+    font-size: small;
+    background-color: white;
+}
+
+.address span {
+    font-weight: 500;
 }
 
 @media only screen and (max-width: 958px) {
@@ -483,7 +525,7 @@ main .main-side .rider-dtls h2 {
     }
 }
 
-@media only screen and (max-width: 910px) {
+@media only screen and (max-width: 945px) {
     .top-block .profile p {
         margin: auto;
         width: fit-content;
@@ -511,6 +553,9 @@ main .main-side .rider-dtls h2 {
     .top-block .open-for-orders p {
         display: none;
     }
+    .open-for-orders i {
+        display: block;
+    }
     .top-block .profile .profile-name {
         display: none;
     }
@@ -525,6 +570,29 @@ main .main-side .rider-dtls h2 {
     }
     .busy-mode p {
         font-size: x-small;
+    }
+    .main-content {
+        padding: 5px;
+        flex-direction: column;
+    }
+    main .main-center .ord-info {
+        margin-top: 0px;
+    }
+    .cx-dtls-list {
+        /* width: 250px; */
+        width: 59vw;
+    }
+    .ord-items-list {
+        /* width: 250px; */
+        width: 59vw;
+    }
+    .rider-dtls {
+        width: 59vw;
+    }
+    aside {
+        margin-top: -10px;
+        position: sticky;
+        top: 0;
     }
 }
 
@@ -564,8 +632,16 @@ main .main-side .rider-dtls h2 {
     aside .btns .cta-text {
         display: none;
     }
+    aside {
+        margin-top: -10px;
+        position: sticky;
+        top: 0;
+    }
     main .main-center .ord-info {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
+        text-align: center;
+        margin-top: -5px;
+        margin-left: 25px;
     }
     .main-block .sidebar .logo1 {
         display: none;
@@ -593,8 +669,16 @@ main .main-side .rider-dtls h2 {
     .top-block .profile .notify i {
         display: inline;
     }
+    .busy-mode i {
+        display: block;
+        margin-left: 18px;
+        padding-bottom: 15px;
+        color: grey;
+    }
     .busy-mode {
         display: block;
+        margin-left: 20px;
+        margin-top: 10px;
     }
     .busy-mode .busy-mode-chkbx {
         margin-left: 10px;
@@ -605,13 +689,54 @@ main .main-side .rider-dtls h2 {
         padding-left: 25px;
     }
     .ord-items-list {
-        width: 250px;
+        /* width: 250px; */
+        width: 58vw;
+    }
+    .open-for-orders i {
+        display: block;
     }
     .main-content {
         padding: 5px;
         flex-direction: column;
     }
     .cx-dtls-list {
+        /* width: 250px; */
+        width: 58vw;
+    }
+    .rider-dtls {
+        margin-top: 5px;
+    }
+    .rider-dtls img {
+        height: 35px;
+        border-radius: 7.5px
+    }
+    .total {
+        width: 58vw;
+    }
+    .total td {
+        padding-right: 75px;
+    }
+    main .main-side .rider-dtls td {
+        font-size: 0.85rem;
+    }
+    .notify i {
+        margin-left: 3px;
+    }
+}
+
+@media only screen and (max-width: 426px) {
+    .cx-dtls-list {
+        width: 250px;
+        /* width: 58vw; */
+    }
+    .ord-items-list {
+        width: 250px;
+        /* width: 58vw; */
+    }
+    .total {
+        width: 250px
+    }
+    .rider-dtls {
         width: 250px;
     }
 }
