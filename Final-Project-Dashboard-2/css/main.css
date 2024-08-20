@@ -160,7 +160,7 @@ aside p {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
 
 .top-block .search-bar {
@@ -187,6 +187,7 @@ aside p {
     padding-left: 5px;
     height: 35px;
     border: none;
+    width: 10rem;
     border-radius: 10px;
 }
 
@@ -203,6 +204,7 @@ aside p {
     align-items: center;
     height: fit-content;
     width: auto;
+    margin-right: 20px;
 }
 
 .open-for-orders p {
@@ -277,12 +279,11 @@ aside p {
 }
 
 .notify {
-    margin-left: 15px;
     height: 30px;
     width: 30px;
     background-color: #dfe1e4;
     border-radius: 10px;
-    justify-content: right;
+    /* margin-right: 10px; */
 }
 
 .notify i:hover li {
@@ -302,7 +303,6 @@ aside p {
     text-align: center;
     color: black;
     position: absolute;
-    right: 305px;
     border: 1px solid rgba(218, 219, 222, 1);
     height: fit-content;
     width: 220px;
@@ -397,6 +397,8 @@ main .main-center .ord-info {
 
 .main-center .msg-cx i {
     margin: 3px;
+    margin-left: 0px;
+    margin-right: 5px;
 }
 
 .main-center .msg-cx {
@@ -594,6 +596,21 @@ main .main-side .rider-dtls h2 {
     font-weight: 500;
 }
 
+@media only screen and (max-width: 1234px) {
+    main .main-center .ord-info {
+        font-size: 1rem;
+    }
+    main .main-center .msg-cx {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (max-width: 1188px) {
+    main .main-center .msg-cx {
+        margin-top: 10px;
+    }
+}
+
 @media only screen and (max-width: 958px) {
     .top-block .search-bar input {
         width: 70px;
@@ -675,11 +692,13 @@ main .main-side .rider-dtls h2 {
         position: sticky;
         top: 0;
     }
-}
-
-@media only screen and (max-width: 1236px) {
-    .msg-cx-txt {
-        display: none;
+    .ord-info {
+        width: 50vw;
+        padding-left: 15px;
+    }
+    .ord-info .msg-cx {
+        margin-bottom: 10px;
+        margin-top: 10px;
     }
 }
 
@@ -706,6 +725,20 @@ main .main-side .rider-dtls h2 {
 }
 
 @media only screen and (max-width: 574px) {
+    .main-content .ord-info .msg-cx {
+        margin-left: 10px;
+    }
+    .main-content .ord-info .ord-num {
+        margin-top: 20px;
+        padding-left: 10px;
+    }
+    .main-content .ord-info p {
+        padding-left: 5px;
+        margin-left: -10px;
+    }
+    .main-content .ord-info .msg-cx i {
+        margin-left: 3px;
+    }
     .busy-mode p {
         display: none;
     }
@@ -816,6 +849,12 @@ main .main-side .rider-dtls h2 {
     }
 }
 
+@media only screen and (max-width: 652px) {
+    .msg-cx .msg-cx-txt {
+        display: none;
+    }
+}
+
 @media only screen and (max-width: 426px) {
     .cx-dtls-list {
         width: 250px;
@@ -842,5 +881,27 @@ main .main-side .rider-dtls h2 {
     .main-block {
         width: fit-content;
         margin-right: 5px;
+    }
+}
+
+.space-div {
+    width: 10vw;
+}
+
+@media only screen and (max-width: 1337px) {
+    .space-div {
+        width: 10vw;
+    }
+}
+
+@media only screen and (max-width: 1158px) {
+    .space-div {
+        width: 5vw;
+    }
+}
+
+@media only screen and (max-width: 1020px) {
+    .space-div {
+        width: 3vw;
     }
 }
