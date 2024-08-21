@@ -39,6 +39,8 @@ aside .btns {
     margin: 5px;
     margin-left: 0px;
     padding-left: 45px;
+    border-left: 7px solid;
+    border-color: white;
 }
 
 aside .btns button {
@@ -60,18 +62,24 @@ aside .btns button:focus {
     border-radius: 5px;
 }
 
+/* aside .btns:focus {
+    border-color: rgba(255, 62, 65, 1);
+    transition: border-left 0.15s;
+}  */
+
 aside .btns button:hover {
     cursor: pointer;
 }
 
 aside .btns:hover {
-    border-left: 7px solid rgba(255, 62, 65, 1);
-    transition: border-left 0.25s;
+    border-color: rgba(255, 62, 65, 1);
+    transition: border-left 0.15s;
 }
 
-aside .btns:hover button {
+/* aside .btns:hover button {
     margin-left: -7px;
-}
+    transition: margin-left 0.25s;
+} */
 
 aside p {
     font-family: "Poppins", 'Ubuntu';
