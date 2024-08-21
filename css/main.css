@@ -1,3 +1,7 @@
+:root {
+    --border-color: rgba(218, 219, 222, 1);
+}
+
 body {
     background-color: #D9AFD9;
     background-image: linear-gradient(258deg, #D9AFD9 0%, #97D9E1 100%);
@@ -172,7 +176,7 @@ aside p {
 }
 
 .top-block .search-bar {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     width: fit-content;
     background-color: white;
     border-radius: 10px;
@@ -311,7 +315,7 @@ aside p {
     text-align: center;
     color: black;
     position: absolute;
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     height: fit-content;
     width: 220px;
     font-family: "Poppins", 'Ubuntu';
@@ -368,7 +372,7 @@ aside p {
     color: black;
     position: absolute;
     right: 20px;
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     height: fit-content;
     width: 220px;
     font-family: "Poppins", 'Ubuntu';
@@ -433,7 +437,7 @@ main .main-center th {
     text-align: left;
     font-family: "Poppins", 'Ubuntu';
     font-weight: 500;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     font-size: 0.875rem;
     padding: 10px;
     width: fit-content;
@@ -443,12 +447,12 @@ main .main-center td {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 300;
     font-size: 0.75rem;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px;
 }
 
 main .main-center .ord-items-list {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
 }
@@ -460,7 +464,7 @@ main .main-center table {
 }
 
 main .main-center .cx-dtls-list {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
     margin-top: 5%;
@@ -485,7 +489,7 @@ main .main-center table:last-child {
 }
 
 .rider-dtls {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
     font-family: "Poppins", 'Ubuntu';
@@ -495,7 +499,7 @@ main .main-side .rider-dtls td {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 500;
     font-size: 0.85rem;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px;
     width: auto;
 }
@@ -539,12 +543,12 @@ main .main-side .rider-dtls h2 {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 300;
     font-size: 0.75rem;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px;
 }
 
 .main-side .ord-summary {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
     margin-top: 5%;
@@ -569,7 +573,7 @@ main .main-side .rider-dtls h2 {
     font-weight: 500;
     text-align: left;
     font-size: 0.875rem;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px;
 }
 
@@ -577,13 +581,13 @@ main .main-side .rider-dtls h2 {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 300;
     font-size: 0.75rem;
-    border-bottom: 1px solid rgba(218, 219, 222, 1);
+    border-bottom: 1px solid var(--border-color);
     padding: 10px;
     padding-right: 85px;
 }
 
 .total {
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
     margin-top: 5%;
@@ -593,7 +597,7 @@ main .main-side .rider-dtls h2 {
     margin-top: 10px;
     padding: 10px;
     border-radius: 10px;
-    border: 1px solid rgba(218, 219, 222, 1);
+    border: 1px solid var(--border-color);
     font-family: "Poppins", 'Ubuntu';
     font-weight: 300;
     font-size: small;
