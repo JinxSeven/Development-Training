@@ -1,7 +1,8 @@
-CSS Variables
-GitHub Sites - Hosting Final Project
+CSS variables
+GitHub Pages: Hosting Final Project
 
 Site changes advised:
-    top-block change spacing
-    add message customer button
-    items-summary align text with images used
+    top-block change spacing - fixed
+    add message customer button - fixed
+    items-summary align text with images used - fixed
+    fix jogging buttons - fixed
