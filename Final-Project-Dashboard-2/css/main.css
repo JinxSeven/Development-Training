@@ -172,7 +172,7 @@ aside p {
     width: 100%;
     display: flex;
     align-items: center;
-    /* justify-content: space-evenly; */
+    justify-content: space-between;
 }
 
 .top-block .search-bar {
@@ -216,7 +216,7 @@ aside p {
     align-items: center;
     height: fit-content;
     width: auto;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .open-for-orders p {
@@ -295,7 +295,7 @@ aside p {
     width: 30px;
     background-color: #dfe1e4;
     border-radius: 10px;
-    /* margin-right: 10px; */
+    margin: 10px;
 }
 
 .notify i:hover li {
@@ -331,8 +331,8 @@ aside p {
 .profile {
     margin-left: 15px;
     height: 50px;
+    align-items: center;
     display: flex;
-    width: 25%;
 }
 
 .profile .profile-name {
@@ -641,7 +641,7 @@ main .main-side .rider-dtls h2 {
     }
 }
 
-@media only screen and (max-width: 945px) {
+@media only screen and (max-width: 985px) {
     .total {
         margin-top: 10px;
     }
@@ -844,6 +844,7 @@ main .main-side .rider-dtls h2 {
     .open-for-orders i {
         color: grey;
         display: block;
+        padding-left: 5px;
     }
     .main-content {
         padding: 5px;
@@ -912,10 +913,11 @@ main .main-side .rider-dtls h2 {
 }
 
 .space-div {
-    width: 10vw;
+    display: flex;
+    align-items: center;
 }
 
-@media only screen and (max-width: 1337px) {
+/* @media only screen and (max-width: 1337px) {
     .space-div {
         width: 10vw;
     }
@@ -931,9 +933,9 @@ main .main-side .rider-dtls h2 {
     .space-div {
         width: 3vw;
     }
-}
+} */
 
-@media only screen and (min-width: 946px) and (max-width: 1117px)  {
+@media only screen and (min-width: 984px) and (max-width: 1117px)  {
     main .main-center .ord-info .msg-cx-txt {
         display: none;
     }

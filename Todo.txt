@@ -2,7 +2,7 @@ CSS variables
 GitHub Pages: Hosting Final Project
 
 Site changes advised:
-    top-block change spacing - fixed
+    top-block change spacing - not-fixed
     add message customer button - fixed
     items-summary align text with images used - fixed
     fix jogging buttons - fixed
