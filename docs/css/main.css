@@ -426,7 +426,6 @@ main .main-center .ord-info {
     margin-top: 15px;
 }
 
-
 main .main-center .ord-info .ord-num {
     color: #ff3d41;
     margin-left: 5px;
@@ -461,6 +460,10 @@ main .main-center table {
     padding: 10px;
     background-color: white;
     width: 100%;
+}
+
+main .main-center .ord-items-list td {
+    font-size: 0.75rem;
 }
 
 main .main-center .cx-dtls-list td {
@@ -869,6 +872,9 @@ main .main-side .rider-dtls h2 {
 }
 
 @media only screen and (max-width: 652px) {
+    main .main-center .ord-items-list td {
+        padding-left: 0px;
+    }
     .msg-cx .msg-cx-txt {
         display: none;
     }

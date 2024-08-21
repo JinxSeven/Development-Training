@@ -463,9 +463,9 @@ main .main-center table {
     width: 100%;
 }
 
-/* main .main-center .ord-items-list td {
+main .main-center .ord-items-list td {
     font-size: 0.75rem;
-} */
+}
 
 main .main-center .cx-dtls-list td {
     font-size: 0.75rem;
@@ -874,6 +874,9 @@ main .main-side .rider-dtls h2 {
 }
 
 @media only screen and (max-width: 652px) {
+    main .main-center .ord-items-list td {
+        padding-left: 0px;
+    }
     .msg-cx .msg-cx-txt {
         display: none;
     }
