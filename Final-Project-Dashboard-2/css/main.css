@@ -621,6 +621,13 @@ main .main-side .rider-dtls h2 {
 }
 
 @media only screen and (max-width: 945px) {
+    .total {
+        margin-top: 10px;
+    }
+    .rider-dtls {
+        margin-top: 10px;
+        margin-bottom: -5px;
+    }
     .top-block .profile p {
         margin: auto;
         width: fit-content;
@@ -677,11 +684,9 @@ main .main-side .rider-dtls h2 {
         margin-top: 0px;
     }
     .cx-dtls-list {
-        /* width: 250px; */
         width: 59vw;
     }
     .ord-items-list {
-        /* width: 250px; */
         width: 59vw;
     }
     .rider-dtls {
@@ -813,7 +818,6 @@ main .main-side .rider-dtls h2 {
         padding-left: 25px;
     }
     .ord-items-list {
-        /* width: 250px; */
         width: 58vw;
     }
     .open-for-orders i {
@@ -825,7 +829,6 @@ main .main-side .rider-dtls h2 {
         flex-direction: column;
     }
     .cx-dtls-list {
-        /* width: 250px; */
         width: 58vw;
     }
     .rider-dtls {
@@ -903,5 +906,11 @@ main .main-side .rider-dtls h2 {
 @media only screen and (max-width: 1020px) {
     .space-div {
         width: 3vw;
+    }
+}
+
+@media only screen and (min-width: 946px) and (max-width: 1117px)  {
+    main .main-center .ord-info .msg-cx-txt {
+        display: none;
     }
 }
