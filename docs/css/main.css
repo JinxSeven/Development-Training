@@ -389,7 +389,7 @@ main .main-center {
 main .main-center .ord-info {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 600;
-    font-size: 1.2rem;
+    /* font-size: 1.2rem; */
     display: flex;
     margin-top: -25px;
 }
