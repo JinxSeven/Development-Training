@@ -622,12 +622,6 @@ main .main-side .rider-dtls h2 {
     }
 }
 
-@media only screen and (max-width: 1188px) {
-    main .main-center .msg-cx {
-        margin-top: 10px;
-    }
-}
-
 @media only screen and (max-width: 958px) {
     .top-block .search-bar input {
         width: 70px;
@@ -936,12 +930,25 @@ main .main-side .rider-dtls h2 {
     .main-center .ord-info .msg-cx {
         margin-top: 28px;
     }
-    /* .main-center .ord-info {
-        padding-top: 5px;
+}
+
+@media only screen and (min-width: 1118px) and (max-width: 1355px) {
+    main .main-center .ord-info {
+        font-size: 1rem;
     }
-    .main-center .msg-cx {
-        margin: 20px;
-        text-align: center;
-        width: 75px;
-    } */
+    main .main-center .msg-cx {
+        margin-bottom: 15px;
+    }
+}
+
+@media only screen and (min-width: 1118px) and (max-width: 1233px) {
+    .main-center .ord-info p {
+        font-size: 0.9rem;
+    }
+    .main-center .ord-info .msg-cx-txt {
+        font-size: smaller;
+    }
+    .main-center .ord-info .msg-cx {
+        margin-top: 10px;
+    }
 }
