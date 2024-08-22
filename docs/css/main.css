@@ -66,11 +66,6 @@ aside .btns button:focus {
     border-radius: 5px;
 }
 
-/* aside .btns:focus {
-    border-color: rgba(255, 62, 65, 1);
-    transition: border-left 0.15s;
-}  */
-
 aside .btns button:hover {
     cursor: pointer;
 }
@@ -79,11 +74,6 @@ aside .btns:hover {
     border-color: rgba(255, 62, 65, 1);
     transition: border-left 0.15s;
 }
-
-/* aside .btns:hover button {
-    margin-left: -7px;
-    transition: margin-left 0.25s;
-} */
 
 aside p {
     font-family: "Poppins", 'Ubuntu';
@@ -522,7 +512,7 @@ main .main-side .rider-dtls h2 {
     font-family: "Poppins", 'Ubuntu';
     font-weight: 500;
     font-size: 1.2rem;
-    padding-left: 10px;
+    padding-left: 15.8125px;
     padding-top: 10px;
     background-color: white;
     margin: 0px;
@@ -560,7 +550,7 @@ main .main-side .rider-dtls h2 {
     border: 1px solid var(--border-color);
     border-radius: 10px;
     overflow-x: auto;
-    margin-top: 5%;
+    margin-top: 15.8125px;
 }
 
 .ord-summary th div {
@@ -603,8 +593,9 @@ main .main-side .rider-dtls h2 {
 }
 
 .address {
-    margin-top: 10px;
+    margin-top: 15.8125px;
     padding: 10px;
+    padding-bottom: -0px;
     border-radius: 10px;
     border: 1px solid var(--border-color);
     font-family: "Poppins", 'Ubuntu';
@@ -753,6 +744,8 @@ main .main-side .rider-dtls h2 {
 @media only screen and (max-width: 574px) {
     .main-content .ord-info .msg-cx {
         margin-left: 10px;
+        padding: 5px;
+        margin-top: 27px;
     }
     .main-content .ord-info .ord-num {
         margin-top: 20px;
@@ -834,9 +827,16 @@ main .main-side .rider-dtls h2 {
         margin-left: 10px;
     }
     main .main-center .ord-info {
-        font-size: 0.75rem;
+        font-size: 0.85rem;
         width: 150px;
-        padding-left: 25px;
+        padding-left: 0px;
+    }
+    main .main-center .ord-info p {
+        text-align: left;
+    }
+    main .main-center .ord-info p.ord-num {
+        margin-top: 34px;
+        margin-left: 0px;
     }
     .ord-items-list {
         width: 58vw;
@@ -917,26 +917,26 @@ main .main-side .rider-dtls h2 {
     align-items: center;
 }
 
-/* @media only screen and (max-width: 1337px) {
-    .space-div {
-        width: 10vw;
-    }
-}
-
-@media only screen and (max-width: 1158px) {
-    .space-div {
-        width: 5vw;
-    }
-}
-
-@media only screen and (max-width: 1020px) {
-    .space-div {
-        width: 3vw;
-    }
-} */
-
 @media only screen and (min-width: 984px) and (max-width: 1117px)  {
     main .main-center .ord-info .msg-cx-txt {
-        display: none;
+        font-size: x-small;
     }
+    .main-center .ord-info > p {
+        width: 60px;
+    }
+    .main-center .ord-info .ord-num {
+        padding-right: 10px;
+        padding-top: 22px;
+    }
+    .main-center .ord-info .msg-cx {
+        margin-top: 28px;
+    }
+    /* .main-center .ord-info {
+        padding-top: 5px;
+    }
+    .main-center .msg-cx {
+        margin: 20px;
+        text-align: center;
+        width: 75px;
+    } */
 }
