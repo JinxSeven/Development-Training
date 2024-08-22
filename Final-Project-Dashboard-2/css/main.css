@@ -382,7 +382,8 @@ main {
 }
 
 main .main-center {
-    width: 55%;
+    /* width: 55%; */
+    flex: 1;
 }
 
 main .main-center .ord-info {
@@ -485,6 +486,10 @@ main .main-center table:last-child {
 .rider-dtls img {
     height: 55px;
     border-radius: 15px
+}
+
+main .main-side {
+    flex: 1;
 }
 
 .rider-dtls {
