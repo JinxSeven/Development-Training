@@ -29,8 +29,8 @@ todoButton.addEventListener('click', function() {
     taskCheck.addEventListener('change', function() {
         if (taskCheck.checked) {
             p.style.textDecoration = 'line-through';
-        } else{
-            taskItem.style.textDecoration = 'none';
+        } else {
+            p.style.textDecoration = 'none';
         }
     })
 
