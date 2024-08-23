@@ -1,3 +1,24 @@
 * {
     font-family: "Anek Devanagari", monospace;
 }
+
+.delete-button {
+    background-color: rgb(243, 99, 99);
+    padding: 5px;
+    margin-left: 30px;
+    border-radius: 5px;
+    width: 75px;
+    height: 30px;
+}
+
+li {
+    border: 1px solid gray;
+    width: fit-content;
+    border-radius: 5px;
+}
+
+.check-box {
+    margin-right: 15px;
+    width: 20px;
+    height: 20px;
+}
