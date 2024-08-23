@@ -2,7 +2,7 @@ let calculator = document.querySelector('.calculator');
 let answer = document.getElementById('interest');
 let total = document.getElementById('total-amount');
 let addInfo = document.getElementById('add-info');
-let result = 0;
+let interest = 0;
 
 calculator.addEventListener("submit", function(def) {
     def.preventDefault();
@@ -16,8 +16,23 @@ calculator.addEventListener("submit", function(def) {
         calculator.reset();
     }
 
-    result = (principal * rateOfInterest * time) / 100;
+    if (principal < 500 || principal > 10000) {
+        alert("Invalid Input Range!")
+            calculator.reset();
+    }
 
-    answer.textContent = principal.toFixed(2);
-    total.textContent = (principal + result).toFixed(2); 
+    if (principal < 1000 && rateOfInterest < 5) rateOfInterest = 5;
+    if (principal < 5000 && rateOfInterest < 7) rateOfInterest = 7;
+    if (principal > 5000 && rateOfInterest < 10) rateOfInterest = 10;
+
+    if (time > 5) {
+        rateOfInterest += 2;
+        addInfo.textContent = "Congrats, you got an additional 2% bonus!"
+    }
+    else addInfo.textContent = "You got no bonus!"
+
+    interest = (principal * rateOfInterest * time) / 100;
+
+    answer.textContent = interest.toFixed(2);
+    total.textContent = (principal + interest).toFixed(2);
 });
