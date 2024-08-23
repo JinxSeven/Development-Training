@@ -1,3 +1,46 @@
 * {
-    font-family: monospace;
+    font-family: "Anek Devanagari", monospace;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+main {
+    border: 1px solid skyblue;
+    width: 505px;
+    padding: 5px;
+}
+
+.calculator {
+    align-items: center;
+}
+
+.calculator label {
+    width: 150px;
+    height: fit-content;
+}
+
+.main-container {
+    border: 1px solid black;
+    padding: 25px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.calculator input {
+    padding: 5px;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin: 5px;
+    width: 405px;
+}
+
+.calculator input[type=submit] {
+    background-color: rgb(3, 117, 3);
+    color: whitesmoke;
+    padding: 5px;
+    width: 125px;
 }

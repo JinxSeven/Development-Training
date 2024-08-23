@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Interest Calculator</title>
     <link rel="stylesheet" href="./resources/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Devanagari:wght@100..800&display=swap" rel="stylesheet">
 </head>
 <body>
     <main>
         <div class="main-container">
+            <h1>Advanced Simple Interest Calculator</h1>
             <form class="calculator" action="">
-                <label>Principal Amount: <input id="principal" type="text"></label>
-                <label>Rate of Interest(%): <input id="rate-of-interest" type="text"></label>
-                <label>Time(Years): <input id="time" type="text"></label>
+                <label>Principal Amount: <input id="principal" placeholder="Enter principal amount" type="text"></label>
+                <label>Rate of Interest(%): <input id="rate-of-interest" placeholder="Enter interest rate" type="text"></label>
+                <label>Time(Years): <input id="time" placeholder="Enter time in years" type="text"></label>
                 <input type="submit" value="Calculate Interest">
             </form>
-        </div>
-        <div class="output">
-            <p>Interest: <span id="interest">0</span></p>
-            <p>Total Amount: <span id="total-amount">0</span></p>
-            <p>Additional Information: <span id="add-info">0</span></p>
+            <div class="output">
+                <p>Interest: <span id="interest">0</span></p>
+                <p>Total Amount: <span id="total-amount">0</span></p>
+                <p>Additional Information: <span id="add-info">0</span></p>
+            </div>
         </div>
     </main>
     <script src="./resources/script/script.js"></script>
