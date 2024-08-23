@@ -27,7 +27,7 @@ calculator.addEventListener("submit", function(def) {
 
     if (time > 5) {
         rateOfInterest += 2;
-        addInfo.textContent = "Congrats, you got an additional 2% bonus!"
+        addInfo.textContent = "You got an additional 2% bonus!"
     }
     else addInfo.textContent = "You got no bonus!"
 
@@ -35,4 +35,5 @@ calculator.addEventListener("submit", function(def) {
 
     answer.textContent = interest.toFixed(2);
     total.textContent = (principal + interest).toFixed(2);
+    calculator.reset();
 });
