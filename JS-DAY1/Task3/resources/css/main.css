@@ -10,8 +10,13 @@ body {
     margin: 0;
 }
 
+h1 {
+    width: 300px;
+}
+
 main {
     border: 1px solid skyblue;
+    width: 400px;
     padding: 5px;
 }
 
@@ -19,6 +24,10 @@ main {
     border: 1px solid black;
     padding: 5px;
     border-radius: 5px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 .main-container form {
@@ -27,6 +36,7 @@ main {
     padding: 10px;
     justify-content: center;
     align-items: center;
+    width: 90%;
 }
 
 label {
@@ -41,7 +51,29 @@ input {
 }
 
 .main-container form button {
+    margin-top: 15px;
+    background-color: #007bff;
     padding: 10px;
     width: 50%;
-    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+ol {
+    display: none;
+}
+
+#calc-avg-btn {
+    background-color: #007bff;
+    padding: 10px;
+    width: 45%;
+    border: none;
+    border-radius: 5px;
+    color: white;
+}
+
+input {
+    border: 1.5px solid #d8d8d8;
+    padding: 7px;
 }
