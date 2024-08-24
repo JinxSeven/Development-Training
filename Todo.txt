@@ -7,4 +7,9 @@ Site changes advised:
     items-summary align text with images used - fixed
     fix jogging buttons - fixed
 
+JS Fixes:
+    Remove all alert validations - add tags on focus and blur
+    D2T1 - add $ symbols in price column
+    D2T1 - add remove product button
+
 http://127.0.0.1:5500/
