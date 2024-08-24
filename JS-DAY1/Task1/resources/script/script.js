@@ -7,24 +7,11 @@ let roiInput = document.getElementById('rate-of-interest');
 let timeInput = document.getElementById('time');
 let interest = 0;
 
-principalInput.addEventListener('blur', function() {
-    if (principal < 500 || principal > 10000 || isNaN(principal)) {
-        alert("Invalid principal input rangecor type!")
-            principalInput.value= '';
-    }
-})
-
-roiInput.addEventListener('blur', function() {
-    if (isNaN(rateOfInterest)) {
-        alert("Invalid rate 0f interest input type!")
-        roiInput.value= '';
-    }
-})
-
-timeInput.addEventListener('blur', function() {
-    if (isNaN(time)) {
-        alert("Invalid time input type!")
-        timeInput.value= '';
+principalInput.addEventListener('blur', function(){
+    if (principalInput.value < 500) {
+        console.log('if');
+    } else {
+        console.log('else')
     }
 })
 

@@ -2,6 +2,13 @@
     font-family: "DM Sans", monospace;
 }
 
+#principal-err {
+    display: none;
+    font-size: small;
+    color: red;
+    margin: 0px;
+}
+
 body {
     display: flex;
     align-items: center;
