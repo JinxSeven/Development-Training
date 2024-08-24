@@ -6,3 +6,5 @@ Site changes advised:
     add message customer button - fixed
     items-summary align text with images used - fixed
     fix jogging buttons - fixed
+
+http://127.0.0.1:5500/
