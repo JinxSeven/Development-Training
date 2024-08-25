@@ -2,6 +2,17 @@ let todoButton = document.getElementById('add-todo-task');
 let taskInput = document.getElementById('todo-input');
 let taskList = document.querySelector('ul');
 
+taskInput.addEventListener('blur', function() {
+    if (taskInput.value == '') {
+        document.getElementById('task-err').style.opacity = '1';
+        taskInput.style.borderColor = 'rgb(218, 43, 43)'
+        taskList.removeChild(taskItem);
+    } else {
+        document.getElementById('task-err').style.opacity = '0';
+        taskInput.style.borderColor = '#d8d8d8';
+    }
+})
+
 todoButton.addEventListener('click', function() {
     let taskItem = document.createElement('li');
     let taskCheck = document.createElement('input');
@@ -9,8 +20,12 @@ todoButton.addEventListener('click', function() {
     let p = document.createElement('p');
     
     if (taskInput.value == '') {
-        alert('Enter task before adding!'); 
+        document.getElementById('task-err').style.opacity = '1';
+        taskInput.style.borderColor = 'rgb(218, 43, 43)'
         taskList.removeChild(taskItem);
+    } else {
+        document.getElementById('task-err').style.opacity = '0';
+        taskInput.style.borderColor = '#d8d8d8';
     }
 
     p.innerText = taskInput.value;

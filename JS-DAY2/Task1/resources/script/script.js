@@ -65,7 +65,7 @@ addProdBtn.addEventListener('click', function(def) {
         let data = [];
         for (let x = rowCount; x < arrProd.length; x++) {
             data.push(arrProd[rowCount].getName());
-            data.push(arrProd[rowCount].getPrice());
+            data.push('$' + arrProd[rowCount].getPrice());
             data.push(arrProd[rowCount].getQuant());
             for (let i = 0; i < data.length; i++) {
                 let tableData = document.createElement('td');

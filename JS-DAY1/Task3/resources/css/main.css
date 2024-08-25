@@ -14,6 +14,10 @@ h1 {
     width: 300px;
 }
 
+h3 {
+    margin-top: 0px;
+}
+
 main {
     border: 1px solid skyblue;
     width: 400px;
@@ -39,29 +43,57 @@ main {
     width: 90%;
 }
 
+#name-err {
+    margin: 3px;
+    color: rgb(218, 43, 43);
+    font-size: 12px;
+    font-style: italic;
+    transition: opacity 0.3s linear, border-color 0.7s linear;
+    opacity: 0;
+}
+
+#grade-err {
+    margin: 3px;
+    color: rgb(218, 43, 43);
+    font-size: 12px;
+    font-style: italic;
+    transition: opacity 0.3s linear, border-color 0.7s linear;
+    opacity: 0;
+}
+
 label {
     padding: 5px;
+    padding-bottom: 0px;
     text-align: center;
+    width: 100%;
+    padding-top: 0px;
+    margin-top: -3px;
 }
 
 input {
     height: 28px;
     border-radius: 5px;
-    width: 100%;
+    width: 90%;
+    margin-top: 5px;
 }
 
 .main-container form button {
-    margin-top: 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
     background-color: #007bff;
     padding: 10px;
     width: 50%;
     border: none;
     border-radius: 5px;
     color: white;
+    transition: background-color 0.5s;
 }
 
 ol {
     display: none;
+    margin-top: -15px;
+    list-style-type: none;
+    margin-left: -35px;
 }
 
 #calc-avg-btn {
@@ -71,9 +103,20 @@ ol {
     border: none;
     border-radius: 5px;
     color: white;
+    transition: background-color 0.5s;
 }
 
 input {
     border: 1.5px solid #d8d8d8;
     padding: 7px;
+}
+
+#calc-avg-btn:hover {
+    background-color: #005ab9;
+    cursor: pointer;
+}
+
+.main-container form button:hover {
+    background-color: #005ab9;
+    cursor: pointer;
 }

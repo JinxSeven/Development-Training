@@ -23,37 +23,48 @@ class Student {
 let arrStuds = [];
 let listCount = 0;
 
-studInput.addEventListener('blur', function() {
-    if (studInput.value == '' || !isNaN(studInput.value)) { 
-        alert('Name cannot be empty or a number!');
-        studInput.style.borderColor = '#ff474c';
+function studInputCheck() {
+    if (studInput.value == '' || !isNaN(studInput.value)) {
+        studInput.style.borderColor = 'rgb(218, 43, 43)';
+        document.getElementById('name-err').style.opacity = '1';
+        return false;
     } else {
-        studInput.style.borderColor = '#90ee90';
+        studInput.style.borderColor = '#d8d8d8';
+        document.getElementById('name-err').style.opacity = '0';
+        return true;
     }
-})
+}
 
-gradeInput.addEventListener('blur', function() {
+studInput.addEventListener('blur', studInputCheck);
+
+function gradeInputCheck() {
     if (gradeInput.value == '' || isNaN(gradeInput.value)) {
-        alert('Grade cannot be empty or invalid type!');
-        gradeInput.style.borderColor = '#ff474c';
+        gradeInput.style.borderColor = 'rgb(218, 43, 43)';
+        document.getElementById('grade-err').style.opacity = '1';
+        return false;
     } else {
-        gradeInput.style.borderColor = '#90ee90';
+        gradeInput.style.borderColor = '#d8d8d8';
+        document.getElementById('grade-err').style.opacity = '0';
+        return true;
     }
-})
+}
+
+gradeInput.addEventListener('blur', gradeInputCheck);
 
 addStudBtn.addEventListener('click', function(def) {
     def.preventDefault();
     
+    if (!studInputCheck() || !gradeInputCheck()) return;
+
     const newStud = new Student(studInput.value, gradeInput.value);
     arrStuds.push(newStud); 
-    console.log(arrStuds.length);
+
     if (listCount < arrStuds.length) {
         for (let x = listCount; x < arrStuds.length; x++) {
             let listItem = document.createElement('li');
             let studentData = arrStuds[x].getName() + ' - Grade: ' + arrStuds[x].getGrade();
             let data = document.createTextNode(studentData);
-            listItem.append(data)
-            console.log(arrStuds[x]);
+            listItem.append(data);
             gradeList.append(listItem);
             listCount++;
         }
@@ -64,6 +75,9 @@ let toggle = 0;
 
 dispGradeBtn.addEventListener('click', function(def){
     def.preventDefault();
+
+    if (arrStuds.length == 0) return;
+
     let showList = document.querySelector('ol');
     if (toggle == 0) {
         showList.style.display = 'block';
@@ -75,6 +89,8 @@ dispGradeBtn.addEventListener('click', function(def){
 })
 
 calcAvgBtn.addEventListener('click', function() {
+    if (arrStuds.length == 0) return;
+    
     let avg = 0;
     for (let x = 0; x < arrStuds.length; x++) {
         avg += parseFloat(arrStuds[x].getGrade());

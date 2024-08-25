@@ -8,8 +8,7 @@ Site changes advised:
     fix jogging buttons - fixed
 
 JS Fixes:
-    Remove all alert validations - add tags on focus and blur
-    D2T1 - add $ symbols in price column
-    D2T1 - add remove product button
+    D1: Remove all alert validations add tags on focus and blur - fixed 
+    D2T1: add remove product button and validation
 
 http://127.0.0.1:5500/

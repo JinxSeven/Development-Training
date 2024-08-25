@@ -2,11 +2,31 @@
     font-family: "DM Sans", monospace;
 }
 
-#principal-err {
-    display: none;
-    font-size: small;
-    color: red;
-    margin: 0px;
+#ppl-err {
+    transition: opacity 0.3s linear, border-color 0.7s linear;
+    font-style: italic;
+    font-size: 12px;
+    color: rgb(218, 43, 43);
+    margin: -3px;
+    opacity: 0;
+}
+
+#roi-err {
+    opacity: 0;
+    font-size: 12px;
+    color: rgb(218, 43, 43);
+    margin: -3px;
+    transition: opacity 0.3s linear, border-color 0.7s linear;
+    font-style: italic;
+}
+
+#time-err {
+    opacity: 0;
+    font-size: 12px;
+    color: rgb(218, 43, 43);
+    margin: -3px;
+    transition: opacity 0.3s linear, border-color 0.7s linear;
+    font-style: italic;
 }
 
 body {
@@ -45,7 +65,7 @@ main {
 
 .calculator input {
     padding: 10px;
-    border: 1px solid gray;
+    border: 1px solid #d8d8d8;
     border-radius: 5px;
     margin-bottom: 5px;
     box-sizing: border-box;
@@ -54,13 +74,15 @@ main {
 }
 
 .calculator input[type=submit] {
-    background-color: rgb(3, 117, 3);
+    background-color: rgb(3, 143, 3);
     color: white;
     padding: 10px;
     width: 50%;
     border: none;
     cursor: pointer;
+    font-size: medium;
     font-weight: 600;
+    transition: background-color 0.5s;
 }
 
 .calculator input[type=submit]:hover {
