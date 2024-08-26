@@ -70,13 +70,14 @@ prodQuantInp.addEventListener('blur', prodQuantInpCheck);
 let arrHead = ['Product Name', 'Price', 'Quantity', '‎'];
 let arrProd = [];
 let rowCount = 0;
+let first = true;
 
 addProdBtn.addEventListener('click', function(def) {
     def.preventDefault();
 
     if (!prodNameInpCheck() || !prodPriceInpCheck() || !prodQuantInpCheck()) return;
 
-    if (rowCount == 0) {
+    if (first) {
         let tableRow = document.createElement('tr');
         for (let x = 0; x < arrHead.length; x++) {
             let tableHead = document.createElement('th');
@@ -84,6 +85,7 @@ addProdBtn.addEventListener('click', function(def) {
             tableRow.append(tableHead);
         }
         table.append(tableRow);
+        first = false;
     }
 
     let newProduct = new Product(prodNameInp.value, prodPriceInp.value, prodQuantInp.value);

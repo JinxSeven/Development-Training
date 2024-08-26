@@ -42,6 +42,10 @@ function gradeInputCheck() {
         gradeInput.style.borderColor = 'rgb(218, 43, 43)';
         document.getElementById('grade-err').style.opacity = '1';
         return false;
+    } else if (gradeInput.value < 1 || gradeInput.value > 100) {
+        gradeInput.style.borderColor = 'rgb(218, 43, 43)';
+        document.getElementById('grade-err').style.opacity = '1';
+        return false;
     } else {
         gradeInput.style.borderColor = '#d8d8d8';
         document.getElementById('grade-err').style.opacity = '0';
