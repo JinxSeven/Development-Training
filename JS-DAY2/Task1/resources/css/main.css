@@ -5,7 +5,7 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content: center;
 }
 
 main {
@@ -31,6 +31,7 @@ main {
     border-radius: 5px;
     border: 1.5px solid #d8d8d8;
     padding: 7px;
+    transition: border-color 0.5s;
 }
 
 .inventory-form button {
@@ -40,15 +41,75 @@ main {
     border: none;
     border-radius: 5px;
     margin-top: 15px;
-} 
+    transition: background-color 0.1s;
+}
+
+.inventory-form button:hover {
+    cursor: pointer;
+}
+
+.inventory-form button:active {
+    background-color: #005ab9;
+}
 
 table {
     width: 100%;
-    text-align: center;
+    text-align: left;
     border: 1px solid #d8d8d8;
     border-radius: 5px;
 }
 
 table th {
     background-color: rgb(196, 196, 196);
+}
+
+label {
+    margin: 5px;
+}
+
+#prod-err {
+    color: rgb(218, 43, 43);
+    margin: 0px;
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0;
+}
+
+#price-err {
+    color: rgb(218, 43, 43);
+    margin: 0px;
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0;
+}
+
+#quant-err {
+    color: rgb(218, 43, 43);
+    margin: 0px;
+    font-size: 12px;
+    font-style: italic;
+    opacity: 0;
+}
+
+i {
+    color: rgb(218, 43, 43);
+}
+
+table button {
+    width: 100%;
+    border: none;
+}
+
+table button:hover {
+    cursor: pointer;
+}
+
+table td {
+    font-size: small;
+} 
+
+#edit-quant-inp {
+    width: 70px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
 }

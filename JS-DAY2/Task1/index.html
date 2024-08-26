@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./resources/css/main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -14,9 +15,9 @@
         <div class="main-container">
             <h1>Inventory System</h1>
             <form action="" class="inventory-form">
-                <label>Name:</label><input id="prod-name-inp">
-                <label>Price:</label><input id="prod-price-inp">
-                <label>Quantity:</label><input id="prod-quant-inp">
+                <label>Name:</label><input id="prod-name-inp" placeholder="Enter product name"><p id="prod-err">Product name can't be empty!</p>
+                <label>Price:</label><input id="prod-price-inp" placeholder="Enter product price"><p id="price-err">Price can't be empty!</p>
+                <label>Quantity:</label><input id="prod-quant-inp" placeholder="Enter product quantity"><p id="quant-err">Quantity can't be empty!</p>
                 <button id="add-prod-btn">Add Product</button>
             </form>
             <h3>Inventory List</h3>

@@ -69,6 +69,8 @@ addStudBtn.addEventListener('click', function(def) {
             listCount++;
         }
     }
+    studInput.value = '';
+    gradeInput.value = '';
 })
 
 let toggle = 0;

@@ -86,7 +86,7 @@ input {
     border: none;
     border-radius: 5px;
     color: white;
-    transition: background-color 0.5s;
+    transition: background-color 0.1s;
 }
 
 ol {
@@ -103,7 +103,7 @@ ol {
     border: none;
     border-radius: 5px;
     color: white;
-    transition: background-color 0.5s;
+    transition: background-color 0.1s;
 }
 
 input {
@@ -112,11 +112,17 @@ input {
 }
 
 #calc-avg-btn:hover {
-    background-color: #005ab9;
     cursor: pointer;
 }
 
-.main-container form button:hover {
+#calc-avg-btn:active {
     background-color: #005ab9;
+}
+
+.main-container form button:hover {
     cursor: pointer;
+}
+
+.main-container form button:active {
+    background-color: #005ab9;
 }

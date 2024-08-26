@@ -1,0 +1,38 @@
+* {
+    font-family: "DM Sans", monospace;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main {
+    border: 1px solid skyblue;
+    padding: 5px;
+}
+
+.main-container {
+    border: 1px solid black;
+    padding: 5px;
+}
+
+#search-inp {
+    padding: 8px;
+    width: 65%;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+#search-btn {
+    padding: 8px;
+    width: 29%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border: 1px solid #007bff;
+    background-color: #007bff;
+    color: white;
+}

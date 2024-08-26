@@ -20,32 +20,61 @@ class Product {
     getQuant() {
         return this.quant;
     }
+    updateQuant(updatedQuant) {
+        this.quant = updatedQuant;
+    }
 }
 
-prodNameInp.addEventListener('blur', function() {
+function prodNameInpCheck() {
     if (prodNameInp.value == '') {
-        alert('Product name cant be null!')
+        document.getElementById('prod-err').style.opacity = '1';
+        prodNameInp.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    } else {
+        document.getElementById('prod-err').style.opacity = '0';
+        prodNameInp.style.borderColor = '#d8d8d8';
+        return true;
     }
-})
+}
 
-prodPriceInp.addEventListener('blur', function() {
+prodNameInp.addEventListener('blur', prodNameInpCheck);
+
+function prodPriceInpCheck() {
     if (prodPriceInp.value == '') {
-        alert('Product price cant be null!')
+        document.getElementById('price-err').style.opacity = '1';
+        prodPriceInp.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    } else {
+        document.getElementById('price-err').style.opacity = '0';
+        prodPriceInp.style.borderColor = '#d8d8d8';
+        return true;
     }
-})
+}
 
-prodQuantInp.addEventListener('blur', function() {
+prodPriceInp.addEventListener('blur', prodPriceInpCheck);
+
+function prodQuantInpCheck() {
     if (prodQuantInp.value == '') {
-        alert('Product quantity cant be null!')
+        document.getElementById('quant-err').style.opacity = '1';
+        prodQuantInp.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    } else {
+        document.getElementById('quant-err').style.opacity = '0';
+        prodQuantInp.style.borderColor = '#d8d8d8';
+        return true;
     }
-})
+}
 
-let arrHead = ['Product Name', 'Price', 'Quantity'];
+prodQuantInp.addEventListener('blur', prodQuantInpCheck);
+
+let arrHead = ['Product Name', 'Price', 'Quantity', '‎'];
 let arrProd = [];
 let rowCount = 0;
 
 addProdBtn.addEventListener('click', function(def) {
     def.preventDefault();
+
+    if (!prodNameInpCheck() || !prodPriceInpCheck() || !prodQuantInpCheck()) return;
 
     if (rowCount == 0) {
         let tableRow = document.createElement('tr');
@@ -62,6 +91,8 @@ addProdBtn.addEventListener('click', function(def) {
 
     if (rowCount < arrProd.length) {
         let tableRow = document.createElement('tr');
+        let deleteBtn = document.createElement('button');
+        let input = document.createElement('input');
         let data = [];
         for (let x = rowCount; x < arrProd.length; x++) {
             data.push(arrProd[rowCount].getName());
@@ -69,12 +100,34 @@ addProdBtn.addEventListener('click', function(def) {
             data.push(arrProd[rowCount].getQuant());
             for (let i = 0; i < data.length; i++) {
                 let tableData = document.createElement('td');
+                if (i == 2) {
+                    input.value = data[i];
+                    input.setAttribute('id', 'edit-quant-inp');
+                    tableData.append(input);
+                    tableRow.append(tableData);
+                    continue;
+                }
                 tableData.innerText = data[i];
                 tableRow.append(tableData);
             }
+            deleteBtn.setAttribute('id', 'delete-btn');
+            deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
+            tableRow.append(deleteBtn);
             table.append(tableRow);
         }
         rowCount++;
+        deleteBtn.addEventListener('click', function() {
+            arrProd.splice(tableRow.rowIndex - 1, 1);
+            table.removeChild(tableRow);
+            rowCount--;
+        })
+
+        input.addEventListener('blur', function() {
+            if (input.value == '') input.value = arrProd[tableRow.rowIndex - 1].getQuant();
+            if (input.value !== arrProd[tableRow.rowIndex - 1]) {
+                arrProd[tableRow.rowIndex - 1].updateQuant(input.value);
+            }   
+        })
     }
     form.reset();
 })
