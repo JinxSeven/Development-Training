@@ -60,6 +60,17 @@ addStudBtn.addEventListener('click', function(def) {
     
     if (!studInputCheck() || !gradeInputCheck()) return;
 
+    for (let x = 0; x < arrStuds.length; x++) {
+        if (arrStuds[x].getName() == studInput.value) {
+            document.getElementById('name-err').innerText = "Student data already exist!";
+            document.getElementById('name-err').style.opacity = '1';
+            return;
+        } else {
+            document.getElementById('name-err').innerText = "Student name can't be empty or a number";
+            document.getElementById('name-err').style.opacity = '0';
+        }
+    }
+
     const newStud = new Student(studInput.value, gradeInput.value);
     arrStuds.push(newStud); 
 
@@ -103,6 +114,5 @@ calcAvgBtn.addEventListener('click', function() {
     }
 
     avg = avg / arrStuds.length;
-    console.log(avg);
     avgOut.textContent = avg.toFixed(2);
 })

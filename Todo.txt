@@ -1,5 +1,6 @@
-CSS variables
-GitHub Pages: Hosting Final Project
+Topics to look into:
+    CSS variables - done
+    GitHub Pages: Hosting Final Project - done
 
 Site changes advised:
     top-block change spacing - fixed
@@ -10,6 +11,7 @@ Site changes advised:
 JS Fixes:
     D1: Remove all alert validations add tags on focus and blur - fixed 
     D1T2: Edit to-do tasks - fixed
+    D1T3: No repeating students - fixed
     D2T1: Enhance edit inventory stock
 
 http://127.0.0.1:5500/
