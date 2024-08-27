@@ -37,6 +37,16 @@ main {
     padding: 5px;
 }
 
+#task-edit {
+    border: none;
+    text-align: center;
+    font-style: italic;
+}
+
+#task-edit::placeholder {
+    color: #a70515;
+}
+
 .delete-button {
     background-color: #dc3545;
     padding: 5px;
@@ -80,7 +90,11 @@ li {
     cursor: pointer;
 }
 
-main input {
+.check-box:disabled {
+    cursor: default;
+}
+
+main #todo-input {
     height: 24px;
     padding: 5px;
     border: 1.5px solid #d8d8d8;
