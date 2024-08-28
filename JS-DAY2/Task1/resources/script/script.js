@@ -6,22 +6,31 @@ const table = document.querySelector('table');
 const form = document.querySelector('form');
 
 class Product {
+    #name;
+    #price;
+    #quant;
     constructor(name, price, quant) {
-        this.name = name;
-        this.price = price;
-        this.quant = quant;
+        this.#name = name;
+        this.#price = price;
+        this.#quant = quant;
     }
     getName() {
-        return this.name;
+        return this.#name;
     }
     getPrice() {
-        return this.price;
+        return this.#price;
     }
     getQuant() {
-        return this.quant;
+        return this.#quant;
+    }
+    updateName(updatedName) {
+        this.#name = updatedName;
+    }
+    updatePrice(updatedPrice) {
+        this.#price = updatedPrice;
     }
     updateQuant(updatedQuant) {
-        this.quant = updatedQuant;
+        this.#quant = updatedQuant;
     }
 }
 
@@ -67,7 +76,7 @@ function prodQuantInpCheck() {
 
 prodQuantInp.addEventListener('blur', prodQuantInpCheck);
 
-let arrHead = ['Product Name', 'Price', 'Quantity', '‎'];
+let headRow = ['Product Name', 'Price', 'Quantity', '', ''];
 let arrProd = [];
 let rowCount = 0;
 let first = true;
@@ -79,57 +88,85 @@ addProdBtn.addEventListener('click', function(def) {
 
     if (first) {
         let tableRow = document.createElement('tr');
-        for (let x = 0; x < arrHead.length; x++) {
+        for (let x = 0; x < headRow.length; x++) {
             let tableHead = document.createElement('th');
-            tableHead.innerText = arrHead[x];
+            tableHead.innerText = headRow[x];
             tableRow.append(tableHead);
         }
         table.append(tableRow);
         first = false;
     }
 
-    let newProduct = new Product(prodNameInp.value, prodPriceInp.value, prodQuantInp.value);
-    arrProd.push(newProduct);
+    let newProd = new Product(prodNameInp.value, prodPriceInp.value, prodQuantInp.value);
+    arrProd.push(newProd);
 
-    if (rowCount < arrProd.length) {
-        let tableRow = document.createElement('tr');
-        let deleteBtn = document.createElement('button');
-        let input = document.createElement('input');
-        let data = [];
-        for (let x = rowCount; x < arrProd.length; x++) {
-            data.push(arrProd[rowCount].getName());
-            data.push('$' + arrProd[rowCount].getPrice());
-            data.push(arrProd[rowCount].getQuant());
-            for (let i = 0; i < data.length; i++) {
-                let tableData = document.createElement('td');
-                if (i == 2) {
-                    input.value = data[i];
-                    input.setAttribute('id', 'edit-quant-inp');
-                    tableData.append(input);
-                    tableRow.append(tableData);
-                    continue;
-                }
-                tableData.innerText = data[i];
-                tableRow.append(tableData);
-            }
-            deleteBtn.setAttribute('id', 'delete-btn');
+    const tableRow = document.createElement('tr');
+    const deleteBtn = document.createElement('button');
+    const editBtn = document.createElement('button');
+
+    let data = [];
+
+    data.push(newProd.getName());
+    data.push('$' + newProd.getPrice());
+    data.push(newProd.getQuant());
+
+    for (let i = 0; i < data.length + 2; i++) {
+        const tableData = document.createElement('td');
+        if (i == 3) {
+            deleteBtn.setAttribute('class', 'delete-btn');
             deleteBtn.innerHTML = `<i class="fa-solid fa-trash-can"></i>`;
-            tableRow.append(deleteBtn);
-            table.append(tableRow);
+            tableData.append(deleteBtn);
+            tableRow.append(tableData);
+            continue;
+        } else if (i == 4) {
+            editBtn.setAttribute('class', 'edit-btn');
+            editBtn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
+            tableData.append(editBtn);
+            tableRow.append(tableData);
+            continue;
         }
-        rowCount++;
-        deleteBtn.addEventListener('click', function() {
-            arrProd.splice(tableRow.rowIndex - 1, 1);
-            table.removeChild(tableRow);
-            rowCount--;
-        })
-
-        input.addEventListener('blur', function() {
-            if (input.value == '') input.value = arrProd[tableRow.rowIndex - 1].getQuant();
-            if (input.value !== arrProd[tableRow.rowIndex - 1]) {
-                arrProd[tableRow.rowIndex - 1].updateQuant(input.value);
-            }   
-        })
+        const input = document.createElement('input');
+        input.value = data[i];
+        input.setAttribute('class', 'edit-data');
+        tableData.append(input);
+        tableRow.append(tableData);
+        input.addEventListener('blur', editFun);
     }
+    table.append(tableRow);
+
+    deleteBtn.addEventListener('click', deleteFun);
+
     form.reset();
 })
+
+function deleteFun(event) {
+    const closestTr = event.target.closest('tr');
+    arrProd.splice(closestTr.rowIndex - 1, 1);
+    table.removeChild(closestTr);
+}
+
+function editFun(event) {
+    const closestTr = event.target.closest('tr');
+    const closestInp = event.target.closest('input');
+    const cellIdx = closestInp.parentNode.cellIndex;
+
+    if (cellIdx == 0) {
+        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getName();
+        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
+            arrProd[closestTr.rowIndex - 1].updateName(closestInp.value);
+        }  
+        console.log(arrProd[closestTr.rowIndex - 1]);
+    } else if (cellIdx == 1) {
+        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getPrice();
+        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
+            arrProd[closestTr.rowIndex - 1].updatePrice(closestInp.value);
+        }
+        console.log(arrProd[closestTr.rowIndex - 1]);
+    } else {
+        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getQuant();
+        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
+            arrProd[closestTr.rowIndex - 1].updateQuant(closestInp.value);
+        }
+        console.log(arrProd[closestTr.rowIndex - 1]);
+    }
+}
