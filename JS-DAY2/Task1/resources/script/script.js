@@ -128,13 +128,17 @@ addProdBtn.addEventListener('click', function(def) {
         const input = document.createElement('input');
         input.value = data[i];
         input.setAttribute('class', 'edit-data');
+        input.setAttribute('readonly', 'true');
         tableData.append(input);
         tableRow.append(tableData);
-        input.addEventListener('blur', editFun);
+        input.addEventListener('blur', saveFun);
     }
     table.append(tableRow);
 
     deleteBtn.addEventListener('click', deleteFun);
+    editBtn.addEventListener('click', function(event) {
+        
+    });
 
     form.reset();
 })
@@ -145,7 +149,7 @@ function deleteFun(event) {
     table.removeChild(closestTr);
 }
 
-function editFun(event) {
+function saveFun(event) {
     const closestTr = event.target.closest('tr');
     const closestInp = event.target.closest('input');
     const cellIdx = closestInp.parentNode.cellIndex;
@@ -169,4 +173,5 @@ function editFun(event) {
         }
         console.log(arrProd[closestTr.rowIndex - 1]);
     }
+
 }
