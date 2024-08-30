@@ -79,6 +79,7 @@ prodQuantInp.addEventListener('blur', prodQuantInpCheck);
 let headRow = ['Product Name', 'Price', 'Quantity', '', ''];
 let arrProd = [];
 let rowCount = 0;
+let modTog = 0;
 let first = true;
 
 addProdBtn.addEventListener('click', function(def) {
@@ -136,9 +137,7 @@ addProdBtn.addEventListener('click', function(def) {
     table.append(tableRow);
 
     deleteBtn.addEventListener('click', deleteFun);
-    editBtn.addEventListener('click', function(event) {
-        
-    });
+    editBtn.addEventListener('click', editFun);
 
     form.reset();
 })
@@ -147,6 +146,24 @@ function deleteFun(event) {
     const closestTr = event.target.closest('tr');
     arrProd.splice(closestTr.rowIndex - 1, 1);
     table.removeChild(closestTr);
+}
+
+function editFun(event) {
+    const closestTr = event.target.closest('tr');
+    const inputs = closestTr.querySelectorAll('input');
+    
+    if (modTog == 0) {
+        inputs.forEach(input => {
+            input.removeAttribute('readonly');
+        });
+        modTog = (modTog + 1) % 2;
+        inputs[0].focus();
+    } else {
+        inputs.forEach(input => {
+            input.setAttribute('readonly', 'true');
+        });
+        modTog = (modTog + 1) % 2;
+    }
 }
 
 function saveFun(event) {
@@ -173,5 +190,4 @@ function saveFun(event) {
         }
         console.log(arrProd[closestTr.rowIndex - 1]);
     }
-
 }
