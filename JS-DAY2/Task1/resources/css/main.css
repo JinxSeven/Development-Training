@@ -133,4 +133,5 @@ table td {
     margin-top: -15px;
     margin-bottom: 8px;
     opacity: 0;
+    transition: opacity 0.5s;
 }
