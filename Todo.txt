@@ -12,6 +12,6 @@ JS Fixes:
     D1: Remove all alert validations add tags on focus and blur - fixed 
     D1T2: Edit to-do tasks - fixed
     D1T3: No repeating students - fixed
-    D2T1: Enhance edit inventory stock
+    D2T1: Enhance edit inventory stock -fixed
 
 http://127.0.0.1:5500/

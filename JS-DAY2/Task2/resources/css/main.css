@@ -15,8 +15,8 @@ main {
 
 .main-container {
     border: 1px solid black;
-    padding: 10px;
-    padding-left: 20px;
+    padding: 20px;
+    border-radius: 5px;
 }
 
 #search-inp {
@@ -29,7 +29,7 @@ main {
 
 #search-btn {
     padding: 8px;
-    width: 29%;
+    width: 32.2%;
     border-radius: 5px;
     border: 1px solid #007bff;
     background-color: #007bff;
@@ -40,4 +40,8 @@ main {
     color: #a70515;
     font-size: 12px;
     text-align: center;
+    font-style: italic;
+    opacity: 0;
+    margin-bottom: -10px;
+    transition: opacity 0.5s;
 }
