@@ -15,24 +15,29 @@ main {
 
 .main-container {
     border: 1px solid black;
-    padding: 5px;
+    padding: 10px;
+    padding-left: 20px;
 }
 
 #search-inp {
     padding: 8px;
-    width: 65%;
+    width: 60%;
     border: 1px solid #d8d8d8;
     border-radius: 5px;
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    margin-right: 8px;
 }
 
 #search-btn {
     padding: 8px;
     width: 29%;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
+    border-radius: 5px;
     border: 1px solid #007bff;
     background-color: #007bff;
     color: white;
+}
+
+#city-err {
+    color: #a70515;
+    font-size: 12px;
+    text-align: center;
 }
