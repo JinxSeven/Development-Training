@@ -132,12 +132,14 @@ addProdBtn.addEventListener('click', function(def) {
         input.setAttribute('readonly', 'true');
         tableData.append(input);
         tableRow.append(tableData);
-        input.addEventListener('blur', saveFun);
+        // input.addEventListener('blur', saveFun);
     }
     table.append(tableRow);
 
     deleteBtn.addEventListener('click', deleteFun);
-    editBtn.addEventListener('click', editFun);
+    editBtn.addEventListener('click', function() {
+        editFun(editBtn);
+    })
 
     form.reset();
 })
@@ -148,46 +150,54 @@ function deleteFun(event) {
     table.removeChild(closestTr);
 }
 
-function editFun(event) {
-    const closestTr = event.target.closest('tr');
+function editFun(editBtn) {
+    const closestTr = editBtn.closest('tr');
     const inputs = closestTr.querySelectorAll('input');
-    
+    const editModeInfo = document.getElementById('edit-mode-info');
+
     if (modTog == 0) {
         inputs.forEach(input => {
             input.removeAttribute('readonly');
         });
         modTog = (modTog + 1) % 2;
+        editBtn.innerHTML = `<i class="fa-solid fa-floppy-disk"></i>`;
         inputs[0].focus();
+        editModeInfo.style.opacity = 1;
     } else {
         inputs.forEach(input => {
             input.setAttribute('readonly', 'true');
         });
         modTog = (modTog + 1) % 2;
+        saveFun(editBtn);
+        editBtn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
+        editModeInfo.style.opacity = 0;
     }
 }
 
-function saveFun(event) {
-    const closestTr = event.target.closest('tr');
-    const closestInp = event.target.closest('input');
-    const cellIdx = closestInp.parentNode.cellIndex;
+function saveFun(editBtn) {
+    const closestTr = editBtn.closest('tr');
+    const closestInps = editBtn.querySelectorAll('input');
+    // const cellIdx = closestInps[x].parentNode.cellIndex;
 
-    if (cellIdx == 0) {
-        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getName();
-        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
-            arrProd[closestTr.rowIndex - 1].updateName(closestInp.value);
-        }  
-        console.log(arrProd[closestTr.rowIndex - 1]);
-    } else if (cellIdx == 1) {
-        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getPrice();
-        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
-            arrProd[closestTr.rowIndex - 1].updatePrice(closestInp.value);
+    for (let x = 0; x < closestInps.length; x++) {
+        if (x == 0) {
+            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getName();
+            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+                arrProd[closestTr.rowIndex - 1].updateName(closestInps[x].value);
+            }  
+            console.log(arrProd[closestTr.rowIndex - 1]);
+        } else if (x == 1) {
+            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getPrice();
+            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+                arrProd[closestTr.rowIndex - 1].updatePrice(closestInps[x].value);
+            }
+            console.log(arrProd[closestTr.rowIndex - 1]);
+        } else {
+            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getQuant();
+            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+                arrProd[closestTr.rowIndex - 1].updateQuant(closestInps[x].value);
+            }
+            console.log(arrProd[closestTr.rowIndex - 1]);
         }
-        console.log(arrProd[closestTr.rowIndex - 1]);
-    } else {
-        if (closestInp.value == '') closestInp.value = arrProd[closestTr.rowIndex - 1].getQuant();
-        if (closestInp.value !== arrProd[closestTr.rowIndex - 1]) {
-            arrProd[closestTr.rowIndex - 1].updateQuant(closestInp.value);
-        }
-        console.log(arrProd[closestTr.rowIndex - 1]);
     }
 }
