@@ -45,3 +45,8 @@ main {
     margin-bottom: -10px;
     transition: opacity 0.5s;
 }
+
+.output-div {
+    display: flex;
+    justify-content: space-between;
+}
