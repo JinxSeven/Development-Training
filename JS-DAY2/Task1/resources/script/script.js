@@ -2,6 +2,7 @@ const prodNameInp = document.getElementById('prod-name-inp');
 const prodPriceInp = document.getElementById('prod-price-inp');
 const prodQuantInp = document.getElementById('prod-quant-inp');
 const addProdBtn = document.getElementById('add-prod-btn');
+const editModeInfo = document.getElementById('edit-mode-info');
 const table = document.querySelector('table');
 const form = document.querySelector('form');
 
@@ -63,12 +64,14 @@ function prodPriceInpCheck() {
 prodPriceInp.addEventListener('blur', prodPriceInpCheck);
 
 function prodQuantInpCheck() {
+    const quantCheck = document.getElementById('quant-err');
     if (prodQuantInp.value == '') {
-        document.getElementById('quant-err').style.opacity = '1';
+        console.log('error testing');
+        quantCheck.style.opacity = '1';
         prodQuantInp.style.borderColor = 'rgb(218, 43, 43)';
         return false;
     } else {
-        document.getElementById('quant-err').style.opacity = '0';
+        quantCheck.style.opacity = '0';
         prodQuantInp.style.borderColor = '#d8d8d8';
         return true;
     }
@@ -81,6 +84,21 @@ let arrProd = [];
 let rowCount = 0;
 let modTog = 0;
 let first = true;
+
+function isDuplicate(inp1, inp2) {
+    console.log(arrProd.length);
+    for (let j = 0; j < arrProd.length; j++) {
+        if (inp1.value == arrProd[j].getName() && '$' + inp2.value == arrProd[j].getPrice()) {
+            editModeInfo.innerText = 'Product already exist!';
+            editModeInfo.style.opacity = 1;
+            return true;
+        } else {
+            editModeInfo.innerText = 'Edit mode is On!';
+            editModeInfo.style.opacity = 0;
+            return false;
+        }
+    }
+}
 
 addProdBtn.addEventListener('click', function(def) {
     def.preventDefault();
@@ -98,7 +116,9 @@ addProdBtn.addEventListener('click', function(def) {
         first = false;
     }
 
-    let newProd = new Product(prodNameInp.value, prodPriceInp.value, prodQuantInp.value);
+    if (isDuplicate(prodNameInp, prodPriceInp)) return;
+
+    let newProd = new Product(prodNameInp.value, '$' + prodPriceInp.value, prodQuantInp.value);
     arrProd.push(newProd);
 
     const tableRow = document.createElement('tr');
@@ -108,7 +128,7 @@ addProdBtn.addEventListener('click', function(def) {
     let data = [];
 
     data.push(newProd.getName());
-    data.push('$' + newProd.getPrice());
+    data.push(newProd.getPrice());
     data.push(newProd.getQuant());
 
     for (let i = 0; i < data.length + 2; i++) {
@@ -132,7 +152,6 @@ addProdBtn.addEventListener('click', function(def) {
         input.setAttribute('readonly', 'true');
         tableData.append(input);
         tableRow.append(tableData);
-        // input.addEventListener('blur', saveFun);
     }
     table.append(tableRow);
 
@@ -153,7 +172,7 @@ function deleteFun(event) {
 function editFun(editBtn) {
     const closestTr = editBtn.closest('tr');
     const inputs = closestTr.querySelectorAll('input');
-    const editModeInfo = document.getElementById('edit-mode-info');
+
 
     if (modTog == 0) {
         inputs.forEach(input => {
@@ -168,33 +187,35 @@ function editFun(editBtn) {
             input.setAttribute('readonly', 'true');
         });
         modTog = (modTog + 1) % 2;
-        saveFun(editBtn);
         editBtn.innerHTML = `<i class="fa-solid fa-pen"></i>`;
         editModeInfo.style.opacity = 0;
+        saveFun(editBtn);
     }
 }
 
 function saveFun(editBtn) {
     const closestTr = editBtn.closest('tr');
-    const closestInps = editBtn.querySelectorAll('input');
+    const closestInps = closestTr.querySelectorAll('input');
     // const cellIdx = closestInps[x].parentNode.cellIndex;
-
+    console.log(closestInps.length);
     for (let x = 0; x < closestInps.length; x++) {
         if (x == 0) {
+            if (isDuplicate(closestInps[0], closestInps[1])) return;
             if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getName();
-            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
                 arrProd[closestTr.rowIndex - 1].updateName(closestInps[x].value);
             }  
             console.log(arrProd[closestTr.rowIndex - 1]);
         } else if (x == 1) {
+            if (isDuplicate(closestInps[0], closestInps[1])) return;
             if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getPrice();
-            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
                 arrProd[closestTr.rowIndex - 1].updatePrice(closestInps[x].value);
             }
             console.log(arrProd[closestTr.rowIndex - 1]);
         } else {
             if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getQuant();
-            if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
+            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
                 arrProd[closestTr.rowIndex - 1].updateQuant(closestInps[x].value);
             }
             console.log(arrProd[closestTr.rowIndex - 1]);

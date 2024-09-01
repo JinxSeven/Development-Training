@@ -1,5 +1,6 @@
 * {
     font-family: "DM Sans", monospace;
+    transition: opacity 0.5s;
 }
 
 body {
