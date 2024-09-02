@@ -98,8 +98,9 @@ function isDuplicate(inp1, inp2) {
     return false;
 }
 
-function isDuplicateToo(inp1, inp2) {
+function isDuplicateToo(inp1, inp2, indx) {
     for (let j = 0; j < arrProd.length; j++) {
+        if (j == indx) continue;
         if (inp1.value == arrProd[j].getName() && inp2.value == (arrProd[j].getPrice())) {
             editModeInfo.innerText = 'Product already exist!';
             editModeInfo.style.opacity = 1;
@@ -217,10 +218,13 @@ function saveFun(editBtn) {
         closestInps[2].value = arrProd[closestTr.rowIndex - 1].getQuant();
     }
 
-    if (isDuplicateToo(closestInps[0], closestInps[1])) {
+    console.log(closestTr.rowIndex - 1);
+
+    if (isDuplicateToo(closestInps[0], closestInps[1], closestTr.rowIndex - 1)) {
         editFun(editBtn);
+        return;
     }
-    
+
     for (let x = 0; x < closestInps.length; x++) {
         if (x == 0) {
             arrProd[closestTr.rowIndex - 1].updateName(closestInps[x].value);
@@ -229,5 +233,9 @@ function saveFun(editBtn) {
         } else {
             arrProd[closestTr.rowIndex - 1].updateQuant(closestInps[x].value);
         }
+    }
+
+    for (let jin of arrProd) {
+        console.log(jin);
     }
 }
