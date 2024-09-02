@@ -1,0 +1,44 @@
+Step 1: Create a New Project Folder
+
+    Purpose: This is the directory where your project files will reside.
+
+Step 2: Initialize package.json
+
+    Command: npm init --yes
+    File Created: package.json
+
+    Explanation:
+    The package.json file is a manifest file in a Node.js project. It contains metadata about your project such as the name, version, description, main file, scripts, dependencies, and more.
+    The npm init --yes command automatically generates a package.json file with default values, skipping the interactive prompts that normally appear when you run npm init without the --yes flag.
+
+Step 3: Initialize tsconfig.json
+
+    Command: tsc --init
+    File Created: tsconfig.json
+
+    Explanation:
+    The tsconfig.json file is a configuration file for TypeScript projects. It specifies the root files and compiler options required to compile the TypeScript code.
+    When you run tsc --init, TypeScript generates a tsconfig.json file with a set of default options that you can modify based on your project’s needs.
+
+Step 4: Install TypeScript (and create package-lock.json)
+
+    Command: npm install typescript
+    File Created: package-lock.json
+
+    Explanation:
+    Running npm install typescript installs TypeScript as a local dependency in your project. This means that TypeScript will be installed within the node_modules directory of your project.
+    The package-lock.json file is automatically created or updated when you install packages using npm. It locks the versions of the installed packages to ensure that the same versions are installed whenever npm install is run, which helps in maintaining consistency across different environments.
+
+    Is Step 4 Required?:
+
+    Technically, Step 4 is not required if you already have TypeScript installed globally and you plan to use it for this project. However, it is generally recommended to install TypeScript locally as it ensures that all developers working on the project use the same version of TypeScript.
+
+Step 5: Install ts-node (as a Development Dependency)
+
+    Command: npm install ts-node --save-dev
+    Directory Updated: node_modules
+
+    Explanation:
+    ts-node is a package that allows you to run TypeScript directly without needing to compile it to JavaScript first. It’s particularly useful in development environments.
+    The --save-dev flag adds ts-node to the devDependencies section of your package.json, indicating that this package is only needed during development and not in production.
+    The node_modules directory is where npm installs the packages. It contains all the dependencies (and their dependencies) listed in package.json.
