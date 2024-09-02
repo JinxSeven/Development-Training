@@ -86,18 +86,29 @@ let modTog = 0;
 let first = true;
 
 function isDuplicate(inp1, inp2) {
-    console.log(arrProd.length);
     for (let j = 0; j < arrProd.length; j++) {
-        if (inp1.value == arrProd[j].getName() && '$' + inp2.value == arrProd[j].getPrice()) {
+        if (inp1.value == arrProd[j].getName() && + inp2.value == (arrProd[j].getPrice()).substring(1)) {
             editModeInfo.innerText = 'Product already exist!';
             editModeInfo.style.opacity = 1;
             return true;
-        } else {
-            editModeInfo.innerText = 'Edit mode is On!';
-            editModeInfo.style.opacity = 0;
-            return false;
         }
     }
+    editModeInfo.innerText = 'Edit mode is On!';
+    editModeInfo.style.opacity = 0;
+    return false;
+}
+
+function isDuplicateToo(inp1, inp2) {
+    for (let j = 0; j < arrProd.length; j++) {
+        if (inp1.value == arrProd[j].getName() && inp2.value == (arrProd[j].getPrice())) {
+            editModeInfo.innerText = 'Product already exist!';
+            editModeInfo.style.opacity = 1;
+            return true;
+        }
+    }
+    editModeInfo.innerText = 'Edit mode is On!';
+    editModeInfo.style.opacity = 0;
+    return false;
 }
 
 addProdBtn.addEventListener('click', function(def) {
@@ -173,7 +184,6 @@ function editFun(editBtn) {
     const closestTr = editBtn.closest('tr');
     const inputs = closestTr.querySelectorAll('input');
 
-
     if (modTog == 0) {
         inputs.forEach(input => {
             input.removeAttribute('readonly');
@@ -196,29 +206,28 @@ function editFun(editBtn) {
 function saveFun(editBtn) {
     const closestTr = editBtn.closest('tr');
     const closestInps = closestTr.querySelectorAll('input');
-    // const cellIdx = closestInps[x].parentNode.cellIndex;
-    console.log(closestInps.length);
+
+    if (closestInps[0].value == '') {
+        closestInps[0].value = arrProd[closestTr.rowIndex - 1].getName();
+    }
+    if (closestInps[1].value == '') {
+        closestInps[1].value = arrProd[closestTr.rowIndex - 1].getPrice();
+    }
+    if (closestInps[2].value == '') {
+        closestInps[2].value = arrProd[closestTr.rowIndex - 1].getQuant();
+    }
+
+    if (isDuplicateToo(closestInps[0], closestInps[1])) {
+        editFun(editBtn);
+    }
+    
     for (let x = 0; x < closestInps.length; x++) {
         if (x == 0) {
-            if (isDuplicate(closestInps[0], closestInps[1])) return;
-            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getName();
-            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
-                arrProd[closestTr.rowIndex - 1].updateName(closestInps[x].value);
-            }  
-            console.log(arrProd[closestTr.rowIndex - 1]);
+            arrProd[closestTr.rowIndex - 1].updateName(closestInps[x].value);
         } else if (x == 1) {
-            if (isDuplicate(closestInps[0], closestInps[1])) return;
-            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getPrice();
-            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
-                arrProd[closestTr.rowIndex - 1].updatePrice(closestInps[x].value);
-            }
-            console.log(arrProd[closestTr.rowIndex - 1]);
+            arrProd[closestTr.rowIndex - 1].updatePrice(closestInps[x].value);
         } else {
-            if (closestInps[x].value == '') closestInps[x].value = arrProd[closestTr.rowIndex - 1].getQuant();
-            else if (closestInps[x].value !== arrProd[closestTr.rowIndex - 1]) {
-                arrProd[closestTr.rowIndex - 1].updateQuant(closestInps[x].value);
-            }
-            console.log(arrProd[closestTr.rowIndex - 1]);
+            arrProd[closestTr.rowIndex - 1].updateQuant(closestInps[x].value);
         }
     }
 }
