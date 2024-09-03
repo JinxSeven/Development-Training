@@ -3,10 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TypeScript101</title>
+    <title>TypeScript Calculator</title>
     <link rel="stylesheet" href="../src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <script src="./index.js" type="module"></script>
+    <main>
+        <div class="calculator">
+            <input type="text" id="display" class="display" disabled value="0">
+            <div class="buttons">
+                <button class="btn" data-value="7">7</button>
+                <button class="btn" data-value="8">8</button>
+                <button class="btn" data-value="9">9</button>
+                <button class="btn operator" data-value="/">/</button>
+
+                <button class="btn" data-value="4">4</button>
+                <button class="btn" data-value="5">5</button>
+                <button class="btn" data-value="6">6</button>
+                <button class="btn operator" data-value="*">*</button>
+
+                <button class="btn" data-value="1">1</button>
+                <button class="btn" data-value="2">2</button>
+                <button class="btn" data-value="3">3</button>
+                <button class="btn operator" data-value="-">-</button>
+
+                <button class="btn" data-value="0">0</button>
+                <button class="btn" id="clear" data-value="C">C</button>
+                <button class="btn" id="equals" data-value="=">=</button>
+                <button class="btn operator" data-value="+">+</button>
+            </div>
+        </div>
+    </main>
+    <script src="./index.js"></script>
 </body>
 </html>
