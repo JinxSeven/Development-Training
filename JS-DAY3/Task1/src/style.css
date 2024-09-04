@@ -38,7 +38,7 @@ main {
 .btn {
     height: 50px;
     font-size: 18px;
-    border: 1px solid #ccc;
+    border: 1px solid #e0e0e0;
     background-color: #e0e0e0;
     border-radius: 5px;
     cursor: pointer;
@@ -49,11 +49,3 @@ main {
     background-color: #d4d4d4;
 }
 
-.operator {
-    background-color: darkgray;
-    color: white;
-}
-
-.operator:active {
-    background-color: gray;
-}
