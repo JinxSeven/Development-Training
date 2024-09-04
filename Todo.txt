@@ -14,4 +14,9 @@ JS Fixes:
     D1T3: No repeating students - fixed
     D2T1: Enhance edit inventory stock -fixed
 
+Sep4 Changes:
+    Inventory: Validate product existance on input blur
+    User Management System: Fix bugs and add validation and style
+    Calculator: Handle divide by zero
+
 http://127.0.0.1:5500/
