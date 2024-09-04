@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Management System</title>
+    <link rel="stylesheet" href="../src/style.css">
+</head>
+<body>
+    <main>
+        <div class="main-div">
+            <h2>Add User</h2>
+            <div class="top-div">
+                <p>Name:</p><input id="name-input" type="text">
+                <p>Email:</p><input type="email" id="email-input">
+                <p>Role:</p><select id="role-select ">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+                <button id="add-user-btn">Add User</button>
+            </div>
+            <div class="bottom-div">
+                <h2>User List</h2>
+                <ol id="main-list">
+                    <li><p>Temp Name</p><p>Temp Email</p><button>Edit</button><button>Delete</button></li>
+                </ol>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

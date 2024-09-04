@@ -1,0 +1,111 @@
+body {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+main {
+    display: flex;
+    border: 1px solid skyblue;
+    width: 75%;
+    justify-content: center;
+    padding: 5px;
+}
+
+.main-div {
+    width: 90%;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid black;
+}
+
+.top-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-div p {
+    margin: 10px 0 5px 0;
+    font-weight: bold;
+}
+
+.top-div input {
+    height: 30px;
+    width: 190px;
+    border-radius: 5px;
+    border: 1px solid #d8d8d8;
+    padding: 0 7px;
+}
+
+.top-div select {
+    width: 30%;
+    height: 30px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    padding: 7px;
+}
+/*
+.top-div input:focus, .top-div select:focus {
+    border-color: #3390ff;
+    outline: none;
+}
+
+.top-div button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.top-div button:hover {
+    background-color: #0352a7;
+}
+
+.bottom-div {
+    margin-top: 30px;
+}
+
+#main-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#main-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+#main-list li:nth-child(odd) {
+    background-color: #e9f2ff;
+}
+
+.bottom-div button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.bottom-div button:hover {
+    background-color: #0056b3;
+}
+
+.bottom-div .edit-button {
+    margin-right: 5px;
+} */
