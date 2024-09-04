@@ -13,10 +13,6 @@ main {
     padding: 5px;
 }
 
-ol {
-    list-style-type: decimal;
-}
-
 .main-div {
     width: 90%;
     padding: 20px;
@@ -41,6 +37,12 @@ ol {
     border-radius: 5px;
     border: 1px solid #d8d8d8;
     padding: 0 7px;
+}
+
+.top-div input::placeholder {
+    color: rgb(218, 43, 43);
+    font-style: italic;
+    font-size: 11px;
 }
 
 .top-div select {
