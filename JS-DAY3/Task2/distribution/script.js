@@ -63,7 +63,8 @@ let userData = [];
 let editMode = false;
 let editIndx;
 let editOL;
-addUserButton.addEventListener('click', () => {
+addUserButton.addEventListener('click', (def) => {
+    def.preventDefault();
     if (nameInputValidation() || emailInputValidation())
         return;
     if (editMode) {

@@ -14,9 +14,20 @@ JS Fixes:
     D1T3: No repeating students - fixed
     D2T1: Enhance edit inventory stock -fixed
 
-Sep4 Changes:
+JS & TS Changes:
     Inventory: Validate product existence on input blur - fixed
     Calculator: Handle divide by zero - fixed
     User Management System: Fix bugs and add validation and style - fixed
+
+Budget Tracker:
+    Login page and new user
+    Add and remove transaction
+    Transaction category and percentage calculation
+    Progress indicator
+    Savings calculator
+    Every transaction history with filter and sort
+    Dark Theme
+    Profile settings - add custom categories
+    Notifications
 
 http://127.0.0.1:5500/

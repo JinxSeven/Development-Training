@@ -35,6 +35,14 @@ function emailInputValidation() {
 
 emailInput.addEventListener('blur', emailInputValidation);
 
+function hasDuplicate() {
+    for (let data of userData) {
+        if (emailInput.value == data.getEmail()) {
+            console.log();
+        }
+    }
+}
+
 class User {
     private name: string;
     private email: string;
@@ -70,7 +78,8 @@ let editMode: boolean = false;
 let editIndx: number;
 let editOL: any;
 
-addUserButton.addEventListener('click', () => {
+addUserButton.addEventListener('click', (def) => {
+    def.preventDefault();
     if (nameInputValidation() || emailInputValidation()) return;
 
     if (editMode) {
