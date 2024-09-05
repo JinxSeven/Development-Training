@@ -15,8 +15,8 @@ JS Fixes:
     D2T1: Enhance edit inventory stock -fixed
 
 Sep4 Changes:
-    Inventory: Validate product existance on input blur
-    User Management System: Fix bugs and add validation and style
-    Calculator: Handle divide by zero
+    Inventory: Validate product existence on input blur - fixed
+    Calculator: Handle divide by zero - fixed
+    User Management System: Fix bugs and add validation and style - fixed
 
 http://127.0.0.1:5500/
