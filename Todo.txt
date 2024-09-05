@@ -31,3 +31,4 @@ Budget Tracker:
     Notifications
 
 http://127.0.0.1:5500/
+https://demo.firefly-iii.org/

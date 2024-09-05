@@ -1,3 +1,56 @@
 * {
-    font-family: "Kanit", sans-serif;
+    font-family: "Playfair Display", "Kanit";
 }
+
+body {
+    background-color: whitesmoke;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.heading p a {
+    padding-left: 5px;
+    text-decoration: none;
+}
+
+.login-container {
+    background-color: white;
+    padding: 1.5rem;
+    padding-top: 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px #80808033;
+    max-width: 400px;
+    width: 100%;
+}
+
+.login-container form label {
+    margin: 10px 0;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.login-container input[type="submit"] {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.login-container input[type="submit"]:hover {
+    background-color: #0056b3;
+}   
