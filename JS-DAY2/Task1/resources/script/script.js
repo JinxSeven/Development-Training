@@ -36,6 +36,7 @@ class Product {
 }
 
 function prodNameInpCheck() {
+    if (hasDuplicate(prodNameInp)) return;
     if (prodNameInp.value == '') {
         document.getElementById('prod-err').style.opacity = '1';
         prodNameInp.style.borderColor = 'rgb(218, 43, 43)';
@@ -85,9 +86,25 @@ let rowCount = 0;
 let modTog = 0;
 let first = true;
 
+function hasDuplicate(inp1) {
+    for (let j = 0; j < arrProd.length; j++) {
+        if (inp1.value == arrProd[j].getName()) {
+            document.getElementById('prod-err').innerText = 'Product already exist!';
+            document.getElementById('prod-err').style.opacity = '1';
+            prodNameInp.style.borderColor = 'rgb(218, 43, 43)';
+            return true;
+        } 
+    }
+    document.getElementById('prod-err').style.opacity = '0';
+    document.getElementById('prod-err').innerText = "Product name can't be empty!";
+    prodNameInp.style.borderColor = '#d8d8d8';
+    return false
+}
+
 function isDuplicate(inp1, inp2) {
     for (let j = 0; j < arrProd.length; j++) {
-        if (inp1.value == arrProd[j].getName() && + inp2.value == (arrProd[j].getPrice()).substring(1)) {
+        if (inp1.value == arrProd[j].getName()) {
+            // && + inp2.value == (arrProd[j].getPrice()).substring(1)
             editModeInfo.innerText = 'Product already exist!';
             editModeInfo.style.opacity = 1;
             return true;
@@ -101,7 +118,8 @@ function isDuplicate(inp1, inp2) {
 function isDuplicateToo(inp1, inp2, indx) {
     for (let j = 0; j < arrProd.length; j++) {
         if (j == indx) continue;
-        if (inp1.value == arrProd[j].getName() && inp2.value == (arrProd[j].getPrice())) {
+        if (inp1.value == arrProd[j].getName()) {
+            // && inp2.value == (arrProd[j].getPrice())
             editModeInfo.innerText = 'Product already exist!';
             editModeInfo.style.opacity = 1;
             return true;
