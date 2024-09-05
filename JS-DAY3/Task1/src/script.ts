@@ -18,9 +18,18 @@ function clearDisplay() {
 }
 
 function calculateResult() {
-    let result = eval(output);
+    let result;
+    try {
+        result = eval(output);
+    } catch(err) {
+        display.value = 'Syntax Error!';
+        output = '';
+    }
     output = result.toString();
-    display.value = output;
+    if (output == 'Infinity') {
+        display.value = "Can't divide by zero!";
+        output = '';
+    } else display.value = output;
 }
 
 function handleInput(num: string) {
