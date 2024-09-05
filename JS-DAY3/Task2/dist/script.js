@@ -7,13 +7,33 @@ const mainList = document.getElementById('main-list');
 function nameInputValidation() {
     if (nameInput.value == '') {
         nameInput.setAttribute('placeholder', "Name can't be empty!");
-        nameInput.style.color = '';
+        nameInput.style.borderColor = 'rgb(218, 43, 43)';
+        return true;
     }
     else {
         nameInput.removeAttribute('placeholder');
+        nameInput.style.borderColor = '#d8d8d8';
+        return false;
     }
 }
 nameInput.addEventListener('blur', nameInputValidation);
+function emailInputValidation() {
+    if (emailInput.value == '') {
+        emailInput.setAttribute('placeholder', "Email can't be empty!");
+        emailInput.style.borderColor = 'rgb(218, 43, 43)';
+        return true;
+    }
+    else if (!(emailInput.value.includes('@')) || !(emailInput.value.includes('.'))) {
+        emailInput.style.borderColor = 'rgb(218, 43, 43)';
+        return true;
+    }
+    else {
+        emailInput.removeAttribute('placeholder');
+        emailInput.style.borderColor = '#d8d8d8';
+        return false;
+    }
+}
+emailInput.addEventListener('blur', emailInputValidation);
 class User {
     constructor(name, email, role) {
         this.name = name;
@@ -44,6 +64,8 @@ let editMode = false;
 let editIndx;
 let editOL;
 addUserButton.addEventListener('click', () => {
+    if (nameInputValidation() || emailInputValidation())
+        return;
     if (editMode) {
         updateDataFunction();
         return;
@@ -66,7 +88,7 @@ addUserButton.addEventListener('click', () => {
     mainList.append(listItem);
     nameInput.value = '';
     emailInput.value = '';
-    roleInput.value = 'admin';
+    roleInput.value = 'user';
     deleteButton.addEventListener('click', () => {
         deleteButtonFunction(deleteButton);
     });
@@ -83,7 +105,9 @@ function deleteButtonFunction(deleteButton) {
     userData.splice(indx, 1);
     nameInput.value = '';
     emailInput.value = '';
-    roleInput.value = 'admin';
+    roleInput.value = 'user';
+    addUserButton.innerText = 'Add User';
+    editMode = false;
 }
 function editButtonFunction(editButton) {
     const closestLi = editButton.closest('li');
@@ -91,7 +115,12 @@ function editButtonFunction(editButton) {
     const indx = oL.indexOf(closestLi);
     nameInput.value = userData[indx].getName();
     emailInput.value = userData[indx].getEmail();
-    roleInput.value = userData[indx].getRole() ? 'user' : 'admin';
+    // roleInput.value = userData[indx].getRole() ? 'user' : 'admin';
+    if (userData[indx].getRole() == 'User') {
+        roleInput.value = 'user';
+    }
+    else
+        roleInput.value = 'admin';
     editMode = true;
     addUserButton.innerText = 'Update';
     editIndx = indx;
@@ -113,5 +142,5 @@ function updateDataFunction() {
     editMode = false;
     nameInput.value = '';
     emailInput.value = '';
-    roleInput.value = 'admin';
+    roleInput.value = 'user';
 }

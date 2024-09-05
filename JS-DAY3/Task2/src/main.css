@@ -1,5 +1,5 @@
 body {
-    font-family: sans-serif;
+    font-family: "DM Sans", monospace;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -7,7 +7,7 @@ body {
 
 main {
     display: flex;
-    border: 1px solid skyblue;
+    border: 1px solid #87ceeb;
     width: 75%;
     justify-content: center;
     padding: 5px;
@@ -37,12 +37,15 @@ main {
     border-radius: 5px;
     border: 1px solid #d8d8d8;
     padding: 0 7px;
+    transition: border-color 0.3s;
 }
 
 .top-div input::placeholder {
     color: rgb(218, 43, 43);
     font-style: italic;
-    font-size: 11px;
+    font-size: 12px;
+    visibility: visible;
+    transition: visibility 0.3s;
 }
 
 .top-div select {
@@ -64,14 +67,17 @@ button {
     margin: 3px;
 }
 
-
 .top-div input:focus, .top-div select:focus {
     border-color: #007bff;
     outline: none;
 }
 
+#add-user-btn {
+    width: 80px;
+}
+
 .top-div button:active {
-    background-color: #0f71da;
+    background-color: #005ab9;
 }
 
 #main-list li {
@@ -80,6 +86,8 @@ button {
     align-items: center;
     padding: 0 10px;
     margin-bottom: 10px;
+    margin-left: -35px;
+    padding-left: 25px;
     background-color: #f8f8f8;
     border: 1px solid #ccc;
     border-radius: 4px;
