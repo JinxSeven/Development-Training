@@ -18,6 +18,8 @@ function nameInputValidation() {
 }
 nameInput.addEventListener('blur', nameInputValidation);
 function emailInputValidation() {
+    if (hasDuplicate())
+        return;
     if (emailInput.value == '') {
         emailInput.setAttribute('placeholder', "Email can't be empty!");
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
@@ -34,6 +36,18 @@ function emailInputValidation() {
     }
 }
 emailInput.addEventListener('blur', emailInputValidation);
+function hasDuplicate() {
+    for (let data of userData) {
+        if (emailInput.value == data.getEmail()) {
+            document.getElementById('dupe-email').style.opacity = '1';
+            emailInput.style.borderColor = 'rgb(218, 43, 43)';
+            return true;
+        }
+    }
+    emailInput.style.borderColor = '#d8d8d8';
+    document.getElementById('dupe-email').style.opacity = '0';
+    return false;
+}
 class User {
     constructor(name, email, role) {
         this.name = name;
@@ -65,6 +79,8 @@ let editIndx;
 let editOL;
 addUserButton.addEventListener('click', (def) => {
     def.preventDefault();
+    if (hasDuplicate())
+        return;
     if (nameInputValidation() || emailInputValidation())
         return;
     if (editMode) {
