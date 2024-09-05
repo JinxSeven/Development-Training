@@ -81,7 +81,7 @@ addUserButton.addEventListener('click', () => {
     const editButton = document.createElement('button');
     editButton.innerText = 'Edit';
     deleteButton.innerText = 'Delete';
-    listItem.innerHTML = `<p>${newUser.getName()}</p><p>${newUser.getEmail()}</p><p>${newUser.getRole()}</p>`;
+    listItem.innerHTML = `<li></li><p>${newUser.getName()}</p><p>${newUser.getEmail()}</p><p>${newUser.getRole()}</p>`;
     div.append(editButton);
     div.append(deleteButton);
     listItem.append(div);
@@ -108,6 +108,7 @@ function deleteButtonFunction(deleteButton) {
     roleInput.value = 'user';
     addUserButton.innerText = 'Add User';
     editMode = false;
+    setList();
 }
 function editButtonFunction(editButton) {
     const closestLi = editButton.closest('li');
@@ -135,12 +136,18 @@ function updateDataFunction() {
     userData[editIndx].updateRole(isUser);
     const editListItem = editOL[editIndx];
     const pTags = editListItem.children;
-    pTags[0].innerText = userData[editIndx].getName();
-    pTags[1].innerText = userData[editIndx].getEmail();
-    pTags[2].innerText = userData[editIndx].getRole();
+    pTags[1].innerText = userData[editIndx].getName();
+    pTags[2].innerText = userData[editIndx].getEmail();
+    pTags[3].innerText = userData[editIndx].getRole();
     addUserButton.innerText = 'Add User';
     editMode = false;
     nameInput.value = '';
     emailInput.value = '';
     roleInput.value = 'user';
+    setList();
+}
+function setList() {
+    for (let elem of userData) {
+        console.log(elem);
+    }
 }
