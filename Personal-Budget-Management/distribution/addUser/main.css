@@ -1,5 +1,5 @@
 * {
-    font-family: "Playfair Display", "Kanit";
+    font-family: "Outfit", "Kanit";
 }
 
 body {
@@ -24,7 +24,7 @@ body {
     padding-top: 0.5rem;
     border-radius: 10px;
     box-shadow: 0px 0px 10px #80808033;
-    max-width: 400px;
+    max-width: 490px;
     width: 100%;
 }
 
@@ -32,9 +32,16 @@ body {
     margin: 10px 0;
 }
 
-.login-container form {
+.form-divs {
     display: flex;
     flex-direction: column;
+}
+
+.login-container form {
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    gap: 25px
 }
 
 .login-container input {
@@ -49,6 +56,7 @@ body {
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    width: 100%;
 }
 
 .login-container input[type="submit"]:hover {

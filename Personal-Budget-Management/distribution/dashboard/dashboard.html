@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard: Personal Budget Manager</title>
+    <link rel="stylesheet" href="./main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <main class="main">
+        <header class="header">
+            <h2>Personal Budget Manager</h2>
+            <div class="header-rhs-section">
+                <div class="dark-mode"><p>Dark Mode</p><input id="dark-mode-chkbx" type="checkbox"></div>
+                <div class="profile-div"></i><p>Samuel K</p><i class="fa-solid fa-user"></i></div>
+            </div>
+        </header>
+        <div class="content-div">
+            <aside class="aside">
+                <p>Saving Goals:</p>
+                <div class="goals-div"></div>
+                <div class="goals-div"></div>
+                <div class="goals-div"></div>
+                <div class="goals-div"></div>
+                <p>Upcoming Bills:</p>
+                <div class="bills-div"></div>
+            </aside>
+            <section class="section">
+                <div class="top-section">
+                    <div class="income-div">
+                        <i class="fa-solid fa-circle-down"></i>
+                        <label>Total Income:</label>
+                        <label>7500</label>
+                    </div>
+                    <div class="expense-div">
+                        <i class="fa-solid fa-circle-up"></i>
+                        <label>Total Expense:</label>
+                        <label>5000</label>
+                    </div>
+                    <div class="balance-div">
+                        <i class="fa-solid fa-hand-holding-dollar"></i>
+                        <label>Total Balance:</label>
+                        <label>2500</label>
+                    </div>
+                </div>
+                <div class="mid-section">
+                    <div class="mid-section-one">
+                        <button class="new-goal-btn">
+                            <div><i class="fa-solid fa-bullseye fa-2xl"></i></div>
+                            <label>+ Saving Goal</label>
+                        </button>
+                        <button class="new-bill-btn">
+                            <div><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i></div>
+                            <label>+ Upcoming Bill</label>
+                        </button>
+                        <button class="new-transaction-btn">
+                            <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
+                            <label>+ Transaction</label>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <script src="../dashboard.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+</html>

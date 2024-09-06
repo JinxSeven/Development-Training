@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Budget Management</title>
-    <link rel="stylesheet" href="../src/main.css">
+    <title>Login: Personal Budget Manager</title>
+    <link rel="stylesheet" href="./main.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,18 +16,18 @@
             <div class="heading">
                 <h1 style="text-align: center; font-size: 34px;">Personal Budget Manager</h1>
                 <h2>Sign In</h2>
-                <p>New user?<span><a href="">Create an account</a></span></p>
+                <p>New user?<span><a href="../addUser/addUser.html">Create an account</a></span></p>
             </div>
             <form>
                 <label class="email-lbl">Enter email address</label>
-                <input id="email-inp" placeholder="Email Address">
+                <input id="email-inp" type="email" placeholder="Email Address">
                 <label class="pass-lbl">Enter your password</label>
                 <input id="pass-inp" placeholder="Password" type="password">
-                <input id="sign-in-btn" type="submit" value="Sign In">
+                <a href="../dashboard/dashboard.html"><input id="sign-in-btn" type="button" value="Sign In"></a>
             </form>
         </div>
     </main>
-    <script src="./script.js"></script>
+    <script src="../login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

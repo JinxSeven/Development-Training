@@ -1,0 +1,210 @@
+* {
+    font-family: "Outfit", "Kanit";
+}
+
+.main {
+    min-height: 100vh;
+}
+
+.header {
+    display: flex;
+    padding: 0 15px;
+    margin-bottom: 5px;
+    justify-content: space-between;
+    align-items: center;
+    align-content: center;
+    background-color: #F6F5F2;
+    border-radius: 10px;
+}
+
+.header .dark-mode {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+}
+
+.header .header-rhs-section {
+    display: flex;
+}
+
+.dark-mode #dark-mode-chkbx {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    height: 20px;
+    margin-top: 5px;
+    position: relative;
+    width: 35px;
+}
+
+.dark-mode #dark-mode-chkbx::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+.dark-mode #dark-mode-chkbx,
+.dark-mode #dark-mode-chkbx::after {
+    transition: all 100ms ease-out;
+}
+
+.dark-mode #dark-mode-chkbx::after {
+    background-color: #3ec579;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+.dark-mode input[type=checkbox] {
+    cursor: pointer;
+}
+
+.dark-mode #dark-mode-chkbx:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+}
+
+.dark-mode #dark-mode-chkbx:checked {
+    background-color: #dfe1e4;
+}
+
+.dark-mode #dark-mode-chkbx:checked::after {
+    background-color: black;
+    left: 17px;
+}
+
+.dark-mode :focus:not(.focus-visible) {
+    outline: 0;
+}
+
+.dark-mode #dark-mode-chkbx:checked:hover {
+    background-color: #c9cbcd;
+}
+
+.header .profile-div #notify {
+    padding: 20px;
+}
+
+.header .profile-div {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.content-div {
+    display: flex;
+}
+
+.aside {
+    background-color: #E7E8D8;
+    width: 30%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.aside p {
+    padding-left: 3px;
+    margin-bottom: 5px;
+}
+
+.aside .goals-div {
+    width: 100%;
+    height: 45px;
+    border-radius: 5px;
+    margin: 5px 0;
+    background-color: #F6F5F2;
+}
+
+.aside .bills-div {
+    width: 100%;
+    margin: 5px 0;
+    height: 45px;
+    border-radius: 5px;
+    background-color: #F6F5F2;
+}
+
+.section {
+    width: 100%;
+    background-color: #F6F5F2;
+    height: 100vh;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.section .top-section {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    gap: 5px;
+}
+
+.section .top-section .income-div {
+    background-color: #b6ffd6;
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.section .top-section .expense-div {
+    background-color: rgb(255, 212, 212);
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.section .top-section .balance-div {
+    background-color: rgb(221, 212, 255);
+    padding: 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.section .top-section i {
+    margin-right: 5px;
+}
+
+.section .mid-section .mid-section-one {
+    margin-top: 10px;
+    display: flex;
+    gap: 5px;
+    justify-content: space-around;
+}
+
+.section .mid-section .mid-section-one i {
+    margin: 15px;
+}
+
+.section .mid-section .mid-section-one .new-goal-btn, .new-bill-btn, .new-transaction-btn {
+    width: 32%;
+    background-color: #E7E8D8;
+    height: 100px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    font-size: medium;
+    transition: background-color 0.3s;
+}
+
+.section .mid-section .mid-section-one button:hover {
+    cursor: pointer;
+    background-color: #c9cabd;
+}
+
+.section .mid-section .mid-section-one button:active {
+    cursor: pointer;
+    background-color: #aeafa4;
+}
+
+
