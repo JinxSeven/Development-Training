@@ -37,11 +37,24 @@ function emailInputValidation() {
 }
 emailInput.addEventListener('blur', emailInputValidation);
 function hasDuplicate() {
-    for (let data of userData) {
-        if (emailInput.value == data.getEmail()) {
-            document.getElementById('dupe-email').style.opacity = '1';
-            emailInput.style.borderColor = 'rgb(218, 43, 43)';
-            return true;
+    if (editMode) {
+        for (let i = 0; i < userData.length; i++) {
+            if (i == editIndx)
+                continue;
+            if (emailInput.value == userData[i].getEmail()) {
+                document.getElementById('dupe-email').style.opacity = '1';
+                emailInput.style.borderColor = 'rgb(218, 43, 43)';
+                return true;
+            }
+        }
+    }
+    else {
+        for (let data of userData) {
+            if (emailInput.value == data.getEmail()) {
+                document.getElementById('dupe-email').style.opacity = '1';
+                emailInput.style.borderColor = 'rgb(218, 43, 43)';
+                return true;
+            }
         }
     }
     emailInput.style.borderColor = '#d8d8d8';
@@ -125,7 +138,7 @@ function deleteButtonFunction(deleteButton) {
     roleInput.value = 'user';
     addUserButton.innerText = 'Add User';
     editMode = false;
-    setList();
+    seeList();
 }
 function editButtonFunction(editButton) {
     const closestLi = editButton.closest('li');
@@ -161,9 +174,9 @@ function updateDataFunction() {
     nameInput.value = '';
     emailInput.value = '';
     roleInput.value = 'user';
-    setList();
+    seeList();
 }
-function setList() {
+function seeList() {
     for (let elem of userData) {
         console.log(elem);
     }
