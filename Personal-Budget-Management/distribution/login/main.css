@@ -50,6 +50,7 @@ body {
     color: white;
     cursor: pointer;
     width: 100%;
+    transition: background-color 0.3s;
 }
 
 .login-container input[type="button"]:hover {
