@@ -20,14 +20,15 @@
             </div>
             <form>
                 <label class="email-lbl">Enter email address</label>
-                <input id="email-inp" type="email" placeholder="Email Address">
+                <input id="email-inp" type="email" placeholder="Email Address" required>
                 <label class="pass-lbl">Enter your password</label>
-                <input id="pass-inp" placeholder="Password" type="password">
-                <a href="../dashboard/dashboard.html"><input id="sign-in-btn" type="button" value="Sign In"></a>
-            </form>
+                <input id="pass-inp" placeholder="Password" type="password" required>
+                <a style="height: 38px; border-radius: 3px;"><input id="sign-in-btn" type="submit" value="Sign In"></a>
+            </form> 
+            <p id="error-dsp">Invalid username or password!</p>
         </div>
     </main>
-    <script src="../login.js"></script>
+    <script type="module" src="../login.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>

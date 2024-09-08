@@ -1,5 +1,5 @@
 * {
-    font-family: "Outfit", 'Calibri', 'Trebuchet MS', sans-serif;
+    font-family: "Outfit", 'Calibri', 'Trebuchet MS';
 }
 
 .main {
@@ -184,7 +184,7 @@
     margin: 15px;
 }
 
-.section .mid-section .mid-section-one .new-goal-btn, .new-bill-btn, .new-transaction-btn {
+.section .mid-section .mid-section-one #new-goal-btn, #new-bill-btn, #new-transaction-btn {
     width: 35%;
     background-color: rgb(230, 216, 250);
     height: 120px;
@@ -419,5 +419,3 @@
 .section .mid-section .mid-section-two .category-btns button i {
     margin: 15px;
 }
-
-

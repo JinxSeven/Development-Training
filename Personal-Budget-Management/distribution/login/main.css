@@ -45,7 +45,7 @@ body {
     font-size: 16px;
 }
 
-.login-container input[type="button"] {
+.login-container input[type="submit"] {
     background-color: #007bff;
     color: white;
     cursor: pointer;
@@ -53,6 +53,13 @@ body {
     transition: background-color 0.3s;
 }
 
-.login-container input[type="button"]:hover {
+.login-container input[type="submit"]:hover {
     background-color: #0056b3;
 }   
+
+#error-dsp {
+    color: rgb(218, 43, 43);
+    opacity: 0;
+    margin-bottom: -5px;
+    transition: opacity 0.3s;
+}
