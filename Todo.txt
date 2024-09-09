@@ -20,7 +20,7 @@ JS & TS Changes:
     User Management System: Fix bugs and add validation and style - fixed
 
 Budget Tracker:
-    Transaction type options(purpose)
+    Transaction type options(purpose) - fixed
     Chart data filter and reset function
     Add new goal function
     Add new bill function

@@ -1,7 +1,9 @@
 import { getCurrentLoggedUser, getUserDash, universalValidator, setUserDash } from './utils.js';
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
-let Yaxis = [];
+let chartDataY = [];
+let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+let incomeSelector = ["Earnings", "Winnings", "Gift", "Freelance", "Returns", "Other"];
 const userDashIndx = loggedUserDash.findIndex(itr => itr.email === loggedUser.email);
 const totalIncomeDsp = document.getElementById('total-income-dsp');
 const totalExpenseDsp = document.getElementById('total-expense-dsp');
@@ -17,27 +19,33 @@ const newTransactionType = document.getElementById('new-transaction-type-select'
 const newTransactionAmount = document.getElementById('new-transaction-amt-inp');
 const newTransactionDate = document.getElementById('new-transaction-date-inp');
 const newTransactionPurpose = document.getElementById('new-transaction-purpose-select');
+const newTransactionOptions = document.querySelectorAll('#new-transaction-purpose-select option');
 const saveTransactionBtn = document.getElementById('save-transaction-btn');
+const newGoalName = document.getElementById('new-goal-name-inp');
+const newGoalTarget = document.getElementById('new-goal-trgt-inp');
+const newGoalInit = document.getElementById('new-goal-init-inp');
+const saveGoalBtn = document.getElementById('save-goal-btn');
 const overlay = document.getElementById('overlay');
 const newGoalPopup = document.getElementById('new-goal-popup');
 const newBillPopup = document.getElementById('new-bill-popup');
 const newTransactionPopup = document.getElementById('new-transaction-popup');
-const chartFilterEntertain = document.getElementById('chart-filter-entertain');
-const chartFilterHealth = document.getElementById('chart-filter-health');
-const chartFilterShopping = document.getElementById('chart-filter-shopping');
-const chartFilterTravel = document.getElementById('chart-filter-travel');
-const chartFilterEducation = document.getElementById('chart-filter-education');
-const chartFilterOther = document.getElementById('chart-filter-other');
-const chartFilterReset = document.getElementById('chart-filter-reset');
+const filterChartEntertain = document.getElementById('chart-filter-entertain');
+const filterChartHealth = document.getElementById('chart-filter-health');
+const filterChartShopping = document.getElementById('chart-filter-shopping');
+const filterChartTravel = document.getElementById('chart-filter-travel');
+const filterChartEdu = document.getElementById('chart-filter-education');
+const filterChartOther = document.getElementById('chart-filter-other');
+const filterChartReset = document.getElementById('chart-filter-reset');
+filterChartReset.addEventListener('click', updateDashUserData);
 function updateDashUserData() {
     totalExpenseDsp.innerText = String(loggedUserDash[userDashIndx].totalExpense);
     totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome);
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
-    updateChartData();
+    updateExpenseChartData();
 }
 updateDashUserData();
-function updateChartData() {
+function updateExpenseChartData() {
     const transArr = loggedUserDash[userDashIndx].transactions;
     const expTransArr = transArr.filter(itr => itr.type == 'expense');
     let temp = new Map();
@@ -73,16 +81,33 @@ function updateChartData() {
                 break;
         }
     }
-    Yaxis = Array.from(temp.values());
+    chartDataY = Array.from(temp.values());
 }
+newTransactionType.addEventListener('change', () => {
+    const options = newTransactionPurpose.options;
+    if (newTransactionType.value === 'expense') {
+        Array.from(options).forEach(option => {
+            option.value = chartDataX[option.index].toLowerCase();
+            option.textContent = chartDataX[option.index];
+        });
+    }
+    else {
+        Array.from(options).forEach(option => {
+            option.value = incomeSelector[option.index].toLowerCase();
+            option.textContent = incomeSelector[option.index];
+        });
+    }
+});
 saveTransactionBtn.addEventListener('click', function () {
     if (!universalValidator(newTransactionAmount))
         return;
     if (!universalValidator(newTransactionDate))
         return;
-    if (newTransactionType.value === 'expense' && Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
-        alert('Expense > Balance!');
-        return;
+    if (newTransactionType.value === 'expense') {
+        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
+            alert('Expense > Balance!');
+            return;
+        }
     }
     const newTransaction = {
         type: newTransactionType.value,
@@ -101,13 +126,13 @@ saveTransactionBtn.addEventListener('click', function () {
     setUserDash(loggedUserDash);
     updateDashUserData();
 });
-newGoalBtn.addEventListener('click', function () {
-    overlay.style.display = 'block';
-    newGoalPopup.style.display = 'block';
-});
 closeGoalPopup.addEventListener('click', function () {
     overlay.style.display = 'none';
     newGoalPopup.style.display = 'none';
+});
+newGoalBtn.addEventListener('click', function () {
+    overlay.style.display = 'block';
+    newGoalPopup.style.display = 'block';
 });
 newBillBtn.addEventListener('click', function () {
     overlay.style.display = 'block';
@@ -125,15 +150,14 @@ closeTransactionPopup.addEventListener('click', function () {
     overlay.style.display = 'none';
     newTransactionPopup.style.display = 'none';
 });
-let Xaxis = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
 // @ts-expect-error
 new Chart("expense-chart", {
     type: "bar",
     data: {
-        labels: Xaxis,
+        labels: chartDataX,
         datasets: [{
                 backgroundColor: "rgba(255,0,0,0.5)",
-                data: Yaxis
+                data: chartDataY
             }]
     },
     options: {

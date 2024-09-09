@@ -9,7 +9,9 @@ import {
 
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
-let Yaxis: number[] = [];
+let chartDataY: number[] = [];
+let chartDataX: string[] = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+let incomeSelector: string[] = ["Earnings", "Winnings", "Gift", "Freelance", "Returns", "Other"];
 
 const userDashIndx = loggedUserDash.findIndex(itr => itr.email === loggedUser.email);
 
@@ -29,32 +31,40 @@ const newTransactionType = document.getElementById('new-transaction-type-select'
 const newTransactionAmount = document.getElementById('new-transaction-amt-inp') as HTMLInputElement;
 const newTransactionDate = document.getElementById('new-transaction-date-inp') as HTMLInputElement;
 const newTransactionPurpose = document.getElementById('new-transaction-purpose-select') as HTMLSelectElement;
+const newTransactionOptions = document.querySelectorAll('#new-transaction-purpose-select option')as NodeListOf<HTMLOptionElement>;
 const saveTransactionBtn = document.getElementById('save-transaction-btn') as HTMLButtonElement;
+
+const newGoalName = document.getElementById('new-goal-name-inp') as HTMLInputElement;
+const newGoalTarget = document.getElementById('new-goal-trgt-inp') as HTMLInputElement;
+const newGoalInit = document.getElementById('new-goal-init-inp') as HTMLInputElement;
+const saveGoalBtn = document.getElementById('save-goal-btn') as HTMLButtonElement;
 
 const overlay = document.getElementById('overlay') as HTMLDivElement;
 const newGoalPopup = document.getElementById('new-goal-popup') as HTMLDivElement;
 const newBillPopup = document.getElementById('new-bill-popup') as HTMLDivElement;
 const newTransactionPopup = document.getElementById('new-transaction-popup') as HTMLDivElement;
 
-const chartFilterEntertain = document.getElementById('chart-filter-entertain') as HTMLButtonElement;
-const chartFilterHealth = document.getElementById('chart-filter-health') as HTMLButtonElement;
-const chartFilterShopping = document.getElementById('chart-filter-shopping') as HTMLButtonElement;
-const chartFilterTravel = document.getElementById('chart-filter-travel') as HTMLButtonElement;
-const chartFilterEducation = document.getElementById('chart-filter-education') as HTMLButtonElement;
-const chartFilterOther = document.getElementById('chart-filter-other') as HTMLButtonElement;
-const chartFilterReset = document.getElementById('chart-filter-reset') as HTMLButtonElement;
+const filterChartEntertain = document.getElementById('chart-filter-entertain') as HTMLButtonElement;
+const filterChartHealth = document.getElementById('chart-filter-health') as HTMLButtonElement;
+const filterChartShopping = document.getElementById('chart-filter-shopping') as HTMLButtonElement;
+const filterChartTravel = document.getElementById('chart-filter-travel') as HTMLButtonElement;
+const filterChartEdu = document.getElementById('chart-filter-education') as HTMLButtonElement;
+const filterChartOther = document.getElementById('chart-filter-other') as HTMLButtonElement;
+const filterChartReset = document.getElementById('chart-filter-reset') as HTMLButtonElement;
+
+filterChartReset.addEventListener('click', updateDashUserData);
 
 function updateDashUserData() {
     totalExpenseDsp.innerText = String(loggedUserDash[userDashIndx].totalExpense);
     totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome);
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
-    updateChartData();
+    updateExpenseChartData();
 }
 
 updateDashUserData();
 
-function updateChartData() {
+function updateExpenseChartData() {
     const transArr = loggedUserDash[userDashIndx].transactions;
     const expTransArr = transArr.filter(itr => itr.type == 'expense');
     let temp = new Map();
@@ -93,15 +103,34 @@ function updateChartData() {
                 break;
         }
     }
-    Yaxis = Array.from(temp.values());
+    chartDataY = Array.from(temp.values());
 }
+
+newTransactionType.addEventListener('change', () => {
+    const options = newTransactionPurpose.options;
+
+    if (newTransactionType.value === 'expense') {
+        Array.from(options).forEach(option => {
+            option.value = chartDataX[option.index].toLowerCase();
+            option.textContent = chartDataX[option.index];
+        });
+    } else {
+        Array.from(options).forEach(option => {
+            option.value = incomeSelector[option.index].toLowerCase();
+            option.textContent = incomeSelector[option.index];
+        });
+    }
+})
 
 saveTransactionBtn.addEventListener('click', function() {
     if (!universalValidator(newTransactionAmount)) return;
     if (!universalValidator(newTransactionDate)) return;
-    if (newTransactionType.value === 'expense' && Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
-        alert('Expense > Balance!');
-        return;
+    
+    if (newTransactionType.value === 'expense') {
+        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
+            alert('Expense > Balance!');
+            return;
+        }
     }
     const newTransaction: Transaction = {
         type: newTransactionType.value,
@@ -122,14 +151,14 @@ saveTransactionBtn.addEventListener('click', function() {
     updateDashUserData();
 })
 
-newGoalBtn.addEventListener('click', function() {
-    overlay.style.display = 'block';
-    newGoalPopup.style.display = 'block';
-})
-
 closeGoalPopup.addEventListener('click', function() {
     overlay.style.display = 'none';
     newGoalPopup.style.display = 'none';
+})
+
+newGoalBtn.addEventListener('click', function() {
+    overlay.style.display = 'block';
+    newGoalPopup.style.display = 'block';
 })
 
 newBillBtn.addEventListener('click', function() {
@@ -152,15 +181,14 @@ closeTransactionPopup.addEventListener('click', function() {
     newTransactionPopup.style.display = 'none';
 })
 
-let Xaxis = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
 // @ts-expect-error
 new Chart("expense-chart", {
     type: "bar",
     data: {
-        labels: Xaxis,
+        labels: chartDataX,
         datasets: [{
             backgroundColor: "rgba(255,0,0,0.5)",
-            data: Yaxis
+            data: chartDataY
         }]
     },
     options: {
