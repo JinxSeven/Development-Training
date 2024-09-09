@@ -31,7 +31,6 @@ const newTransactionType = document.getElementById('new-transaction-type-select'
 const newTransactionAmount = document.getElementById('new-transaction-amt-inp') as HTMLInputElement;
 const newTransactionDate = document.getElementById('new-transaction-date-inp') as HTMLInputElement;
 const newTransactionPurpose = document.getElementById('new-transaction-purpose-select') as HTMLSelectElement;
-const newTransactionOptions = document.querySelectorAll('#new-transaction-purpose-select option')as NodeListOf<HTMLOptionElement>;
 const saveTransactionBtn = document.getElementById('save-transaction-btn') as HTMLButtonElement;
 
 const newGoalName = document.getElementById('new-goal-name-inp') as HTMLInputElement;
@@ -105,6 +104,11 @@ function updateExpenseChartData() {
     }
     chartDataY = Array.from(temp.values());
 }
+
+saveGoalBtn.addEventListener('click', () => {
+    if (!universalValidator(newGoalName)) return;
+    if (!universalValidator(newGoalTarget)) return;
+})
 
 newTransactionType.addEventListener('change', () => {
     const options = newTransactionPurpose.options;
