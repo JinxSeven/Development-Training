@@ -1,13 +1,29 @@
+export function getUserDash() {
+    const userDash = localStorage.getItem('userDash');
+    return userDash ? JSON.parse(userDash) : [];
+}
+export function setUserDash(userDash) {
+    localStorage.setItem('userDash', JSON.stringify(userDash));
+    console.log('setUserDash');
+}
+export function universalValidator(inputField) {
+    if (inputField.value == '') {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    }
+    inputField.style.borderColor = '#d8d8d8';
+    return true;
+}
 export function validateEmailInput(emailInput, errorDisplay) {
     const email = emailInput.value.trim();
-    const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const validateEmailInput = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email) {
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
         errorDisplay.innerText = 'Email field empty!';
         errorDisplay.style.opacity = '1';
         return false;
     }
-    if (!regEx.test(email)) {
+    if (!validateEmailInput.test(email)) {
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
         errorDisplay.innerText = 'Invalid email!';
         errorDisplay.style.opacity = '1';
@@ -40,10 +56,10 @@ export function saveUsersToLocalStorage(users) {
 }
 export function getCurrentLoggedUser() {
     const loggedUser = localStorage.getItem('loggedUser');
-    if (loggedUser)
-        return loggedUser;
-    else
-        return '';
+    // console.log(typeof(loggedUser));
+    if (loggedUser) {
+        return JSON.parse(loggedUser);
+    }
 }
 export function setCurrentLoggedUser(loggedUser) {
     localStorage.setItem('loggedUser', JSON.stringify(loggedUser));

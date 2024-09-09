@@ -41,17 +41,17 @@
                     <div class="income-div">
                         <i class="fa-solid fa-circle-down"></i>
                         <label>Total Income:</label>
-                        <label>7500</label>
+                        <label id="total-income-dsp">7500</label>
                     </div>
                     <div class="expense-div">
                         <i class="fa-solid fa-circle-up"></i>
                         <label>Total Expense:</label>
-                        <label>5000</label>
+                        <label id="total-expense-dsp">5000</label>
                     </div>
                     <div class="balance-div">
                         <i class="fa-solid fa-hand-holding-dollar"></i>
                         <label>Total Balance:</label>
-                        <label>2500</label>
+                        <label id="total-balance-dsp">2500</label>
                     </div>
                 </div>
                 <div class="mid-section">
@@ -104,9 +104,9 @@
                                 <option style="font-weight: 600; font-size: 17px;" value="expense">Expense</option>
                             </select>
                             <label>Enter transaction amount</label>
-                            <input type="text" id="new-goal-trgt-inp">
+                            <input type="text" id="new-transaction-amt-inp">
                             <label>Select transaction date</label>
-                            <input type="date" id="new-goal-init-inp">
+                            <input type="date" id="new-transaction-date-inp">
                             <label>Select transaction purpose</label>
                             <select id="new-transaction-purpose-select">
                                 <option style="font-weight: 600; font-size: 17px;" value="entertainment">Entertainment
@@ -117,7 +117,7 @@
                                 <option style="font-weight: 600; font-size: 17px;" value="education">Education</option>
                                 <option style="font-weight: 600; font-size: 17px;" value="other">Other</option>
                             </select>
-                            <button>Save Bill</button>
+                            <button id="save-transaction-btn">Save Transaction</button>
                         </form>
                     </div>
                     <div class="mid-section-two">
@@ -150,7 +150,7 @@
                                 </button>
                             </div>
                         </div>
-                        <canvas id="expense-chart" style="width:100%;max-width:800px;height: 270px;"></canvas>
+                        <canvas id="expense-chart" style="width:100%;max-width:550px;height: 270px;"></canvas>
                     </div>
                 </div>
             </section>

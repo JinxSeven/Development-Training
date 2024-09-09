@@ -9,7 +9,7 @@ export interface UserDash {
     email: string;
     totalIncome: number;
     totalExpense: number;
-    balance: number;
+    totalBalance: number;
     goals: Goal[];
     bills: Bill[];
     transactions: Transaction[];
@@ -28,7 +28,7 @@ export interface Bill {
 }
 
 export interface Transaction {
-    type: 'income' | 'expense';
+    type: string;
     amount: number;
     date: string;
     purpose: string;
@@ -38,9 +38,28 @@ export interface LoggedUser {
     email: string;
 }
 
+export function getUserDash(): UserDash[] {
+    const userDash = localStorage.getItem('userDash');
+    return userDash ? JSON.parse(userDash) : [];
+}
+
+export function setUserDash(userDash: UserDash[]) {
+    localStorage.setItem('userDash', JSON.stringify(userDash));
+    console.log('setUserDash');
+}
+
+export function universalValidator(inputField: HTMLInputElement): boolean {
+    if (inputField.value == '') {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    }
+    inputField.style.borderColor = '#d8d8d8';
+    return true;
+}
+
 export function validateEmailInput(emailInput: HTMLInputElement, errorDisplay: HTMLParagraphElement): boolean {
     const email = emailInput.value.trim();
-    const regEx = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const validateEmailInput = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email) {
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
@@ -48,7 +67,7 @@ export function validateEmailInput(emailInput: HTMLInputElement, errorDisplay: H
         errorDisplay.style.opacity = '1';
         return false;
     }
-    if (!regEx.test(email)) {
+    if (!validateEmailInput.test(email)) {
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
         errorDisplay.innerText = 'Invalid email!';
         errorDisplay.style.opacity = '1';
@@ -84,10 +103,12 @@ export function saveUsersToLocalStorage(users: User[]): void {
     localStorage.setItem('users', JSON.stringify(users));
 }
 
-export function getCurrentLoggedUser(): string {
+export function getCurrentLoggedUser() {
     const loggedUser = localStorage.getItem('loggedUser');
-    if (loggedUser) return loggedUser;
-    else return '';
+    // console.log(typeof(loggedUser));
+    if (loggedUser) {
+        return JSON.parse(loggedUser);
+    }
 }
 
 export function setCurrentLoggedUser(loggedUser: LoggedUser) {

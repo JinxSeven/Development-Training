@@ -1,4 +1,4 @@
-import { getUsersFromLocalStorage, saveUsersToLocalStorage, isEmailDuplicate } from './utils.js';
+import { getUsersFromLocalStorage, saveUsersToLocalStorage, isEmailDuplicate, getUserDash, setUserDash } from './utils.js';
 const userNameInput = document.getElementById('user-name-inp');
 const emailInput = document.getElementById('email-inp');
 const passwordInput = document.getElementById('pass-inp');
@@ -94,6 +94,20 @@ signUpForm === null || signUpForm === void 0 ? void 0 : signUpForm.addEventListe
     const users = getUsersFromLocalStorage();
     users.push(newUser);
     saveUsersToLocalStorage(users);
+    const newUserDash = {
+        name: userName,
+        email: email,
+        totalIncome: 0,
+        totalExpense: 0,
+        totalBalance: 0,
+        goals: [],
+        bills: [],
+        transactions: []
+    };
+    const userDash = getUserDash();
+    userDash.push(newUserDash);
+    setUserDash(userDash);
+    console.log(newUserDash);
     alert('User registered successfully!');
     window.location.href = '../login/login.html';
 });

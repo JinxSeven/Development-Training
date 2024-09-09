@@ -134,7 +134,7 @@
 }
 
 .section {
-    width: 100%;
+    width: 80%;
     background-color: #F6F5F2;
     height: 100vh;
     border-radius: 10px;
@@ -197,12 +197,12 @@
     transition: background-color 0.3s;
 }
 
-.section .mid-section .mid-section-one button:hover {
+.section .mid-section .mid-section-one #new-goal-btn:hover, #new-bill-btn:hover, #new-transaction-btn:hover {
     cursor: pointer;
     background-color: #D0BFFF;
 }
 
-.section .mid-section .mid-section-one button:active {
+.section .mid-section .mid-section-one #new-goal-btn:active, #new-bill-btn:active, #new-transaction-btn:active {
     cursor: pointer;
     background-color: #c6b3fd;
 }
@@ -385,7 +385,7 @@
 }
 
 .section .mid-section .mid-section-two canvas {
-    padding-top: 15px
+    padding-top: 25px
 }
 
 .section .mid-section .mid-section-two .category {
@@ -400,8 +400,8 @@
 }
 
 .section .mid-section .mid-section-two .category-btns button {
-    width: 20em;
-    height: 80px;
+    width: 155px;
+    height: 70px;
     background-color: rgb(230, 216, 250);
     transition: background-color 0.3s;
     border-radius: 5px;

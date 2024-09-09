@@ -1,7 +1,10 @@
 import {
     getUsersFromLocalStorage,
     saveUsersToLocalStorage,
-    isEmailDuplicate, User
+    isEmailDuplicate, User,
+    UserDash, getUserDash,
+    setUserDash, Transaction,
+    Goal, Bill
 } from './utils.js';
 
 const userNameInput = document.getElementById('user-name-inp') as HTMLInputElement;
@@ -107,6 +110,21 @@ signUpForm?.addEventListener('submit', (event) => {
     const users = getUsersFromLocalStorage();
     users.push(newUser);
     saveUsersToLocalStorage(users);
+
+    const newUserDash: UserDash = {
+        name: userName,
+        email: email,
+        totalIncome: 0,
+        totalExpense: 0,
+        totalBalance: 0,
+        goals: [],
+        bills: [],
+        transactions: []
+    }
+    const userDash = getUserDash();
+    userDash.push(newUserDash);
+    setUserDash(userDash);
+    console.log(newUserDash);
 
     alert('User registered successfully!');
     window.location.href = '../login/login.html';

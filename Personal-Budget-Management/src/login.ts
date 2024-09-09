@@ -41,7 +41,7 @@ signInButton?.addEventListener('click', (event) => {
 
     const isAuthenticated = authenticateUser(email, password);
     if (isAuthenticated) {
-        const session: LoggedUser = {email};
+        const session: LoggedUser = { email };
         setCurrentLoggedUser(session);
 
         alert('Sign in successful!');
