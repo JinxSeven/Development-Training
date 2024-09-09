@@ -20,15 +20,16 @@ JS & TS Changes:
     User Management System: Fix bugs and add validation and style - fixed
 
 Budget Tracker:
-    Login page and new user
-    Add and remove transaction
-    Transaction category and percentage calculation
-    Progress indicator
-    Savings calculator
-    Every transaction history with filter and sort
-    Dark Theme
-    Profile settings - add custom categories
-    Notifications
+    Transaction type options(purpose)
+    Chart data filter and reset function
+    Add new goal function
+    Add new bill function
+    Dark mode function
+    Transaction history container
+    Logout button and function
+    Password encryption(optional)
+    Improve addUser validation
 
 http://127.0.0.1:5500/
 https://demo.firefly-iii.org/
+

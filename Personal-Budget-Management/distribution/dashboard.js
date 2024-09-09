@@ -1,6 +1,7 @@
 import { getCurrentLoggedUser, getUserDash, universalValidator, setUserDash } from './utils.js';
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
+let Yaxis = [];
 const userDashIndx = loggedUserDash.findIndex(itr => itr.email === loggedUser.email);
 const totalIncomeDsp = document.getElementById('total-income-dsp');
 const totalExpenseDsp = document.getElementById('total-expense-dsp');
@@ -21,13 +22,59 @@ const overlay = document.getElementById('overlay');
 const newGoalPopup = document.getElementById('new-goal-popup');
 const newBillPopup = document.getElementById('new-bill-popup');
 const newTransactionPopup = document.getElementById('new-transaction-popup');
+const chartFilterEntertain = document.getElementById('chart-filter-entertain');
+const chartFilterHealth = document.getElementById('chart-filter-health');
+const chartFilterShopping = document.getElementById('chart-filter-shopping');
+const chartFilterTravel = document.getElementById('chart-filter-travel');
+const chartFilterEducation = document.getElementById('chart-filter-education');
+const chartFilterOther = document.getElementById('chart-filter-other');
+const chartFilterReset = document.getElementById('chart-filter-reset');
 function updateDashUserData() {
     totalExpenseDsp.innerText = String(loggedUserDash[userDashIndx].totalExpense);
     totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome);
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
+    updateChartData();
 }
 updateDashUserData();
+function updateChartData() {
+    const transArr = loggedUserDash[userDashIndx].transactions;
+    const expTransArr = transArr.filter(itr => itr.type == 'expense');
+    let temp = new Map();
+    temp.set('Entertainment', 0);
+    temp.set('Health', 0);
+    temp.set('Shopping', 0);
+    temp.set('Travel', 0);
+    temp.set('Education', 0);
+    temp.set('Other', 0);
+    for (let x = 0; x < expTransArr.length; x++) {
+        const purpose = expTransArr[x].purpose;
+        const amount = expTransArr[x].amount;
+        switch (purpose) {
+            case 'entertainment':
+                temp.set('Entertainment', temp.get('Entertainment') + amount);
+                break;
+            case 'health':
+                temp.set('Health', temp.get('Health') + amount);
+                break;
+            case 'shopping':
+                temp.set('Shopping', temp.get('Shopping') + amount);
+                break;
+            case 'travel':
+                temp.set('Travel', temp.get('Travel') + amount);
+                break;
+            case 'education':
+                temp.set('Education', temp.get('Education') + amount);
+                break;
+            case 'other':
+                temp.set('Other', temp.get('Other') + amount);
+                break;
+            default:
+                break;
+        }
+    }
+    Yaxis = Array.from(temp.values());
+}
 saveTransactionBtn.addEventListener('click', function () {
     if (!universalValidator(newTransactionAmount))
         return;
@@ -78,16 +125,15 @@ closeTransactionPopup.addEventListener('click', function () {
     overlay.style.display = 'none';
     newTransactionPopup.style.display = 'none';
 });
-let X = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
-let Y = [15, 40, 42, 24, 35, 30];
+let Xaxis = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
 // @ts-expect-error
 new Chart("expense-chart", {
     type: "bar",
     data: {
-        labels: X,
+        labels: Xaxis,
         datasets: [{
                 backgroundColor: "rgba(255,0,0,0.5)",
-                data: Y
+                data: Yaxis
             }]
     },
     options: {
