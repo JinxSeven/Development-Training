@@ -26,7 +26,6 @@ const newGoalInit = document.getElementById('new-goal-init-inp');
 const saveGoalBtn = document.getElementById('save-goal-btn');
 const savingGoalsDiv = document.querySelector('aside .saving-goals-div');
 const zeroGoalsDiv = document.getElementById('zero-goals-div');
-const goalFundBtns = document.querySelectorAll('.goal-fund-btn');
 const overlay = document.getElementById('overlay');
 const newGoalPopup = document.getElementById('new-goal-popup');
 const newBillPopup = document.getElementById('new-bill-popup');
@@ -58,12 +57,22 @@ function updateSavingGoalData() {
         zeroGoalsDiv.style.display = 'none';
     }
     for (let itr = 0; itr < arrayOfGoals.length; itr++) {
-        const initGoalProg = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
+        const goalPercentage = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
+        if (Number(goalPercentage) == 100) {
+            const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                                    <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
+                                    <p id="progressPercentage">${arrayOfGoals[itr].target}</p>
+                                    <i style="color: #25D366;" class="fa-regular fa-circle-check fa-xl"></i>
+                                    <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
+                                </div>`;
+            savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
+            continue;
+        }
         const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                 <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
-                                <p id="progressPercentage">${initGoalProg}%</p>
-                                <button style="background-color: #b6ffd6;" id="${itr}" class="goal-mod-btn goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
-                                <button style="background-color: #ffd4d4;" id="${itr}" class="goal-mod-btn goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
+                                <p id="progressPercentage">${goalPercentage}%</p>
+                                <button id="${itr}" class="goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
+                                <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                             </div>`;
         savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
     }
@@ -160,12 +169,6 @@ saveGoalBtn.addEventListener('click', (event) => {
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
     closeGoalFunctionReload();
-});
-goalFundBtns.forEach(fund => {
-    fund.addEventListener('click', () => {
-        const idx = Number(fund.id);
-        const userGoals = loggedUserDash[userDashIndx].goals;
-    });
 });
 newTransactionType.addEventListener('change', () => {
     const options = newTransactionPurpose.options;
@@ -273,4 +276,71 @@ new Chart("expense-chart", {
                 }],
         },
     }
+});
+const fundGoalInp = document.getElementById('fund-goal-inp');
+const fundGoalSaveBtn = document.getElementById('fund-goal-save-btn');
+const fundGoalPopupClose = document.getElementById('close-fund-goal-popup');
+const fundGoalName = document.getElementById('fund-goal-name');
+const fundsGoalStatus = document.getElementById('funds-on-goal');
+const fundGoalPopup = document.getElementById('fund-goal-popup');
+const fundGoalBtns = document.querySelectorAll('.goal-fund-btn');
+function openFundGoalPopup() {
+    fundGoalPopup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+fundGoalBtns.forEach(fund => {
+    fund.addEventListener('click', () => {
+        const idx = Number(fund.id);
+        const userGoals = loggedUserDash[userDashIndx].goals;
+        openFundGoalPopup();
+        fundGoalName.innerText = userGoals[idx].name;
+        fundsGoalStatus.innerText = `Goal Status: ${userGoals[idx].contribution} / ${userGoals[idx].target}`;
+        fundGoalSaveBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            if (!universalValidator(fundGoalInp))
+                return;
+            if (!universalNaNValidator(fundGoalInp))
+                return;
+            if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
+                fundGoalInp.style.borderColor = '#ba2b2b';
+                alert('Not enough balance!');
+                fundGoalInp.value = '';
+                return;
+            }
+            else if (Number(fundGoalInp.value) > userGoals[idx].target) {
+                fundGoalInp.style.borderColor = '#ba2b2b';
+                alert('Contribution > Target!');
+                fundGoalInp.value = '';
+                return;
+            }
+            else {
+                fundGoalInp.style.borderColor = '#d8d8d8';
+            }
+            if (Number(fundGoalInp.value) > 0) {
+                const date = new Date();
+                const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                const goalTransaction = {
+                    type: "expense",
+                    amount: Number(fundGoalInp.value),
+                    date: formatted,
+                    purpose: "other"
+                };
+                loggedUserDash[userDashIndx].transactions.push(goalTransaction);
+                loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
+                userGoals[idx].contribution += goalTransaction.amount;
+            }
+            setUserDash(loggedUserDash);
+            fundGoalPopupCloseFunction(true);
+        });
+    });
+});
+function fundGoalPopupCloseFunction(refresh) {
+    fundGoalPopup.style.display = 'none';
+    overlay.style.display = 'none';
+    if (refresh) {
+        window.location.reload();
+    }
+}
+fundGoalPopupClose.addEventListener('click', () => {
+    fundGoalPopupCloseFunction(false);
 });

@@ -20,7 +20,7 @@ JS & TS Changes:
     User Management System: Fix bugs and add validation and style - fixed
 
 Budget Tracker - 10/09:
-    Goals CRUD operations
+    Goals CRUD operations - Update funds complete
     Getting started: Transaction history
 
 http://127.0.0.1:5500/

@@ -17,6 +17,10 @@
     border-radius: 10px;
 }
 
+label {
+    padding-bottom: 5px;
+}
+
 .header .dark-mode {
     display: flex;
     align-items: center;
@@ -187,7 +191,9 @@
     margin: 15px;
 }
 
-.section .mid-section .mid-section-one #new-goal-btn, #new-bill-btn, #new-transaction-btn {
+.section .mid-section .mid-section-one #new-goal-btn,
+#new-bill-btn,
+#new-transaction-btn {
     width: 35%;
     background-color: rgb(230, 216, 250);
     height: 120px;
@@ -200,18 +206,22 @@
     transition: background-color 0.3s;
 }
 
-.section .mid-section .mid-section-one #new-goal-btn:hover, #new-bill-btn:hover, #new-transaction-btn:hover {
+.section .mid-section .mid-section-one #new-goal-btn:hover,
+#new-bill-btn:hover,
+#new-transaction-btn:hover {
     cursor: pointer;
     background-color: #D0BFFF;
 }
 
-.section .mid-section .mid-section-one #new-goal-btn:active, #new-bill-btn:active, #new-transaction-btn:active {
+.section .mid-section .mid-section-one #new-goal-btn:active,
+#new-bill-btn:active,
+#new-transaction-btn:active {
     cursor: pointer;
     background-color: #c6b3fd;
 }
 
-.aside .goal-mod-btn {
-    background-color: rgb(230, 216, 250);
+.aside .goal-fund-btn {
+    background-color: #b6ffd6;
     border-radius: 5px;
     text-align: center;
     align-content: center;
@@ -222,14 +232,37 @@
     transition: background-color 0.3s;
 }
 
-.aside .goal-mod-btn:hover {
+.aside .goal-fund-btn:hover {
     cursor: pointer;
-    background-color: #D0BFFF;
+    background-color: #a0fcc8;
+    /* background-color: #25D366; */
 }
 
-.aside .goal-mod-btn:active {
+.aside .goal-fund-btn:active {
     cursor: pointer;
-    background-color: #c6b3fd;
+    background-color: #8ffdbf;
+}
+
+.aside .goal-del-btn {
+    background-color: #ffd4d4;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    padding: 5px;
+    height: 27.70px;
+    width: 27.70px;
+    transition: background-color 0.3s;
+}
+
+.aside .goal-del-btn:hover {
+    cursor: pointer;
+    background-color: #fcbbbb;
+}
+
+.aside .goal-del-btn:active {
+    cursor: pointer;
+    background-color: #fca7a7;
 }
 
 .section .mid-section .new-goal-form-div #new-goal-form {
@@ -436,6 +469,7 @@
     cursor: pointer;
     background-color: #D0BFFF;
 }
+
 .section .mid-section .mid-section-two .chart-reset-btn:active {
     background-color: #c6b3fd;
 }
