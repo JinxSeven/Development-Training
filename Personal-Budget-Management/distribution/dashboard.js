@@ -25,6 +25,8 @@ const newGoalTarget = document.getElementById('new-goal-trgt-inp');
 const newGoalInit = document.getElementById('new-goal-init-inp');
 const saveGoalBtn = document.getElementById('save-goal-btn');
 const savingGoalsDiv = document.querySelector('aside .saving-goals-div');
+const zeroGoalsDiv = document.getElementById('zero-goals-div');
+const goalFundBtns = document.querySelectorAll('.goal-fund-btn');
 const overlay = document.getElementById('overlay');
 const newGoalPopup = document.getElementById('new-goal-popup');
 const newBillPopup = document.getElementById('new-bill-popup');
@@ -36,24 +38,32 @@ const filterChartTravel = document.getElementById('chart-filter-travel');
 const filterChartEdu = document.getElementById('chart-filter-education');
 const filterChartOther = document.getElementById('chart-filter-other');
 const filterChartReset = document.getElementById('chart-filter-reset');
-filterChartReset.addEventListener('click', updateDashUserData);
+// filterChartReset.addEventListener('click', () => {
+//     window.location.reload();
+// });
 function updateDashUserData() {
     totalExpenseDsp.innerText = String(loggedUserDash[userDashIndx].totalExpense);
     totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome);
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
-    updateExpenseChartData();
     updateSavingGoalData();
+    updateExpenseChartData();
 }
 function updateSavingGoalData() {
     const arrayOfGoals = loggedUserDash[userDashIndx].goals;
+    if (arrayOfGoals.length == 0) {
+        zeroGoalsDiv.style.display = 'flex';
+    }
+    else {
+        zeroGoalsDiv.style.display = 'none';
+    }
     for (let itr = 0; itr < arrayOfGoals.length; itr++) {
         const initGoalProg = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
         const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                 <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
                                 <p id="progressPercentage">${initGoalProg}%</p>
-                                <button class="goal-mod-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
-                                <button class="goal-mod-btn"><i class="fa-solid fa-trash fa-lg"></i></button>
+                                <button style="background-color: #b6ffd6;" id="${itr}" class="goal-mod-btn goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
+                                <button style="background-color: #ffd4d4;" id="${itr}" class="goal-mod-btn goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                             </div>`;
         savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
     }
@@ -106,6 +116,30 @@ saveGoalBtn.addEventListener('click', (event) => {
         return;
     if (!universalNaNValidator(newGoalTarget))
         return;
+    const userGoals = loggedUserDash[userDashIndx].goals;
+    for (let i = 0; i < userGoals.length; i++) {
+        if (userGoals[i].name === newGoalName.value) {
+            newGoalName.style.borderColor = '#ba2b2b';
+            alert('No duplicate goals allowed!');
+            return;
+        }
+        newGoalName.style.borderColor = '#d8d8d8';
+    }
+    if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance) {
+        newGoalInit.style.borderColor = '#ba2b2b';
+        alert('Not enough balance!');
+        newGoalInit.value = '';
+        return;
+    }
+    else if (Number(newGoalInit.value) > Number(newGoalTarget.value)) {
+        newGoalInit.style.borderColor = '#ba2b2b';
+        alert('Contribution > Target!');
+        newGoalInit.value = '';
+        return;
+    }
+    else {
+        newGoalInit.style.borderColor = '#d8d8d8';
+    }
     const newGoal = {
         name: newGoalName.value,
         target: Number(newGoalTarget.value),
@@ -113,7 +147,13 @@ saveGoalBtn.addEventListener('click', (event) => {
     };
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
-    closeGoalFunction();
+    closeGoalFunctionReload();
+});
+goalFundBtns.forEach(fund => {
+    fund.addEventListener('click', () => {
+        const idx = Number(fund.id);
+        const userGoals = loggedUserDash[userDashIndx].goals;
+    });
 });
 newTransactionType.addEventListener('change', () => {
     const options = newTransactionPurpose.options;
@@ -138,9 +178,12 @@ saveTransactionBtn.addEventListener('click', function (event) {
         return;
     if (newTransactionType.value === 'expense') {
         if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
+            newTransactionAmount.style.borderColor = '#ba2b2b';
             alert('Expense > Balance!');
+            newTransactionAmount.value = '';
             return;
         }
+        newTransactionAmount.style.borderColor = '#d8d8d8';
     }
     const newTransaction = {
         type: newTransactionType.value,
@@ -157,13 +200,17 @@ saveTransactionBtn.addEventListener('click', function (event) {
     }
     loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     setUserDash(loggedUserDash);
-    closeTransactionFunction();
+    closeTransactionFunctionReload();
 });
 newGoalBtn.addEventListener('click', function () {
     overlay.style.display = 'block';
     newGoalPopup.style.display = 'block';
 });
 function closeGoalFunction() {
+    overlay.style.display = 'none';
+    newGoalPopup.style.display = 'none';
+}
+function closeGoalFunctionReload() {
     overlay.style.display = 'none';
     newGoalPopup.style.display = 'none';
     window.location.reload();
@@ -176,7 +223,7 @@ newBillBtn.addEventListener('click', function () {
 function closeBillFunction() {
     overlay.style.display = 'none';
     newBillPopup.style.display = 'none';
-    window.location.reload();
+    // window.location.reload();
 }
 closeBillPopup.addEventListener('click', closeBillFunction);
 newTransactionBtn.addEventListener('click', function () {
@@ -184,6 +231,10 @@ newTransactionBtn.addEventListener('click', function () {
     newTransactionPopup.style.display = 'block';
 });
 function closeTransactionFunction() {
+    overlay.style.display = 'none';
+    newTransactionPopup.style.display = 'none';
+}
+function closeTransactionFunctionReload() {
     overlay.style.display = 'none';
     newTransactionPopup.style.display = 'none';
     window.location.reload();

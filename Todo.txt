@@ -20,14 +20,13 @@ JS & TS Changes:
     User Management System: Fix bugs and add validation and style - fixed
 
 Budget Tracker:
-    Transaction type options(purpose) - fixed
+    Transaction type options(purpose) - done
     Chart data filter and reset function
-    Add new goal function
+    Add new goal function - done
     Add new bill function
     Dark mode function
     Transaction history container
     Logout button and function
-    Password encryption(optional)
     Improve addUser validation
 
 http://127.0.0.1:5500/

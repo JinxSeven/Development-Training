@@ -22,7 +22,7 @@
                     <p>Dark Mode</p><input id="dark-mode-chkbx" type="checkbox">
                 </div>
                 <div class="profile-div"></i>
-                    <p>Samuel K</p><i class="fa-solid fa-user"></i>
+                    <p>Samuel K</p><i class="fa-solid fa-user"></i><i class="fa-solid fa-right-from-bracket"></i>
                 </div>
             </div>
         </header>
@@ -30,12 +30,15 @@
             <aside class="aside">
                 <div class="saving-goals-div">
                     <h4>Saving Goals:</h4>
-                    <div id="zero-goals-div" style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                    <div id="zero-goals-div"
+                        style="display: flex;justify-content: space-evenly; align-items: center; font-size: 15.3px;"
+                        class="goals-div">
                         <h3 style="color: #b3b2b2;">Add goals to see here</h3>
                     </div>
                 </div>
                 <h4>Upcoming Bills:</h4>
-                <div  id="zero-bills-div" style="display: flex;justify-content: space-evenly; align-items: center;" class="bills-div">
+                <div id="zero-bills-div" style="display: flex;justify-content: space-evenly; align-items: center;"
+                    class="bills-div">
                     <h3 style="color: #b3b2b2;">Add bills to see here</h3>
                 </div>
             </aside>
@@ -77,11 +80,11 @@
                         <h2>New Goal</h2><button class="close-popup" id="close-goal-popup">&times;</button>
                         <form action="" id="new-goal-form">
                             <label>Set goal name</label>
-                            <input type="text" id="new-goal-name-inp">
+                            <input placeholder="Goal name" type="text" id="new-goal-name-inp">
                             <label>Set goal target</label>
-                            <input type="text" id="new-goal-trgt-inp">
+                            <input placeholder="Goal target" type="text" id="new-goal-trgt-inp">
                             <label>Add initial contribution (not mandatory)</label>
-                            <input type="text" id="new-goal-init-inp">
+                            <input placeholder="Initial contribution" type="text" id="new-goal-init-inp">
                             <button id="save-goal-btn">Save Goal</button>
                         </form>
                     </div>
@@ -89,9 +92,9 @@
                         <h2>New Bill</h2><button class="close-popup" id="close-bill-popup">&times;</button>
                         <form action="" id="new-bill-form">
                             <label>Enter bill name</label>
-                            <input type="text" id="new-bill-name-inp">
+                            <input placeholder="Bill name" type="text" id="new-bill-name-inp">
                             <label>Enter bill amount</label>
-                            <input type="text" id="new-bill-amt-inp">
+                            <input placeholder="Bill amount" type="text" id="new-bill-amt-inp">
                             <label>Set Bill due date</label>
                             <input type="date" id="new-bill-due-inp">
                             <button>Save Bill</button>
@@ -107,7 +110,7 @@
                                 <option style="font-weight: 600; font-size: 17px;" value="income">Income</option>
                             </select>
                             <label>Enter transaction amount</label>
-                            <input type="text" id="new-transaction-amt-inp">
+                            <input placeholder="Transaction amount" type="text" id="new-transaction-amt-inp">
                             <label>Select transaction date</label>
                             <input type="date" id="new-transaction-date-inp">
                             <label>Select transaction source/purpose</label>
@@ -125,9 +128,10 @@
                     </div>
                     <div class="mid-section-two">
                         <div class="category">
-                            <div style="display: flex; align-items: center;gap: 32px;">
+                            <div style="display: flex; align-items: center;gap: 35px;">
                                 <h3>Visualize expense by category</h3>
-                                <button id="chart-filter-reset"><i class="fa-solid fa-arrow-rotate-right"></i></button>
+                                <button class="chart-reset-btn" id="chart-filter-reset"><i
+                                        class="fa-solid fa-arrow-rotate-right"></i></button>
                             </div>
                             <div class="category-btns">
                                 <button id="chart-filter-entertain">
@@ -166,4 +170,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>

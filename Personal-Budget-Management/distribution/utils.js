@@ -9,6 +9,8 @@ export function setUserDash(userDash) {
 export function universalLenValidator(inputField, inputLength) {
     const inpLen = String(inputField.value);
     if (Number(inpLen.length) > Number(inputLength)) {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        alert('Permited length exceded!');
         return false;
     }
     return true;
@@ -16,6 +18,7 @@ export function universalLenValidator(inputField, inputLength) {
 export function universalNaNValidator(inputField) {
     if (isNaN(Number(inputField.value))) {
         inputField.style.borderColor = 'rgb(218, 43, 43)';
+        alert('Invalid input type!');
         return false;
     }
     inputField.style.borderColor = '#d8d8d8';

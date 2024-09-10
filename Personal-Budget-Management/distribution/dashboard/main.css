@@ -28,6 +28,8 @@
     display: flex;
 }
 
+/* fa-solid fa-right-from-bracket */
+
 .dark-mode #dark-mode-chkbx {
     appearance: none;
     background-color: #dfe1e4;
@@ -422,6 +424,22 @@
     gap: 10px;
 }
 
+.section .mid-section .mid-section-two .chart-reset-btn {
+    background-color: rgb(230, 216, 250);
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    padding: 5px 7px;
+}
+
+.section .mid-section .mid-section-two .chart-reset-btn:hover {
+    cursor: pointer;
+    background-color: #D0BFFF;
+}
+.section .mid-section .mid-section-two .chart-reset-btn:active {
+    background-color: #c6b3fd;
+}
+
 .section .mid-section .mid-section-two .category-btns button {
     width: 155px;
     height: 70px;
@@ -433,6 +451,7 @@
 
 .section .mid-section .mid-section-two .category-btns button:hover {
     background-color: #D0BFFF;
+    cursor: pointer;
 }
 
 .section .mid-section .mid-section-two .category-btns button:active {
