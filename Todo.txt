@@ -19,16 +19,9 @@ JS & TS Changes:
     Calculator: Handle divide by zero - fixed
     User Management System: Fix bugs and add validation and style - fixed
 
-Budget Tracker:
-    Transaction type options(purpose) - done
-    Chart data filter and reset function
-    Add new goal function - done
-    Add new bill function
-    Dark mode function
-    Transaction history container
-    Logout button and function
-    Improve addUser validation
+Budget Tracker - 10/09:
+    Goals CRUD operations
+    Getting started: Transaction history
 
 http://127.0.0.1:5500/
 https://demo.firefly-iii.org/
-

@@ -145,6 +145,18 @@ saveGoalBtn.addEventListener('click', (event) => {
         target: Number(newGoalTarget.value),
         contribution: Number(newGoalInit.value)
     };
+    if (newGoal.contribution > 0) {
+        const date = new Date();
+        const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+        const goalTransaction = {
+            type: "expense",
+            amount: newGoal.contribution,
+            date: formatted,
+            purpose: "other"
+        };
+        loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
+        loggedUserDash[userDashIndx].transactions.push(goalTransaction);
+    }
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
     closeGoalFunctionReload();
@@ -172,9 +184,9 @@ newTransactionType.addEventListener('change', () => {
 });
 saveTransactionBtn.addEventListener('click', function (event) {
     event.preventDefault();
-    if (!universalValidator(newTransactionAmount))
-        return;
     if (!universalValidator(newTransactionDate))
+        return;
+    if (!universalValidator(newTransactionAmount))
         return;
     if (newTransactionType.value === 'expense') {
         if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
