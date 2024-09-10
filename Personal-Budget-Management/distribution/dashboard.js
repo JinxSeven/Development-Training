@@ -1,4 +1,4 @@
-import { getCurrentLoggedUser, getUserDash, universalValidator, setUserDash } from './utils.js';
+import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, universalLenValidator } from './utils.js';
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 let chartDataY = [];
@@ -19,12 +19,12 @@ const newTransactionType = document.getElementById('new-transaction-type-select'
 const newTransactionAmount = document.getElementById('new-transaction-amt-inp');
 const newTransactionDate = document.getElementById('new-transaction-date-inp');
 const newTransactionPurpose = document.getElementById('new-transaction-purpose-select');
-const newTransactionOptions = document.querySelectorAll('#new-transaction-purpose-select option');
 const saveTransactionBtn = document.getElementById('save-transaction-btn');
 const newGoalName = document.getElementById('new-goal-name-inp');
 const newGoalTarget = document.getElementById('new-goal-trgt-inp');
 const newGoalInit = document.getElementById('new-goal-init-inp');
 const saveGoalBtn = document.getElementById('save-goal-btn');
+const savingGoalsDiv = document.querySelector('aside .saving-goals-div');
 const overlay = document.getElementById('overlay');
 const newGoalPopup = document.getElementById('new-goal-popup');
 const newBillPopup = document.getElementById('new-bill-popup');
@@ -43,11 +43,24 @@ function updateDashUserData() {
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
     updateExpenseChartData();
+    updateSavingGoalData();
 }
-updateDashUserData();
+function updateSavingGoalData() {
+    const arrayOfGoals = loggedUserDash[userDashIndx].goals;
+    for (let itr = 0; itr < arrayOfGoals.length; itr++) {
+        const initGoalProg = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
+        const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                                <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
+                                <p id="progressPercentage">${initGoalProg}%</p>
+                                <button class="goal-mod-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
+                                <button class="goal-mod-btn"><i class="fa-solid fa-trash fa-lg"></i></button>
+                            </div>`;
+        savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
+    }
+}
 function updateExpenseChartData() {
-    const transArr = loggedUserDash[userDashIndx].transactions;
-    const expTransArr = transArr.filter(itr => itr.type == 'expense');
+    const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+    const expTransArr = arrayOfTransactions.filter(itr => itr.type == 'expense');
     let temp = new Map();
     temp.set('Entertainment', 0);
     temp.set('Health', 0);
@@ -83,6 +96,25 @@ function updateExpenseChartData() {
     }
     chartDataY = Array.from(temp.values());
 }
+saveGoalBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    if (!universalValidator(newGoalName))
+        return;
+    if (!universalValidator(newGoalTarget))
+        return;
+    if (!universalLenValidator(newGoalName, 17))
+        return;
+    if (!universalNaNValidator(newGoalTarget))
+        return;
+    const newGoal = {
+        name: newGoalName.value,
+        target: Number(newGoalTarget.value),
+        contribution: Number(newGoalInit.value)
+    };
+    loggedUserDash[userDashIndx].goals.push(newGoal);
+    setUserDash(loggedUserDash);
+    closeGoalFunction();
+});
 newTransactionType.addEventListener('change', () => {
     const options = newTransactionPurpose.options;
     if (newTransactionType.value === 'expense') {
@@ -98,7 +130,8 @@ newTransactionType.addEventListener('change', () => {
         });
     }
 });
-saveTransactionBtn.addEventListener('click', function () {
+saveTransactionBtn.addEventListener('click', function (event) {
+    event.preventDefault();
     if (!universalValidator(newTransactionAmount))
         return;
     if (!universalValidator(newTransactionDate))
@@ -124,32 +157,39 @@ saveTransactionBtn.addEventListener('click', function () {
     }
     loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     setUserDash(loggedUserDash);
-    updateDashUserData();
-});
-closeGoalPopup.addEventListener('click', function () {
-    overlay.style.display = 'none';
-    newGoalPopup.style.display = 'none';
+    closeTransactionFunction();
 });
 newGoalBtn.addEventListener('click', function () {
     overlay.style.display = 'block';
     newGoalPopup.style.display = 'block';
 });
+function closeGoalFunction() {
+    overlay.style.display = 'none';
+    newGoalPopup.style.display = 'none';
+    window.location.reload();
+}
+closeGoalPopup.addEventListener('click', closeGoalFunction);
 newBillBtn.addEventListener('click', function () {
     overlay.style.display = 'block';
     newBillPopup.style.display = 'block';
 });
-closeBillPopup.addEventListener('click', function () {
+function closeBillFunction() {
     overlay.style.display = 'none';
     newBillPopup.style.display = 'none';
-});
+    window.location.reload();
+}
+closeBillPopup.addEventListener('click', closeBillFunction);
 newTransactionBtn.addEventListener('click', function () {
     overlay.style.display = 'block';
     newTransactionPopup.style.display = 'block';
 });
-closeTransactionPopup.addEventListener('click', function () {
+function closeTransactionFunction() {
     overlay.style.display = 'none';
     newTransactionPopup.style.display = 'none';
-});
+    window.location.reload();
+}
+closeTransactionPopup.addEventListener('click', closeTransactionFunction);
+updateDashUserData();
 // @ts-expect-error
 new Chart("expense-chart", {
     type: "bar",

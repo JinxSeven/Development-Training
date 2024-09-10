@@ -6,6 +6,21 @@ export function setUserDash(userDash) {
     localStorage.setItem('userDash', JSON.stringify(userDash));
     console.log('setUserDash');
 }
+export function universalLenValidator(inputField, inputLength) {
+    const inpLen = String(inputField.value);
+    if (Number(inpLen.length) > Number(inputLength)) {
+        return false;
+    }
+    return true;
+}
+export function universalNaNValidator(inputField) {
+    if (isNaN(Number(inputField.value))) {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    }
+    inputField.style.borderColor = '#d8d8d8';
+    return true;
+}
 export function universalValidator(inputField) {
     if (inputField.value == '') {
         inputField.style.borderColor = 'rgb(218, 43, 43)';

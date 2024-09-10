@@ -112,9 +112,10 @@
     margin-right: 10px;
 }
 
-.aside p {
+.aside h4 {
     padding-left: 3px;
-    margin-bottom: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
 
 .aside .goals-div {
@@ -203,6 +204,28 @@
 }
 
 .section .mid-section .mid-section-one #new-goal-btn:active, #new-bill-btn:active, #new-transaction-btn:active {
+    cursor: pointer;
+    background-color: #c6b3fd;
+}
+
+.aside .goal-mod-btn {
+    background-color: rgb(230, 216, 250);
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    padding: 5px;
+    height: 27.70px;
+    width: 27.70px;
+    transition: background-color 0.3s;
+}
+
+.aside .goal-mod-btn:hover {
+    cursor: pointer;
+    background-color: #D0BFFF;
+}
+
+.aside .goal-mod-btn:active {
     cursor: pointer;
     background-color: #c6b3fd;
 }

@@ -18,7 +18,7 @@ export interface UserDash {
 export interface Goal {
     name: string;
     target: number;
-    initialContribution: number;
+    contribution: number;
 }
 
 export interface Bill {
@@ -46,6 +46,23 @@ export function getUserDash(): UserDash[] {
 export function setUserDash(userDash: UserDash[]) {
     localStorage.setItem('userDash', JSON.stringify(userDash));
     console.log('setUserDash');
+}
+
+export function universalLenValidator(inputField: HTMLInputElement, inputLength: Number) {
+    const inpLen = String(inputField.value);
+    if (Number(inpLen.length) > Number(inputLength)) {
+        return false;
+    }
+    return true;
+}
+
+export function universalNaNValidator(inputField: HTMLInputElement): boolean {
+    if (isNaN(Number(inputField.value))) {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        return false;
+    }
+    inputField.style.borderColor = '#d8d8d8';
+    return true;
 }
 
 export function universalValidator(inputField: HTMLInputElement): boolean {
