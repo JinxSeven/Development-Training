@@ -235,8 +235,9 @@ label {
     align-content: center;
     border: none;
     padding: 5px;
+    padding-top: 3px;
     height: 25.70px;
-    width: 25.70px;
+    width: 26.70px;
     transition: background-color 0.3s;
 }
 
@@ -514,6 +515,7 @@ label {
 
 .section .mid-section .mid-section-three h3 {
     padding-top: 20px;
+    margin-top: 0;
 }
 
 .section .mid-section .mid-section-three .transaction-history-table {
@@ -577,4 +579,49 @@ label {
 
 .section .mid-section .mid-section-three .transaction-history-table::-webkit-scrollbar-thumb {
     background: rgb(187, 187, 187);
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .edt-trans-btn {
+    background-color: #28e96e;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    padding: 5px;
+    /* padding-top: 3px; */
+    height: 25.70px;
+    width: 25.70px;
+    transition: background-color 0.3s;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .edt-trans-btn:hover {
+    cursor: pointer;
+    background-color: #25D366;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .edt-trans-btn:active {
+    cursor: pointer;
+    background-color: #21bb59;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .del-trans-btn {
+    background-color: #f86876;
+    border-radius: 5px;
+    text-align: center;
+    align-content: center;
+    border: none;
+    padding: 5px;
+    height: 25.70px;
+    width: 25.70px;
+    transition: background-color 0.3s;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .del-trans-btn:hover {
+    cursor: pointer;
+    background-color: #fa5565;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table .del-trans-btn:active {
+    cursor: pointer;
+    background-color: #fa495b;
 }

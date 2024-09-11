@@ -85,8 +85,8 @@ function updateTransactionHistoryData() {
                             <td>${arrayOfTransactions[itr].amount}₹</td>
                             <td>${arrayOfTransactions[itr].date}</td>
                             <td>${arrayOfTransactions[itr].purpose}</td>
-                            <td><i class="fa-solid fa-pen-to-square"></i></td>
-                            <td><i class="fa-solid fa-trash-can"></i></td>
+                            <td><button id="${itr}" class="edt-trans-btn"><i class="fa-solid fa-pen-to-square fa-lg"></i></button></td>
+                            <td><button id="${itr}" class="del-trans-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button></td>
                         </tr>`
         tableTBody?.insertAdjacentHTML('beforeend', newTRow);
     }
@@ -108,7 +108,7 @@ function updateSavingGoalData() {
             const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                     <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
                                     <p id="progressPercentage">${arrayOfGoals[itr].target}₹</p>
-                                    <i style="color: #25D366;" class="fa-solid fa-circle-check fa-xl"></i>
+                                    <i style="color: #25D366; margin-left: 4px;" class="fa-solid fa-circle-check fa-xl"></i>
                                     <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                                 </div>`;
             savingGoalsDiv?.insertAdjacentHTML('beforeend', newGoalDiv);
@@ -372,14 +372,14 @@ function openFundGoalPopup() {
 
 function openGoalCompletePopup(goalName: String) {
     goalCompleteName.innerText = String(goalName);
-    alert('open!');
-    goalCompletePopup.style.display = 'flex';
+    goalCompletePopup.style.display = 'block';
     overlay.style.display = 'block';
 } 
 
 goalCompletePopupClose.addEventListener('click', () => {
     goalCompletePopup.style.display = 'none';
     overlay.style.display = 'none';
+    fundGoalPopupCloseFunction(true);
 })
 
 fundGoalBtns.forEach(fund => {
@@ -427,19 +427,19 @@ fundGoalBtns.forEach(fund => {
                 loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
                 loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
-                // console.log(goalTransaction.amount + userGoals[idx].contribution);
-                // console.log(userGoals[idx].target);
-                // console.log(typeof((goalTransaction.amount + userGoals[idx].contribution)));
-                userGoals[idx].contribution += goalTransaction.amount;
+                console.log(+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target);
                 if (+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target) {
-                    alert('test');
                     metReq = true;
                 }
+                userGoals[idx].contribution += goalTransaction.amount;
             }
-            alert('test2');
 
             setUserDash(loggedUserDash);
-            if (metReq) openGoalCompletePopup(goalName);
+            if (metReq) {
+                fundGoalPopupCloseFunction(false);
+                openGoalCompletePopup(goalName);
+                return;
+            }
             fundGoalPopupCloseFunction(true);
         })
     })
