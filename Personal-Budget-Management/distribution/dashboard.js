@@ -3,7 +3,7 @@ const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 let chartDataY = [];
 let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
-let incomeSelector = ["Earnings", "Winnings", "Gift", "Freelance", "Returns", "Other"];
+let incomeSelector = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
 const userDashIndx = loggedUserDash.findIndex(itr => itr.email === loggedUser.email);
 const totalIncomeDsp = document.getElementById('total-income-dsp');
 const totalExpenseDsp = document.getElementById('total-expense-dsp');
@@ -41,10 +41,10 @@ const filterChartReset = document.getElementById('chart-filter-reset');
 //     window.location.reload();
 // });
 function updateDashUserData() {
-    totalExpenseDsp.innerText = String(loggedUserDash[userDashIndx].totalExpense);
-    totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome);
+    totalExpenseDsp.innerText = String((loggedUserDash[userDashIndx].totalExpense).toFixed(2));
+    totalIncomeDsp.innerText = String((loggedUserDash[userDashIndx].totalIncome).toFixed(2));
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
-    totalBalanceDsp.innerText = String(loggedUserDash[userDashIndx].totalBalance);
+    totalBalanceDsp.innerText = String((loggedUserDash[userDashIndx].totalBalance).toFixed(2));
     updateSavingGoalData();
     updateExpenseChartData();
 }
@@ -164,7 +164,8 @@ saveGoalBtn.addEventListener('click', (event) => {
             purpose: "other"
         };
         loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
-        loggedUserDash[userDashIndx].transactions.push(goalTransaction);
+        // loggedUserDash[userDashIndx].transactions.push(goalTransaction);
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     }
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
@@ -284,6 +285,11 @@ const fundGoalName = document.getElementById('fund-goal-name');
 const fundsGoalStatus = document.getElementById('funds-on-goal');
 const fundGoalPopup = document.getElementById('fund-goal-popup');
 const fundGoalBtns = document.querySelectorAll('.goal-fund-btn');
+const delGoalBtns = document.querySelectorAll('.goal-del-btn');
+const userLogout = document.getElementById('profile-logout-btn');
+userLogout.addEventListener('click', () => {
+    window.location.href = '../login/login.html';
+});
 function openFundGoalPopup() {
     fundGoalPopup.style.display = 'block';
     overlay.style.display = 'block';
@@ -307,7 +313,7 @@ fundGoalBtns.forEach(fund => {
                 fundGoalInp.value = '';
                 return;
             }
-            else if (Number(fundGoalInp.value) > userGoals[idx].target) {
+            else if (Number(fundGoalInp.value) > ((userGoals[idx].target) - (userGoals[idx].contribution))) {
                 fundGoalInp.style.borderColor = '#ba2b2b';
                 alert('Contribution > Target!');
                 fundGoalInp.value = '';
@@ -325,13 +331,26 @@ fundGoalBtns.forEach(fund => {
                     date: formatted,
                     purpose: "other"
                 };
-                loggedUserDash[userDashIndx].transactions.push(goalTransaction);
+                // loggedUserDash[userDashIndx].transactions.push(goalTransaction);
                 loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
+                loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
                 userGoals[idx].contribution += goalTransaction.amount;
             }
             setUserDash(loggedUserDash);
             fundGoalPopupCloseFunction(true);
         });
+    });
+});
+delGoalBtns.forEach(del => {
+    del.addEventListener('click', () => {
+        const idx = Number(del.id);
+        const userGoals = loggedUserDash[userDashIndx].goals;
+        const saved = userGoals[idx].contribution;
+        userGoals.splice(idx, 1);
+        loggedUserDash[userDashIndx].totalExpense -= saved;
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+        setUserDash(loggedUserDash);
+        window.location.reload();
     });
 });
 function fundGoalPopupCloseFunction(refresh) {
