@@ -352,6 +352,9 @@ const fundGoalPopupClose = document.getElementById('close-fund-goal-popup') as H
 const fundGoalName = document.getElementById('fund-goal-name') as HTMLHeadingElement;
 const fundsGoalStatus = document.getElementById('funds-on-goal') as HTMLHeadingElement;
 const fundGoalPopup = document.getElementById('fund-goal-popup') as HTMLDivElement;
+const goalCompletePopup = document.getElementById('goal-complete-popup') as HTMLDivElement;
+const goalCompletePopupClose = document.getElementById('goal-complete-close-popup') as HTMLButtonElement;
+const goalCompleteName = document.getElementById('goal-complete-name') as HTMLHeadingElement;
 
 const fundGoalBtns = document.querySelectorAll('.goal-fund-btn');
 const delGoalBtns = document.querySelectorAll('.goal-del-btn');
@@ -367,6 +370,18 @@ function openFundGoalPopup() {
     overlay.style.display = 'block';
 }
 
+function openGoalCompletePopup(goalName: String) {
+    goalCompleteName.innerText = String(goalName);
+    alert('open!');
+    goalCompletePopup.style.display = 'flex';
+    overlay.style.display = 'block';
+} 
+
+goalCompletePopupClose.addEventListener('click', () => {
+    goalCompletePopup.style.display = 'none';
+    overlay.style.display = 'none';
+})
+
 fundGoalBtns.forEach(fund => {
     fund.addEventListener('click', () => {
         const idx = Number(fund.id);
@@ -374,6 +389,8 @@ fundGoalBtns.forEach(fund => {
         openFundGoalPopup();
         fundGoalName.innerText = userGoals[idx].name;
         fundsGoalStatus.innerText = `Goal Status: ${userGoals[idx].contribution} / ${userGoals[idx].target}`;
+        let metReq: Boolean = false;
+        const goalName = userGoals[idx].name;
 
         fundGoalSaveBtn.addEventListener('click', (event: Event) => {
             event.preventDefault();
@@ -410,13 +427,19 @@ fundGoalBtns.forEach(fund => {
                 loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
                 loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
+                // console.log(goalTransaction.amount + userGoals[idx].contribution);
+                // console.log(userGoals[idx].target);
+                // console.log(typeof((goalTransaction.amount + userGoals[idx].contribution)));
                 userGoals[idx].contribution += goalTransaction.amount;
-                if (goalTransaction.amount + userGoals[idx].contribution == userGoals[idx].target) {
-
+                if (+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target) {
+                    alert('test');
+                    metReq = true;
                 }
             }
+            alert('test2');
 
             setUserDash(loggedUserDash);
+            if (metReq) openGoalCompletePopup(goalName);
             fundGoalPopupCloseFunction(true);
         })
     })
