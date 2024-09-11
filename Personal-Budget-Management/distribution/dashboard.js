@@ -20,6 +20,8 @@ const newTransactionAmount = document.getElementById('new-transaction-amt-inp');
 const newTransactionDate = document.getElementById('new-transaction-date-inp');
 const newTransactionPurpose = document.getElementById('new-transaction-purpose-select');
 const saveTransactionBtn = document.getElementById('save-transaction-btn');
+const zeroTransactionDiv = document.getElementById('zero-transaction-history');
+const tableTBody = document.getElementById('table-tbody');
 const newGoalName = document.getElementById('new-goal-name-inp');
 const newGoalTarget = document.getElementById('new-goal-trgt-inp');
 const newGoalInit = document.getElementById('new-goal-init-inp');
@@ -47,11 +49,36 @@ function updateDashUserData() {
     totalBalanceDsp.innerText = String((loggedUserDash[userDashIndx].totalBalance).toFixed(2));
     updateSavingGoalData();
     updateExpenseChartData();
+    updateTransactionHistoryData();
+}
+function updateTransactionHistoryData() {
+    const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+    // if (arrayOfTransactions.length == 0) {
+    //     zeroTransactionDiv.style.display = 'flex';
+    //     return;
+    // }
+    // zeroTransactionDiv.style.display = 'none';
+    // <div class="zero-transaction-history"
+    // style="border-radius: 5px; margin-top:20px; display: flex; background-color: #F6F5F2;justify-content: space-evenly; align-items: center; font-size: 15px;">
+    // <h3 style="color: #a3a3a3; margin-top: 0;">Add transactions to see here</h3>
+    // </div>
+    for (let itr = 0; itr < arrayOfTransactions.length; itr++) {
+        const newTRow = `<tr>
+                            <td>${arrayOfTransactions[itr].type}</td>
+                            <td>${arrayOfTransactions[itr].amount}</td>
+                            <td>${arrayOfTransactions[itr].date}</td>
+                            <td>${arrayOfTransactions[itr].purpose}</td>
+                            <td><i class="fa-solid fa-pen-to-square"></i></td>
+                            <td><i class="fa-solid fa-trash-can"></i></td>
+                        </tr>`;
+        tableTBody === null || tableTBody === void 0 ? void 0 : tableTBody.insertAdjacentHTML('beforeend', newTRow);
+    }
 }
 function updateSavingGoalData() {
     const arrayOfGoals = loggedUserDash[userDashIndx].goals;
     if (arrayOfGoals.length == 0) {
         zeroGoalsDiv.style.display = 'flex';
+        return;
     }
     else {
         zeroGoalsDiv.style.display = 'none';

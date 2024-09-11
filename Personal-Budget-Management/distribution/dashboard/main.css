@@ -250,7 +250,7 @@ label {
 }
 
 .aside .goal-del-btn {
-    background-color: #fb5062;
+    background-color: #f86876;
     border-radius: 5px;
     text-align: center;
     align-content: center;
@@ -263,12 +263,12 @@ label {
 
 .aside .goal-del-btn:hover {
     cursor: pointer;
-    background-color: #fd4254;
+    background-color: #fa5565;
 }
 
 .aside .goal-del-btn:active {
     cursor: pointer;
-    background-color: #fd364a;
+    background-color: #fa495b;
 }
 
 .section .mid-section .new-goal-form-div #new-goal-form {
@@ -507,7 +507,8 @@ label {
     border-radius: 10px;
     margin: 10px 0px 0px;
     padding: 0px 15px 15px;
-    height: 300px;
+    max-height: 327px;
+    height: fit-content;
 }
 
 .section .mid-section .mid-section-three h3 {
@@ -517,40 +518,62 @@ label {
 .section .mid-section .mid-section-three .transaction-history-table {
     overflow: auto;
     width: 100%;
-    height: 250px;
+    max-height: 267px;
+    border-radius: 8px;
 }
 
 .section .mid-section .mid-section-three .transaction-history-table table {
-    border: 1px solid #dededf;
+    border: 0.5px solid #dededf;
     height: 100%;
     width: 100%;
     table-layout: auto;
-    border-collapse: collapse;
-    border-spacing: 1px;
+    border-collapse: separate;
+    border-spacing: 0;
     text-align: left;
-    border-radius: 10px;
+    border-radius: 8px;
+    overflow: hidden;
 }
-
 .section .mid-section .mid-section-three .transaction-history-table th {
-    border: 1px solid #dededf;
     background-color: #eceff1;
     color: #686868;
-    padding: 5px;
 }
 
-.section .mid-section .mid-section-three .transaction-history-table td {
-    border: 1px solid #dededf;
-    background-color: #ffffff;
-    color: #000000;
-    padding: 5px;
+.section .mid-section .mid-section-three .transaction-history-table th:first-child {
+    border-top-left-radius: 8px;
+}
+.section .mid-section .mid-section-three .transaction-history-table th:last-child {
+    border-top-right-radius: 8px;
 }
 
-.section .mid-section .mid-section-three .transaction-history-table td:nth-child(5) {
+.section .mid-section .mid-section-three .transaction-history-table td:first-child:last-of-type {
+    border-bottom-left-radius: 8px;
+}
+.section .mid-section .mid-section-three .transaction-history-table tr:last-child:last-of-type {
+    border-bottom-right-radius: 8px;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table th, .section .mid-section .mid-section-three .transaction-history-table td {
+    border: 0.5px solid #dededf;
+    padding: 5px;
     text-align: center;
+}
+
+/* .section .mid-section .mid-section-three .transaction-history-table td:nth-child(5) {
     background-color: #28e96e;
 }
 
-.section .mid-section .mid-section-three .transaction-history-table td:last-child {
+.section .mid-section .mid-section-three .transaction-history-table td:nth-child(6) {
     background-color: #fb5062;
-    text-align: center;
+} */
+
+.section .mid-section .mid-section-three .transaction-history-table::-webkit-scrollbar {
+    width: 8px;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table::-webkit-scrollbar-track {
+    background: white;
+}
+
+.section .mid-section .mid-section-three .transaction-history-table::-webkit-scrollbar-thumb {
+    background: rgb(187, 187, 187);
 }
