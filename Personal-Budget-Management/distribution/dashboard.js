@@ -53,19 +53,15 @@ function updateDashUserData() {
 }
 function updateTransactionHistoryData() {
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-    // if (arrayOfTransactions.length == 0) {
-    //     zeroTransactionDiv.style.display = 'flex';
-    //     return;
-    // }
-    // zeroTransactionDiv.style.display = 'none';
-    // <div class="zero-transaction-history"
-    // style="border-radius: 5px; margin-top:20px; display: flex; background-color: #F6F5F2;justify-content: space-evenly; align-items: center; font-size: 15px;">
-    // <h3 style="color: #a3a3a3; margin-top: 0;">Add transactions to see here</h3>
-    // </div>
+    if (arrayOfTransactions.length == 0) {
+        zeroTransactionDiv.style.display = 'flex';
+        return;
+    }
+    zeroTransactionDiv.style.display = 'none';
     for (let itr = 0; itr < arrayOfTransactions.length; itr++) {
         const newTRow = `<tr>
                             <td>${arrayOfTransactions[itr].type}</td>
-                            <td>${arrayOfTransactions[itr].amount}</td>
+                            <td>${arrayOfTransactions[itr].amount}₹</td>
                             <td>${arrayOfTransactions[itr].date}</td>
                             <td>${arrayOfTransactions[itr].purpose}</td>
                             <td><i class="fa-solid fa-pen-to-square"></i></td>
@@ -88,8 +84,8 @@ function updateSavingGoalData() {
         if (Number(goalPercentage) == 100) {
             const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                     <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
-                                    <p id="progressPercentage">${arrayOfGoals[itr].target}</p>
-                                    <i style="color: #25D366;" class="fa-regular fa-circle-check fa-xl"></i>
+                                    <p id="progressPercentage">${arrayOfGoals[itr].target}₹</p>
+                                    <i style="color: #25D366;" class="fa-solid fa-circle-check fa-xl"></i>
                                     <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                                 </div>`;
             savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
@@ -362,6 +358,8 @@ fundGoalBtns.forEach(fund => {
                 loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
                 loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
                 userGoals[idx].contribution += goalTransaction.amount;
+                if (goalTransaction.amount + userGoals[idx].contribution == userGoals[idx].target) {
+                }
             }
             setUserDash(loggedUserDash);
             fundGoalPopupCloseFunction(true);

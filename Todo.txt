@@ -20,8 +20,12 @@ JS & TS Changes:
     User Management System: Fix bugs and add validation and style - fixed
 
 Budget Tracker - 10/09:
-    Goals CRUD operations - Update funds complete
-    Getting started: Transaction history
+    Goals CRUD operations - completed
+    Transaction CRUD operations - pending
+    Congratulate on goal competion - pending {
+        Create a new display pop
+        Add its functionality
+    }
 
 http://127.0.0.1:5500/
 https://demo.firefly-iii.org/
