@@ -59,10 +59,11 @@ const filterChartReset = document.getElementById('chart-filter-reset') as HTMLBu
 // filterChartReset.addEventListener('click', () => {
 //     window.location.reload();
 // });
+let goalExpense = 0;
 
 function updateDashUserData() {
     const arrayOfGoals = loggedUserDash[userDashIndx].goals;
-    let goalExpense = 0;
+    goalExpense = 0;
     arrayOfGoals.forEach(exp => {
         goalExpense += exp.contribution;
     })
@@ -190,7 +191,7 @@ saveGoalBtn.addEventListener('click', (event: Event) => {
         newGoalName.style.borderColor = '#d8d8d8';
     }
 
-    if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance) {
+    if (Number(newGoalInit.value) > (loggedUserDash[userDashIndx].totalBalance - goalExpense)) {
         newGoalInit.style.borderColor = '#ba2b2b';
         alert('Not enough balance!');
         newGoalInit.value = '';
@@ -271,7 +272,7 @@ saveTransactionBtn.addEventListener('click', function (event: Event) {
     if (!universalValidator(newTransactionAmount)) return;
 
     if (newTransactionType.value === 'expense') {
-        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
+        if (Number(newTransactionAmount.value) > (loggedUserDash[userDashIndx].totalBalance - goalExpense)) {
             newTransactionAmount.style.borderColor = '#ba2b2b';
             alert('Expense > Balance!');
             newTransactionAmount.value = '';

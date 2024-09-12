@@ -2,6 +2,11 @@
     font-family: "Outfit", 'Calibri', 'Trebuchet MS';
 }
 
+.dark-mode {
+    background-color: #3C3D37;
+    color: whitesmoke;
+}
+
 .main {
     min-height: 100vh;
 }
