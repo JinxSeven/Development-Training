@@ -68,28 +68,24 @@ export function universalNaNValidator(inputField: HTMLInputElement): boolean {
     return true;
 }
 
-export function universalValidator(inputField: HTMLInputElement): boolean {
+export function universalValidator(inputField: HTMLInputElement, errorOut: HTMLSpanElement): boolean {
     if (inputField.value == '') {
         inputField.style.borderColor = 'rgb(218, 43, 43)';
+        errorOut.innerText = "All fields required!"
+        errorOut.style.opacity = '1';
         return false;
     }
     inputField.style.borderColor = '#d8d8d8';
+    errorOut.style.opacity = '0';
     return true;
 }
 
 export function validateEmailInput(emailInput: HTMLInputElement, errorDisplay: HTMLParagraphElement): boolean {
     const email = emailInput.value.trim();
-    const validateEmailInput = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (!email) {
         emailInput.style.borderColor = 'rgb(218, 43, 43)';
         errorDisplay.innerText = 'Email field empty!';
-        errorDisplay.style.opacity = '1';
-        return false;
-    }
-    if (!validateEmailInput.test(email)) {
-        emailInput.style.borderColor = 'rgb(218, 43, 43)';
-        errorDisplay.innerText = 'Invalid email!';
         errorDisplay.style.opacity = '1';
         return false;
     }

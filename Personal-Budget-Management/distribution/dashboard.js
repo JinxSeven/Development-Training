@@ -1,55 +1,70 @@
-import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, universalLenValidator } from './utils.js';
+import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, universalLenValidator, } from "./utils.js";
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 let chartDataY = [];
-let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
-let incomeSelector = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
-const userDashIndx = loggedUserDash.findIndex(itr => itr.email === loggedUser.email);
-const totalIncomeDsp = document.getElementById('total-income-dsp');
-const totalExpenseDsp = document.getElementById('total-expense-dsp');
-const totalBalanceDsp = document.getElementById('total-balance-dsp');
-const profileNameDsp = document.querySelector('.profile-div p');
-const newGoalBtn = document.getElementById('new-goal-btn');
-const closeGoalPopup = document.getElementById('close-goal-popup');
-const newBillBtn = document.getElementById('new-bill-btn');
-const closeBillPopup = document.getElementById('close-bill-popup');
-const newTransactionBtn = document.getElementById('new-transaction-btn');
-const closeTransactionPopup = document.getElementById('close-transaction-popup');
-const newTransactionType = document.getElementById('new-transaction-type-select');
-const newTransactionAmount = document.getElementById('new-transaction-amt-inp');
-const newTransactionDate = document.getElementById('new-transaction-date-inp');
-const newTransactionPurpose = document.getElementById('new-transaction-purpose-select');
-const saveTransactionBtn = document.getElementById('save-transaction-btn');
-const zeroTransactionDiv = document.getElementById('zero-transaction-history');
-const tableTBody = document.getElementById('table-tbody');
-const newGoalName = document.getElementById('new-goal-name-inp');
-const newGoalTarget = document.getElementById('new-goal-trgt-inp');
-const newGoalInit = document.getElementById('new-goal-init-inp');
-const saveGoalBtn = document.getElementById('save-goal-btn');
-const savingGoalsDiv = document.querySelector('aside .saving-goals-div');
-const zeroGoalsDiv = document.getElementById('zero-goals-div');
-const overlay = document.getElementById('overlay');
-const newGoalPopup = document.getElementById('new-goal-popup');
-const newBillPopup = document.getElementById('new-bill-popup');
-const newTransactionPopup = document.getElementById('new-transaction-popup');
-const filterChartEntertain = document.getElementById('chart-filter-entertain');
-const filterChartHealth = document.getElementById('chart-filter-health');
-const filterChartShopping = document.getElementById('chart-filter-shopping');
-const filterChartTravel = document.getElementById('chart-filter-travel');
-const filterChartEdu = document.getElementById('chart-filter-education');
-const filterChartOther = document.getElementById('chart-filter-other');
-const filterChartReset = document.getElementById('chart-filter-reset');
+let chartDataX = [
+    "Entertainment",
+    "Health",
+    "Shopping",
+    "Travel",
+    "Education",
+    "Other",
+];
+let incomeSelector = [
+    "Earnings",
+    "Winnings",
+    "Loan",
+    "Freelances",
+    "Returns",
+    "Other",
+];
+const userDashIndx = loggedUserDash.findIndex((itr) => itr.email === loggedUser.email);
+const totalIncomeDsp = document.getElementById("total-income-dsp");
+const totalExpenseDsp = document.getElementById("total-expense-dsp");
+const totalBalanceDsp = document.getElementById("total-balance-dsp");
+const profileNameDsp = document.querySelector(".profile-div p");
+const newGoalBtn = document.getElementById("new-goal-btn");
+const closeGoalPopup = document.getElementById("close-goal-popup");
+const newBillBtn = document.getElementById("new-bill-btn");
+const closeBillPopup = document.getElementById("close-bill-popup");
+const newTransactionBtn = document.getElementById("new-transaction-btn");
+const closeTransactionPopup = document.getElementById("close-transaction-popup");
+const newTransactionType = document.getElementById("new-transaction-type-select");
+const newTransactionAmount = document.getElementById("new-transaction-amt-inp");
+const newTransactionDate = document.getElementById("new-transaction-date-inp");
+const newTransactionPurpose = document.getElementById("new-transaction-purpose-select");
+const saveTransactionBtn = document.getElementById("save-transaction-btn");
+const zeroTransactionDiv = document.getElementById("zero-transaction-history");
+const tableTBody = document.getElementById("table-tbody");
+const newGoalName = document.getElementById("new-goal-name-inp");
+const newGoalTarget = document.getElementById("new-goal-trgt-inp");
+const newGoalInit = document.getElementById("new-goal-init-inp");
+const saveGoalBtn = document.getElementById("save-goal-btn");
+const savingGoalsDiv = document.querySelector("aside .saving-goals-div");
+const zeroGoalsDiv = document.getElementById("zero-goals-div");
+const overlay = document.getElementById("overlay");
+const newGoalPopup = document.getElementById("new-goal-popup");
+const newBillPopup = document.getElementById("new-bill-popup");
+const newTransactionPopup = document.getElementById("new-transaction-popup");
+const filterChartEntertain = document.getElementById("chart-filter-entertain");
+const filterChartHealth = document.getElementById("chart-filter-health");
+const filterChartShopping = document.getElementById("chart-filter-shopping");
+const filterChartTravel = document.getElementById("chart-filter-travel");
+const filterChartEdu = document.getElementById("chart-filter-education");
+const filterChartOther = document.getElementById("chart-filter-other");
+const filterChartReset = document.getElementById("chart-filter-reset");
 // filterChartReset.addEventListener('click', () => {
 //     window.location.reload();
 // });
+let goalExpense = 0;
 function updateDashUserData() {
     const arrayOfGoals = loggedUserDash[userDashIndx].goals;
-    let goalExpense = 0;
-    arrayOfGoals.forEach(exp => {
+    goalExpense = 0;
+    arrayOfGoals.forEach((exp) => {
         goalExpense += exp.contribution;
     });
     totalExpenseDsp.innerText = String((loggedUserDash[userDashIndx].totalExpense + goalExpense).toFixed(2));
-    totalIncomeDsp.innerText = String((loggedUserDash[userDashIndx].totalIncome).toFixed(2));
+    totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome.toFixed(2));
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String((loggedUserDash[userDashIndx].totalBalance - goalExpense).toFixed(2));
     updateSavingGoalData();
@@ -59,12 +74,12 @@ function updateDashUserData() {
 function updateTransactionHistoryData() {
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
     if (arrayOfTransactions.length == 0) {
-        zeroTransactionDiv.style.display = 'flex';
+        zeroTransactionDiv.style.display = "flex";
         return;
     }
-    zeroTransactionDiv.style.display = 'none';
+    zeroTransactionDiv.style.display = "none";
     for (let itr = 0; itr < arrayOfTransactions.length; itr++) {
-        if (arrayOfTransactions[itr].purpose === 'savings')
+        if (arrayOfTransactions[itr].purpose === "savings")
             continue;
         const newTRow = `<tr>
                             <td>${arrayOfTransactions[itr].type}</td>
@@ -74,20 +89,21 @@ function updateTransactionHistoryData() {
                             <td><button id="${itr}" class="edt-trans-btn"><i class="fa-solid fa-pen-to-square fa-lg"></i></button></td>
                             <td><button id="${itr}" class="del-trans-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button></td>
                         </tr>`;
-        tableTBody === null || tableTBody === void 0 ? void 0 : tableTBody.insertAdjacentHTML('beforeend', newTRow);
+        tableTBody === null || tableTBody === void 0 ? void 0 : tableTBody.insertAdjacentHTML("beforeend", newTRow);
     }
 }
 function updateSavingGoalData() {
     const arrayOfGoals = loggedUserDash[userDashIndx].goals;
     if (arrayOfGoals.length == 0) {
-        zeroGoalsDiv.style.display = 'flex';
+        zeroGoalsDiv.style.display = "flex";
         return;
     }
     else {
-        zeroGoalsDiv.style.display = 'none';
+        zeroGoalsDiv.style.display = "none";
     }
     for (let itr = 0; itr < arrayOfGoals.length; itr++) {
-        const goalPercentage = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
+        const goalPercentage = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) *
+            100).toFixed(1);
         if (Number(goalPercentage) == 100) {
             const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                     <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
@@ -95,7 +111,7 @@ function updateSavingGoalData() {
                                     <i style="color: #25D366; margin-left: 4px;" class="fa-solid fa-circle-check fa-xl"></i>
                                     <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                                 </div>`;
-            savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
+            savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML("beforeend", newGoalDiv);
             continue;
         }
         const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
@@ -104,40 +120,40 @@ function updateSavingGoalData() {
                                 <button id="${itr}" class="goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
                                 <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                             </div>`;
-        savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML('beforeend', newGoalDiv);
+        savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML("beforeend", newGoalDiv);
     }
 }
 function updateExpenseChartData() {
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-    const expTransArr = arrayOfTransactions.filter(itr => itr.type == 'expense');
+    const expTransArr = arrayOfTransactions.filter((itr) => itr.type == "expense");
     let temp = new Map();
-    temp.set('Entertainment', 0);
-    temp.set('Health', 0);
-    temp.set('Shopping', 0);
-    temp.set('Travel', 0);
-    temp.set('Education', 0);
-    temp.set('Other', 0);
+    temp.set("Entertainment", 0);
+    temp.set("Health", 0);
+    temp.set("Shopping", 0);
+    temp.set("Travel", 0);
+    temp.set("Education", 0);
+    temp.set("Other", 0);
     for (let x = 0; x < expTransArr.length; x++) {
         const purpose = expTransArr[x].purpose;
         const amount = expTransArr[x].amount;
         switch (purpose) {
-            case 'entertainment':
-                temp.set('Entertainment', temp.get('Entertainment') + amount);
+            case "entertainment":
+                temp.set("Entertainment", temp.get("Entertainment") + amount);
                 break;
-            case 'health':
-                temp.set('Health', temp.get('Health') + amount);
+            case "health":
+                temp.set("Health", temp.get("Health") + amount);
                 break;
-            case 'shopping':
-                temp.set('Shopping', temp.get('Shopping') + amount);
+            case "shopping":
+                temp.set("Shopping", temp.get("Shopping") + amount);
                 break;
-            case 'travel':
-                temp.set('Travel', temp.get('Travel') + amount);
+            case "travel":
+                temp.set("Travel", temp.get("Travel") + amount);
                 break;
-            case 'education':
-                temp.set('Education', temp.get('Education') + amount);
+            case "education":
+                temp.set("Education", temp.get("Education") + amount);
                 break;
-            case 'other':
-                temp.set('Other', temp.get('Other') + amount);
+            case "other":
+                temp.set("Other", temp.get("Other") + amount);
                 break;
             default:
                 break;
@@ -145,11 +161,24 @@ function updateExpenseChartData() {
     }
     chartDataY = Array.from(temp.values());
 }
-saveGoalBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    if (!universalValidator(newGoalName))
+const newGoalError = document.getElementById("new-goal-error");
+newGoalName.addEventListener("blur", () => {
+    if (!universalValidator(newGoalName, newGoalError))
         return;
-    if (!universalValidator(newGoalTarget))
+    if (!universalLenValidator(newGoalName, 17))
+        return;
+});
+newGoalTarget.addEventListener("blur", () => {
+    if (!universalValidator(newGoalTarget, newGoalError))
+        return;
+    if (!universalNaNValidator(newGoalTarget))
+        return;
+});
+saveGoalBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+    if (!universalValidator(newGoalName, newGoalError))
+        return;
+    if (!universalValidator(newGoalTarget, newGoalError))
         return;
     if (!universalLenValidator(newGoalName, 17))
         return;
@@ -158,40 +187,41 @@ saveGoalBtn.addEventListener('click', (event) => {
     const userGoals = loggedUserDash[userDashIndx].goals;
     for (let i = 0; i < userGoals.length; i++) {
         if (userGoals[i].name === newGoalName.value) {
-            newGoalName.style.borderColor = '#ba2b2b';
-            alert('No duplicate goals allowed!');
+            newGoalName.style.borderColor = "#ba2b2b";
+            alert("No duplicate goals allowed!");
             return;
         }
-        newGoalName.style.borderColor = '#d8d8d8';
+        newGoalName.style.borderColor = "#d8d8d8";
     }
-    if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance) {
-        newGoalInit.style.borderColor = '#ba2b2b';
-        alert('Not enough balance!');
-        newGoalInit.value = '';
+    if (Number(newGoalInit.value) >
+        loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+        newGoalInit.style.borderColor = "#ba2b2b";
+        alert("Not enough balance!");
+        newGoalInit.value = "";
         return;
     }
     else if (Number(newGoalInit.value) > Number(newGoalTarget.value)) {
-        newGoalInit.style.borderColor = '#ba2b2b';
-        alert('Contribution > Target!');
-        newGoalInit.value = '';
+        newGoalInit.style.borderColor = "#ba2b2b";
+        alert("Contribution > Target!");
+        newGoalInit.value = "";
         return;
     }
     else {
-        newGoalInit.style.borderColor = '#d8d8d8';
+        newGoalInit.style.borderColor = "#d8d8d8";
     }
     const newGoal = {
         name: newGoalName.value,
         target: Number(newGoalTarget.value),
-        contribution: Number(newGoalInit.value)
+        contribution: Number(newGoalInit.value),
     };
     if (newGoal.contribution > 0) {
         const date = new Date();
-        const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+        const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
         const goalTransaction = {
             type: "expense",
             amount: newGoal.contribution,
             date: formatted,
-            purpose: "savings"
+            purpose: "savings",
         };
         loggedUserDash[userDashIndx].transactions.push(goalTransaction);
     }
@@ -199,171 +229,201 @@ saveGoalBtn.addEventListener('click', (event) => {
     loggedUserDash[userDashIndx].totalExpense = 0;
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
     for (let i = 0; i < arrayOfTransactions.length; i++) {
-        if (arrayOfTransactions[i].type === 'income') {
-            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+        if (arrayOfTransactions[i].type === "income") {
+            loggedUserDash[userDashIndx].totalIncome +=
+                arrayOfTransactions[i].amount;
         }
         else {
-            if (arrayOfTransactions[i].purpose === 'savings') {
+            if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             }
             else {
-                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense +=
+                    arrayOfTransactions[i].amount;
             }
         }
     }
-    loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+    loggedUserDash[userDashIndx].totalBalance =
+        loggedUserDash[userDashIndx].totalIncome -
+            loggedUserDash[userDashIndx].totalExpense;
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
     closeGoalFunctionReload();
 });
-newTransactionType.addEventListener('change', () => {
+newTransactionType.addEventListener("change", () => {
     const options = newTransactionPurpose.options;
-    if (newTransactionType.value === 'expense') {
-        Array.from(options).forEach(option => {
+    if (newTransactionType.value === "expense") {
+        Array.from(options).forEach((option) => {
             option.value = chartDataX[option.index].toLowerCase();
             option.textContent = chartDataX[option.index];
         });
     }
     else {
-        Array.from(options).forEach(option => {
+        Array.from(options).forEach((option) => {
             option.value = incomeSelector[option.index].toLowerCase();
             option.textContent = incomeSelector[option.index];
         });
     }
 });
-saveTransactionBtn.addEventListener('click', function (event) {
+const transactError = document.getElementById("new-transact-error");
+newTransactionDate.addEventListener("blur", () => {
+    if (universalValidator(newTransactionDate, transactError))
+        return;
+});
+newTransactionAmount.addEventListener("blur", () => {
+    if (universalValidator(newTransactionAmount, transactError))
+        return;
+    if (universalNaNValidator(newTransactionAmount))
+        return;
+});
+saveTransactionBtn.addEventListener("click", function (event) {
     event.preventDefault();
-    if (!universalValidator(newTransactionDate))
+    if (!universalValidator(newTransactionDate, transactError))
         return;
-    if (!universalValidator(newTransactionAmount))
+    if (!universalValidator(newTransactionAmount, transactError))
         return;
-    if (newTransactionType.value === 'expense') {
-        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance) {
-            newTransactionAmount.style.borderColor = '#ba2b2b';
-            alert('Expense > Balance!');
-            newTransactionAmount.value = '';
+    if (!universalNaNValidator(newTransactionAmount))
+        return;
+    if (newTransactionType.value === "expense") {
+        if (Number(newTransactionAmount.value) >
+            loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+            newTransactionAmount.style.borderColor = "#ba2b2b";
+            alert("Expense > Balance!");
+            newTransactionAmount.value = "";
             return;
         }
-        newTransactionAmount.style.borderColor = '#d8d8d8';
+        newTransactionAmount.style.borderColor = "#d8d8d8";
     }
     const newTransaction = {
         type: newTransactionType.value,
         amount: Number(newTransactionAmount.value),
         date: newTransactionDate.value,
-        purpose: newTransactionPurpose.value
+        purpose: newTransactionPurpose.value,
     };
     loggedUserDash[userDashIndx].transactions.push(newTransaction);
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
     loggedUserDash[userDashIndx].totalIncome = 0;
     loggedUserDash[userDashIndx].totalExpense = 0;
     for (let i = 0; i < arrayOfTransactions.length; i++) {
-        if (arrayOfTransactions[i].type === 'income') {
-            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+        if (arrayOfTransactions[i].type === "income") {
+            loggedUserDash[userDashIndx].totalIncome +=
+                arrayOfTransactions[i].amount;
         }
         else {
-            if (arrayOfTransactions[i].purpose === 'savings') {
+            if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             }
             else {
-                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense +=
+                    arrayOfTransactions[i].amount;
             }
         }
     }
-    loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+    loggedUserDash[userDashIndx].totalBalance =
+        loggedUserDash[userDashIndx].totalIncome -
+            loggedUserDash[userDashIndx].totalExpense;
     setUserDash(loggedUserDash);
     closeTransactionFunctionReload();
 });
-newGoalBtn.addEventListener('click', function () {
-    overlay.style.display = 'block';
-    newGoalPopup.style.display = 'block';
+newGoalBtn.addEventListener("click", function () {
+    overlay.style.display = "block";
+    newGoalPopup.style.display = "block";
 });
 function closeGoalFunction() {
-    overlay.style.display = 'none';
-    newGoalPopup.style.display = 'none';
+    overlay.style.display = "none";
+    newGoalPopup.style.display = "none";
 }
 function closeGoalFunctionReload() {
-    overlay.style.display = 'none';
-    newGoalPopup.style.display = 'none';
+    overlay.style.display = "none";
+    newGoalPopup.style.display = "none";
     window.location.reload();
 }
-closeGoalPopup.addEventListener('click', closeGoalFunction);
-newBillBtn.addEventListener('click', function () {
-    overlay.style.display = 'block';
-    newBillPopup.style.display = 'block';
+closeGoalPopup.addEventListener("click", closeGoalFunction);
+newBillBtn.addEventListener("click", function () {
+    overlay.style.display = "block";
+    newBillPopup.style.display = "block";
 });
 function closeBillFunction() {
-    overlay.style.display = 'none';
-    newBillPopup.style.display = 'none';
-    // window.location.reload();
+    overlay.style.display = "none";
+    newBillPopup.style.display = "none";
 }
-closeBillPopup.addEventListener('click', closeBillFunction);
-newTransactionBtn.addEventListener('click', function () {
-    overlay.style.display = 'block';
-    newTransactionPopup.style.display = 'block';
+closeBillPopup.addEventListener("click", closeBillFunction);
+newTransactionBtn.addEventListener("click", function () {
+    overlay.style.display = "block";
+    newTransactionPopup.style.display = "block";
 });
 function closeTransactionFunction() {
-    overlay.style.display = 'none';
-    newTransactionPopup.style.display = 'none';
+    overlay.style.display = "none";
+    newTransactionPopup.style.display = "none";
 }
 function closeTransactionFunctionReload() {
-    overlay.style.display = 'none';
-    newTransactionPopup.style.display = 'none';
+    overlay.style.display = "none";
+    newTransactionPopup.style.display = "none";
     window.location.reload();
 }
-closeTransactionPopup.addEventListener('click', closeTransactionFunction);
+closeTransactionPopup.addEventListener("click", closeTransactionFunction);
 updateDashUserData();
 // @ts-expect-error
 new Chart("expense-chart", {
     type: "bar",
     data: {
         labels: chartDataX,
-        datasets: [{
+        datasets: [
+            {
                 backgroundColor: "rgba(255,0,0,0.5)",
-                data: chartDataY
-            }]
+                data: chartDataY,
+            },
+        ],
     },
     options: {
         legend: { display: false },
         scales: {
-            yAxes: [{
+            yAxes: [
+                {
                     ticks: {
-                        beginAtZero: true
-                    }
-                }],
+                        beginAtZero: true,
+                    },
+                },
+            ],
         },
-    }
+    },
 });
-const fundGoalInp = document.getElementById('fund-goal-inp');
-const fundGoalSaveBtn = document.getElementById('fund-goal-save-btn');
-const fundGoalPopupClose = document.getElementById('close-fund-goal-popup');
-const fundGoalName = document.getElementById('fund-goal-name');
-const fundsGoalStatus = document.getElementById('funds-on-goal');
-const fundGoalPopup = document.getElementById('fund-goal-popup');
-const goalCompletePopup = document.getElementById('goal-complete-popup');
-const goalCompletePopupClose = document.getElementById('goal-complete-close-popup');
-const goalCompleteName = document.getElementById('goal-complete-name');
-const fundGoalBtns = document.querySelectorAll('.goal-fund-btn');
-const delGoalBtns = document.querySelectorAll('.goal-del-btn');
-const userLogout = document.getElementById('profile-logout-btn');
-userLogout.addEventListener('click', () => {
-    window.location.href = '../login/login.html';
+const fundGoalInp = document.getElementById("fund-goal-inp");
+const fundGoalSaveBtn = document.getElementById("fund-goal-save-btn");
+const fundGoalPopupClose = document.getElementById("close-fund-goal-popup");
+const fundGoalName = document.getElementById("fund-goal-name");
+const fundsGoalStatus = document.getElementById("funds-on-goal");
+const fundGoalPopup = document.getElementById("fund-goal-popup");
+const goalCompletePopup = document.getElementById("goal-complete-popup");
+const goalCompletePopupClose = document.getElementById("goal-complete-close-popup");
+const goalCompleteName = document.getElementById("goal-complete-name");
+const fundGoalBtns = document.querySelectorAll(".goal-fund-btn");
+const delGoalBtns = document.querySelectorAll(".goal-del-btn");
+const userLogout = document.getElementById("profile-logout-btn");
+userLogout.addEventListener("click", () => {
+    window.location.href = "../login/login.html";
 });
 function openFundGoalPopup() {
-    fundGoalPopup.style.display = 'block';
-    overlay.style.display = 'block';
+    fundGoalPopup.style.display = "block";
+    overlay.style.display = "block";
 }
 function openGoalCompletePopup(goalName) {
     goalCompleteName.innerText = String(goalName);
-    goalCompletePopup.style.display = 'block';
-    overlay.style.display = 'block';
+    goalCompletePopup.style.display = "block";
+    overlay.style.display = "block";
 }
-goalCompletePopupClose.addEventListener('click', () => {
-    goalCompletePopup.style.display = 'none';
-    overlay.style.display = 'none';
+goalCompletePopupClose.addEventListener("click", () => {
+    goalCompletePopup.style.display = "none";
+    overlay.style.display = "none";
     fundGoalPopupCloseFunction(true);
 });
-fundGoalBtns.forEach(fund => {
-    fund.addEventListener('click', () => {
+const fundError = document.getElementById("fund-goal-error");
+fundGoalInp.addEventListener("blur", () => {
+    universalNaNValidator(fundGoalInp);
+    universalValidator(fundGoalInp, fundError);
+});
+fundGoalBtns.forEach((fund) => {
+    fund.addEventListener("click", () => {
         const idx = Number(fund.id);
         const userGoals = loggedUserDash[userDashIndx].goals;
         openFundGoalPopup();
@@ -371,39 +431,43 @@ fundGoalBtns.forEach(fund => {
         fundsGoalStatus.innerText = `Goal Status: ${userGoals[idx].contribution} / ${userGoals[idx].target}`;
         let metReq = false;
         const goalName = userGoals[idx].name;
-        fundGoalSaveBtn.addEventListener('click', (event) => {
+        fundGoalSaveBtn.addEventListener("click", (event) => {
             event.preventDefault();
-            if (!universalValidator(fundGoalInp))
+            if (!universalValidator(fundGoalInp, fundError))
                 return;
             if (!universalNaNValidator(fundGoalInp))
                 return;
-            if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
-                fundGoalInp.style.borderColor = '#ba2b2b';
-                alert('Not enough balance!');
-                fundGoalInp.value = '';
+            if (Number(fundGoalInp.value) >
+                loggedUserDash[userDashIndx].totalBalance) {
+                fundGoalInp.style.borderColor = "#ba2b2b";
+                alert("Not enough balance!");
+                fundGoalInp.value = "";
                 return;
             }
-            else if (Number(fundGoalInp.value) > ((userGoals[idx].target) - (userGoals[idx].contribution))) {
-                fundGoalInp.style.borderColor = '#ba2b2b';
-                alert('Contribution > Target!');
-                fundGoalInp.value = '';
+            else if (Number(fundGoalInp.value) >
+                userGoals[idx].target - userGoals[idx].contribution) {
+                fundGoalInp.style.borderColor = "#ba2b2b";
+                alert("Contribution > Target!");
+                fundGoalInp.value = "";
                 return;
             }
             else {
-                fundGoalInp.style.borderColor = '#d8d8d8';
+                fundGoalInp.style.borderColor = "#d8d8d8";
             }
             if (Number(fundGoalInp.value) > 0) {
                 const date = new Date();
-                const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+                const formatted = `${date.getFullYear()}-${(date.getMonth() + 1).toString().padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
                 const goalTransaction = {
                     type: "expense",
                     amount: Number(fundGoalInp.value),
                     date: formatted,
-                    purpose: "savings"
+                    purpose: "savings",
                 };
                 loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-                console.log(+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target);
-                if (+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target) {
+                console.log(+goalTransaction.amount + +userGoals[idx].contribution ===
+                    +userGoals[idx].target);
+                if (+goalTransaction.amount + +userGoals[idx].contribution ===
+                    +userGoals[idx].target) {
                     metReq = true;
                 }
                 userGoals[idx].contribution += goalTransaction.amount;
@@ -412,19 +476,23 @@ fundGoalBtns.forEach(fund => {
             loggedUserDash[userDashIndx].totalIncome = 0;
             loggedUserDash[userDashIndx].totalExpense = 0;
             for (let i = 0; i < arrayOfTransactions.length; i++) {
-                if (arrayOfTransactions[i].type === 'income') {
-                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+                if (arrayOfTransactions[i].type === "income") {
+                    loggedUserDash[userDashIndx].totalIncome +=
+                        arrayOfTransactions[i].amount;
                 }
                 else {
-                    if (arrayOfTransactions[i].purpose === 'savings') {
+                    if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     }
                     else {
-                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense +=
+                            arrayOfTransactions[i].amount;
                     }
                 }
             }
-            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalBalance =
+                loggedUserDash[userDashIndx].totalIncome -
+                    loggedUserDash[userDashIndx].totalExpense;
             setUserDash(loggedUserDash);
             if (metReq) {
                 fundGoalPopupCloseFunction(false);
@@ -435,8 +503,8 @@ fundGoalBtns.forEach(fund => {
         });
     });
 });
-delGoalBtns.forEach(del => {
-    del.addEventListener('click', () => {
+delGoalBtns.forEach((del) => {
+    del.addEventListener("click", () => {
         const idx = Number(del.id);
         const userGoals = loggedUserDash[userDashIndx].goals;
         const saved = userGoals[idx].contribution;
@@ -446,75 +514,79 @@ delGoalBtns.forEach(del => {
         loggedUserDash[userDashIndx].totalIncome = 0;
         loggedUserDash[userDashIndx].totalExpense = 0;
         for (let i = 0; i < arrayOfTransactions.length; i++) {
-            if (arrayOfTransactions[i].type === 'income') {
-                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+            if (arrayOfTransactions[i].type === "income") {
+                loggedUserDash[userDashIndx].totalIncome +=
+                    arrayOfTransactions[i].amount;
             }
             else {
-                if (arrayOfTransactions[i].purpose === 'savings') {
+                if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 }
                 else {
-                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense +=
+                        arrayOfTransactions[i].amount;
                 }
             }
         }
-        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalBalance =
+            loggedUserDash[userDashIndx].totalIncome -
+                loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });
 });
 function fundGoalPopupCloseFunction(refresh) {
-    fundGoalPopup.style.display = 'none';
-    overlay.style.display = 'none';
+    fundGoalPopup.style.display = "none";
+    overlay.style.display = "none";
     if (refresh) {
         window.location.reload();
     }
 }
-fundGoalPopupClose.addEventListener('click', () => {
+fundGoalPopupClose.addEventListener("click", () => {
     fundGoalPopupCloseFunction(false);
 });
-const openEditTransactionPopup = document.getElementById('edit-transaction-popup');
-const closeEditTransactionPopup = document.getElementById('close-edit-transaction-popup');
-const editTransactionTypeInp = document.getElementById('edit-transaction-type-select');
-const editTransactionAmountInp = document.getElementById('edit-transaction-amt-inp');
-const editTransactionDateInp = document.getElementById('edit-transaction-date-inp');
-const editTransactionPurposeInp = document.getElementById('edit-transaction-purpose-select');
-const editTranactionSaveBtn = document.getElementById('save-edit-transaction-btn');
-const editTransactionBtns = document.querySelectorAll('.edt-trans-btn');
-const delTransactionBtns = document.querySelectorAll('.del-trans-btn');
+const openEditTransactionPopup = document.getElementById("edit-transaction-popup");
+const closeEditTransactionPopup = document.getElementById("close-edit-transaction-popup");
+const editTransactionTypeInp = document.getElementById("edit-transaction-type-select");
+const editTransactionAmountInp = document.getElementById("edit-transaction-amt-inp");
+const editTransactionDateInp = document.getElementById("edit-transaction-date-inp");
+const editTransactionPurposeInp = document.getElementById("edit-transaction-purpose-select");
+const editTranactionSaveBtn = document.getElementById("save-edit-transaction-btn");
+const editTransactionBtns = document.querySelectorAll(".edt-trans-btn");
+const delTransactionBtns = document.querySelectorAll(".del-trans-btn");
 function closeEditTransactionPopupfunction(reload) {
-    openEditTransactionPopup.style.display = 'none';
-    overlay.style.display = 'none';
+    openEditTransactionPopup.style.display = "none";
+    overlay.style.display = "none";
     if (reload)
         window.location.reload();
 }
 function openEditTransactionPopupfunction() {
-    openEditTransactionPopup.style.display = 'block';
-    overlay.style.display = 'block';
+    openEditTransactionPopup.style.display = "block";
+    overlay.style.display = "block";
 }
-closeEditTransactionPopup.addEventListener('click', () => {
+closeEditTransactionPopup.addEventListener("click", () => {
     closeEditTransactionPopupfunction(false);
 });
 function loadAptOptions() {
     const options = editTransactionPurposeInp.options;
-    if (editTransactionTypeInp.value === 'expense') {
-        Array.from(options).forEach(option => {
+    if (editTransactionTypeInp.value === "expense") {
+        Array.from(options).forEach((option) => {
             option.value = chartDataX[option.index].toLowerCase();
             option.textContent = chartDataX[option.index];
         });
     }
     else {
-        Array.from(options).forEach(option => {
+        Array.from(options).forEach((option) => {
             option.value = incomeSelector[option.index].toLowerCase();
             option.textContent = incomeSelector[option.index];
         });
     }
 }
-editTransactionTypeInp.addEventListener('change', () => {
+editTransactionTypeInp.addEventListener("change", () => {
     loadAptOptions();
 });
-editTransactionBtns.forEach(editTransacts => {
-    editTransacts.addEventListener('click', () => {
+editTransactionBtns.forEach((editTransacts) => {
+    editTransacts.addEventListener("click", () => {
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
@@ -523,7 +595,7 @@ editTransactionBtns.forEach(editTransacts => {
         loadAptOptions();
         editTransactionPurposeInp.value = arrayOfTransactions[indx].purpose;
         openEditTransactionPopupfunction();
-        editTranactionSaveBtn.addEventListener('click', (event) => {
+        editTranactionSaveBtn.addEventListener("click", (event) => {
             event.preventDefault();
             arrayOfTransactions[indx].type = editTransactionTypeInp.value;
             arrayOfTransactions[indx].amount = Number(editTransactionAmountInp.value);
@@ -532,46 +604,70 @@ editTransactionBtns.forEach(editTransacts => {
             loggedUserDash[userDashIndx].totalExpense = 0;
             loggedUserDash[userDashIndx].totalIncome = 0;
             for (let i = 0; i < arrayOfTransactions.length; i++) {
-                if (arrayOfTransactions[i].type === 'income') {
-                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+                if (arrayOfTransactions[i].type === "income") {
+                    loggedUserDash[userDashIndx].totalIncome +=
+                        arrayOfTransactions[i].amount;
                 }
                 else {
-                    if (arrayOfTransactions[i].purpose === 'savings') {
+                    if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     }
                     else {
-                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense +=
+                            arrayOfTransactions[i].amount;
                     }
                 }
             }
-            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalBalance =
+                loggedUserDash[userDashIndx].totalIncome -
+                    loggedUserDash[userDashIndx].totalExpense;
             setUserDash(loggedUserDash);
             closeEditTransactionPopupfunction(true);
         });
     });
 });
-delTransactionBtns.forEach(delTransact => {
-    delTransact.addEventListener('click', () => {
+delTransactionBtns.forEach((delTransact) => {
+    delTransact.addEventListener("click", () => {
         const idx = Number(delTransact.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
         arrayOfTransactions.splice(idx, 1);
         loggedUserDash[userDashIndx].totalIncome = 0;
         loggedUserDash[userDashIndx].totalExpense = 0;
         for (let i = 0; i < arrayOfTransactions.length; i++) {
-            if (arrayOfTransactions[i].type === 'income') {
-                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+            if (arrayOfTransactions[i].type === "income") {
+                loggedUserDash[userDashIndx].totalIncome +=
+                    arrayOfTransactions[i].amount;
             }
             else {
-                if (arrayOfTransactions[i].purpose === 'savings') {
+                if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 }
                 else {
-                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense +=
+                        arrayOfTransactions[i].amount;
                 }
             }
         }
-        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalBalance =
+            loggedUserDash[userDashIndx].totalIncome -
+                loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });
+});
+const darkModeSwitch = document.getElementById("dark-mode-chkbx");
+const header = document.querySelector("header");
+// newTransactionBtn newBillBtn newGoalBtn
+darkModeSwitch.addEventListener("change", () => {
+    newBillBtn.classList.toggle("mid-btns-dark-mode");
+    newGoalBtn.classList.toggle("mid-btns-dark-mode");
+    newTransactionBtn.classList.toggle("mid-btns-dark-mode");
+    filterChartEntertain.classList.toggle("mid-btns-dark-mode");
+    filterChartHealth.classList.toggle("mid-btns-dark-mode");
+    filterChartShopping.classList.toggle("mid-btns-dark-mode");
+    filterChartTravel.classList.toggle("mid-btns-dark-mode");
+    filterChartEdu.classList.toggle("mid-btns-dark-mode");
+    filterChartOther.classList.toggle("mid-btns-dark-mode");
+    filterChartReset.classList.toggle("mid-btns-dark-mode");
+    header.classList.toggle("mid-btns-dark-mode");
 });

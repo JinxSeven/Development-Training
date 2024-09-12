@@ -2,11 +2,6 @@
     font-family: "Outfit", 'Calibri', 'Trebuchet MS';
 }
 
-.dark-mode {
-    background-color: #3C3D37;
-    color: whitesmoke;
-}
-
 .main {
     min-height: 100vh;
 }
@@ -629,4 +624,10 @@ label {
 .section .mid-section .mid-section-three .transaction-history-table .del-trans-btn:active {
     cursor: pointer;
     background-color: #fa495b;
+}
+
+.popup-errors {
+    color: #da2b2b;
+    opacity: 0;
+    transition: opacity 0.3s;
 }

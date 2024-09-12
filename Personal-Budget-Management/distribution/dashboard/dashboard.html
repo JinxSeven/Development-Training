@@ -87,6 +87,7 @@
                             <label>Add initial contribution (not mandatory)</label>
                             <input placeholder="Initial contribution" type="text" id="new-goal-init-inp">
                             <button id="save-goal-btn">Save Goal</button>
+                            <span class="popup-errors" id="new-goal-error">Input Probs</span>
                         </form>
                     </div>
                     <div class="new-goal-form-div" id="fund-goal-popup">
@@ -97,6 +98,7 @@
                             <label>Add Contribution amount</label>
                             <input placeholder="Contribution amount" type="text" id="fund-goal-inp">
                             <button id="fund-goal-save-btn">Save Contribution</button>
+                            <span class="popup-errors" id="fund-goal-error">Input Probs</span>
                         </form>
                     </div>
                     <div class="new-goal-form-div" id="goal-complete-popup">
@@ -114,7 +116,7 @@
                             <input placeholder="Bill amount" type="text" id="new-bill-amt-inp">
                             <label>Set Bill due date</label>
                             <input type="date" id="new-bill-due-inp">
-                            <button>Save Bill</button>
+                            <button disabled>Save Bill</button>
                         </form>
                     </div>
                     <div class="new-transaction-form-div" id="new-transaction-popup">
@@ -141,6 +143,7 @@
                                 <option style="font-weight: 600; font-size: 17px;" value="other">Other</option>
                             </select>
                             <button id="save-transaction-btn">Save Transaction</button>
+                            <span class="popup-errors" id="new-transact-error">Input Probs</span>
                         </form>
                     </div>
                     <div class="new-transaction-form-div" id="edit-transaction-popup">
