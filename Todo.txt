@@ -27,5 +27,11 @@ Budget Tracker - 10/09:
         Add its functionality
     }
 
+
+    if income < 
+    missing goal expense in expense
+
+    
+
 http://127.0.0.1:5500/
 https://demo.firefly-iii.org/

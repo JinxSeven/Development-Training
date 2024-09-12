@@ -61,10 +61,16 @@ const filterChartReset = document.getElementById('chart-filter-reset') as HTMLBu
 // });
 
 function updateDashUserData() {
-    totalExpenseDsp.innerText = String((loggedUserDash[userDashIndx].totalExpense).toFixed(2));
+    const arrayOfGoals = loggedUserDash[userDashIndx].goals;
+    let goalExpense = 0;
+    arrayOfGoals.forEach(exp => {
+        goalExpense += exp.contribution;
+    })
+
+    totalExpenseDsp.innerText = String((loggedUserDash[userDashIndx].totalExpense + goalExpense).toFixed(2));
     totalIncomeDsp.innerText = String((loggedUserDash[userDashIndx].totalIncome).toFixed(2));
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
-    totalBalanceDsp.innerText = String((loggedUserDash[userDashIndx].totalBalance).toFixed(2));
+    totalBalanceDsp.innerText = String((loggedUserDash[userDashIndx].totalBalance - goalExpense).toFixed(2));
     updateSavingGoalData();
     updateExpenseChartData();
     updateTransactionHistoryData();
@@ -80,6 +86,7 @@ function updateTransactionHistoryData() {
     zeroTransactionDiv.style.display = 'none';
 
     for (let itr = 0; itr < arrayOfTransactions.length; itr++) {
+        if (arrayOfTransactions[itr].purpose === 'savings') continue;
         const newTRow = `<tr>
                             <td>${arrayOfTransactions[itr].type}</td>
                             <td>${arrayOfTransactions[itr].amount}₹</td>
@@ -211,12 +218,30 @@ saveGoalBtn.addEventListener('click', (event: Event) => {
             type: "expense",
             amount: newGoal.contribution,
             date: formatted,
-            purpose: "other"
+            purpose: "savings"
         }
-        loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
-        // loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+
+        loggedUserDash[userDashIndx].transactions.push(goalTransaction);
     }
+
+    loggedUserDash[userDashIndx].totalIncome = 0;
+    loggedUserDash[userDashIndx].totalExpense = 0;
+
+    const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+
+    for (let i = 0; i < arrayOfTransactions.length; i++) {
+        if (arrayOfTransactions[i].type === 'income') {
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+        } else {
+            if (arrayOfTransactions[i].purpose === 'savings') {
+                continue;
+            } else {
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+            }
+        }
+    }
+
+    loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense
 
     loggedUserDash[userDashIndx].goals.push(newGoal);
 
@@ -262,12 +287,23 @@ saveTransactionBtn.addEventListener('click', function (event: Event) {
     }
 
     loggedUserDash[userDashIndx].transactions.push(newTransaction);
+    const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
 
-    if (newTransaction.type === 'income') {
-        loggedUserDash[userDashIndx].totalIncome += newTransaction.amount;
-    } else {
-        loggedUserDash[userDashIndx].totalExpense += newTransaction.amount;
+    loggedUserDash[userDashIndx].totalIncome = 0;
+    loggedUserDash[userDashIndx].totalExpense = 0;
+
+    for (let i = 0; i < arrayOfTransactions.length; i++) {
+        if (arrayOfTransactions[i].type === 'income') {
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+        } else {
+            if (arrayOfTransactions[i].purpose === 'savings') {
+                continue;
+            } else {
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+            }
+        }
     }
+
     loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
     setUserDash(loggedUserDash);
@@ -420,12 +456,10 @@ fundGoalBtns.forEach(fund => {
                     type: "expense",
                     amount: Number(fundGoalInp.value),
                     date: formatted,
-                    purpose: "other"
+                    purpose: "savings"
                 }
 
-                // loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-                loggedUserDash[userDashIndx].totalExpense += goalTransaction.amount;
-                loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+                loggedUserDash[userDashIndx].transactions.push(goalTransaction);
 
                 console.log(+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target);
                 if (+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target) {
@@ -433,6 +467,25 @@ fundGoalBtns.forEach(fund => {
                 }
                 userGoals[idx].contribution += goalTransaction.amount;
             }
+
+            const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+
+            loggedUserDash[userDashIndx].totalIncome = 0;
+            loggedUserDash[userDashIndx].totalExpense = 0;
+
+            for (let i = 0; i < arrayOfTransactions.length; i++) {
+                if (arrayOfTransactions[i].type === 'income') {
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+                } else {
+                    if (arrayOfTransactions[i].purpose === 'savings') {
+                        continue;
+                    } else {
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                    }
+                }
+            }
+
+            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
             setUserDash(loggedUserDash);
             if (metReq) {
@@ -450,10 +503,27 @@ delGoalBtns.forEach(del => {
         const idx = Number(del.id);
         const userGoals = loggedUserDash[userDashIndx].goals;
         const saved = userGoals[idx].contribution;
+        const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
 
         userGoals.splice(idx, 1);
-        loggedUserDash[userDashIndx].totalExpense -= saved;
-        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense
+        // arrayOfTransactions[idx].type = 'income';
+
+        loggedUserDash[userDashIndx].totalIncome = 0;
+        loggedUserDash[userDashIndx].totalExpense = 0;
+
+        for (let i = 0; i < arrayOfTransactions.length; i++) {
+            if (arrayOfTransactions[i].type === 'income') {
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+            } else {
+                if (arrayOfTransactions[i].purpose === 'savings') {
+                    continue;
+                } else {
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                }
+            }
+        }
+
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     
         setUserDash(loggedUserDash);
         window.location.reload();
@@ -470,4 +540,123 @@ function fundGoalPopupCloseFunction(refresh: boolean) {
 
 fundGoalPopupClose.addEventListener('click', () => {
     fundGoalPopupCloseFunction(false);
+})
+
+const openEditTransactionPopup = document.getElementById('edit-transaction-popup') as HTMLDivElement;
+const closeEditTransactionPopup = document.getElementById('close-edit-transaction-popup') as HTMLButtonElement;
+const editTransactionTypeInp = document.getElementById('edit-transaction-type-select') as HTMLSelectElement;
+const editTransactionAmountInp = document.getElementById('edit-transaction-amt-inp') as HTMLInputElement;
+const editTransactionDateInp = document.getElementById('edit-transaction-date-inp') as HTMLInputElement;
+const editTransactionPurposeInp = document.getElementById('edit-transaction-purpose-select') as HTMLSelectElement;
+const editTranactionSaveBtn = document.getElementById('save-edit-transaction-btn') as HTMLButtonElement;
+
+const editTransactionBtns = document.querySelectorAll('.edt-trans-btn');
+const delTransactionBtns = document.querySelectorAll('.del-trans-btn');
+
+function closeEditTransactionPopupfunction(reload: boolean) {
+    openEditTransactionPopup.style.display = 'none';
+    overlay.style.display = 'none';
+    if (reload) window.location.reload();
+}
+
+function openEditTransactionPopupfunction() {
+    openEditTransactionPopup.style.display = 'block';
+    overlay.style.display = 'block';
+}
+
+closeEditTransactionPopup.addEventListener('click', () => {
+    closeEditTransactionPopupfunction(false);
+});
+
+function loadAptOptions() {
+    const options = editTransactionPurposeInp.options;
+
+    if (editTransactionTypeInp.value === 'expense') {
+        Array.from(options).forEach(option => {
+            option.value = chartDataX[option.index].toLowerCase();
+            option.textContent = chartDataX[option.index];
+        });
+    } else {
+        Array.from(options).forEach(option => {
+            option.value = incomeSelector[option.index].toLowerCase();
+            option.textContent = incomeSelector[option.index];
+        });
+    }
+}
+
+editTransactionTypeInp.addEventListener('change', () => {
+    loadAptOptions();
+})
+
+editTransactionBtns.forEach(editTransacts => {
+    editTransacts.addEventListener('click', () => {
+        const indx = Number(editTransacts.id);
+        const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+
+        editTransactionTypeInp.value = arrayOfTransactions[indx].type;
+        editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
+        editTransactionDateInp.value = arrayOfTransactions[indx].date;
+        loadAptOptions();
+        editTransactionPurposeInp.value = arrayOfTransactions[indx].purpose;
+
+        openEditTransactionPopupfunction();
+    
+        editTranactionSaveBtn.addEventListener('click', (event: Event) => {
+            event.preventDefault();
+
+            arrayOfTransactions[indx].type = editTransactionTypeInp.value;
+            arrayOfTransactions[indx].amount = Number(editTransactionAmountInp.value);
+            arrayOfTransactions[indx].date = editTransactionDateInp.value;
+            arrayOfTransactions[indx].purpose = editTransactionPurposeInp.value;
+            
+            loggedUserDash[userDashIndx].totalExpense = 0;
+            loggedUserDash[userDashIndx].totalIncome = 0;
+
+            for (let i = 0; i < arrayOfTransactions.length; i++) {
+                if (arrayOfTransactions[i].type === 'income') {
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+                } else {
+                    if (arrayOfTransactions[i].purpose === 'savings') {
+                        continue;
+                    } else {
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                    }
+                }
+            }
+
+            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+
+            setUserDash(loggedUserDash);
+            closeEditTransactionPopupfunction(true);
+        })
+    })
+})
+
+delTransactionBtns.forEach(delTransact => {
+    delTransact.addEventListener('click', () => {
+        const idx = Number(delTransact.id);
+        const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+
+        arrayOfTransactions.splice(idx, 1);
+        
+        loggedUserDash[userDashIndx].totalIncome = 0;
+        loggedUserDash[userDashIndx].totalExpense = 0;
+
+        for (let i = 0; i < arrayOfTransactions.length; i++) {
+            if (arrayOfTransactions[i].type === 'income') {
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
+            } else {
+                if (arrayOfTransactions[i].purpose === 'savings') {
+                    continue;
+                } else {
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
+                }
+            }
+        }
+
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+
+        setUserDash(loggedUserDash);
+        window.location.reload();
+    })
 })

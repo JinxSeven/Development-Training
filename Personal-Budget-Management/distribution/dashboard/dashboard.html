@@ -143,6 +143,32 @@
                             <button id="save-transaction-btn">Save Transaction</button>
                         </form>
                     </div>
+                    <div class="new-transaction-form-div" id="edit-transaction-popup">
+                        <h2 id="edit-transaction-name">Edit Transaction</h2><button class="close-popup"
+                            id="close-edit-transaction-popup">&times;</button>
+                        <form action="" id="new-transaction-form">
+                            <label>Select transaction type</label>
+                            <select id="edit-transaction-type-select">
+                                <option style="font-weight: 600; font-size: 17px;" value="expense">Expense</option>
+                                <option style="font-weight: 600; font-size: 17px;" value="income">Income</option>
+                            </select>
+                            <label>Enter transaction amount</label>
+                            <input placeholder="Transaction amount" type="text" id="edit-transaction-amt-inp">
+                            <label>Select transaction date</label>
+                            <input type="date" id="edit-transaction-date-inp">
+                            <label>Select transaction source/purpose</label>
+                            <select id="edit-transaction-purpose-select">
+                                <option style="font-weight: 600; font-size: 17px;" value="entertainment">Entertainment
+                                </option>
+                                <option style="font-weight: 600; font-size: 17px;" value="health">Health</option>
+                                <option style="font-weight: 600; font-size: 17px;" value="shopping">Shopping</option>
+                                <option style="font-weight: 600; font-size: 17px;" value="travel">Travel</option>
+                                <option style="font-weight: 600; font-size: 17px;" value="education">Education</option>
+                                <option style="font-weight: 600; font-size: 17px;" value="other">Other</option>
+                            </select>
+                            <button id="save-edit-transaction-btn">Update Transaction</button>
+                        </form>
+                    </div>
                     <div class="mid-section-two">
                         <div class="category">
                             <div style="display: flex; align-items: center;gap: 35px;">
