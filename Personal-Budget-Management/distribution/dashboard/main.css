@@ -4,7 +4,6 @@
 
 html {
     filter: invert(0);
-    transition: filter 0.2s;
 }
 
 .main {
@@ -642,11 +641,14 @@ label {
     color: #242323;
 }
 
+.goal-fund-btn-dark {
+    filter: invert(1);
+}
+
 @media only screen and (min-width: 720px) and (max-width: 1194px) {
     .section .mid-section .mid-section-two {
         display: flex;
         flex-direction: column;
-        /* justify-content: space-between; */
         align-items: normal;
     }
 
@@ -660,6 +662,7 @@ label {
         height: 90px;
         background-color: rgb(230, 216, 250);
         /* transition: background-color 0.3s; */
+        /* background-color: ; */
         border-radius: 5px;
         border: none;
     }

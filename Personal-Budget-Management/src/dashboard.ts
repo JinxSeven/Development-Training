@@ -799,7 +799,7 @@ if (isDark) {
     goingDark.style.filter = "invert(1)";
     purpleButtons.forEach(btns => {
         btns.style.filter = "invert(1)";
-        btns.style.backgroundColor = "#9696";
+        btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
         btns.style.color = "whitesmoke";
         btns.style.fontWeight = "200";
     });
@@ -814,11 +814,14 @@ if (isDark) {
     header.style.backgroundColor = "#100c0c";
     purpleButtons.forEach(btns => {
         btns.addEventListener("mouseover", () => {
-            btns.style.backgroundColor = "#6d476d66"
+            btns.style.backgroundColor = "rgba(66, 62, 71, 0.807)"
         })
         btns.addEventListener("mouseout", () => {
-            btns.style.backgroundColor = "#9696";
+            btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
         })
+    });
+    fundGoalBtns.forEach(element => {
+        element.classList.toggle('goal-fund-btn-dark');
     });
     body.style.backgroundColor = "gray";
     darkSwitch = (darkSwitch + 1) % 2;
@@ -847,6 +850,9 @@ if (isDark) {
             btns.style.backgroundColor = "#e6d8fa";
         })
     });
+    // fundGoalBtns.forEach(element => {
+    //     element.classList.toggle('goal-fund-btn-dark');
+    // });
     body.style.backgroundColor = "white";
 }
 
@@ -855,7 +861,7 @@ function switchDark() {
         goingDark.style.filter = "invert(1)";
         purpleButtons.forEach(btns => {
             btns.style.filter = "invert(1)";
-            btns.style.backgroundColor = "#9696";
+            btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
             btns.style.color = "whitesmoke";
             btns.style.fontWeight = "200";
         });
@@ -870,11 +876,14 @@ function switchDark() {
         header.style.backgroundColor = "#100c0c";
         purpleButtons.forEach(btns => {
             btns.addEventListener("mouseover", () => {
-                btns.style.backgroundColor = "#6d476d66"
+                btns.style.backgroundColor = "rgba(66, 62, 71, 0.807)"
             })
             btns.addEventListener("mouseout", () => {
-                btns.style.backgroundColor = "#9696";
+                btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
             })
+        });
+        fundGoalBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
         });
         body.style.backgroundColor = "gray";
         darkSwitch = (darkSwitch + 1) % 2;
@@ -903,6 +912,9 @@ function switchDark() {
             btns.addEventListener("mouseout", () => {
                 btns.style.backgroundColor = "#e6d8fa";
             })
+        });
+        fundGoalBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
         });
         body.style.backgroundColor = "white";
         darkSwitch = (darkSwitch + 1) % 2;
