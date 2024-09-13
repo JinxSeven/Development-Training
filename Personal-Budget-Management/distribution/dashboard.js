@@ -1,23 +1,11 @@
-import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, universalLenValidator, } from "./utils.js";
+import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, getUserDark, setUserDark, universalLenValidator, } from "./utils.js";
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
+const isDark = getUserDark();
+console.log(isDark);
 let chartDataY = [];
-let chartDataX = [
-    "Entertainment",
-    "Health",
-    "Shopping",
-    "Travel",
-    "Education",
-    "Other",
-];
-let incomeSelector = [
-    "Earnings",
-    "Winnings",
-    "Loan",
-    "Freelances",
-    "Returns",
-    "Other",
-];
+let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+let incomeSelector = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
 const userDashIndx = loggedUserDash.findIndex((itr) => itr.email === loggedUser.email);
 const totalIncomeDsp = document.getElementById("total-income-dsp");
 const totalExpenseDsp = document.getElementById("total-expense-dsp");
@@ -171,7 +159,7 @@ newGoalName.addEventListener("blur", () => {
 newGoalTarget.addEventListener("blur", () => {
     if (!universalValidator(newGoalTarget, newGoalError))
         return;
-    if (!universalNaNValidator(newGoalTarget))
+    if (!universalNaNValidator(newGoalTarget, newGoalError))
         return;
 });
 saveGoalBtn.addEventListener("click", (event) => {
@@ -182,7 +170,7 @@ saveGoalBtn.addEventListener("click", (event) => {
         return;
     if (!universalLenValidator(newGoalName, 17))
         return;
-    if (!universalNaNValidator(newGoalTarget))
+    if (!universalNaNValidator(newGoalTarget, newGoalError))
         return;
     const userGoals = loggedUserDash[userDashIndx].goals;
     for (let i = 0; i < userGoals.length; i++) {
@@ -193,8 +181,7 @@ saveGoalBtn.addEventListener("click", (event) => {
         }
         newGoalName.style.borderColor = "#d8d8d8";
     }
-    if (Number(newGoalInit.value) >
-        loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+    if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
         newGoalInit.style.borderColor = "#ba2b2b";
         alert("Not enough balance!");
         newGoalInit.value = "";
@@ -230,22 +217,19 @@ saveGoalBtn.addEventListener("click", (event) => {
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
     for (let i = 0; i < arrayOfTransactions.length; i++) {
         if (arrayOfTransactions[i].type === "income") {
-            loggedUserDash[userDashIndx].totalIncome +=
-                arrayOfTransactions[i].amount;
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
         }
         else {
             if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             }
             else {
-                loggedUserDash[userDashIndx].totalExpense +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
             }
         }
     }
     loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome -
-            loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
     closeGoalFunctionReload();
@@ -266,14 +250,14 @@ newTransactionType.addEventListener("change", () => {
     }
 });
 const transactError = document.getElementById("new-transact-error");
-newTransactionDate.addEventListener("blur", () => {
-    if (universalValidator(newTransactionDate, transactError))
+newTransactionAmount.addEventListener("blur", () => {
+    if (!universalValidator(newTransactionAmount, transactError))
+        return;
+    if (!universalNaNValidator(newTransactionAmount, transactError))
         return;
 });
-newTransactionAmount.addEventListener("blur", () => {
-    if (universalValidator(newTransactionAmount, transactError))
-        return;
-    if (universalNaNValidator(newTransactionAmount))
+newTransactionDate.addEventListener("blur", () => {
+    if (!universalValidator(newTransactionDate, transactError))
         return;
 });
 saveTransactionBtn.addEventListener("click", function (event) {
@@ -282,7 +266,7 @@ saveTransactionBtn.addEventListener("click", function (event) {
         return;
     if (!universalValidator(newTransactionAmount, transactError))
         return;
-    if (!universalNaNValidator(newTransactionAmount))
+    if (!universalNaNValidator(newTransactionAmount, transactError))
         return;
     if (newTransactionType.value === "expense") {
         if (Number(newTransactionAmount.value) >
@@ -306,22 +290,19 @@ saveTransactionBtn.addEventListener("click", function (event) {
     loggedUserDash[userDashIndx].totalExpense = 0;
     for (let i = 0; i < arrayOfTransactions.length; i++) {
         if (arrayOfTransactions[i].type === "income") {
-            loggedUserDash[userDashIndx].totalIncome +=
-                arrayOfTransactions[i].amount;
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
         }
         else {
             if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             }
             else {
-                loggedUserDash[userDashIndx].totalExpense +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
             }
         }
     }
     loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome -
-            loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     setUserDash(loggedUserDash);
     closeTransactionFunctionReload();
 });
@@ -419,7 +400,7 @@ goalCompletePopupClose.addEventListener("click", () => {
 });
 const fundError = document.getElementById("fund-goal-error");
 fundGoalInp.addEventListener("blur", () => {
-    universalNaNValidator(fundGoalInp);
+    universalNaNValidator(fundGoalInp, fundError);
     universalValidator(fundGoalInp, fundError);
 });
 fundGoalBtns.forEach((fund) => {
@@ -435,10 +416,9 @@ fundGoalBtns.forEach((fund) => {
             event.preventDefault();
             if (!universalValidator(fundGoalInp, fundError))
                 return;
-            if (!universalNaNValidator(fundGoalInp))
+            if (!universalNaNValidator(fundGoalInp, fundError))
                 return;
-            if (Number(fundGoalInp.value) >
-                loggedUserDash[userDashIndx].totalBalance) {
+            if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
                 alert("Not enough balance!");
                 fundGoalInp.value = "";
@@ -477,16 +457,14 @@ fundGoalBtns.forEach((fund) => {
             loggedUserDash[userDashIndx].totalExpense = 0;
             for (let i = 0; i < arrayOfTransactions.length; i++) {
                 if (arrayOfTransactions[i].type === "income") {
-                    loggedUserDash[userDashIndx].totalIncome +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
                 }
                 else {
                     if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     }
                     else {
-                        loggedUserDash[userDashIndx].totalExpense +=
-                            arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                     }
                 }
             }
@@ -515,22 +493,19 @@ delGoalBtns.forEach((del) => {
         loggedUserDash[userDashIndx].totalExpense = 0;
         for (let i = 0; i < arrayOfTransactions.length; i++) {
             if (arrayOfTransactions[i].type === "income") {
-                loggedUserDash[userDashIndx].totalIncome +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
             }
             else {
                 if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 }
                 else {
-                    loggedUserDash[userDashIndx].totalExpense +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                 }
             }
         }
         loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome -
-                loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });
@@ -582,13 +557,30 @@ function loadAptOptions() {
         });
     }
 }
+const edtTransactError = document.getElementById('edit-transact-error');
 editTransactionTypeInp.addEventListener("change", () => {
     loadAptOptions();
+});
+editTransactionAmountInp.addEventListener("blur", () => {
+    if (!universalValidator(editTransactionAmountInp, edtTransactError))
+        return;
+    if (!universalNaNValidator(editTransactionAmountInp, edtTransactError))
+        return;
+});
+editTransactionDateInp.addEventListener("blur", () => {
+    if (!universalValidator(editTransactionDateInp, edtTransactError))
+        return;
 });
 editTransactionBtns.forEach((editTransacts) => {
     editTransacts.addEventListener("click", () => {
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
+        if (!universalValidator(editTransactionAmountInp, edtTransactError))
+            return;
+        if (!universalNaNValidator(editTransactionAmountInp, edtTransactError))
+            return;
+        if (!universalValidator(editTransactionDateInp, edtTransactError))
+            return;
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
         editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
         editTransactionDateInp.value = arrayOfTransactions[indx].date;
@@ -605,16 +597,14 @@ editTransactionBtns.forEach((editTransacts) => {
             loggedUserDash[userDashIndx].totalIncome = 0;
             for (let i = 0; i < arrayOfTransactions.length; i++) {
                 if (arrayOfTransactions[i].type === "income") {
-                    loggedUserDash[userDashIndx].totalIncome +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
                 }
                 else {
                     if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     }
                     else {
-                        loggedUserDash[userDashIndx].totalExpense +=
-                            arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                     }
                 }
             }
@@ -635,39 +625,46 @@ delTransactionBtns.forEach((delTransact) => {
         loggedUserDash[userDashIndx].totalExpense = 0;
         for (let i = 0; i < arrayOfTransactions.length; i++) {
             if (arrayOfTransactions[i].type === "income") {
-                loggedUserDash[userDashIndx].totalIncome +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
             }
             else {
                 if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 }
                 else {
-                    loggedUserDash[userDashIndx].totalExpense +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                 }
             }
         }
         loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome -
-                loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });
 });
+let darkSwitch = 1;
 const darkModeSwitch = document.getElementById("dark-mode-chkbx");
-const header = document.querySelector("header");
-// newTransactionBtn newBillBtn newGoalBtn
+const goingDark = document.querySelector("html");
+if (isDark) {
+    goingDark.style.filter = "invert(1)";
+    darkSwitch = (darkSwitch + 1) % 2;
+    darkModeSwitch.checked = true;
+}
+else {
+    darkModeSwitch.checked = false;
+}
+function switchDark() {
+    if (darkSwitch == 1) {
+        goingDark.style.filter = "invert(1)";
+        darkSwitch = (darkSwitch + 1) % 2;
+        setUserDark(true);
+    }
+    else {
+        goingDark.style.filter = "invert(0)";
+        darkSwitch = (darkSwitch + 1) % 2;
+        setUserDark(false);
+    }
+}
 darkModeSwitch.addEventListener("change", () => {
-    newBillBtn.classList.toggle("mid-btns-dark-mode");
-    newGoalBtn.classList.toggle("mid-btns-dark-mode");
-    newTransactionBtn.classList.toggle("mid-btns-dark-mode");
-    filterChartEntertain.classList.toggle("mid-btns-dark-mode");
-    filterChartHealth.classList.toggle("mid-btns-dark-mode");
-    filterChartShopping.classList.toggle("mid-btns-dark-mode");
-    filterChartTravel.classList.toggle("mid-btns-dark-mode");
-    filterChartEdu.classList.toggle("mid-btns-dark-mode");
-    filterChartOther.classList.toggle("mid-btns-dark-mode");
-    filterChartReset.classList.toggle("mid-btns-dark-mode");
-    header.classList.toggle("mid-btns-dark-mode");
+    switchDark();
 });

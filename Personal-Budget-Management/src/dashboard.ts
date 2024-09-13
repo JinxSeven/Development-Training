@@ -1,63 +1,36 @@
 import {
     universalNaNValidator,
-    Bill,
     Transaction,
     getCurrentLoggedUser,
     getUserDash,
     universalValidator,
     setUserDash,
-    Goal,
+    Goal, getUserDark,
+    setUserDark,
     universalLenValidator,
 } from "./utils.js";
 
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
+const isDark = getUserDark();
+console.log(isDark);
+
 let chartDataY: number[] = [];
-let chartDataX: string[] = [
-    "Entertainment",
-    "Health",
-    "Shopping",
-    "Travel",
-    "Education",
-    "Other",
-];
-let incomeSelector: string[] = [
-    "Earnings",
-    "Winnings",
-    "Loan",
-    "Freelances",
-    "Returns",
-    "Other",
-];
+let chartDataX: string[] = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+let incomeSelector: string[] = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
 
-const userDashIndx = loggedUserDash.findIndex(
-    (itr) => itr.email === loggedUser.email,
-);
+const userDashIndx = loggedUserDash.findIndex((itr) => itr.email === loggedUser.email);
 
-const totalIncomeDsp = document.getElementById(
-    "total-income-dsp",
-) as HTMLLabelElement;
-const totalExpenseDsp = document.getElementById(
-    "total-expense-dsp",
-) as HTMLLabelElement;
-const totalBalanceDsp = document.getElementById(
-    "total-balance-dsp",
-) as HTMLLabelElement;
-const profileNameDsp = document.querySelector(
-    ".profile-div p",
-) as HTMLParagraphElement;
+const totalIncomeDsp = document.getElementById("total-income-dsp") as HTMLLabelElement;
+const totalExpenseDsp = document.getElementById("total-expense-dsp") as HTMLLabelElement;
+const totalBalanceDsp = document.getElementById("total-balance-dsp") as HTMLLabelElement;
+const profileNameDsp = document.querySelector(".profile-div p") as HTMLParagraphElement;
 
 const newGoalBtn = document.getElementById("new-goal-btn") as HTMLButtonElement;
-const closeGoalPopup = document.getElementById(
-    "close-goal-popup",
-) as HTMLButtonElement;
+const closeGoalPopup = document.getElementById("close-goal-popup") as HTMLButtonElement;
 const newBillBtn = document.getElementById("new-bill-btn") as HTMLButtonElement;
-const closeBillPopup = document.getElementById(
-    "close-bill-popup",
-) as HTMLButtonElement;
-const newTransactionBtn = document.getElementById(
-    "new-transaction-btn",
-) as HTMLButtonElement;
+const closeBillPopup = document.getElementById("close-bill-popup") as HTMLButtonElement;
+const newTransactionBtn = document.getElementById("new-transaction-btn") as HTMLButtonElement;
 const closeTransactionPopup = document.getElementById(
     "close-transaction-popup",
 ) as HTMLButtonElement;
@@ -65,72 +38,34 @@ const closeTransactionPopup = document.getElementById(
 const newTransactionType = document.getElementById(
     "new-transaction-type-select",
 ) as HTMLSelectElement;
-const newTransactionAmount = document.getElementById(
-    "new-transaction-amt-inp",
-) as HTMLInputElement;
-const newTransactionDate = document.getElementById(
-    "new-transaction-date-inp",
-) as HTMLInputElement;
+const newTransactionAmount = document.getElementById("new-transaction-amt-inp") as HTMLInputElement;
+const newTransactionDate = document.getElementById("new-transaction-date-inp") as HTMLInputElement;
 const newTransactionPurpose = document.getElementById(
     "new-transaction-purpose-select",
 ) as HTMLSelectElement;
-const saveTransactionBtn = document.getElementById(
-    "save-transaction-btn",
-) as HTMLButtonElement;
-const zeroTransactionDiv = document.getElementById(
-    "zero-transaction-history",
-) as HTMLDivElement;
+const saveTransactionBtn = document.getElementById("save-transaction-btn") as HTMLButtonElement;
+const zeroTransactionDiv = document.getElementById("zero-transaction-history") as HTMLDivElement;
 const tableTBody = document.getElementById("table-tbody");
 
-const newGoalName = document.getElementById(
-    "new-goal-name-inp",
-) as HTMLInputElement;
-const newGoalTarget = document.getElementById(
-    "new-goal-trgt-inp",
-) as HTMLInputElement;
-const newGoalInit = document.getElementById(
-    "new-goal-init-inp",
-) as HTMLInputElement;
-const saveGoalBtn = document.getElementById(
-    "save-goal-btn",
-) as HTMLButtonElement;
+const newGoalName = document.getElementById("new-goal-name-inp") as HTMLInputElement;
+const newGoalTarget = document.getElementById("new-goal-trgt-inp") as HTMLInputElement;
+const newGoalInit = document.getElementById("new-goal-init-inp") as HTMLInputElement;
+const saveGoalBtn = document.getElementById("save-goal-btn") as HTMLButtonElement;
 const savingGoalsDiv = document.querySelector("aside .saving-goals-div");
-const zeroGoalsDiv = document.getElementById(
-    "zero-goals-div",
-) as HTMLDivElement;
+const zeroGoalsDiv = document.getElementById("zero-goals-div") as HTMLDivElement;
 
 const overlay = document.getElementById("overlay") as HTMLDivElement;
-const newGoalPopup = document.getElementById(
-    "new-goal-popup",
-) as HTMLDivElement;
-const newBillPopup = document.getElementById(
-    "new-bill-popup",
-) as HTMLDivElement;
-const newTransactionPopup = document.getElementById(
-    "new-transaction-popup",
-) as HTMLDivElement;
+const newGoalPopup = document.getElementById("new-goal-popup") as HTMLDivElement;
+const newBillPopup = document.getElementById("new-bill-popup") as HTMLDivElement;
+const newTransactionPopup = document.getElementById("new-transaction-popup") as HTMLDivElement;
 
-const filterChartEntertain = document.getElementById(
-    "chart-filter-entertain",
-) as HTMLButtonElement;
-const filterChartHealth = document.getElementById(
-    "chart-filter-health",
-) as HTMLButtonElement;
-const filterChartShopping = document.getElementById(
-    "chart-filter-shopping",
-) as HTMLButtonElement;
-const filterChartTravel = document.getElementById(
-    "chart-filter-travel",
-) as HTMLButtonElement;
-const filterChartEdu = document.getElementById(
-    "chart-filter-education",
-) as HTMLButtonElement;
-const filterChartOther = document.getElementById(
-    "chart-filter-other",
-) as HTMLButtonElement;
-const filterChartReset = document.getElementById(
-    "chart-filter-reset",
-) as HTMLButtonElement;
+const filterChartEntertain = document.getElementById("chart-filter-entertain") as HTMLButtonElement;
+const filterChartHealth = document.getElementById("chart-filter-health") as HTMLButtonElement;
+const filterChartShopping = document.getElementById("chart-filter-shopping") as HTMLButtonElement;
+const filterChartTravel = document.getElementById("chart-filter-travel") as HTMLButtonElement;
+const filterChartEdu = document.getElementById("chart-filter-education") as HTMLButtonElement;
+const filterChartOther = document.getElementById("chart-filter-other") as HTMLButtonElement;
+const filterChartReset = document.getElementById("chart-filter-reset") as HTMLButtonElement;
 
 // filterChartReset.addEventListener('click', () => {
 //     window.location.reload();
@@ -147,9 +82,7 @@ function updateDashUserData() {
     totalExpenseDsp.innerText = String(
         (loggedUserDash[userDashIndx].totalExpense + goalExpense).toFixed(2),
     );
-    totalIncomeDsp.innerText = String(
-        loggedUserDash[userDashIndx].totalIncome.toFixed(2),
-    );
+    totalIncomeDsp.innerText = String(loggedUserDash[userDashIndx].totalIncome.toFixed(2));
     profileNameDsp.innerText = String(loggedUserDash[userDashIndx].name);
     totalBalanceDsp.innerText = String(
         (loggedUserDash[userDashIndx].totalBalance - goalExpense).toFixed(2),
@@ -219,9 +152,7 @@ function updateSavingGoalData() {
 
 function updateExpenseChartData() {
     const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-    const expTransArr = arrayOfTransactions.filter(
-        (itr) => itr.type == "expense",
-    );
+    const expTransArr = arrayOfTransactions.filter((itr) => itr.type == "expense");
     let temp = new Map();
 
     temp.set("Entertainment", 0);
@@ -261,9 +192,7 @@ function updateExpenseChartData() {
     chartDataY = Array.from(temp.values());
 }
 
-const newGoalError = document.getElementById(
-    "new-goal-error",
-) as HTMLSpanElement;
+const newGoalError = document.getElementById("new-goal-error") as HTMLSpanElement;
 
 newGoalName.addEventListener("blur", () => {
     if (!universalValidator(newGoalName, newGoalError)) return;
@@ -272,7 +201,7 @@ newGoalName.addEventListener("blur", () => {
 
 newGoalTarget.addEventListener("blur", () => {
     if (!universalValidator(newGoalTarget, newGoalError)) return;
-    if (!universalNaNValidator(newGoalTarget)) return;
+    if (!universalNaNValidator(newGoalTarget, newGoalError)) return;
 });
 
 saveGoalBtn.addEventListener("click", (event: Event) => {
@@ -280,7 +209,7 @@ saveGoalBtn.addEventListener("click", (event: Event) => {
     if (!universalValidator(newGoalName, newGoalError)) return;
     if (!universalValidator(newGoalTarget, newGoalError)) return;
     if (!universalLenValidator(newGoalName, 17)) return;
-    if (!universalNaNValidator(newGoalTarget)) return;
+    if (!universalNaNValidator(newGoalTarget, newGoalError)) return;
 
     const userGoals = loggedUserDash[userDashIndx].goals;
     for (let i = 0; i < userGoals.length; i++) {
@@ -292,10 +221,7 @@ saveGoalBtn.addEventListener("click", (event: Event) => {
         newGoalName.style.borderColor = "#d8d8d8";
     }
 
-    if (
-        Number(newGoalInit.value) >
-        loggedUserDash[userDashIndx].totalBalance - goalExpense
-    ) {
+    if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
         newGoalInit.style.borderColor = "#ba2b2b";
         alert("Not enough balance!");
         newGoalInit.value = "";
@@ -336,21 +262,18 @@ saveGoalBtn.addEventListener("click", (event: Event) => {
 
     for (let i = 0; i < arrayOfTransactions.length; i++) {
         if (arrayOfTransactions[i].type === "income") {
-            loggedUserDash[userDashIndx].totalIncome +=
-                arrayOfTransactions[i].amount;
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
         } else {
             if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             } else {
-                loggedUserDash[userDashIndx].totalExpense +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
             }
         }
     }
 
     loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome -
-        loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
     loggedUserDash[userDashIndx].goals.push(newGoal);
 
@@ -374,24 +297,22 @@ newTransactionType.addEventListener("change", () => {
     }
 });
 
-const transactError = document.getElementById(
-    "new-transact-error",
-) as HTMLSpanElement;
-
-newTransactionDate.addEventListener("blur", () => {
-    if (universalValidator(newTransactionDate, transactError)) return;
-});
+const transactError = document.getElementById("new-transact-error") as HTMLSpanElement;
 
 newTransactionAmount.addEventListener("blur", () => {
-    if (universalValidator(newTransactionAmount, transactError)) return;
-    if (universalNaNValidator(newTransactionAmount)) return;
+    if (!universalValidator(newTransactionAmount, transactError)) return;
+    if (!universalNaNValidator(newTransactionAmount, transactError)) return;
+});
+
+newTransactionDate.addEventListener("blur", () => {
+    if (!universalValidator(newTransactionDate, transactError)) return;
 });
 
 saveTransactionBtn.addEventListener("click", function (event: Event) {
     event.preventDefault();
     if (!universalValidator(newTransactionDate, transactError)) return;
     if (!universalValidator(newTransactionAmount, transactError)) return;
-    if (!universalNaNValidator(newTransactionAmount)) return;
+    if (!universalNaNValidator(newTransactionAmount, transactError)) return;
 
     if (newTransactionType.value === "expense") {
         if (
@@ -420,21 +341,18 @@ saveTransactionBtn.addEventListener("click", function (event: Event) {
 
     for (let i = 0; i < arrayOfTransactions.length; i++) {
         if (arrayOfTransactions[i].type === "income") {
-            loggedUserDash[userDashIndx].totalIncome +=
-                arrayOfTransactions[i].amount;
+            loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
         } else {
             if (arrayOfTransactions[i].purpose === "savings") {
                 continue;
             } else {
-                loggedUserDash[userDashIndx].totalExpense +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
             }
         }
     }
 
     loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome -
-        loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
     setUserDash(loggedUserDash);
     closeTransactionFunctionReload();
@@ -515,40 +433,22 @@ new Chart("expense-chart", {
     },
 });
 
-const fundGoalInp = document.getElementById(
-    "fund-goal-inp",
-) as HTMLInputElement;
-const fundGoalSaveBtn = document.getElementById(
-    "fund-goal-save-btn",
-) as HTMLButtonElement;
-const fundGoalPopupClose = document.getElementById(
-    "close-fund-goal-popup",
-) as HTMLButtonElement;
-const fundGoalName = document.getElementById(
-    "fund-goal-name",
-) as HTMLHeadingElement;
-const fundsGoalStatus = document.getElementById(
-    "funds-on-goal",
-) as HTMLHeadingElement;
-const fundGoalPopup = document.getElementById(
-    "fund-goal-popup",
-) as HTMLDivElement;
-const goalCompletePopup = document.getElementById(
-    "goal-complete-popup",
-) as HTMLDivElement;
+const fundGoalInp = document.getElementById("fund-goal-inp") as HTMLInputElement;
+const fundGoalSaveBtn = document.getElementById("fund-goal-save-btn") as HTMLButtonElement;
+const fundGoalPopupClose = document.getElementById("close-fund-goal-popup") as HTMLButtonElement;
+const fundGoalName = document.getElementById("fund-goal-name") as HTMLHeadingElement;
+const fundsGoalStatus = document.getElementById("funds-on-goal") as HTMLHeadingElement;
+const fundGoalPopup = document.getElementById("fund-goal-popup") as HTMLDivElement;
+const goalCompletePopup = document.getElementById("goal-complete-popup") as HTMLDivElement;
 const goalCompletePopupClose = document.getElementById(
     "goal-complete-close-popup",
 ) as HTMLButtonElement;
-const goalCompleteName = document.getElementById(
-    "goal-complete-name",
-) as HTMLHeadingElement;
+const goalCompleteName = document.getElementById("goal-complete-name") as HTMLHeadingElement;
 
 const fundGoalBtns = document.querySelectorAll(".goal-fund-btn");
 const delGoalBtns = document.querySelectorAll(".goal-del-btn");
 
-const userLogout = document.getElementById(
-    "profile-logout-btn",
-) as HTMLButtonElement;
+const userLogout = document.getElementById("profile-logout-btn") as HTMLButtonElement;
 
 userLogout.addEventListener("click", () => {
     window.location.href = "../login/login.html";
@@ -574,7 +474,7 @@ goalCompletePopupClose.addEventListener("click", () => {
 const fundError = document.getElementById("fund-goal-error") as HTMLSpanElement;
 
 fundGoalInp.addEventListener("blur", () => {
-    universalNaNValidator(fundGoalInp);
+    universalNaNValidator(fundGoalInp, fundError);
     universalValidator(fundGoalInp, fundError);
 });
 
@@ -591,12 +491,9 @@ fundGoalBtns.forEach((fund) => {
         fundGoalSaveBtn.addEventListener("click", (event: Event) => {
             event.preventDefault();
             if (!universalValidator(fundGoalInp, fundError)) return;
-            if (!universalNaNValidator(fundGoalInp)) return;
+            if (!universalNaNValidator(fundGoalInp, fundError)) return;
 
-            if (
-                Number(fundGoalInp.value) >
-                loggedUserDash[userDashIndx].totalBalance
-            ) {
+            if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
                 alert("Not enough balance!");
                 fundGoalInp.value = "";
@@ -639,22 +536,19 @@ fundGoalBtns.forEach((fund) => {
                 userGoals[idx].contribution += goalTransaction.amount;
             }
 
-            const arrayOfTransactions =
-                loggedUserDash[userDashIndx].transactions;
+            const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
 
             loggedUserDash[userDashIndx].totalIncome = 0;
             loggedUserDash[userDashIndx].totalExpense = 0;
 
             for (let i = 0; i < arrayOfTransactions.length; i++) {
                 if (arrayOfTransactions[i].type === "income") {
-                    loggedUserDash[userDashIndx].totalIncome +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
                 } else {
                     if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     } else {
-                        loggedUserDash[userDashIndx].totalExpense +=
-                            arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                     }
                 }
             }
@@ -689,21 +583,18 @@ delGoalBtns.forEach((del) => {
 
         for (let i = 0; i < arrayOfTransactions.length; i++) {
             if (arrayOfTransactions[i].type === "income") {
-                loggedUserDash[userDashIndx].totalIncome +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
             } else {
                 if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 } else {
-                    loggedUserDash[userDashIndx].totalExpense +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                 }
             }
         }
 
         loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome -
-            loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
         setUserDash(loggedUserDash);
         window.location.reload();
@@ -778,19 +669,33 @@ function loadAptOptions() {
     }
 }
 
+const edtTransactError = document.getElementById('edit-transact-error') as HTMLSpanElement;
+
 editTransactionTypeInp.addEventListener("change", () => {
     loadAptOptions();
 });
+
+editTransactionAmountInp.addEventListener("blur", () => {
+    if (!universalValidator(editTransactionAmountInp, edtTransactError)) return;
+    if (!universalNaNValidator(editTransactionAmountInp, edtTransactError)) return;
+})
+
+editTransactionDateInp.addEventListener("blur", () => {
+    if (!universalValidator(editTransactionDateInp, edtTransactError)) return;
+})
 
 editTransactionBtns.forEach((editTransacts) => {
     editTransacts.addEventListener("click", () => {
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
 
+        if (!universalValidator(editTransactionAmountInp, edtTransactError)) return;
+        if (!universalNaNValidator(editTransactionAmountInp, edtTransactError)) return;
+
+        if (!universalValidator(editTransactionDateInp, edtTransactError)) return;
+
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
-        editTransactionAmountInp.value = String(
-            arrayOfTransactions[indx].amount,
-        );
+        editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
         editTransactionDateInp.value = arrayOfTransactions[indx].date;
         loadAptOptions();
         editTransactionPurposeInp.value = arrayOfTransactions[indx].purpose;
@@ -801,9 +706,7 @@ editTransactionBtns.forEach((editTransacts) => {
             event.preventDefault();
 
             arrayOfTransactions[indx].type = editTransactionTypeInp.value;
-            arrayOfTransactions[indx].amount = Number(
-                editTransactionAmountInp.value,
-            );
+            arrayOfTransactions[indx].amount = Number(editTransactionAmountInp.value);
             arrayOfTransactions[indx].date = editTransactionDateInp.value;
             arrayOfTransactions[indx].purpose = editTransactionPurposeInp.value;
 
@@ -812,14 +715,12 @@ editTransactionBtns.forEach((editTransacts) => {
 
             for (let i = 0; i < arrayOfTransactions.length; i++) {
                 if (arrayOfTransactions[i].type === "income") {
-                    loggedUserDash[userDashIndx].totalIncome +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
                 } else {
                     if (arrayOfTransactions[i].purpose === "savings") {
                         continue;
                     } else {
-                        loggedUserDash[userDashIndx].totalExpense +=
-                            arrayOfTransactions[i].amount;
+                        loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                     }
                 }
             }
@@ -840,50 +741,53 @@ delTransactionBtns.forEach((delTransact) => {
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
 
         arrayOfTransactions.splice(idx, 1);
-
         loggedUserDash[userDashIndx].totalIncome = 0;
         loggedUserDash[userDashIndx].totalExpense = 0;
 
         for (let i = 0; i < arrayOfTransactions.length; i++) {
             if (arrayOfTransactions[i].type === "income") {
-                loggedUserDash[userDashIndx].totalIncome +=
-                    arrayOfTransactions[i].amount;
+                loggedUserDash[userDashIndx].totalIncome += arrayOfTransactions[i].amount;
             } else {
                 if (arrayOfTransactions[i].purpose === "savings") {
                     continue;
                 } else {
-                    loggedUserDash[userDashIndx].totalExpense +=
-                        arrayOfTransactions[i].amount;
+                    loggedUserDash[userDashIndx].totalExpense += arrayOfTransactions[i].amount;
                 }
             }
         }
 
         loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome -
-            loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
 
         setUserDash(loggedUserDash);
         window.location.reload();
     });
 });
 
-const darkModeSwitch = document.getElementById(
-    "dark-mode-chkbx",
-) as HTMLInputElement;
-const header = document.querySelector("header") as HTMLElement;
-// newTransactionBtn newBillBtn newGoalBtn
+let darkSwitch = 1;
+const darkModeSwitch = document.getElementById("dark-mode-chkbx") as HTMLInputElement;
+const goingDark = document.querySelector("html") as HTMLElement;
+
+if (isDark) {
+    goingDark.style.filter = "invert(1)";
+    darkSwitch = (darkSwitch + 1) % 2;
+    darkModeSwitch.checked = true;
+} else {
+    darkModeSwitch.checked = false;
+}
+
+function switchDark() {
+    if (darkSwitch == 1) {        
+        goingDark.style.filter = "invert(1)";
+        darkSwitch = (darkSwitch + 1) % 2;
+        setUserDark(true);
+    } else {
+        goingDark.style.filter = "invert(0)";
+        darkSwitch = (darkSwitch + 1) % 2;
+        setUserDark(false);
+    }
+}
+
 darkModeSwitch.addEventListener("change", () => {
-    newBillBtn.classList.toggle("mid-btns-dark-mode");
-    newGoalBtn.classList.toggle("mid-btns-dark-mode");
-    newTransactionBtn.classList.toggle("mid-btns-dark-mode");
-
-    filterChartEntertain.classList.toggle("mid-btns-dark-mode");
-    filterChartHealth.classList.toggle("mid-btns-dark-mode");
-    filterChartShopping.classList.toggle("mid-btns-dark-mode");
-    filterChartTravel.classList.toggle("mid-btns-dark-mode");
-    filterChartEdu.classList.toggle("mid-btns-dark-mode");
-    filterChartOther.classList.toggle("mid-btns-dark-mode");
-    filterChartReset.classList.toggle("mid-btns-dark-mode");
-
-    header.classList.toggle("mid-btns-dark-mode");
+    switchDark();
 });

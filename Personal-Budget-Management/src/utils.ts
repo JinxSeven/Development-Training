@@ -38,6 +38,15 @@ export interface LoggedUser {
     email: string;
 }
 
+export function getUserDark(): boolean {
+    const dark = localStorage.getItem('darkMode');
+    return dark ? JSON.parse(dark) : false;
+}
+
+export function setUserDark(status: boolean) {
+    localStorage.setItem("darkMode", JSON.stringify(status));
+}
+
 export function getUserDash(): UserDash[] {
     const userDash = localStorage.getItem('userDash');
     return userDash ? JSON.parse(userDash) : [];
@@ -58,12 +67,18 @@ export function universalLenValidator(inputField: HTMLInputElement, inputLength:
     return true;
 }
 
-export function universalNaNValidator(inputField: HTMLInputElement): boolean {
+export function universalNaNValidator(inputField: HTMLInputElement, errorOut: HTMLSpanElement): boolean {
     if (isNaN(Number(inputField.value))) {
         inputField.style.borderColor = 'rgb(218, 43, 43)';
-        alert('Invalid input type!');
+        errorOut.innerText = "Invalid input type!";
+        errorOut.style.opacity = "1";
         return false;
+    } else if (Number(inputField.value) < 0) {
+        inputField.style.borderColor = 'rgb(218, 43, 43)';
+        errorOut.innerText = "Input must be +ve!";
+        errorOut.style.opacity = "1";
     }
+    errorOut.style.opacity = "0";
     inputField.style.borderColor = '#d8d8d8';
     return true;
 }

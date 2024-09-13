@@ -2,6 +2,10 @@
     font-family: "Outfit", 'Calibri', 'Trebuchet MS';
 }
 
+html {
+    filter: invert(0);
+}
+
 .main {
     min-height: 100vh;
 }
