@@ -771,6 +771,8 @@ const header = document.querySelector('header') as HTMLElement;
 const incomeDiv = document.getElementById('income-div-id') as HTMLDivElement;
 const expenseDiv = document.getElementById('expense-div-id') as HTMLDivElement;
 const balanceDiv = document.getElementById('balance-div-id') as HTMLDivElement;
+const body = document.querySelector('body') as HTMLElement;
+
 // newGoalBtn newBillBtn newTransactionBtn filterChartEntertain
 // filterChartHealth filterChartShopping filterChartTravel filterChartEdu
 // filterChartOther filterChartReset
@@ -810,6 +812,15 @@ if (isDark) {
     expenseDiv.style.backgroundColor = "#2c080d";
     balanceDiv.style.backgroundColor = "#08192c";
     header.style.backgroundColor = "#100c0c";
+    purpleButtons.forEach(btns => {
+        btns.addEventListener("mouseover", () => {
+            btns.style.backgroundColor = "#6d476d66"
+        })
+        btns.addEventListener("mouseout", () => {
+            btns.style.backgroundColor = "#9696";
+        })
+    });
+    body.style.backgroundColor = "gray";
     darkSwitch = (darkSwitch + 1) % 2;
     darkModeSwitch.checked = true;
 } else {
@@ -828,6 +839,15 @@ if (isDark) {
     expenseDiv.style.backgroundColor = "#ffd4d4";
     balanceDiv.style.backgroundColor = "#cfe4ff";
     header.style.backgroundColor = "#CCF2F4";
+    purpleButtons.forEach(btns => {
+        btns.addEventListener("mouseover", () => {
+            btns.style.backgroundColor = "#D0BFFF";
+        })
+        btns.addEventListener("mouseout", () => {
+            btns.style.backgroundColor = "#e6d8fa";
+        })
+    });
+    body.style.backgroundColor = "white";
 }
 
 function switchDark() {
@@ -848,6 +868,15 @@ function switchDark() {
         expenseDiv.style.backgroundColor = "#2c080d";
         balanceDiv.style.backgroundColor = "#08192c";
         header.style.backgroundColor = "#100c0c";
+        purpleButtons.forEach(btns => {
+            btns.addEventListener("mouseover", () => {
+                btns.style.backgroundColor = "#6d476d66"
+            })
+            btns.addEventListener("mouseout", () => {
+                btns.style.backgroundColor = "#9696";
+            })
+        });
+        body.style.backgroundColor = "gray";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(true);
     } else {
@@ -867,6 +896,15 @@ function switchDark() {
         expenseDiv.style.backgroundColor = "#ffd4d4";
         balanceDiv.style.backgroundColor = "#cfe4ff";
         header.style.backgroundColor = "#CCF2F4";
+        purpleButtons.forEach(btns => {
+            btns.addEventListener("mouseover", () => {
+                btns.style.backgroundColor = "#D0BFFF";
+            })
+            btns.addEventListener("mouseout", () => {
+                btns.style.backgroundColor = "#e6d8fa";
+            })
+        });
+        body.style.backgroundColor = "white";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(false);
     }
