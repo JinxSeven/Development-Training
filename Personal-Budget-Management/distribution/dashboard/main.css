@@ -4,6 +4,7 @@
 
 html {
     filter: invert(0);
+    /* transition: filter 0.3s; */
 }
 
 .main {
@@ -207,7 +208,7 @@ label {
 #new-bill-btn,
 #new-transaction-btn {
     width: 35%;
-    background-color: rgb(230, 216, 250);
+    background-color: #e6d8fa;
     height: 120px;
     padding: 0px;
     border-radius: 5px;

@@ -176,20 +176,20 @@ saveGoalBtn.addEventListener("click", (event) => {
     for (let i = 0; i < userGoals.length; i++) {
         if (userGoals[i].name === newGoalName.value) {
             newGoalName.style.borderColor = "#ba2b2b";
-            alert("No duplicate goals allowed!");
+            newGoalError.innerText = "No duplicate goals allowed!";
             return;
         }
         newGoalName.style.borderColor = "#d8d8d8";
     }
     if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
         newGoalInit.style.borderColor = "#ba2b2b";
-        alert("Not enough balance!");
+        newGoalError.innerText = "Not enough balance!";
         newGoalInit.value = "";
         return;
     }
     else if (Number(newGoalInit.value) > Number(newGoalTarget.value)) {
         newGoalInit.style.borderColor = "#ba2b2b";
-        alert("Contribution > Target!");
+        newGoalError.innerText = "Contribution > Target!";
         newGoalInit.value = "";
         return;
     }
@@ -272,7 +272,7 @@ saveTransactionBtn.addEventListener("click", function (event) {
         if (Number(newTransactionAmount.value) >
             loggedUserDash[userDashIndx].totalBalance - goalExpense) {
             newTransactionAmount.style.borderColor = "#ba2b2b";
-            alert("Expense > Balance!");
+            transactError.innerText = "Expense > Balance!";
             newTransactionAmount.value = "";
             return;
         }
@@ -420,14 +420,14 @@ fundGoalBtns.forEach((fund) => {
                 return;
             if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
-                alert("Not enough balance!");
+                fundError.innerText = "Not enough balance!";
                 fundGoalInp.value = "";
                 return;
             }
             else if (Number(fundGoalInp.value) >
                 userGoals[idx].target - userGoals[idx].contribution) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
-                alert("Contribution > Target!");
+                fundError.innerText = "Contribution > Target!";
                 fundGoalInp.value = "";
                 return;
             }
@@ -645,22 +645,103 @@ delTransactionBtns.forEach((delTransact) => {
 let darkSwitch = 1;
 const darkModeSwitch = document.getElementById("dark-mode-chkbx");
 const goingDark = document.querySelector("html");
+const header = document.querySelector('header');
+const incomeDiv = document.getElementById('income-div-id');
+const expenseDiv = document.getElementById('expense-div-id');
+const balanceDiv = document.getElementById('balance-div-id');
+// newGoalBtn newBillBtn newTransactionBtn filterChartEntertain
+// filterChartHealth filterChartShopping filterChartTravel filterChartEdu
+// filterChartOther filterChartReset
+// balance-div-id expense-div-id income-div-id
+const topDivs = [
+    incomeDiv, expenseDiv, balanceDiv, header
+];
+// db: #08192c
+// dg: #082c2c 
+// db: #2c080d
+// hd: #100c0c
+const purpleButtons = [
+    newGoalBtn, newBillBtn,
+    newTransactionBtn, filterChartEntertain,
+    filterChartHealth, filterChartShopping,
+    filterChartTravel, filterChartEdu,
+    filterChartOther, filterChartReset
+];
 if (isDark) {
     goingDark.style.filter = "invert(1)";
+    purpleButtons.forEach(btns => {
+        btns.style.filter = "invert(1)";
+        btns.style.backgroundColor = "#9696";
+        btns.style.color = "whitesmoke";
+        btns.style.fontWeight = "200";
+    });
+    topDivs.forEach(divs => {
+        divs.style.filter = "invert(1)";
+        divs.style.color = "whitesmoke";
+        divs.style.fontWeight = "200";
+    });
+    incomeDiv.style.backgroundColor = "#082c2c";
+    expenseDiv.style.backgroundColor = "#2c080d";
+    balanceDiv.style.backgroundColor = "#08192c";
+    header.style.backgroundColor = "#100c0c";
     darkSwitch = (darkSwitch + 1) % 2;
     darkModeSwitch.checked = true;
 }
 else {
     darkModeSwitch.checked = false;
+    purpleButtons.forEach(btns => {
+        btns.style.filter = "invert(0)";
+        btns.style.backgroundColor = "#e6d8fa";
+        btns.style.color = "black";
+    });
+    topDivs.forEach(divs => {
+        divs.style.filter = "invert(0)";
+        divs.style.color = "black";
+        divs.style.fontWeight = "400";
+    });
+    incomeDiv.style.backgroundColor = "#b6ffd6";
+    expenseDiv.style.backgroundColor = "#ffd4d4";
+    balanceDiv.style.backgroundColor = "#cfe4ff";
+    header.style.backgroundColor = "#CCF2F4";
 }
 function switchDark() {
     if (darkSwitch == 1) {
         goingDark.style.filter = "invert(1)";
+        purpleButtons.forEach(btns => {
+            btns.style.filter = "invert(1)";
+            btns.style.backgroundColor = "#9696";
+            btns.style.color = "whitesmoke";
+            btns.style.fontWeight = "200";
+        });
+        topDivs.forEach(divs => {
+            divs.style.filter = "invert(1)";
+            divs.style.color = "whitesmoke";
+            divs.style.fontWeight = "200";
+        });
+        incomeDiv.style.backgroundColor = "#082c2c";
+        expenseDiv.style.backgroundColor = "#2c080d";
+        balanceDiv.style.backgroundColor = "#08192c";
+        header.style.backgroundColor = "#100c0c";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(true);
     }
     else {
         goingDark.style.filter = "invert(0)";
+        purpleButtons.forEach(btns => {
+            btns.style.filter = "invert(0)";
+            btns.style.backgroundColor = "#e6d8fa";
+            btns.style.color = "black";
+            btns.style.fontWeight = "400";
+        });
+        topDivs.forEach(divs => {
+            divs.style.filter = "invert(0)";
+            divs.style.color = "black";
+            divs.style.fontWeight = "400";
+        });
+        incomeDiv.style.backgroundColor = "#b6ffd6";
+        expenseDiv.style.backgroundColor = "#ffd4d4";
+        balanceDiv.style.backgroundColor = "#cfe4ff";
+        header.style.backgroundColor = "#CCF2F4";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(false);
     }
