@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard: Personal Budget Manager</title>
-    <link rel="stylesheet" href="./main.css">
+    <link rel="stylesheet" href="./main2.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
@@ -32,15 +32,18 @@
                 <div class="saving-goals-div">
                     <h4>Saving Goals:</h4>
                     <div id="zero-goals-div"
-                        style="display: flex;justify-content: space-evenly; align-items: center; font-size: 15px;"
+                        style="display: flex;justify-content: space-evenly; align-items: center;"
                         class="goals-div">
                         <h3 style="color: #b3b2b2;">Add goals to see here</h3>
                     </div>
                 </div>
-                <h4>Upcoming Bills:</h4>
-                <div id="zero-bills-div" style="display: flex;justify-content: space-evenly; align-items: center;"
-                    class="bills-div">
-                    <h3 style="color: #b3b2b2;">Add bills to see here</h3>
+                <div class="saving-bills-div">
+                    <h4>Upcoming Bills:</h4>
+                    <div id="zero-bills-div"
+                        style="display: flex;justify-content: space-evenly; align-items: center;"
+                        class="bills-div">
+                        <h3 style="color: #b3b2b2;">Add bills to see here</h3>
+                    </div>
                 </div>
             </aside>
             <section class="section">
@@ -175,8 +178,8 @@
                     </div>
                     <div class="mid-section-two">
                         <div class="category">
-                            <div class="mid2-head-div" style="display: flex; align-items: center;gap: 35px;">
-                                <h3>Visualize expense by category</h3>
+                            <div class="mid2-head-div">
+                                <h3 id="visual-exp">Visualize expense by category</h3>
                                 <button class="chart-reset-btn" id="chart-filter-reset"><i
                                         class="fa-solid fa-arrow-rotate-right"></i></button>
                             </div>
@@ -207,7 +210,7 @@
                                 </button>
                             </div>
                         </div>
-                        <canvas id="expense-chart"></canvas>
+                        <div class="canvas-div"><canvas id="expense-chart" style="display: grid;"></canvas></div>
                     </div>
                     <div class="mid-section-three">
                         <h3>Transaction History</h3>

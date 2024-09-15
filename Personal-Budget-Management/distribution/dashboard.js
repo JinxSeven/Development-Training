@@ -2,7 +2,7 @@ import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalVali
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 const isDark = getUserDark();
-console.log(isDark);
+// console.log(isDark);
 let chartDataY = [];
 let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
 let incomeSelector = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
@@ -177,9 +177,11 @@ saveGoalBtn.addEventListener("click", (event) => {
         if (userGoals[i].name === newGoalName.value) {
             newGoalName.style.borderColor = "#ba2b2b";
             newGoalError.innerText = "No duplicate goals allowed!";
+            newGoalError.style.opacity = "1";
             return;
         }
         newGoalName.style.borderColor = "#d8d8d8";
+        newGoalError.style.opacity = "0";
     }
     if (Number(newGoalInit.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
         newGoalInit.style.borderColor = "#ba2b2b";
@@ -345,7 +347,7 @@ function closeTransactionFunctionReload() {
 closeTransactionPopup.addEventListener("click", closeTransactionFunction);
 updateDashUserData();
 // @ts-expect-error
-new Chart("expense-chart", {
+let expenseChart = new Chart("expense-chart", {
     type: "bar",
     data: {
         labels: chartDataX,
@@ -367,6 +369,8 @@ new Chart("expense-chart", {
                 },
             ],
         },
+        responsive: true,
+        maintainAspectRatio: true,
     },
 });
 const fundGoalInp = document.getElementById("fund-goal-inp");
@@ -444,8 +448,10 @@ fundGoalBtns.forEach((fund) => {
                     purpose: "savings",
                 };
                 loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-                console.log(+goalTransaction.amount + +userGoals[idx].contribution ===
-                    +userGoals[idx].target);
+                // console.log(
+                //     +goalTransaction.amount + +userGoals[idx].contribution ===
+                //         +userGoals[idx].target,
+                // );
                 if (+goalTransaction.amount + +userGoals[idx].contribution ===
                     +userGoals[idx].target) {
                     metReq = true;
@@ -538,6 +544,7 @@ function closeEditTransactionPopupfunction(reload) {
 function openEditTransactionPopupfunction() {
     openEditTransactionPopup.style.display = "block";
     overlay.style.display = "block";
+    // console.log('opens!');
 }
 closeEditTransactionPopup.addEventListener("click", () => {
     closeEditTransactionPopupfunction(false);
@@ -573,14 +580,10 @@ editTransactionDateInp.addEventListener("blur", () => {
 });
 editTransactionBtns.forEach((editTransacts) => {
     editTransacts.addEventListener("click", () => {
+        // console.log("edTrans!");
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-        if (!universalValidator(editTransactionAmountInp, edtTransactError))
-            return;
-        if (!universalNaNValidator(editTransactionAmountInp, edtTransactError))
-            return;
-        if (!universalValidator(editTransactionDateInp, edtTransactError))
-            return;
+        // openEditTransactionPopupfunction();
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
         editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
         editTransactionDateInp.value = arrayOfTransactions[indx].date;
@@ -589,6 +592,12 @@ editTransactionBtns.forEach((editTransacts) => {
         openEditTransactionPopupfunction();
         editTranactionSaveBtn.addEventListener("click", (event) => {
             event.preventDefault();
+            if (!universalValidator(editTransactionAmountInp, edtTransactError))
+                return;
+            if (!universalNaNValidator(editTransactionAmountInp, edtTransactError))
+                return;
+            if (!universalValidator(editTransactionDateInp, edtTransactError))
+                return;
             arrayOfTransactions[indx].type = editTransactionTypeInp.value;
             arrayOfTransactions[indx].amount = Number(editTransactionAmountInp.value);
             arrayOfTransactions[indx].date = editTransactionDateInp.value;
@@ -696,6 +705,15 @@ if (isDark) {
     fundGoalBtns.forEach(element => {
         element.classList.toggle('goal-fund-btn-dark');
     });
+    delGoalBtns.forEach(element => {
+        element.classList.toggle('goal-fund-btn-dark');
+    });
+    editTransactionBtns.forEach(element => {
+        element.classList.toggle('goal-fund-btn-dark');
+    });
+    delTransactionBtns.forEach(element => {
+        element.classList.toggle('goal-fund-btn-dark');
+    });
     body.style.backgroundColor = "gray";
     darkSwitch = (darkSwitch + 1) % 2;
     darkModeSwitch.checked = true;
@@ -758,6 +776,15 @@ function switchDark() {
         fundGoalBtns.forEach(element => {
             element.classList.toggle('goal-fund-btn-dark');
         });
+        delGoalBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
+        editTransactionBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
+        delTransactionBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
         body.style.backgroundColor = "gray";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(true);
@@ -790,6 +817,15 @@ function switchDark() {
         fundGoalBtns.forEach(element => {
             element.classList.toggle('goal-fund-btn-dark');
         });
+        delGoalBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
+        editTransactionBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
+        delTransactionBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
         body.style.backgroundColor = "white";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(false);
@@ -798,3 +834,72 @@ function switchDark() {
 darkModeSwitch.addEventListener("change", () => {
     switchDark();
 });
+const chartDataXSmall = ["Ent..", "Hea..", "Shp..", "Tra..", "Edu..", "Oth.."];
+function updateChartData() {
+    if (window.innerWidth < 1285) {
+        expenseChart.data.labels = chartDataXSmall;
+    }
+    else {
+        expenseChart.data.labels = chartDataX;
+    }
+    // expenseChart.data.labels = chartDataX;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = chartDataY;
+    expenseChart.update();
+}
+window.addEventListener("resize", updateChartData);
+updateChartData();
+filterChartReset.addEventListener("click", updateChartData);
+filterChartEntertain.addEventListener("click", () => {
+    const exp = [chartDataY[0]];
+    const expname = ["Entertainment"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+filterChartHealth.addEventListener("click", () => {
+    const exp = [chartDataY[1]];
+    const expname = ["Health"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+filterChartShopping.addEventListener("click", () => {
+    const exp = [chartDataY[2]];
+    const expname = ["Shopping"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+filterChartTravel.addEventListener("click", () => {
+    const exp = [chartDataY[3]];
+    const expname = ["Travel"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+filterChartEdu.addEventListener("click", () => {
+    const exp = [chartDataY[4]];
+    const expname = ["Education"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+filterChartOther.addEventListener("click", () => {
+    const exp = [chartDataY[5]];
+    const expname = ["Other"];
+    expenseChart.data.labels = expname;
+    // @ts-ignore
+    expenseChart.config.data.datasets[0].data = exp;
+    expenseChart.update();
+});
+// const canvas = document.querySelector('canvas');
+// window.addEventListener("resize", () => {
+//     canvas!.width = window.innerWidth;
+//     canvas!.height = window.innerHeight;
+// })
