@@ -96,7 +96,7 @@ function updateSavingGoalData() {
             const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                     <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
                                     <p id="progressPercentage">${arrayOfGoals[itr].target}₹</p>
-                                    <i style="color: #25D366; margin-left: 4px;" class="fa-solid fa-circle-check fa-xl"></i>
+                                    <span class="goal-comp-ind"><i style="color: #25D366; margin-left: 4px;" class="fa-solid fa-circle-check fa-xl"></i></span>
                                     <button id="${itr}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
                                 </div>`;
             savingGoalsDiv === null || savingGoalsDiv === void 0 ? void 0 : savingGoalsDiv.insertAdjacentHTML("beforeend", newGoalDiv);
@@ -659,6 +659,7 @@ const incomeDiv = document.getElementById('income-div-id');
 const expenseDiv = document.getElementById('expense-div-id');
 const balanceDiv = document.getElementById('balance-div-id');
 const body = document.querySelector('body');
+const goalCompleteIndicator = document.querySelectorAll('.goal-comp-ind');
 // newGoalBtn newBillBtn newTransactionBtn filterChartEntertain
 // filterChartHealth filterChartShopping filterChartTravel filterChartEdu
 // filterChartOther filterChartReset
@@ -714,6 +715,9 @@ if (isDark) {
     delTransactionBtns.forEach(element => {
         element.classList.toggle('goal-fund-btn-dark');
     });
+    goalCompleteIndicator.forEach(element => {
+        element.classList.toggle('goal-fund-btn-dark');
+    });
     body.style.backgroundColor = "gray";
     darkSwitch = (darkSwitch + 1) % 2;
     darkModeSwitch.checked = true;
@@ -742,9 +746,6 @@ else {
             btns.style.backgroundColor = "#e6d8fa";
         });
     });
-    // fundGoalBtns.forEach(element => {
-    //     element.classList.toggle('goal-fund-btn-dark');
-    // });
     body.style.backgroundColor = "white";
 }
 function switchDark() {
@@ -783,6 +784,9 @@ function switchDark() {
             element.classList.toggle('goal-fund-btn-dark');
         });
         delTransactionBtns.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
+        goalCompleteIndicator.forEach(element => {
             element.classList.toggle('goal-fund-btn-dark');
         });
         body.style.backgroundColor = "gray";
@@ -826,6 +830,9 @@ function switchDark() {
         delTransactionBtns.forEach(element => {
             element.classList.toggle('goal-fund-btn-dark');
         });
+        goalCompleteIndicator.forEach(element => {
+            element.classList.toggle('goal-fund-btn-dark');
+        });
         body.style.backgroundColor = "white";
         darkSwitch = (darkSwitch + 1) % 2;
         setUserDark(false);
@@ -836,7 +843,10 @@ darkModeSwitch.addEventListener("change", () => {
 });
 const chartDataXSmall = ["Ent..", "Hea..", "Shp..", "Tra..", "Edu..", "Oth.."];
 function updateChartData() {
-    if (window.innerWidth < 1285) {
+    if (window.innerWidth > 1080 && window.innerWidth < 1285) {
+        expenseChart.data.labels = chartDataXSmall;
+    }
+    else if (window.innerWidth < 605) {
         expenseChart.data.labels = chartDataXSmall;
     }
     else {
