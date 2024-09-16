@@ -274,9 +274,11 @@ saveTransactionBtn.addEventListener("click", function (event) {
             loggedUserDash[userDashIndx].totalBalance - goalExpense) {
             newTransactionAmount.style.borderColor = "#ba2b2b";
             transactError.innerText = "Expense > Balance!";
+            transactError.style.opacity = "1";
             newTransactionAmount.value = "";
             return;
         }
+        transactError.style.opacity = "0";
         newTransactionAmount.style.borderColor = "#d8d8d8";
     }
     const newTransaction = {
@@ -424,6 +426,7 @@ fundGoalBtns.forEach((fund) => {
             if (Number(fundGoalInp.value) > loggedUserDash[userDashIndx].totalBalance) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
                 fundError.innerText = "Not enough balance!";
+                fundError.style.opacity = "1";
                 fundGoalInp.value = "";
                 return;
             }
@@ -592,6 +595,16 @@ editTransactionBtns.forEach((editTransacts) => {
                 return;
             if (!universalValidator(editTransactionDateInp, edtTransactError))
                 return;
+            if (editTransactionTypeInp.value === "expense") {
+                if (Number(editTransactionAmountInp.value) > loggedUserDash[userDashIndx].totalBalance) {
+                    editTransactionAmountInp.style.borderColor = "#ba2b2b";
+                    edtTransactError.innerText = "Expense > Balance!";
+                    edtTransactError.style.opacity = "1";
+                    return;
+                }
+            }
+            editTransactionAmountInp.style.borderColor = "#d8d8d8";
+            edtTransactError.style.opacity = "0";
             arrayOfTransactions[indx].type = editTransactionTypeInp.value;
             arrayOfTransactions[indx].amount = Number(editTransactionAmountInp.value);
             arrayOfTransactions[indx].date = editTransactionDateInp.value;

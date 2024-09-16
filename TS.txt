@@ -1,4 +1,4 @@
-Step 1: Create a New Project Folder
+Step 1: Create a new project folder
 
     Purpose: This is the directory where your project files will reside.
 
@@ -42,3 +42,7 @@ Step 5: Install ts-node (as a Development Dependency)
     ts-node is a package that allows you to run TypeScript directly without needing to compile it to JavaScript first. It’s particularly useful in development environments.
     The --save-dev flag adds ts-node to the devDependencies section of your package.json, indicating that this package is only needed during development and not in production.
     The node_modules directory is where npm installs the packages. It contains all the dependencies (and their dependencies) listed in package.json.
+
+Step 6: JS generation
+
+    Command: npm run build
