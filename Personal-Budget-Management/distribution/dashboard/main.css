@@ -395,6 +395,11 @@ label {
     flex-direction: column;
 }
 
+.section .mid-section .new-transaction-form-div #edt-transaction-form {
+    display: flex;
+    flex-direction: column;
+}
+
 .new-transaction-form-div {
     position: fixed;
     top: 50%;
@@ -436,6 +441,39 @@ label {
 }
 
 .section .mid-section .new-transaction-form-div #new-transaction-form select {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.section .mid-section .new-transaction-form-div #edt-transaction-form button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.section .mid-section .new-transaction-form-div #edt-transaction-form button:hover {
+    background-color: #0056b3;
+}
+
+.section .mid-section .new-transaction-form-div #edt-transaction-form input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.section .mid-section .new-transaction-form-div #edt-transaction-form select {
     margin-bottom: 1rem;
     padding: 0.5rem;
     border: 1px solid #d8d8d8;

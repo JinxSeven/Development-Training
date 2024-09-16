@@ -40,6 +40,10 @@ const filterChartTravel = document.getElementById("chart-filter-travel");
 const filterChartEdu = document.getElementById("chart-filter-education");
 const filterChartOther = document.getElementById("chart-filter-other");
 const filterChartReset = document.getElementById("chart-filter-reset");
+const goalForm = document.getElementById('new-goal-form');
+const transactForm = document.getElementById('new-transaction-form');
+const edtTransactForm = document.getElementById('edt-transaction-form');
+;
 // filterChartReset.addEventListener('click', () => {
 //     window.location.reload();
 // });
@@ -152,8 +156,19 @@ const newGoalError = document.getElementById("new-goal-error");
 newGoalName.addEventListener("blur", () => {
     if (!universalValidator(newGoalName, newGoalError))
         return;
-    if (!universalLenValidator(newGoalName, 17))
+    if (!universalLenValidator(newGoalName, 12))
         return;
+    const userGoals = loggedUserDash[userDashIndx].goals;
+    for (let i = 0; i < userGoals.length; i++) {
+        if (userGoals[i].name === newGoalName.value) {
+            newGoalName.style.borderColor = "#ba2b2b";
+            newGoalError.innerText = "No duplicate goals allowed!";
+            newGoalError.style.opacity = "1";
+            return;
+        }
+        newGoalName.style.borderColor = "#d8d8d8";
+        newGoalError.style.opacity = "0";
+    }
 });
 newGoalTarget.addEventListener("blur", () => {
     if (!universalValidator(newGoalTarget, newGoalError))
@@ -256,6 +271,17 @@ newTransactionAmount.addEventListener("blur", () => {
         return;
     if (!universalNaNValidator(newTransactionAmount, transactError))
         return;
+    if (newTransactionType.value === "expense") {
+        if (Number(newTransactionAmount.value) >
+            loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+            newTransactionAmount.style.borderColor = "#ba2b2b";
+            transactError.innerText = "Expense > Balance!";
+            transactError.style.opacity = "1";
+            return;
+        }
+        transactError.style.opacity = "0";
+        newTransactionAmount.style.borderColor = "#d8d8d8";
+    }
 });
 newTransactionDate.addEventListener("blur", () => {
     if (!universalValidator(newTransactionDate, transactError))
@@ -275,7 +301,6 @@ saveTransactionBtn.addEventListener("click", function (event) {
             newTransactionAmount.style.borderColor = "#ba2b2b";
             transactError.innerText = "Expense > Balance!";
             transactError.style.opacity = "1";
-            newTransactionAmount.value = "";
             return;
         }
         transactError.style.opacity = "0";
@@ -316,6 +341,7 @@ newGoalBtn.addEventListener("click", function () {
 function closeGoalFunction() {
     overlay.style.display = "none";
     newGoalPopup.style.display = "none";
+    goalForm.reset();
 }
 function closeGoalFunctionReload() {
     overlay.style.display = "none";
@@ -339,6 +365,7 @@ newTransactionBtn.addEventListener("click", function () {
 function closeTransactionFunction() {
     overlay.style.display = "none";
     newTransactionPopup.style.display = "none";
+    transactForm.reset();
 }
 function closeTransactionFunctionReload() {
     overlay.style.display = "none";
@@ -547,6 +574,9 @@ function openEditTransactionPopupfunction() {
 }
 closeEditTransactionPopup.addEventListener("click", () => {
     closeEditTransactionPopupfunction(false);
+    editTransactionAmountInp.style.borderColor = "#d8d8d8";
+    edtTransactError.style.opacity = "0";
+    edtTransactForm.reset();
 });
 function loadAptOptions() {
     const options = editTransactionPurposeInp.options;
