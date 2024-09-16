@@ -11,14 +11,17 @@ html {
 }
 
 .header {
-    display: flex;
+    display: grid;
     padding: 0 15px;
     margin-bottom: 10px;
-    justify-content: space-between;
+    grid-template-columns: 1fr auto;
     align-items: center;
-    align-content: center;
     background-color: #CCF2F4;
     border-radius: 10px;
+}
+
+.header img {
+    display: none;
 }
 
 label {
@@ -26,14 +29,20 @@ label {
 }
 
 .header .dark-mode {
-    display: flex;
+    display: grid;
     align-items: center;
     gap: 10px;
-    margin-right: 10px;
+    grid-template-columns: auto auto;
+}
+
+.header .dark-mode i {
+    display: none;
 }
 
 .header .header-rhs-section {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* align-items: center; */
 }
 
 /* fa-solid fa-right-from-bracket */
@@ -114,21 +123,22 @@ label {
 }
 
 .header .profile-div {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
     align-items: center;
     gap: 15px;
 }
 
 .content-div {
-    display: flex;
+    display: grid;
+    grid-template-columns: 30% 1fr;
+    gap: 10px;
 }
 
 .aside {
     background-color: #F6F5F2;
-    width: 30%;
     padding: 10px;
     border-radius: 10px;
-    margin-right: 10px;
 }
 
 .aside h4 {
@@ -137,27 +147,22 @@ label {
     margin-top: 5px;
 }
 
-.aside .goals-div {
+.aside .goals-div,
+.aside .bills-div {
+    background-color: white;
     width: 100%;
     height: 45px;
     border-radius: 5px;
     margin: 10px 0;
-    background-color: white;
-}
-
-.aside .bills-div {
-    width: 100%;
-    margin: 5px 0;
-    height: 45px;
-    border-radius: 5px;
-    background-color: white;
 }
 
 .section {
-    width: 80%;
     background-color: #F6F5F2;
     border-radius: 10px;
     padding: 15px;
+    display: grid;
+    gap: 20px;
+    /* width: 96.5%; */
 }
 
 .section .top-section {
@@ -167,7 +172,9 @@ label {
     gap: 10px;
 }
 
-.section .top-section .income-div {
+.section .top-section .income-div,
+.section .top-section .expense-div,
+.section .top-section .balance-div {
     background-color: #b6ffd6;
     padding: 10px;
     border-radius: 5px;
@@ -176,16 +183,10 @@ label {
 
 .section .top-section .expense-div {
     background-color: #ffd4d4;
-    padding: 10px;
-    border-radius: 5px;
-    width: 35%;
 }
 
 .section .top-section .balance-div {
     background-color: #cfe4ff;
-    padding: 10px;
-    border-radius: 5px;
-    width: 35%;
 }
 
 .section .top-section i {
@@ -193,10 +194,9 @@ label {
 }
 
 .section .mid-section .mid-section-one {
-    margin-top: 10px;
-    display: flex;
+    grid-template-columns: repeat(3, 1fr);
+    display: grid;
     gap: 10px;
-    justify-content: space-between;
 }
 
 .section .mid-section .mid-section-one i {
@@ -206,7 +206,7 @@ label {
 .section .mid-section .mid-section-one #new-goal-btn,
 #new-bill-btn,
 #new-transaction-btn {
-    width: 35%;
+    width: 100%;
     background-color: #e6d8fa;
     height: 120px;
     padding: 0px;
@@ -444,38 +444,100 @@ label {
 }
 
 .section .mid-section .mid-section-two {
-    margin-top: 10px;
-    padding: 15px;
-    padding-top: 0px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
     background-color: white;
     border-radius: 10px;
-    display: flex;
+    padding: 15px;
+    padding-top: 0px;
+    align-items: start;
+    margin-top: 15px;
     justify-content: space-between;
-    align-items: center;
 }
 
-.section .mid-section .mid-section-two canvas {
-    margin-top: 35px;
-    width: 100%;
-    max-width: 550px; 
-    height: 275px;
+.section .mid-section .mid-section-two .canvas-div {
+    width: 40vw;
+    margin-top: 2em;
+    display: grid;
+    justify-content: end;
 }
+
+@media only screen and (max-width: 1560px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 3em;
+    }
+}
+
+@media only screen and (max-width: 1510px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 3.5625em;
+    }
+}
+
+@media only screen and (max-width: 1460px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 4.125em;
+    }
+}
+
+@media only screen and (max-width: 1410px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 4.6875em;
+    }
+}
+
+@media only screen and (max-width: 1360px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 5.25em;
+    }
+}
+
+@media only screen and (max-width: 1310px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 5.8125em;
+    }
+}
+
+@media only screen and (max-width: 1260px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 6.375em;
+    }
+}
+
+@media only screen and (max-width: 1210px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 6.9375em;
+    }
+}
+
+@media only screen and (max-width: 1160px) {
+    .section .mid-section .mid-section-two .canvas-div {
+        margin-top: 7.5em;
+    }
+}
+
 
 .section .mid-section .mid-section-two .category {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    gap: 25px;
 }
 
 .section .mid-section .mid-section-two .category-btns {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, auto);
+    gap: 0.5rem;
+    /* margin-top: -10px; */
+    align-items: stretch;
 }
 
 .section .mid-section .mid-section-two .chart-reset-btn {
     background-color: rgb(230, 216, 250);
     border: none;
     border-radius: 5px;
+    width: 30px;
+    height: 30px;
     /* transition: background-color 0.3s; */
     padding: 5px 7px;
     /* jj: #6d476d66 */
@@ -491,12 +553,20 @@ label {
 }
 
 .section .mid-section .mid-section-two .category-btns button {
-    width: 155px;
-    height: 70px;
+    justify-self: stretch;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
     background-color: rgb(230, 216, 250);
-    /* transition: background-color 0.3s; */
     border-radius: 5px;
     border: none;
+}
+
+.section .mid-section .mid-section-two .category .mid2-head-div {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 10px;
+    /* margin-bottom: 25px; */
 }
 
 .section .mid-section .mid-section-two .category-btns button:hover {
@@ -527,10 +597,20 @@ label {
 }
 
 .section .mid-section .mid-section-three .transaction-history-table {
+    display: grid;
     overflow: auto;
     width: 100%;
     max-height: 267px;
     border-radius: 8px;
+}
+
+.transaction-history-table table {
+    border: 0.5px solid #dededf;
+    border-collapse: collapse;
+    border-spacing: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
 .section .mid-section .mid-section-three .transaction-history-table table {
@@ -568,14 +648,6 @@ label {
     padding: 5px;
     text-align: center;
 }
-
-/* .section .mid-section .mid-section-three .transaction-history-table td:nth-child(5) {
-    background-color: #28e96e;
-}
-
-.section .mid-section .mid-section-three .transaction-history-table td:nth-child(6) {
-    background-color: #fb5062;
-} */
 
 .section .mid-section .mid-section-three .transaction-history-table::-webkit-scrollbar {
     width: 8px;
@@ -645,35 +717,163 @@ label {
     filter: invert(1);
 }
 
-@media only screen and (min-width: 720px) and (max-width: 1194px) {
+@media only screen and (max-width: 1080px) {
     .section .mid-section .mid-section-two {
-        display: flex;
-        flex-direction: column;
-        align-items: normal;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    .section .mid-section .mid-section-two .category-btns {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .section .mid-section .mid-section-two .canvas-div {
+        width: 60vw;
+        margin-top: 2em;
+        display: grid;
+        justify-content: end;
+    }
+}
+
+@media only screen and (max-width: 855px) {
+    .content-div {
+        grid-template-columns: 1fr;
     }
 
-    .section .mid-section .mid-section-two .category-btns {
-        justify-content: space-around;
-        gap: 10px;
+    .aside {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .new-goal-form-div,
+    .new-bill-form-div,
+    .new-transaction-form-div {
+        width: 70%;
+    }
+
+    .aside #zero-bills-div,
+    .aside #zero-goals-div {
+        width: 97%;
+    }
+
+    .aside .goals-div,
+    .aside .bills-div {
+        width: 97%;
+    }
+
+    .section .mid-section .mid-section-two .canvas-div {
+        width: 85vw;
+        margin-top: 2em;
+        display: grid;
+        justify-content: end;
+    }
+}
+
+@media only screen and (max-width: 515px) {
+    .aside .bills-div,
+    .header .dark-mode p,
+    .aside #zero-bills-div,
+    .aside .saving-bills-div {
+        display: none;
+    }
+
+    .header .dark-mode {
+        width: fit-content;
+
+    }
+
+    .header .header-rhs-section {
+        display: flex;
+        gap: 5px;
+    }
+
+    .header .dark-mode i {
+        display: block;
+        
+    }
+    .aside {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 444px) {
+    .header h2 {
+        display: none;
+    }
+
+    .header img {
+        display: block;
+    }
+
+    .section .top-section .income-div #ttl-inc,
+    .section .top-section .expense-div #ttl-exp,
+    .section .top-section .balance-div #ttl-bln {
+        display: none;
+    }
+
+    .section .mid-section .mid-section-one #new-goal-btn label,
+    #new-bill-btn label,
+    #new-transaction-btn label {
+        font-size: smaller;
     }
 
     .section .mid-section .mid-section-two .category-btns button {
-        width: 32%;
-        height: 90px;
-        background-color: rgb(230, 216, 250);
-        border-radius: 5px;
-        border: none;
+        font-size: smaller;
     }
 
-    .section .mid-section .mid-section-two canvas {
-        width: 100% !important;
-        max-width: 771px;
-        padding-right: 5px;
+    .aside .goals-div,
+    .aside #zero-goals-div {
+        width: 100%;
     }
 
-    .section .mid-section .mid-section-two .category .mid2-head-div {
-        justify-content: space-between;
-        align-items: normal;
-        padding: 0 5px;
+    .section .top-section .income-div,
+    .section .top-section .expense-div,
+    .section .top-section .balance-div {
+        font-size: smaller;
+    }
+
+    table td {
+        font-size: smaller;
+    }
+
+    table th {
+        font-size: x-small;
+    }
+
+    table tr button {
+        font-size: x-small;
+    }
+
+    .header {
+        width: 95.2%;
+    }
+
+    .edt-trans-btn,
+    .del-trans-btn {
+        padding: 1px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .edt-trans-btn {
+        padding-bottom: 2px !important;
+    }
+
+    .new-goal-form-div,
+    .new-bill-form-div,
+    .new-transaction-form-div {
+        width: 70%;
+    }
+}   
+
+@media only screen and (max-width: 375px) {
+    .header {
+        width: 97%;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .header {
+        width: 99.3%;
     }
 }

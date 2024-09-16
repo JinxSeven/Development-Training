@@ -13,7 +13,6 @@ import {
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 const isDark = getUserDark();
-// console.log(isDark);
 
 let chartDataY: number[] = [];
 let chartDataX: string[] = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
@@ -527,10 +526,6 @@ fundGoalBtns.forEach((fund) => {
 
                 loggedUserDash[userDashIndx].transactions.push(goalTransaction);
 
-                // console.log(
-                //     +goalTransaction.amount + +userGoals[idx].contribution ===
-                //         +userGoals[idx].target,
-                // );
                 if (
                     +goalTransaction.amount + +userGoals[idx].contribution ===
                     +userGoals[idx].target
@@ -651,7 +646,6 @@ function closeEditTransactionPopupfunction(reload: boolean) {
 function openEditTransactionPopupfunction() {
     openEditTransactionPopup.style.display = "block";
     overlay.style.display = "block";
-    // console.log('opens!');
 }
 
 closeEditTransactionPopup.addEventListener("click", () => {
@@ -691,10 +685,9 @@ editTransactionDateInp.addEventListener("blur", () => {
 
 editTransactionBtns.forEach((editTransacts) => {
     editTransacts.addEventListener("click", () => {
-        // console.log("edTrans!");
+        
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-        // openEditTransactionPopupfunction();
 
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
         editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
