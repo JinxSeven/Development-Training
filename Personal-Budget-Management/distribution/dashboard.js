@@ -2,7 +2,6 @@ import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalVali
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 const isDark = getUserDark();
-// console.log(isDark);
 let chartDataY = [];
 let chartDataX = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
 let incomeSelector = ["Earnings", "Winnings", "Loan", "Freelances", "Returns", "Other"];
@@ -432,11 +431,13 @@ fundGoalBtns.forEach((fund) => {
                 userGoals[idx].target - userGoals[idx].contribution) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
                 fundError.innerText = "Contribution > Target!";
+                fundError.style.opacity = "1";
                 fundGoalInp.value = "";
                 return;
             }
             else {
                 fundGoalInp.style.borderColor = "#d8d8d8";
+                fundError.style.opacity = "0";
             }
             if (Number(fundGoalInp.value) > 0) {
                 const date = new Date();
@@ -448,10 +449,6 @@ fundGoalBtns.forEach((fund) => {
                     purpose: "savings",
                 };
                 loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-                // console.log(
-                //     +goalTransaction.amount + +userGoals[idx].contribution ===
-                //         +userGoals[idx].target,
-                // );
                 if (+goalTransaction.amount + +userGoals[idx].contribution ===
                     +userGoals[idx].target) {
                     metReq = true;
@@ -544,7 +541,6 @@ function closeEditTransactionPopupfunction(reload) {
 function openEditTransactionPopupfunction() {
     openEditTransactionPopup.style.display = "block";
     overlay.style.display = "block";
-    // console.log('opens!');
 }
 closeEditTransactionPopup.addEventListener("click", () => {
     closeEditTransactionPopupfunction(false);
@@ -564,7 +560,7 @@ function loadAptOptions() {
         });
     }
 }
-const edtTransactError = document.getElementById('edit-transact-error');
+const edtTransactError = document.getElementById("edit-transact-error");
 editTransactionTypeInp.addEventListener("change", () => {
     loadAptOptions();
 });
@@ -580,10 +576,8 @@ editTransactionDateInp.addEventListener("blur", () => {
 });
 editTransactionBtns.forEach((editTransacts) => {
     editTransacts.addEventListener("click", () => {
-        // console.log("edTrans!");
         const indx = Number(editTransacts.id);
         const arrayOfTransactions = loggedUserDash[userDashIndx].transactions;
-        // openEditTransactionPopupfunction();
         editTransactionTypeInp.value = arrayOfTransactions[indx].type;
         editTransactionAmountInp.value = String(arrayOfTransactions[indx].amount);
         editTransactionDateInp.value = arrayOfTransactions[indx].date;
@@ -654,39 +648,42 @@ delTransactionBtns.forEach((delTransact) => {
 let darkSwitch = 1;
 const darkModeSwitch = document.getElementById("dark-mode-chkbx");
 const goingDark = document.querySelector("html");
-const header = document.querySelector('header');
-const incomeDiv = document.getElementById('income-div-id');
-const expenseDiv = document.getElementById('expense-div-id');
-const balanceDiv = document.getElementById('balance-div-id');
-const body = document.querySelector('body');
-const goalCompleteIndicator = document.querySelectorAll('.goal-comp-ind');
+const header = document.querySelector("header");
+const incomeDiv = document.getElementById("income-div-id");
+const expenseDiv = document.getElementById("expense-div-id");
+const balanceDiv = document.getElementById("balance-div-id");
+const body = document.querySelector("body");
+const goalCompleteIndicator = document.querySelectorAll(".goal-comp-ind");
 // newGoalBtn newBillBtn newTransactionBtn filterChartEntertain
 // filterChartHealth filterChartShopping filterChartTravel filterChartEdu
 // filterChartOther filterChartReset
 // balance-div-id expense-div-id income-div-id
-const topDivs = [
-    incomeDiv, expenseDiv, balanceDiv, header
-];
+const topDivs = [incomeDiv, expenseDiv, balanceDiv, header];
 // db: #08192c
-// dg: #082c2c 
+// dg: #082c2c
 // db: #2c080d
 // hd: #100c0c
 const purpleButtons = [
-    newGoalBtn, newBillBtn,
-    newTransactionBtn, filterChartEntertain,
-    filterChartHealth, filterChartShopping,
-    filterChartTravel, filterChartEdu,
-    filterChartOther, filterChartReset
+    newGoalBtn,
+    newBillBtn,
+    newTransactionBtn,
+    filterChartEntertain,
+    filterChartHealth,
+    filterChartShopping,
+    filterChartTravel,
+    filterChartEdu,
+    filterChartOther,
+    filterChartReset,
 ];
 if (isDark) {
     goingDark.style.filter = "invert(1)";
-    purpleButtons.forEach(btns => {
+    purpleButtons.forEach((btns) => {
         btns.style.filter = "invert(1)";
         btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
         btns.style.color = "whitesmoke";
         btns.style.fontWeight = "200";
     });
-    topDivs.forEach(divs => {
+    topDivs.forEach((divs) => {
         divs.style.filter = "invert(1)";
         divs.style.color = "whitesmoke";
         divs.style.fontWeight = "200";
@@ -695,7 +692,7 @@ if (isDark) {
     expenseDiv.style.backgroundColor = "#2c080d";
     balanceDiv.style.backgroundColor = "#08192c";
     header.style.backgroundColor = "#100c0c";
-    purpleButtons.forEach(btns => {
+    purpleButtons.forEach((btns) => {
         btns.addEventListener("mouseover", () => {
             btns.style.backgroundColor = "rgba(66, 62, 71, 0.807)";
         });
@@ -703,20 +700,20 @@ if (isDark) {
             btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
         });
     });
-    fundGoalBtns.forEach(element => {
-        element.classList.toggle('goal-fund-btn-dark');
+    fundGoalBtns.forEach((element) => {
+        element.classList.toggle("goal-fund-btn-dark");
     });
-    delGoalBtns.forEach(element => {
-        element.classList.toggle('goal-fund-btn-dark');
+    delGoalBtns.forEach((element) => {
+        element.classList.toggle("goal-fund-btn-dark");
     });
-    editTransactionBtns.forEach(element => {
-        element.classList.toggle('goal-fund-btn-dark');
+    editTransactionBtns.forEach((element) => {
+        element.classList.toggle("goal-fund-btn-dark");
     });
-    delTransactionBtns.forEach(element => {
-        element.classList.toggle('goal-fund-btn-dark');
+    delTransactionBtns.forEach((element) => {
+        element.classList.toggle("goal-fund-btn-dark");
     });
-    goalCompleteIndicator.forEach(element => {
-        element.classList.toggle('goal-fund-btn-dark');
+    goalCompleteIndicator.forEach((element) => {
+        element.classList.toggle("goal-fund-btn-dark");
     });
     body.style.backgroundColor = "gray";
     darkSwitch = (darkSwitch + 1) % 2;
@@ -724,12 +721,12 @@ if (isDark) {
 }
 else {
     darkModeSwitch.checked = false;
-    purpleButtons.forEach(btns => {
+    purpleButtons.forEach((btns) => {
         btns.style.filter = "invert(0)";
         btns.style.backgroundColor = "#e6d8fa";
         btns.style.color = "black";
     });
-    topDivs.forEach(divs => {
+    topDivs.forEach((divs) => {
         divs.style.filter = "invert(0)";
         divs.style.color = "black";
         divs.style.fontWeight = "400";
@@ -738,7 +735,7 @@ else {
     expenseDiv.style.backgroundColor = "#ffd4d4";
     balanceDiv.style.backgroundColor = "#cfe4ff";
     header.style.backgroundColor = "#CCF2F4";
-    purpleButtons.forEach(btns => {
+    purpleButtons.forEach((btns) => {
         btns.addEventListener("mouseover", () => {
             btns.style.backgroundColor = "#D0BFFF";
         });
@@ -751,13 +748,13 @@ else {
 function switchDark() {
     if (darkSwitch == 1) {
         goingDark.style.filter = "invert(1)";
-        purpleButtons.forEach(btns => {
+        purpleButtons.forEach((btns) => {
             btns.style.filter = "invert(1)";
             btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
             btns.style.color = "whitesmoke";
             btns.style.fontWeight = "200";
         });
-        topDivs.forEach(divs => {
+        topDivs.forEach((divs) => {
             divs.style.filter = "invert(1)";
             divs.style.color = "whitesmoke";
             divs.style.fontWeight = "200";
@@ -766,7 +763,7 @@ function switchDark() {
         expenseDiv.style.backgroundColor = "#2c080d";
         balanceDiv.style.backgroundColor = "#08192c";
         header.style.backgroundColor = "#100c0c";
-        purpleButtons.forEach(btns => {
+        purpleButtons.forEach((btns) => {
             btns.addEventListener("mouseover", () => {
                 btns.style.backgroundColor = "rgba(66, 62, 71, 0.807)";
             });
@@ -774,20 +771,20 @@ function switchDark() {
                 btns.style.backgroundColor = "rgba(66, 62, 71, 0.507)";
             });
         });
-        fundGoalBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        fundGoalBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        delGoalBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        delGoalBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        editTransactionBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        editTransactionBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        delTransactionBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        delTransactionBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        goalCompleteIndicator.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        goalCompleteIndicator.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
         body.style.backgroundColor = "gray";
         darkSwitch = (darkSwitch + 1) % 2;
@@ -795,13 +792,13 @@ function switchDark() {
     }
     else {
         goingDark.style.filter = "invert(0)";
-        purpleButtons.forEach(btns => {
+        purpleButtons.forEach((btns) => {
             btns.style.filter = "invert(0)";
             btns.style.backgroundColor = "#e6d8fa";
             btns.style.color = "black";
             btns.style.fontWeight = "400";
         });
-        topDivs.forEach(divs => {
+        topDivs.forEach((divs) => {
             divs.style.filter = "invert(0)";
             divs.style.color = "black";
             divs.style.fontWeight = "400";
@@ -810,7 +807,7 @@ function switchDark() {
         expenseDiv.style.backgroundColor = "#ffd4d4";
         balanceDiv.style.backgroundColor = "#cfe4ff";
         header.style.backgroundColor = "#CCF2F4";
-        purpleButtons.forEach(btns => {
+        purpleButtons.forEach((btns) => {
             btns.addEventListener("mouseover", () => {
                 btns.style.backgroundColor = "#D0BFFF";
             });
@@ -818,20 +815,20 @@ function switchDark() {
                 btns.style.backgroundColor = "#e6d8fa";
             });
         });
-        fundGoalBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        fundGoalBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        delGoalBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        delGoalBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        editTransactionBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        editTransactionBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        delTransactionBtns.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        delTransactionBtns.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
-        goalCompleteIndicator.forEach(element => {
-            element.classList.toggle('goal-fund-btn-dark');
+        goalCompleteIndicator.forEach((element) => {
+            element.classList.toggle("goal-fund-btn-dark");
         });
         body.style.backgroundColor = "white";
         darkSwitch = (darkSwitch + 1) % 2;
@@ -908,8 +905,3 @@ filterChartOther.addEventListener("click", () => {
     expenseChart.config.data.datasets[0].data = exp;
     expenseChart.update();
 });
-// const canvas = document.querySelector('canvas');
-// window.addEventListener("resize", () => {
-//     canvas!.width = window.innerWidth;
-//     canvas!.height = window.innerHeight;
-// })

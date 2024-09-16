@@ -1,248 +1,400 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Dashboard: Personal Budget Manager</title>
+        <link rel="stylesheet" href="./main.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard: Personal Budget Manager</title>
-    <link rel="stylesheet" href="./main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-</head>
+    <body>
+        <main class="main">
+            <header class="header">
+                <h2>Personal Budget Manager</h2>
+                <img src="../../src/images/pbm-logo.png" width="40px" />
+                <div class="header-rhs-section">
+                    <div class="dark-mode">
+                        <p>Dark Mode</p>
+                        <i class="fa-solid fa-circle-half-stroke fa-lg"></i
+                        ><input id="dark-mode-chkbx" type="checkbox" />
+                    </div>
+                    <div class="profile-div">
+                        <p>Samuel K</p>
+                        <i class="fa-solid fa-user"></i
+                        ><button id="profile-logout-btn">
+                            <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+                        </button>
+                    </div>
+                </div>
+            </header>
+            <div class="content-div">
+                <aside class="aside">
+                    <div class="saving-goals-div">
+                        <h4>Saving Goals:</h4>
+                        <div
+                            id="zero-goals-div"
+                            style="
+                                display: flex;
+                                justify-content: space-evenly;
+                                align-items: center;
+                            "
+                            class="goals-div"
+                        >
+                            <h3 style="color: #b3b2b2">Add goals to see here</h3>
+                        </div>
+                    </div>
+                    <div class="saving-bills-div">
+                        <h4>Upcoming Bills:</h4>
+                        <div
+                            id="zero-bills-div"
+                            style="
+                                display: flex;
+                                justify-content: space-evenly;
+                                align-items: center;
+                            "
+                            class="bills-div"
+                        >
+                            <h3 style="color: #b3b2b2">Add bills to see here</h3>
+                        </div>
+                    </div>
+                </aside>
+                <section class="section">
+                    <div class="top-section">
+                        <div class="income-div" id="income-div-id">
+                            <i class="fa-solid fa-circle-down"></i>
+                            <label id="ttl-inc">Total Income:</label>
+                            <label id="total-income-dsp">7500</label>
+                        </div>
+                        <div class="expense-div" id="expense-div-id">
+                            <i class="fa-solid fa-circle-up"></i>
+                            <label id="ttl-exp">Total Expense:</label>
+                            <label id="total-expense-dsp">5000</label>
+                        </div>
+                        <div class="balance-div" id="balance-div-id">
+                            <i class="fa-solid fa-hand-holding-dollar"></i>
+                            <label id="ttl-bln">Total Balance:</label>
+                            <label id="total-balance-dsp">2500</label>
+                        </div>
+                    </div>
+                    <div class="mid-section">
+                        <div class="mid-section-one">
+                            <button id="new-goal-btn">
+                                <div><i class="fa-solid fa-bullseye fa-2xl"></i></div>
+                                <label>+ Saving Goal</label>
+                            </button>
+                            <button id="new-bill-btn">
+                                <div><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i></div>
+                                <label>+ Upcoming Bill</label>
+                            </button>
+                            <button id="new-transaction-btn">
+                                <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
+                                <label>+ Transaction</label>
+                            </button>
+                        </div>
+                        <div class="overlay" id="overlay"></div>
+                        <div class="new-goal-form-div" id="new-goal-popup">
+                            <h2>New Goal</h2>
+                            <button class="close-popup" id="close-goal-popup">&times;</button>
+                            <form action="" id="new-goal-form">
+                                <label>Set goal name</label>
+                                <input placeholder="Goal name" type="text" id="new-goal-name-inp" />
+                                <label>Set goal target</label>
+                                <input
+                                    placeholder="Goal target"
+                                    type="text"
+                                    id="new-goal-trgt-inp"
+                                />
+                                <label>Add initial contribution (not mandatory)</label>
+                                <input
+                                    placeholder="Initial contribution"
+                                    type="text"
+                                    id="new-goal-init-inp"
+                                />
+                                <button id="save-goal-btn">Save Goal</button>
+                                <span class="popup-errors" id="new-goal-error">Input Probs</span>
+                            </form>
+                        </div>
+                        <div class="new-goal-form-div" id="fund-goal-popup">
+                            <h2 id="fund-goal-name">User Goal</h2>
+                            <button class="close-popup" id="close-fund-goal-popup">&times;</button>
+                            <h4 id="funds-on-goal">Goal Status: 2450 / 7520</h4>
+                            <form action="" id="new-goal-form">
+                                <label>Add Contribution amount</label>
+                                <input
+                                    placeholder="Contribution amount"
+                                    type="text"
+                                    id="fund-goal-inp"
+                                />
+                                <button id="fund-goal-save-btn">Save Contribution</button>
+                                <span class="popup-errors" id="fund-goal-error">Input Probs</span>
+                            </form>
+                        </div>
+                        <div class="new-goal-form-div" id="goal-complete-popup">
+                            <h2 style="margin-top: -5px" id="goal-complete-name">User Goal</h2>
+                            <button class="close-popup" id="goal-complete-close-popup">
+                                &times;
+                            </button>
+                            <h4 style="display: inline">Goal's target achived</h4>
+                            <span style="padding-left: 10px; font-size: 18px"
+                                ><i class="fa-solid fa-award fa-lg"></i
+                            ></span>
+                        </div>
+                        <div class="new-bill-form-div" id="new-bill-popup">
+                            <h2>New Bill</h2>
+                            <button class="close-popup" id="close-bill-popup">&times;</button>
+                            <form action="" id="new-bill-form">
+                                <label>Enter bill name</label>
+                                <input placeholder="Bill name" type="text" id="new-bill-name-inp" />
+                                <label>Enter bill amount</label>
+                                <input
+                                    placeholder="Bill amount"
+                                    type="text"
+                                    id="new-bill-amt-inp"
+                                />
+                                <label>Set Bill due date</label>
+                                <input type="date" id="new-bill-due-inp" />
+                                <button disabled>Save Bill</button>
+                            </form>
+                        </div>
+                        <div class="new-transaction-form-div" id="new-transaction-popup">
+                            <h2>New Transaction</h2>
+                            <button class="close-popup" id="close-transaction-popup">
+                                &times;
+                            </button>
+                            <form action="" id="new-transaction-form">
+                                <label>Select transaction type</label>
+                                <select id="new-transaction-type-select">
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="expense"
+                                    >
+                                        Expense
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="income"
+                                    >
+                                        Income
+                                    </option>
+                                </select>
+                                <label>Enter transaction amount</label>
+                                <input
+                                    placeholder="Transaction amount"
+                                    type="text"
+                                    id="new-transaction-amt-inp"
+                                />
+                                <label>Select transaction date</label>
+                                <input type="date" id="new-transaction-date-inp" />
+                                <label>Select transaction source/purpose</label>
+                                <select id="new-transaction-purpose-select">
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="entertainment"
+                                    >
+                                        Entertainment
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="health"
+                                    >
+                                        Health
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="shopping"
+                                    >
+                                        Shopping
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="travel"
+                                    >
+                                        Travel
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="education"
+                                    >
+                                        Education
+                                    </option>
+                                    <option style="font-weight: 600; font-size: 17px" value="other">
+                                        Other
+                                    </option>
+                                </select>
+                                <button id="save-transaction-btn">Save Transaction</button>
+                                <span class="popup-errors" id="new-transact-error"
+                                    >Input Probs</span
+                                >
+                            </form>
+                        </div>
+                        <div class="new-transaction-form-div" id="edit-transaction-popup">
+                            <h2 id="edit-transaction-name">Edit Transaction</h2>
+                            <button class="close-popup" id="close-edit-transaction-popup">
+                                &times;
+                            </button>
+                            <form action="" id="new-transaction-form">
+                                <label>Select transaction type</label>
+                                <select id="edit-transaction-type-select">
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="expense"
+                                    >
+                                        Expense
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="income"
+                                    >
+                                        Income
+                                    </option>
+                                </select>
+                                <label>Enter transaction amount</label>
+                                <input
+                                    placeholder="Transaction amount"
+                                    type="text"
+                                    id="edit-transaction-amt-inp"
+                                />
+                                <label>Select transaction date</label>
+                                <input type="date" id="edit-transaction-date-inp" />
+                                <label>Select transaction source/purpose</label>
+                                <select id="edit-transaction-purpose-select">
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="entertainment"
+                                    >
+                                        Entertainment
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="health"
+                                    >
+                                        Health
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="shopping"
+                                    >
+                                        Shopping
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="travel"
+                                    >
+                                        Travel
+                                    </option>
+                                    <option
+                                        style="font-weight: 600; font-size: 17px"
+                                        value="education"
+                                    >
+                                        Education
+                                    </option>
+                                    <option style="font-weight: 600; font-size: 17px" value="other">
+                                        Other
+                                    </option>
+                                </select>
+                                <button id="save-edit-transaction-btn">Update Transaction</button>
+                                <span class="popup-errors" id="edit-transact-error"
+                                    >Input Probs</span
+                                >
+                            </form>
+                        </div>
+                        <div class="mid-section-two">
+                            <div class="category">
+                                <div class="mid2-head-div">
+                                    <h3 id="visual-exp">Visualize expense by category</h3>
+                                    <button class="chart-reset-btn" id="chart-filter-reset">
+                                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                                    </button>
+                                </div>
+                                <div class="category-btns">
+                                    <button id="chart-filter-entertain">
+                                        <div><i class="fa-solid fa-film fa-2xl"></i>></div>
+                                        <label>Entertainment</label>
+                                    </button>
 
-<body>
-    <main class="main">
-        <header class="header">
-            <h2>Personal Budget Manager</h2>
-            <img src="../../src/images/pbm-logo.png" width="40px">
-            <div class="header-rhs-section">
-                <div class="dark-mode">
-                    <p>Dark Mode</p><i class="fa-solid fa-circle-half-stroke fa-lg"></i><input id="dark-mode-chkbx" type="checkbox">
-                </div>
-                <div class="profile-div"></i>
-                    <p>Samuel K</p><i class="fa-solid fa-user"></i><button id="profile-logout-btn"><i
-                            class="fa-solid fa-right-from-bracket fa-lg"></i></button></i>
-                </div>
+                                    <button id="chart-filter-health">
+                                        <div>
+                                            <i class="fa-solid fa-briefcase-medical fa-2xl"></i>
+                                        </div>
+                                        <label>Health</label>
+                                    </button>
+                                    <button id="chart-filter-shopping">
+                                        <div><i class="fa-solid fa-bag-shopping fa-2xl"></i></div>
+                                        <label>Shopping</label>
+                                    </button>
+                                    <button id="chart-filter-travel">
+                                        <div><i class="fa-solid fa-plane fa-2xl"></i></div>
+                                        <label>Travel</label>
+                                    </button>
+                                    <button id="chart-filter-education">
+                                        <div><i class="fa-solid fa-graduation-cap fa-2xl"></i></div>
+                                        <label>Education</label>
+                                    </button>
+                                    <button id="chart-filter-other">
+                                        <div><i class="fa-solid fa-o fa-2xl"></i></div>
+                                        <label>Other</label>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="canvas-div">
+                                <canvas
+                                    id="expense-chart"
+                                    style="display: grid"
+                                    aria-label="Your Expense Chart"
+                                ></canvas>
+                            </div>
+                        </div>
+                        <div class="mid-section-three">
+                            <h3>Transaction History</h3>
+                            <div class="transaction-history-table">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Income/Expense</th>
+                                            <th>Amount</th>
+                                            <th>Date</th>
+                                            <th>Source/purpose</th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="table-tbody"></tbody>
+                                </table>
+                                <div
+                                    id="zero-transaction-history"
+                                    style="
+                                        border-radius: 5px;
+                                        margin-top: 20px;
+                                        display: flex;
+                                        background-color: #f6f5f2;
+                                        justify-content: space-evenly;
+                                        align-items: center;
+                                        font-size: 15px;
+                                    "
+                                >
+                                    <h3 style="color: #a3a3a3; margin-top: 0">
+                                        Add transactions to see here
+                                    </h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </div>
-        </header>
-        <div class="content-div">
-            <aside class="aside">
-                <div class="saving-goals-div">
-                    <h4>Saving Goals:</h4>
-                    <div id="zero-goals-div"
-                        style="display: flex;justify-content: space-evenly; align-items: center;"
-                        class="goals-div">
-                        <h3 style="color: #b3b2b2;">Add goals to see here</h3>
-                    </div>
-                </div>
-                <div class="saving-bills-div">
-                    <h4>Upcoming Bills:</h4>
-                    <div id="zero-bills-div"
-                        style="display: flex;justify-content: space-evenly; align-items: center;"
-                        class="bills-div">
-                        <h3 style="color: #b3b2b2;">Add bills to see here</h3>
-                    </div>
-                </div>
-            </aside>
-            <section class="section">
-                <div class="top-section">
-                    <div class="income-div" id="income-div-id">
-                        <i class="fa-solid fa-circle-down"></i>
-                        <label id="ttl-inc">Total Income:</label>
-                        <label id="total-income-dsp">7500</label>
-                    </div>
-                    <div class="expense-div" id="expense-div-id">
-                        <i class="fa-solid fa-circle-up"></i>
-                        <label id="ttl-exp">Total Expense:</label>
-                        <label id="total-expense-dsp">5000</label>
-                    </div>
-                    <div class="balance-div" id="balance-div-id">
-                        <i class="fa-solid fa-hand-holding-dollar"></i>
-                        <label id="ttl-bln">Total Balance:</label>
-                        <label id="total-balance-dsp">2500</label>
-                    </div>
-                </div>
-                <div class="mid-section">
-                    <div class="mid-section-one">
-                        <button id="new-goal-btn">
-                            <div><i class="fa-solid fa-bullseye fa-2xl"></i></div>
-                            <label>+ Saving Goal</label>
-                        </button>
-                        <button id="new-bill-btn">
-                            <div><i class="fa-solid fa-file-invoice-dollar fa-2xl"></i></div>
-                            <label>+ Upcoming Bill</label>
-                        </button>
-                        <button id="new-transaction-btn">
-                            <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
-                            <label>+ Transaction</label>
-                        </button>
-                    </div>
-                    <div class="overlay" id="overlay"></div>
-                    <div class="new-goal-form-div" id="new-goal-popup">
-                        <h2>New Goal</h2><button class="close-popup" id="close-goal-popup">&times;</button>
-                        <form action="" id="new-goal-form">
-                            <label>Set goal name</label>
-                            <input placeholder="Goal name" type="text" id="new-goal-name-inp">
-                            <label>Set goal target</label>
-                            <input placeholder="Goal target" type="text" id="new-goal-trgt-inp">
-                            <label>Add initial contribution (not mandatory)</label>
-                            <input placeholder="Initial contribution" type="text" id="new-goal-init-inp">
-                            <button id="save-goal-btn">Save Goal</button>
-                            <span class="popup-errors" id="new-goal-error">Input Probs</span>
-                        </form>
-                    </div>
-                    <div class="new-goal-form-div" id="fund-goal-popup">
-                        <h2 id="fund-goal-name">User Goal</h2><button class="close-popup"
-                            id="close-fund-goal-popup">&times;</button>
-                        <h4 id="funds-on-goal">Goal Status: 2450 / 7520</h4>
-                        <form action="" id="new-goal-form">
-                            <label>Add Contribution amount</label>
-                            <input placeholder="Contribution amount" type="text" id="fund-goal-inp">
-                            <button id="fund-goal-save-btn">Save Contribution</button>
-                            <span class="popup-errors" id="fund-goal-error">Input Probs</span>
-                        </form>
-                    </div>
-                    <div class="new-goal-form-div" id="goal-complete-popup">
-                        <h2 style="margin-top: -5px;" id="goal-complete-name">User Goal</h2><button class="close-popup"
-                            id="goal-complete-close-popup">&times;</button>
-                        <h4 style="display: inline;">Goal's target achived</h4><span style="padding-left: 10px; font-size: 18px;"><i class="fa-solid fa-award fa-lg"></i></span>
-                        </form>
-                    </div>
-                    <div class="new-bill-form-div" id="new-bill-popup">
-                        <h2>New Bill</h2><button class="close-popup" id="close-bill-popup">&times;</button>
-                        <form action="" id="new-bill-form">
-                            <label>Enter bill name</label>
-                            <input placeholder="Bill name" type="text" id="new-bill-name-inp">
-                            <label>Enter bill amount</label>
-                            <input placeholder="Bill amount" type="text" id="new-bill-amt-inp">
-                            <label>Set Bill due date</label>
-                            <input type="date" id="new-bill-due-inp">
-                            <button disabled>Save Bill</button>
-                        </form>
-                    </div>
-                    <div class="new-transaction-form-div" id="new-transaction-popup">
-                        <h2>New Transaction</h2><button class="close-popup"
-                            id="close-transaction-popup">&times;</button>
-                        <form action="" id="new-transaction-form">
-                            <label>Select transaction type</label>
-                            <select id="new-transaction-type-select">
-                                <option style="font-weight: 600; font-size: 17px;" value="expense">Expense</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="income">Income</option>
-                            </select>
-                            <label>Enter transaction amount</label>
-                            <input placeholder="Transaction amount" type="text" id="new-transaction-amt-inp">
-                            <label>Select transaction date</label>
-                            <input type="date" id="new-transaction-date-inp">
-                            <label>Select transaction source/purpose</label>
-                            <select id="new-transaction-purpose-select">
-                                <option style="font-weight: 600; font-size: 17px;" value="entertainment">Entertainment
-                                </option>
-                                <option style="font-weight: 600; font-size: 17px;" value="health">Health</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="shopping">Shopping</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="travel">Travel</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="education">Education</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="other">Other</option>
-                            </select>
-                            <button id="save-transaction-btn">Save Transaction</button>
-                            <span class="popup-errors" id="new-transact-error">Input Probs</span>
-                        </form>
-                    </div>
-                    <div class="new-transaction-form-div" id="edit-transaction-popup">
-                        <h2 id="edit-transaction-name">Edit Transaction</h2><button class="close-popup"
-                            id="close-edit-transaction-popup">&times;</button>
-                        <form action="" id="new-transaction-form">
-                            <label>Select transaction type</label>
-                            <select id="edit-transaction-type-select">
-                                <option style="font-weight: 600; font-size: 17px;" value="expense">Expense</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="income">Income</option>
-                            </select>
-                            <label>Enter transaction amount</label>
-                            <input placeholder="Transaction amount" type="text" id="edit-transaction-amt-inp">
-                            <label>Select transaction date</label>
-                            <input type="date" id="edit-transaction-date-inp">
-                            <label>Select transaction source/purpose</label>
-                            <select id="edit-transaction-purpose-select">
-                                <option style="font-weight: 600; font-size: 17px;" value="entertainment">Entertainment
-                                </option>
-                                <option style="font-weight: 600; font-size: 17px;" value="health">Health</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="shopping">Shopping</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="travel">Travel</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="education">Education</option>
-                                <option style="font-weight: 600; font-size: 17px;" value="other">Other</option>
-                            </select>
-                            <button id="save-edit-transaction-btn">Update Transaction</button>
-                            <span class="popup-errors" id="edit-transact-error">Input Probs</span>
-                        </form>
-                    </div>
-                    <div class="mid-section-two">
-                        <div class="category">
-                            <div class="mid2-head-div">
-                                <h3 id="visual-exp">Visualize expense by category</h3>
-                                <button class="chart-reset-btn" id="chart-filter-reset"><i
-                                        class="fa-solid fa-arrow-rotate-right"></i></button>
-                            </div>
-                            <div class="category-btns">
-                                <button id="chart-filter-entertain">
-                                    <div><i class="fa-solid fa-film fa-2xl"></i></i></div>
-                                    <label>Entertainment</label>
-                                </button>
-                                <button id="chart-filter-health">
-                                    <div><i class="fa-solid fa-briefcase-medical fa-2xl"></i></div>
-                                    <label>Health</label>
-                                </button>
-                                <button id="chart-filter-shopping">
-                                    <div><i class="fa-solid fa-bag-shopping fa-2xl"></i></div>
-                                    <label>Shopping</label>
-                                </button>
-                                <button id="chart-filter-travel">
-                                    <div><i class="fa-solid fa-plane fa-2xl"></i></div>
-                                    <label>Travel</label>
-                                </button>
-                                <button id="chart-filter-education">
-                                    <div><i class="fa-solid fa-graduation-cap fa-2xl"></i></div>
-                                    <label>Education</label>
-                                </button>
-                                <button id="chart-filter-other">
-                                    <div><i class="fa-solid fa-o fa-2xl"></i></div>
-                                    <label>Other</label>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="canvas-div"><canvas id="expense-chart" style="display: grid;" aria-label="Your Expense Chart"></canvas></div>
-                    </div>
-                    <div class="mid-section-three">
-                        <h3>Transaction History</h3>
-                        <div class="transaction-history-table">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Income/Expense</th>
-                                        <th>Amount</th>
-                                        <th>Date</th>
-                                        <th>Source/purpose</th>
-                                        <th></th>
-                                        <th></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="table-tbody">
-                                </tbody>
-                            </table>
-                            <div id="zero-transaction-history"
-                                style="border-radius: 5px; margin-top:20px; display: flex; background-color: #F6F5F2;justify-content: space-evenly; align-items: center; font-size: 15px;">
-                                <h3 style="color: #a3a3a3; margin-top: 0;">Add transactions to see here</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </main>
-    <script type="module" src="../dashboard.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
-
+        </main>
+        <script type="module" src="../dashboard.js"></script>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
+        <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>

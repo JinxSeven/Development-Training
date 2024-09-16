@@ -1,47 +1,55 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Create Acc: Personal Budget Manager</title>
-        <link rel="stylesheet" href="./main.css">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./main.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap"
+            rel="stylesheet"
+        />
         <script src="https://kit.fontawesome.com/dd382d59f1.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <main class="main">
             <div class="login-container">
                 <div class="heading">
-                    <h1 style="text-align: center; font-size: 42px;">Personal Budget Manager</h1>
+                    <h1 style="text-align: center; font-size: 42px">Personal Budget Manager</h1>
                     <h2>Sign Up</h2>
-                    <p>Existing user?<span><a href="../login/login.html">Sign In</a></span></p>
+                    <p>
+                        Existing user?<span><a href="../login/login.html">Sign In</a></span>
+                    </p>
                 </div>
                 <form>
                     <div class="form-divs">
                         <label class="email-lbl">Enter user name</label>
-                        <input id="user-name-inp" type="text" placeholder="User Name">
+                        <input id="user-name-inp" type="text" placeholder="User Name" />
                     </div>
                     <div class="form-divs">
                         <label class="email-lbl">Enter email address</label>
-                        <input id="email-inp" type="email" placeholder="Email Address">
+                        <input id="email-inp" type="email" placeholder="Email Address" />
                     </div>
                     <div class="form-divs">
                         <label class="pass-lbl">Enter your password</label>
-                        <input id="pass-inp" placeholder="Password" type="password">
+                        <input id="pass-inp" placeholder="Password" type="password" />
                     </div>
                     <div class="form-divs">
                         <label class="pass-lbl">Confirm your password</label>
-                        <input id="cfm-pass-inp" placeholder="Password" type="password">
+                        <input id="cfm-pass-inp" placeholder="Password" type="password" />
                     </div>
-                    <input id="sign-up-btn" type="submit" value="Sign Up">
+                    <input id="sign-up-btn" type="submit" value="Sign Up" />
                 </form>
                 <p id="error-dsp">Invalid username or password!</p>
             </div>
         </main>
         <script type="module" src="../addUser.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+        <script
+            type="module"
+            src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+        ></script>
         <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     </body>
 </html>

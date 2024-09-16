@@ -707,7 +707,7 @@ label {
 }
 
 .popup-errors {
-    color: #da2b2b;
+    color: #da2b2b !important;
     opacity: 0;
     transition: opacity 0.3s;
     color: #242323;
