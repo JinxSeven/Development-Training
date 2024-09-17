@@ -602,6 +602,16 @@ editTransactionAmountInp.addEventListener("blur", () => {
         return;
     if (!universalNaNValidator(editTransactionAmountInp, edtTransactError))
         return;
+    if (editTransactionTypeInp.value === "expense") {
+        if (Number(editTransactionAmountInp.value) > loggedUserDash[userDashIndx].totalBalance) {
+            editTransactionAmountInp.style.borderColor = "#ba2b2b";
+            edtTransactError.innerText = "Expense > Balance!";
+            edtTransactError.style.opacity = "1";
+            return;
+        }
+    }
+    editTransactionAmountInp.style.borderColor = "#d8d8d8";
+    edtTransactError.style.opacity = "0";
 });
 editTransactionDateInp.addEventListener("blur", () => {
     if (!universalValidator(editTransactionDateInp, edtTransactError))
