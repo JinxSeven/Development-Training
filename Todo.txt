@@ -19,5 +19,13 @@ JS & TS Changes:
     Calculator: Handle divide by zero - fixed
     User Management System: Fix bugs and add validation and style - fixed
 
+Angular Progress:
+    Commands:
+        ng new <project_name> - Creates a new angular project
+        npm install - Create all node dependancies
+        ng serve - Runs angular project on local host
+
+        ng generate component <component_name> --<dir_name_flag>
+
 http://127.0.0.1:5500/
 https://demo.firefly-iii.org/
