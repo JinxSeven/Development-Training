@@ -1,12 +1,12 @@
 <div class="task-form-div">
     <h1>To-Do List</h1>
-    <form class="task-form" #taskForm="ngForm">
+    <form (ngSubmit)="addNewTask(taskForm)" class="task-form" #taskForm="ngForm">
         <label for="">Enter Task</label>
         <label for="">Assign To</label>
-        <input type="text" placeholder="Task name" required>
-        <input type="text" placeholder="User name" required>
-        <span id="task-indicate">Task Status</span>
-        <button type="submit">Assign Task</button>
+        <input type="text" placeholder="Task name" ngModel name="taskName" required>
+        <input type="text" placeholder="User name" ngModel name="userName" required>
+        <span id="form-status">Invalid Input</span>
+        <button type="submit" [disabled]="taskForm.invalid"> Assign Task</button>
     </form>
 </div>
 <div class="task-table-div">
@@ -21,7 +21,18 @@
             </tr>
         </thead>
         <tbody>
-            <tr></tr>
+            @for (task of taskData; track task; let idx = $index) {
+                <tr>
+                    <td>{{task.taskName}}</td>
+                    <td>{{task.userName}}</td>
+                    <td><select class="select-status" [(ngModel)]="task.taskStatus" (change)="onStatusChange(idx)">
+                        <option [value]="false">Incomplete</option>
+                        <option [value]="true">Complete</option>
+                    </select></td>
+                    <td><button class="edt-task-btn">Edit</button></td>
+                    <td><button class="del-task-btn" (click)="onDeleteTask(idx)">Delete</button></td>
+                </tr>
+            }
         </tbody>
     </table>
 </div>
