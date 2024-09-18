@@ -1,10 +1,4 @@
-import {
-    getUsersFromLocalStorage,
-    validateEmailInput,
-    validatePassInput,
-    setCurrentLoggedUser,
-    LoggedUser,
-} from "./utils.js";
+import { getUsersFromLocalStorage, validateEmailInput, validatePassInput, setCurrentLoggedUser, LoggedUser } from "./utils.js";
 
 function authenticateUser(email: string, password: string): boolean {
     const users = getUsersFromLocalStorage();
@@ -35,10 +29,7 @@ signInButton?.addEventListener("click", (event) => {
     const email = emailInput.value;
     const password = passwordInput.value;
 
-    if (
-        !validateEmailInput(emailInput, errorDisplay) ||
-        !validatePassInput(passwordInput, errorDisplay)
-    ) {
+    if (!validateEmailInput(emailInput, errorDisplay) || !validatePassInput(passwordInput, errorDisplay)) {
         return;
     }
 

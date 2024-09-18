@@ -67,10 +67,7 @@ export function universalLenValidator(inputField: HTMLInputElement, inputLength:
     return true;
 }
 
-export function universalNaNValidator(
-    inputField: HTMLInputElement,
-    errorOut: HTMLSpanElement,
-): boolean {
+export function universalNaNValidator(inputField: HTMLInputElement, errorOut: HTMLSpanElement): boolean {
     if (isNaN(Number(inputField.value))) {
         inputField.style.borderColor = "rgb(218, 43, 43)";
         errorOut.innerText = "Invalid input type!";
@@ -86,10 +83,7 @@ export function universalNaNValidator(
     return true;
 }
 
-export function universalValidator(
-    inputField: HTMLInputElement,
-    errorOut: HTMLSpanElement,
-): boolean {
+export function universalValidator(inputField: HTMLInputElement, errorOut: HTMLSpanElement): boolean {
     if (inputField.value == "") {
         inputField.style.borderColor = "rgb(218, 43, 43)";
         errorOut.innerText = "All fields required!";
@@ -101,10 +95,7 @@ export function universalValidator(
     return true;
 }
 
-export function validateEmailInput(
-    emailInput: HTMLInputElement,
-    errorDisplay: HTMLParagraphElement,
-): boolean {
+export function validateEmailInput(emailInput: HTMLInputElement, errorDisplay: HTMLParagraphElement): boolean {
     const email = emailInput.value.trim();
 
     if (!email) {
@@ -119,10 +110,7 @@ export function validateEmailInput(
     return true;
 }
 
-export function validatePassInput(
-    passwordInput: HTMLInputElement,
-    errorDisplay: HTMLParagraphElement,
-): boolean {
+export function validatePassInput(passwordInput: HTMLInputElement, errorDisplay: HTMLParagraphElement): boolean {
     const email = passwordInput.value.trim();
 
     if (!email) {

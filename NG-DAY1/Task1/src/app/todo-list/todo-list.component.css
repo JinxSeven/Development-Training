@@ -1,3 +1,65 @@
-.main {
-    border: 1px solid skyblue;
+* {
+    font-family: 'Bahnschrift';
+}
+
+.task-form-div {
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);;
+    padding: 20px;
+    color: #F9F9F9;
+    background-color: black;
+    margin: 50px auto;
+}
+
+.task-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.task-form input[type=text] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.task-form #task-indicate {
+    color: #ff0077;
+    opacity: 1;
+    transition: opacity 0.3s;
+}
+
+.task-form button {
+    padding: 10px;
+    background-color: #285ba7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.task-form button:hover {
+    cursor: pointer;
+    background-color: #1b488b;
+    transition: background-color 0.3s;
+}
+
+.task-table-div {
+    background-color: black;
+    width: 542px;
+    display: grid;
+    margin: 0 auto;
+}
+
+.task-table {
+    color: white;
+    border-collapse: collapse;
+}
+
+.task-table th, .task-table td {
+    border: 1px solid white;
+    padding: 8px;
 }

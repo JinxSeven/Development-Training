@@ -1,4 +1,4 @@
-import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, getUserDark, setUserDark, universalLenValidator, } from "./utils.js";
+import { universalNaNValidator, getCurrentLoggedUser, getUserDash, universalValidator, setUserDash, getUserDark, setUserDark, universalLenValidator } from "./utils.js";
 const loggedUser = getCurrentLoggedUser();
 const loggedUserDash = getUserDash();
 const isDark = getUserDark();
@@ -40,10 +40,9 @@ const filterChartTravel = document.getElementById("chart-filter-travel");
 const filterChartEdu = document.getElementById("chart-filter-education");
 const filterChartOther = document.getElementById("chart-filter-other");
 const filterChartReset = document.getElementById("chart-filter-reset");
-const goalForm = document.getElementById('new-goal-form');
-const transactForm = document.getElementById('new-transaction-form');
-const edtTransactForm = document.getElementById('edt-transaction-form');
-;
+const goalForm = document.getElementById("new-goal-form");
+const transactForm = document.getElementById("new-transaction-form");
+const edtTransactForm = document.getElementById("edt-transaction-form");
 // filterChartReset.addEventListener('click', () => {
 //     window.location.reload();
 // });
@@ -93,8 +92,7 @@ function updateSavingGoalData() {
         zeroGoalsDiv.style.display = "none";
     }
     for (let itr = 0; itr < arrayOfGoals.length; itr++) {
-        const goalPercentage = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) *
-            100).toFixed(1);
+        const goalPercentage = ((arrayOfGoals[itr].contribution / arrayOfGoals[itr].target) * 100).toFixed(1);
         if (Number(goalPercentage) == 100) {
             const newGoalDiv = `<div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
                                     <p>${arrayOfGoals[itr].name}</p><progress style="height:30px;width: 20%;" class="goal-prog-bar" value="${arrayOfGoals[itr].contribution}" max="${arrayOfGoals[itr].target}"></progress>
@@ -244,8 +242,7 @@ saveGoalBtn.addEventListener("click", (event) => {
             }
         }
     }
-    loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+    loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     loggedUserDash[userDashIndx].goals.push(newGoal);
     setUserDash(loggedUserDash);
     closeGoalFunctionReload();
@@ -272,8 +269,7 @@ newTransactionAmount.addEventListener("blur", () => {
     if (!universalNaNValidator(newTransactionAmount, transactError))
         return;
     if (newTransactionType.value === "expense") {
-        if (Number(newTransactionAmount.value) >
-            loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
             newTransactionAmount.style.borderColor = "#ba2b2b";
             transactError.innerText = "Expense > Balance!";
             transactError.style.opacity = "1";
@@ -296,8 +292,7 @@ saveTransactionBtn.addEventListener("click", function (event) {
     if (!universalNaNValidator(newTransactionAmount, transactError))
         return;
     if (newTransactionType.value === "expense") {
-        if (Number(newTransactionAmount.value) >
-            loggedUserDash[userDashIndx].totalBalance - goalExpense) {
+        if (Number(newTransactionAmount.value) > loggedUserDash[userDashIndx].totalBalance - goalExpense) {
             newTransactionAmount.style.borderColor = "#ba2b2b";
             transactError.innerText = "Expense > Balance!";
             transactError.style.opacity = "1";
@@ -329,8 +324,7 @@ saveTransactionBtn.addEventListener("click", function (event) {
             }
         }
     }
-    loggedUserDash[userDashIndx].totalBalance =
-        loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+    loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
     setUserDash(loggedUserDash);
     closeTransactionFunctionReload();
 });
@@ -457,8 +451,7 @@ fundGoalBtns.forEach((fund) => {
                 fundGoalInp.value = "";
                 return;
             }
-            else if (Number(fundGoalInp.value) >
-                userGoals[idx].target - userGoals[idx].contribution) {
+            else if (Number(fundGoalInp.value) > userGoals[idx].target - userGoals[idx].contribution) {
                 fundGoalInp.style.borderColor = "#ba2b2b";
                 fundError.innerText = "Contribution > Target!";
                 fundError.style.opacity = "1";
@@ -479,8 +472,7 @@ fundGoalBtns.forEach((fund) => {
                     purpose: "savings",
                 };
                 loggedUserDash[userDashIndx].transactions.push(goalTransaction);
-                if (+goalTransaction.amount + +userGoals[idx].contribution ===
-                    +userGoals[idx].target) {
+                if (+goalTransaction.amount + +userGoals[idx].contribution === +userGoals[idx].target) {
                     metReq = true;
                 }
                 userGoals[idx].contribution += goalTransaction.amount;
@@ -501,9 +493,7 @@ fundGoalBtns.forEach((fund) => {
                     }
                 }
             }
-            loggedUserDash[userDashIndx].totalBalance =
-                loggedUserDash[userDashIndx].totalIncome -
-                    loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
             setUserDash(loggedUserDash);
             if (metReq) {
                 fundGoalPopupCloseFunction(false);
@@ -537,8 +527,7 @@ delGoalBtns.forEach((del) => {
                 }
             }
         }
-        loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });
@@ -664,9 +653,7 @@ editTransactionBtns.forEach((editTransacts) => {
                     }
                 }
             }
-            loggedUserDash[userDashIndx].totalBalance =
-                loggedUserDash[userDashIndx].totalIncome -
-                    loggedUserDash[userDashIndx].totalExpense;
+            loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
             setUserDash(loggedUserDash);
             closeEditTransactionPopupfunction(true);
         });
@@ -692,8 +679,7 @@ delTransactionBtns.forEach((delTransact) => {
                 }
             }
         }
-        loggedUserDash[userDashIndx].totalBalance =
-            loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
+        loggedUserDash[userDashIndx].totalBalance = loggedUserDash[userDashIndx].totalIncome - loggedUserDash[userDashIndx].totalExpense;
         setUserDash(loggedUserDash);
         window.location.reload();
     });

@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { User } from '../user.interface';
 
 @Component({
     selector: 'app-todo-list',
-    standalone: true,
-    imports: [],
     templateUrl: './todo-list.component.html',
     styleUrl: './todo-list.component.css',
 })
-export class TodoListComponent {
-
-}
+export class TodoListComponent {}

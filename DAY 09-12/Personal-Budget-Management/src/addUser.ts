@@ -1,15 +1,4 @@
-import {
-    getUsersFromLocalStorage,
-    saveUsersToLocalStorage,
-    isEmailDuplicate,
-    User,
-    UserDash,
-    getUserDash,
-    setUserDash,
-    Transaction,
-    Goal,
-    Bill,
-} from "./utils.js";
+import { getUsersFromLocalStorage, saveUsersToLocalStorage, isEmailDuplicate, User, UserDash, getUserDash, setUserDash, Transaction, Goal, Bill } from "./utils.js";
 
 const userNameInput = document.getElementById("user-name-inp") as HTMLInputElement;
 const emailInput = document.getElementById("email-inp") as HTMLInputElement;
@@ -17,12 +6,7 @@ const passwordInput = document.getElementById("pass-inp") as HTMLInputElement;
 const confirmPasswordInput = document.getElementById("cfm-pass-inp") as HTMLInputElement;
 const errorDisplay = document.getElementById("error-dsp") as HTMLParagraphElement;
 
-function validateForm(
-    userName: string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-): boolean {
+function validateForm(userName: string, email: string, password: string, confirmPassword: string): boolean {
     console.log("validation");
     if (!userName) {
         errorDisplay.innerText = "Username field required!";

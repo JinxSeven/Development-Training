@@ -1,4 +1,4 @@
-import { getUsersFromLocalStorage, saveUsersToLocalStorage, isEmailDuplicate, getUserDash, setUserDash, } from "./utils.js";
+import { getUsersFromLocalStorage, saveUsersToLocalStorage, isEmailDuplicate, getUserDash, setUserDash } from "./utils.js";
 const userNameInput = document.getElementById("user-name-inp");
 const emailInput = document.getElementById("email-inp");
 const passwordInput = document.getElementById("pass-inp");
