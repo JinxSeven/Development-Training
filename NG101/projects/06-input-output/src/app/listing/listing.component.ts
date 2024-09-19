@@ -30,13 +30,17 @@ import { Car } from '../car';
             <span>Price</span>
             <span>{{car.price}}</span>
           </p>
+          <button (click)="handleCarSaved()">Save Car</button>
         </section>
       </article>
   `,
   styles: ``,
 })
 export class ListingComponent {
-  @Input({
-    required: true
-  }) car!: Car;
+  @Input() car!: Car;
+  @Output() carSaved = new EventEmitter<Car>();
+
+  handleCarSaved() {
+    this.carSaved.emit(this.car)
+  }
 }
