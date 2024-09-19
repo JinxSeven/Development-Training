@@ -1,0 +1,147 @@
+aside img.logo1 {
+    height: 55px
+}
+
+aside img.logo2 {
+    display: none;
+}
+
+aside {
+    width: 24%;
+    height: 750px;
+    margin: 5px;
+    margin-left: 0px;
+    border-radius: 5px;
+}
+
+.sidebar img {
+    margin: 25px;
+    margin-top: 50px;
+    margin-left: 40px;
+    margin-bottom: 40px;
+}
+
+aside .btns {
+    height: fit-content;
+    width: fit-content;
+    margin: 10px;
+    margin-left: 0px;
+    padding-left: 25px;
+    border-left: 7px solid;
+    border-color: white;
+}
+
+aside .btns button {
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: grey;
+    border: none;
+    text-align: left;
+    width: 195px;
+    height: 48px;
+    padding-left: 40px;
+    background-color: #ffffff;
+}
+
+aside .btns button:focus {
+    color: rgba(255, 62, 65, 1);
+    background-color: rgb(252, 209, 211);
+    border-radius: 5px;
+}
+
+aside .btns button:hover {
+    cursor: pointer;
+}
+
+aside .btns:hover {
+    border-color: rgba(255, 62, 65, 1);
+    transition: border-left 0.15s;
+}
+
+aside p {
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 400;
+    font-size: 0.875rem;
+    margin-left: 20px;
+}
+
+.busy-mode i {
+    display: none;
+}
+
+.busy-mode {
+    display: flex;
+    align-items: end;
+    margin: 25px;
+    justify-content: start;
+    height: 220px;
+    padding-left: 10%;
+}
+
+.busy-mode p {
+    margin: 3px;
+}
+
+.busy-mode .busy-mode-chkbx {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    height: 20px;
+    margin-top: 5px;
+    margin-left: 7px;
+    position: relative;
+    width: 35px;
+}
+
+.busy-mode .busy-mode-chkbx::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+.busy-mode .busy-mode-chkbx,
+.busy-mode .busy-mode-chkbx::after {
+    transition: all 100ms ease-out;
+}
+
+.busy-mode .busy-mode-chkbx::after {
+    background-color: black;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+.busy-mode input[type=checkbox] {
+    cursor: pointer;
+}
+
+.busy-mode .busy-mode-chkbx:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+}
+
+.busy-mode .busy-mode-chkbx:checked {
+    background-color: #dfe1e4;
+}
+
+.busy-mode .busy-mode-chkbx:checked::after {
+    background-color: #3ec579;
+    left: 17px;
+}
+
+.busy-mode :focus:not(.focus-visible) {
+    outline: 0;
+}
+
+.busy-mode .busy-mode-chkbx:checked:hover {
+    background-color: #c9cbcd;
+}
