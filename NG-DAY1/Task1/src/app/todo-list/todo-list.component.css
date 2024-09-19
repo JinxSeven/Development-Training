@@ -26,8 +26,6 @@
 
 .task-form #form-status {
     color: #ff0077;
-    opacity: 1;
-    opacity: 0;
     transition: opacity 0.3s;
 }
 
@@ -80,6 +78,13 @@
     width: 67px;
 }
 
+.task-table-div .task-table .edt-task-btn:disabled,
+.task-table-div .task-table .edt-task-btn:disabled:hover {
+    background-color: #1b488bea;
+    color: #a8a8a8;
+    cursor: default;
+}
+
 .task-table-div .task-table .edt-task-btn:hover {
     cursor: pointer;
     background-color: #1b488b;
@@ -100,6 +105,13 @@
     cursor: pointer;
     background-color: #ca015f;
     transition: background-color 0.3s;
+}
+
+.task-table-div .task-table .del-task-btn:disabled,
+.task-table-div .task-table .del-task-btn:disabled:hover {
+    background-color: #a3014d;
+    color: #a8a8a8;
+    cursor: default;
 }
 
 .task-table-div .task-table .select-status {
