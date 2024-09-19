@@ -25,8 +25,8 @@ export class WeatherComponent {
                 }
                 console.log(result);
                 this.city = result.name;
-                this.temprature = String(((result.main.temp) - 273.15).toFixed(2));
-                this.humidity = result.main.humidity;
+                this.temprature = String(((result.main.temp) - 273.15).toFixed(2)) + "°C";
+                this.humidity = result.main.humidity + "%";
                 this.iconLink = `https://openweathermap.org/img/wn/${result.weather[0].icon}.png`;
             },
             error: (err: any) => {
