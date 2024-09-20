@@ -1,16 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+* {
+    font-family: "Poppins", 'Ubuntu';
+}
+
 body {
     background-color: #D9AFD9;
     background-image: linear-gradient(258deg, #D9AFD9 0%, #97D9E1 100%);
     display: grid;
-    justify-items: center;
 }
 
 .main-block {
-    width: 90%;
+    width: 100%;
     display: grid;
-    margin: 50px auto;
-    height: 90vh;
     border-radius: 30px;
     background-color: #ffffff;
+}
+
+.app-root {
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
 }

@@ -45,8 +45,8 @@ aside .btns button {
 }
 
 aside .btns button:focus {
-    color: rgba(255, 62, 65, 1);
-    background-color: rgb(252, 209, 211);
+    color: #ff3e41;
+    background-color: #fcd1d3;
     border-radius: 5px;
 }
 
@@ -75,8 +75,10 @@ aside p {
     align-items: end;
     margin: 25px;
     justify-content: start;
-    height: 220px;
     padding-left: 10%;
+    margin-top: 100%;
+    width: 10em;
+    justify-content: space-around;
 }
 
 .busy-mode p {
