@@ -471,7 +471,7 @@ main .main-center .cx-dtls-list {
 }
 
 main .main-center table:last-child {
-    border-collapse: collapse;
+    border-collapse: separate;
 }
 
 .main-block .sidebar .logo2 {
