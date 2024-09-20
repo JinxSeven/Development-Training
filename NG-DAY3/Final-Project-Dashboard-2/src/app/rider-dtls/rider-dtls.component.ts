@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-rider-dtls',
@@ -8,10 +8,6 @@ import { Component } from '@angular/core';
     styleUrl: './rider-dtls.component.css',
 })
 export class RiderDtlsComponent {
-    riderInformation = [
-        {
-            name: "Robart Suvent",
-            imageSrc: "images/rider.png"
-        }
-    ]
+    @Input ()
+    riderInformation: any | null = null
 }

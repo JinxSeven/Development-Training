@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-cx-ord-dtls',
@@ -8,26 +8,6 @@ import { Component } from '@angular/core';
     styleUrl: './cx-ord-dtls.component.css',
 })
 export class CxOrdDtlsComponent {
-    cxOrdDetails = [
-        {
-            rhs: "Customer Name",
-            lhs: "Harun Lbili"
-        },
-        {
-            rhs: "Phone Number",
-            lhs: "7918881829"
-        },
-        {
-            rhs: "Bag Option",
-            lhs: "No Bag"
-        },
-        {
-            rhs: "Type",
-            lhs: "Delivery"
-        },
-        {
-            rhs: "Note",
-            lhs: "N/A"
-        },
-    ]
+    @Input ()
+    cxOrdDetails: any | null = null;
 }

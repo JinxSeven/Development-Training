@@ -1,13 +1,15 @@
 <div class="main-content">
     <div class="ord-info">
         <p>Order Number</p>
-        <p class="ord-num">#256894</p>
+        <p class="ord-num">#{{ordNum}}</p>
         <div class="msg-cx"><i class="fa-solid fa-message"></i><span class="msg-cx-txt">Message Customer</span></div>
     </div>
-    <app-items-summary class="item-summary"></app-items-summary>
-    <app-cx-ord-dtls class="cx-ord-dtls"></app-cx-ord-dtls>
+    <app-items-summary class="item-summary" [itemsSummaryData]="itemsSummaryInfo"></app-items-summary>
+    <app-cx-ord-dtls class="cx-ord-dtls" [cxOrdDetails]="cxOrdInfo"></app-cx-ord-dtls>
     <div class="side-content">
-        <app-rider-dtls class="rider-dtls"></app-rider-dtls>
-        <app-order-summary class="order-summary"></app-order-summary>
+        <app-rider-dtls class="rider-dtls" [riderInformation]="riderData"></app-rider-dtls>
+        <app-order-summary class="order-summary" [orderSummaryDetails]="orderSummaryData"></app-order-summary>
+        <app-total class="total-price" [totalCost]="totalData"></app-total>
+        <app-delivery-add class="delivery-add" [deliveryData]="deliveryInfo"></app-delivery-add>
     </div>
 </div>
