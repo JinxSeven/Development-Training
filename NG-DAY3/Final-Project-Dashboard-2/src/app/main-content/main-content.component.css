@@ -13,7 +13,7 @@
     font-family: "Poppins", 'Ubuntu';
     font-weight: 700;
     display: flex;
-    font-size: larger;
+    font-size: 1.2rem;
     align-items: center;
     margin-bottom: -10px;
 }
@@ -70,4 +70,35 @@
         "ordInfo sideContent"
         "itemSummary sideContent"
         "cxOrdDtls sideContent";
+}
+
+@media only screen and (min-width: 881px) and (max-width: 990px) {
+    .ord-info {
+        font-size: 1em;
+    }
+}
+
+@media only screen and (min-width: 881px) and (max-width: 941px) {
+    .msg-cx-txt {
+        display: none;
+    }
+    .ord-info .msg-cx {
+        padding: 4px;
+        padding-bottom: 2px;
+        padding-right: 2px;
+        padding-left: 6px;
+    }
+}
+
+@media only screen and (max-width: 880px) {
+    .main-content {
+        display: grid;
+        gap: 15px;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "ordInfo"
+            "itemSummary"
+            "cxOrdDtls"
+            "sideContent";
+    }
 }

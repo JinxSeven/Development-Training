@@ -15,9 +15,13 @@
 }
 
 .rider-info {
+    margin-left: 10px;
+    margin-right: 10px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+    text-align: center;
+    gap: 10px !important
 }
 
 img {
@@ -41,7 +45,7 @@ button {
     background-color: #ffb21e;
     color: white;
     height: 35px;
-    font-family: "Poppins", 'Ubuntu';
+    font-size: 0.7rem;
     font-weight: 400;
     width: 100px;
     cursor: pointer;

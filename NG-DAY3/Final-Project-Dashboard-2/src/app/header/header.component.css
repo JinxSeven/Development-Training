@@ -216,3 +216,12 @@
     display: flex;
     align-items: center;
 }
+
+@media only screen and (max-width: 876px) {
+    .open-for-orders i {
+        display: block;
+    }
+    .open-for-orders p {
+        display: none;
+    }
+}

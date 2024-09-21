@@ -14,7 +14,7 @@ body {
     display: grid;
     border-radius: 30px;
     background-color: #ffffff;
-    height: 85vh;
+    padding-bottom: 25px;
 }
 
 .app-root {
