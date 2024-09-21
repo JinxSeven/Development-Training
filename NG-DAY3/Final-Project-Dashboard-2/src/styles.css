@@ -19,5 +19,9 @@ body {
 
 .app-root {
     display: grid;
-    grid-template-columns: 0.3fr 1fr;
+    grid-template-columns: 0.3fr auto;
+}
+
+@media only screen and (max-width: 770px) {
+    
 }

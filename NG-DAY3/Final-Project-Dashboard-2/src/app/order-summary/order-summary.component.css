@@ -45,3 +45,19 @@ table {
 table:last-child {
     border-collapse: collapse;
 }
+
+@media only screen and (max-width: 470px) {
+    td {
+        font-size: 0.6rem !important;
+        padding: 5px;
+    }
+    th {
+        font-size: 0.7rem !important;
+        padding: 3px;
+    }
+    .ord-summary th .on-the-way {
+        width: 75px;
+        height: 24px;
+        font-size: 0.62rem;
+    }
+}

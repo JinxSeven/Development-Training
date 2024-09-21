@@ -52,3 +52,25 @@ button {
     border: none;
     border-radius: 10px;
 }
+
+@media only screen and (max-width: 470px) {
+    .rider-div{
+        margin-top: 0;
+    }
+    .rider-info {
+        font-size: 0.8rem;
+    }
+    img {
+        width: 40px;
+        border-radius: 10px;
+    }
+    button {
+        background-color: #ffb21e;
+        color: white;
+        height: 25px;
+        width: 75px;
+    }
+    h2 {
+        font-size: 0.9rem;
+    }
+}

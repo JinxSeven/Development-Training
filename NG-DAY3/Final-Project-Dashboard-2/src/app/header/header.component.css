@@ -217,11 +217,35 @@
     align-items: center;
 }
 
-@media only screen and (max-width: 876px) {
+@media only screen and (max-width: 880px) {
     .open-for-orders i {
         display: block;
     }
     .open-for-orders p {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 880px) {
+    .top-block .search-bar input {
+        width: 4.5rem;
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .profile .profile-name {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .top-block .search-bar {
+        padding-left: 10px;
+    }
+    .top-block .search-bar {
+        padding-right: 8px;
+    }
+    .top-block .search-bar input {
         display: none;
     }
 }

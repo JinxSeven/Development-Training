@@ -64,6 +64,7 @@
 
 .main-content {
     display: grid;
+    justify-content: stretch;
     gap: 15px;
     grid-template-columns: 1.2fr 0.8fr;
     grid-template-areas:
@@ -78,27 +79,44 @@
     }
 }
 
-@media only screen and (min-width: 881px) and (max-width: 941px) {
-    .msg-cx-txt {
-        display: none;
+@media only screen and (min-width: 881px) and (max-width: 940px) {
+    .ord-info {
+        font-size: 0.95em;
     }
     .ord-info .msg-cx {
-        padding: 4px;
-        padding-bottom: 2px;
-        padding-right: 2px;
-        padding-left: 6px;
+        font-size: 0.5em;
     }
 }
 
 @media only screen and (max-width: 880px) {
     .main-content {
-        display: grid;
-        gap: 15px;
         grid-template-columns: 1fr;
         grid-template-areas:
             "ordInfo"
             "itemSummary"
             "cxOrdDtls"
             "sideContent";
+    }
+}
+
+@media only screen and (max-width: 560px) {
+    .ord-info {
+        font-size: 0.95em;
+    }
+    .ord-info .msg-cx {
+        font-size: 0.5em;
+    }
+}
+
+@media only screen and (max-width: 470px) {
+    .msg-cx-txt {
+        display: none;
+    }
+    .ord-info .msg-cx {
+        font-size: 0.6em;
+    }
+    .ord-info .msg-cx i {
+        margin: 0px;
+        margin-right: 1px;
     }
 }

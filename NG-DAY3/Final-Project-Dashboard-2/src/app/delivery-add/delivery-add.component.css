@@ -22,3 +22,17 @@
 .address span {
     font-weight: 500;
 }
+
+@media only screen and (max-width: 470px) {
+    .address p {
+        font-size: 0.7rem !important;
+        margin-left: 12px;
+    }
+    .address span {
+        font-size: 0.7rem !important;
+    }
+    .address {
+        margin-top: 15.8125px;
+        padding: 0;
+    }
+}
