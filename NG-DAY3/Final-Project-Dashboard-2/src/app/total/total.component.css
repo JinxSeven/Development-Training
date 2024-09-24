@@ -27,3 +27,10 @@ td {
     padding: 10px;
     padding-right: 85px;
 }
+
+@media only screen and (max-width: 320px) {
+    .total {
+        width: 91%;
+        overflow: hidden;
+    }
+}

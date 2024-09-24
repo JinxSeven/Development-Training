@@ -52,3 +52,12 @@ table:last-child {
         padding: 5px;
     }
 }
+
+@media only screen and (max-width: 320px) {
+    td {
+        padding: 5px;
+    }
+    table {
+        padding: 3px;
+    }
+}
