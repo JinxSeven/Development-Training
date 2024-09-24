@@ -28,7 +28,7 @@ td {
     padding-right: 85px;
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 370px) {
     .total {
         width: 91%;
         overflow: hidden;

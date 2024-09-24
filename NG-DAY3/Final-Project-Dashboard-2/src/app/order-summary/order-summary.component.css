@@ -62,7 +62,7 @@ table:last-child {
     }
 }
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 370px) {
     .ord-summary {
         width: 83%;
     }
