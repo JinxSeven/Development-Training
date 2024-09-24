@@ -1,0 +1,49 @@
+<div class="main">
+    <div class="login-container">
+        <div class="heading">
+            <h1 style="text-align: center; font-size: 34px">
+                Personal Budget Manager
+            </h1>
+            <h2>Sign In</h2>
+            <p>
+                New user?<span
+                    ><a href=""
+                        >Create an account</a
+                    ></span
+                >
+            </p>
+        </div>
+        <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+            <label class="email-lbl">Enter email address</label>
+            <input
+                id="email-inp"
+                type="email"
+                placeholder="Email Address"
+                required
+                name="email"
+                ngModel
+            />
+            <label class="pass-lbl">Enter your password</label>
+            <input
+                id="pass-inp"
+                placeholder="Password"
+                type="password"
+                required
+                name="password"
+                ngModel
+            />
+            <input id="sign-in-btn" type="submit" value="Sign In"/>
+        </form>
+        <div>
+            <p id="error-dsp">
+                @if (loginForm.controls['email'].touched && loginForm.controls['email'].invalid) {
+                    Invalid email!
+                } @else if (loginForm.controls['password'].touched && loginForm.controls['password'].invalid) {
+                    Invalid password!
+                } @else {
+                    ‎
+                }
+            </p>
+        </div>
+    </div>
+</div>
