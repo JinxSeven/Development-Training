@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'app-login-page',
@@ -10,13 +11,21 @@ import { FormsModule } from '@angular/forms';
     styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
+    errorText: string = "‎";
+
+    constructor (private userService: UserService) {}
+
     onLogin(loginForm: NgForm) {
-        console.log(loginForm);
-        if (
-            loginForm.controls['email'].touched &&
-            loginForm.controls['email'].invalid
-        ) {
-            console.log("Email is invalid but was touched");
+        const auth = this.userService.authenticateUserCreds(
+            loginForm.controls["email"].value,
+            loginForm.controls["password"].value
+        )
+        if (auth == 1) {
+            this.errorText = "Invalid email or password!";
+        } else if (auth == 0) {
+            alert("Login successfull!");
+        } else {
+            this.errorText = "Email not found!";
         }
     }
 }
