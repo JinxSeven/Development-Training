@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-login-page',
@@ -13,19 +14,26 @@ import { UserService } from '../services/user.service';
 export class LoginPageComponent {
     errorText: string = "‎";
 
-    constructor (private userService: UserService) {}
+    constructor (
+        private userService: UserService,
+        private route: Router
+    ) {}
 
     onLogin(loginForm: NgForm) {
         const auth = this.userService.authenticateUserCreds(
             loginForm.controls["email"].value,
             loginForm.controls["password"].value
         )
-        if (auth == 1) {
+        if (auth == -1) {
+            this.errorText = "Account not found!, Redirecting...";
+            setTimeout(() => {
+                this.route.navigate(["/register"]);
+            }, 2500);
+        } else if (auth == -2) {
             this.errorText = "Invalid email or password!";
-        } else if (auth == 0) {
-            alert("Login successfull!");
         } else {
-            this.errorText = "Email not found!";
+            this.userService.setLoggedIndx(auth.toString());
+            alert("Login successful!");
         }
     }
 }

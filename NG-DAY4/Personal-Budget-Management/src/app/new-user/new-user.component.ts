@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
+import { UserDash } from '../interfaces/user-dash';
 
 
 @Component({
@@ -30,9 +31,19 @@ export class NewUserComponent {
             email: regForm.controls['email'].value,
             password: regForm.controls['password'].value
         };
+
+        const userDashData = this.userService.getUserDashData();
+        const newUserDashData: UserDash = {
+            email: newUser.email,
+            income: 0,
+            expense: 0,
+            transactions: [],
+            goals: []
+        };
         userData.push(newUser);
-        console.log(userData);
-        console.log("test");
         this.userService.setUserLoginData(userData);
+        userDashData.push(newUserDashData);
+        this.userService.setUserDashData(userDashData);
+        regForm.reset();
     }
 }

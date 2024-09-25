@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
+import { UserDash } from '../interfaces/user-dash';
 
 @Injectable({
     providedIn: 'root',
@@ -15,14 +16,28 @@ export class UserService {
 
     setUserLoginData(updatedUserData: User[]) {
         localStorage.setItem("userLoginData", JSON.stringify(updatedUserData));
-        console.log(updatedUserData);
+    }
+
+    getUserDashData(): UserDash[] {
+        const userDashData = localStorage.getItem("userDashData");
+        return userDashData ? JSON.parse(userDashData) : [];
+    }
+
+    setUserDashData(updatedDashData: UserDash[]) {
+        localStorage.setItem("userDashData", JSON.stringify(updatedDashData));
+    }
+
+    getLoggedIndx(): string {
+        const indx = sessionStorage.getItem("loggedIndex");
+        return indx ? indx : "-1";
+    }
+
+    setLoggedIndx(indx: string) {
+        sessionStorage.setItem("loggedIndex", JSON.stringify(indx));
     }
 
     authenticateUserCreds(userEmail: string, userPass: string): number {
         const userData = this.getUserLoginData();
-        console.log(userData);
-        console.log(userEmail);
-        console.log(userPass);
         let indx: number = -1;
         for (let x = 0; x < userData.length; x++) {
             console.log(userData[x].email);
@@ -33,8 +48,8 @@ export class UserService {
         }
         if (indx < 0) return indx;
         if (userData[indx].password == userPass) {
-            return 0;
+            return indx;
         }
-        return 1;
+        return -2;
     }
 }
