@@ -17,6 +17,47 @@
         </div>
     </div>
     <div class="mid-section">
-        
+        <div class="mid-section-one">
+            <button id="new-goal-btn">
+                <div><i class="fa-solid fa-bullseye fa-2xl"></i></div>
+                <label>+ Saving Goal</label>
+            </button>
+            <button id="new-transaction-btn">
+                <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
+                <label>+ Transaction</label>
+            </button>
+            <button id="dummy-btn">
+            </button>
+        </div>
+    </div>
+    <div class="overlay" id="overlay"></div>
+    <div class="new-goal-form-div" id="new-goal-popup">
+        <h2>New Goal</h2>
+        <button class="close-popup" id="close-goal-popup">&times;</button>
+        <form action="" id="new-goal-form" (ngSubmit)="addNewGoal(newGoalForm)" #newGoalForm="ngForm">
+            <label>Set goal name</label>
+            <input
+                placeholder="Goal name"
+                type="text"
+                id="new-goal-name-inp"
+                name="goalName"
+            />
+            <label>Set goal target</label>
+            <input
+                placeholder="Goal target"
+                type="text"
+                id="new-goal-trgt-inp"
+                name="goalTrgt"
+            />
+            <label>Add initial contribution (not mandatory)</label>
+            <input
+                placeholder="Initial contribution"
+                type="text"
+                id="new-goal-init-inp"
+                name="initFund"
+            />
+            <input id="save-goal-btn" type="submit" value="Save Goal">
+            <p class="popup-errors" id="new-goal-error">Input Probs</p>
+        </form>
     </div>
 </section>

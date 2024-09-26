@@ -1,7 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { UserDash } from '../../interfaces/user-dash';
-import { UserService } from '../../services/user.service';
-
 
 @Component({
     selector: 'app-header',
