@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
 import { UserDash } from '../interfaces/user-dash';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,15 +15,18 @@ import { UserDash } from '../interfaces/user-dash';
     styleUrl: './new-user.component.css',
 })
 export class NewUserComponent {
-    errorText: string = "‎";
+    errorOut: string = "‎";
 
-    constructor(private userService: UserService) {}
+    constructor(
+        private userService: UserService,
+        private route: Router
+    ) {}
 
     onRegister(regForm: NgForm) {
         const userData = this.userService.getUserLoginData();
         for (const user of userData) {
             if (user.email == regForm.controls['email'].value) {
-                this.errorText = "Email already in use!";
+                this.errorOut = "Email already in use!";
                 return;
             }
         }
@@ -35,6 +39,7 @@ export class NewUserComponent {
         const userDashData = this.userService.getUserDashData();
         const newUserDashData: UserDash = {
             email: newUser.email,
+            username: newUser.username,
             income: 0,
             expense: 0,
             transactions: [],
@@ -45,5 +50,9 @@ export class NewUserComponent {
         userDashData.push(newUserDashData);
         this.userService.setUserDashData(userDashData);
         regForm.reset();
+        this.errorOut = "Account created!, Redirecting...";
+        setTimeout(() => {
+            this.route.navigate(["/"]);
+        }, 2500);
     }
 }

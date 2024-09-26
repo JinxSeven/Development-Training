@@ -39,21 +39,21 @@
         <div>
             <p id="error-dsp">
                 @if (
-                    loginForm.controls['email'].touched &&
-                    loginForm.controls['email'].errors?.['required']
+                    loginForm.form.get('email')?.touched &&
+                    loginForm.form.get('email')?.errors?.['required']
                 ) {
                     Email can't be empty!
-                } @else if (loginForm.controls['email'].errors?.['pattern']) {
+                } @else if (loginForm.form.get('email')?.errors?.['pattern']) {
                     Email isn't valid!
                 } @else if (
-                    loginForm.controls['password'].touched &&
-                    loginForm.controls['password'].errors?.['required']
+                    loginForm.form.get('password')?.touched &&
+                    loginForm.form.get('password')?.errors?.['required']
                 ) {
                     Password can't be empty!
-                } @else if (loginForm.controls['password'].errors?.['minlength'] && loginForm.controls['password'].dirty) {
+                } @else if (loginForm.form.get('password')?.errors?.['minlength'] && loginForm.form.get('password')?.dirty) {
                     Password < than 8 characters!
-                }  @else {
-                    {{errorText}}
+                } @else {
+                    {{errorOut}}
                 }
             </p>
         </div>

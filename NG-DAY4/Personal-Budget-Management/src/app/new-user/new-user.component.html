@@ -51,36 +51,35 @@
         </form>
         <p id="error-dsp">
             @if (
-                regForm.controls['username'].touched &&
-                regForm.controls['username'].errors?.['required']
-                ) {
+                regForm.form.get('username')?.touched &&
+                regForm.form.get('username')?.errors?.['required']
+            ) {
                 Username can't be empty!
             } @else if (
-                regForm.controls['email'].touched &&
-                regForm.controls['email'].errors?.['required']
-                ) {
+                regForm.form.get('email')?.touched &&
+                regForm.form.get('email')?.errors?.['required']
+            ) {
                 Email can't be empty!
-            } @else if (regForm.controls['email'].errors?.['pattern']) {
+            } @else if (regForm.form.get('email')?.errors?.['pattern']) {
                 Email isn't valid!
             } @else if (
-                regForm.controls['password'].touched &&
-                regForm.controls['password'].errors?.['required']
-                ) {
+                regForm.form.get('password')?.touched &&
+                regForm.form.get('password')?.errors?.['required']
+            ) {
                 Password can't be empty!
-            } @else if (regForm.controls['password'].errors?.['minlength'] && regForm.controls['password'].dirty) {
+            } @else if (regForm.form.get('password')?.errors?.['minlength'] && regForm.form.get('password')?.dirty) {
                 Password < than 8 characters!
             } @else if (
-                regForm.controls['cnfmpass'].touched &&
-                regForm.controls['cnfmpass'].errors?.['required']
-                ) {
+                regForm.form.get('cnfmpass')?.touched &&
+                regForm.form.get('cnfmpass')?.errors?.['required']
+            ) {
                 Confirm password can't be empty!
             } @else if (
-                regForm.controls['cnfmpass'].value !=
-                regForm.controls['password'].value
-                ) {
-                Confirm password does'nt match!
+                regForm.form.get('cnfmpass')?.value != regForm.form.get('password')?.value
+            ) {
+                Confirm password doesn't match!
             } @else {
-                {{errorText}}
+                {{errorOut}}
             }
         </p>
     </div>

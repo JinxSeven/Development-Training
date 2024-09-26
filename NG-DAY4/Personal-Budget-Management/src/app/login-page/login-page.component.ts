@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
     styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
-    errorText: string = "‎";
+    errorOut: string = "‎";
 
     constructor (
         private userService: UserService,
@@ -24,16 +24,17 @@ export class LoginPageComponent {
             loginForm.controls["email"].value,
             loginForm.controls["password"].value
         )
-        if (auth == -1) {
-            this.errorText = "Account not found!, Redirecting...";
+        if (auth == -404) {
+            this.errorOut = "Account not found!, Redirecting...";
             setTimeout(() => {
                 this.route.navigate(["/register"]);
             }, 2500);
-        } else if (auth == -2) {
-            this.errorText = "Invalid email or password!";
+        } else if (auth == -400) {
+            this.errorOut = "Invalid email or password!";
         } else {
-            this.userService.setLoggedIndx(auth.toString());
+            this.userService.setLoggedIndx(auth);
             alert("Login successful!");
+            this.route.navigate(["/dashboard"]);
         }
     }
 }

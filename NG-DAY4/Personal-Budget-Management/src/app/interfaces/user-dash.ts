@@ -1,5 +1,6 @@
 export interface UserDash {
     email: string;
+    username: string;
     income: number;
     expense: number;
     transactions: Transaction[];
