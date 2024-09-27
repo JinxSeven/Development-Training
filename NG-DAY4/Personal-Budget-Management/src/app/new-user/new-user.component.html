@@ -46,7 +46,7 @@
             </div>
             <input id="sign-up-btn" type="submit" value="Sign Up"
                 [disabled]="(regForm.invalid ||
-                (regForm.controls['cnfmpass'].value !== regForm.controls['password'].value))"
+                (regForm.form.get('cnfmpass')?.value !== regForm.form.get('password')?.value))"
                 />
         </form>
         <p id="error-dsp">

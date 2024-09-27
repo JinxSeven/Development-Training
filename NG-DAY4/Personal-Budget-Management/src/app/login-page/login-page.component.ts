@@ -28,7 +28,7 @@ export class LoginPageComponent {
             this.errorOut = "Account not found!, Redirecting...";
             setTimeout(() => {
                 this.route.navigate(["/register"]);
-            }, 2500);
+            }, 1500);
         } else if (auth == -400) {
             this.errorOut = "Invalid email or password!";
         } else {

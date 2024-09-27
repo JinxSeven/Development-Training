@@ -53,6 +53,6 @@ export class NewUserComponent {
         this.errorOut = "Account created!, Redirecting...";
         setTimeout(() => {
             this.route.navigate(["/"]);
-        }, 2500);
+        }, 1500);
     }
 }

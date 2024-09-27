@@ -1,16 +1,26 @@
 <aside class="aside">
     <div class="saving-goals-div">
         <h4>Saving Goals:</h4>
-        <div
-            id="zero-goals-div"
-            style="
-                display: flex;
-                justify-content: space-evenly;
-                align-items: center;
-            "
-            class="goals-div"
-        >
-            <h3 style="color: #b3b2b2;">No goals to see here</h3>
-        </div>
+        @for (goal of loggedUserDashData.goals; track $index) {
+            <div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                <p>{{goal.name}}</p>
+                <progress style="height:30px;width: 20%;" class="goal-prog-bar" value="{{goal.contribution}}" max="{{goal.target}}"></progress>
+                <p id="progressPercentage">{{(goal.contribution/goal.target)*100}}%</p>
+                <button id="{{$index}}" class="goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
+                <button id="{{$index}}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
+            </div>
+        } @empty {
+            <div
+                id="zero-goals-div"
+                style="
+                    display: flex;
+                    justify-content: space-evenly;
+                    align-items: center;
+                "
+                class="goals-div"
+            >
+                <h3 style="color: #b3b2b2;">No goals to see here</h3>
+            </div>
+        }
     </div>
 </aside>
