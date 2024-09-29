@@ -53,7 +53,7 @@
             <label>Set goal target</label>
             <input
                 placeholder="Goal target"
-                type="text"
+                type="number"
                 id="new-goal-trgt-inp"
                 name="goalTrgt"
                 pattern="[0-9]+"
@@ -64,7 +64,7 @@
             <label>Add initial contribution (not mandatory)</label>
             <input
                 placeholder="Initial contribution"
-                type="text"
+                type="number"
                 id="new-goal-init-inp"
                 ngModel
                 name="initFund"
@@ -74,7 +74,7 @@
             <input id="save-goal-btn" type="submit" value="Save Goal"
                 [disabled]="(newGoalForm.invalid || (newGoalForm.form.get('initFund')?.touched &&
                 ((loggedUserDashData.income - loggedUserDashData.expense < newGoalForm.form.get('initFund')?.value)) ||
-                (newGoalForm.form.get('initFund')?.value > newGoalForm.form.get('goalTrgt')?.value)))"
+                (newGoalForm.form.get('initFund')?.value > newGoalForm.form.get('goalTrgt')?.value)) || (checkDuplicateGoals(newGoalForm)))"
             >
             <p class="popup-errors" id="new-goal-error">
                 @if (
@@ -117,12 +117,21 @@
     </div>
     <div class="transaction-form-div" id="new-transaction-popup" #newTransactPopup>
         <h2>New Transaction</h2>
-        <button class="close-popup" id="close-transaction-popup">
+        <button class="close-popup" id="close-transaction-popup"
+        (click)="closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup)"
+        >
             &times;
         </button>
-        <form action="" id="new-transaction-form">
+        <form action="" id="new-transaction-form" #newTransactForm="ngForm"
+            (submit)="addNewTransaction(newTransactForm, overlay, newTransactPopup)"
+        >
             <label>Select transaction type</label>
-            <select id="new-transaction-type-select">
+            <select id="new-transaction-type-select"
+                (change)="loadAptCategories(newTransactForm)"
+                name="transactTypeSel"
+                required
+                ngModel
+            >
                 <option
                     style="font-weight: 600; font-size: 17px"
                     value="expense"
@@ -141,23 +150,64 @@
                 placeholder="Transaction amount"
                 type="text"
                 id="new-transaction-amt-inp"
+                name="transactAmt"
+                ngModel
+                required
+                pattern="[0-9]+"
+                min="1"
             />
             <label>Select transaction date</label>
-            <input type="date" id="new-transaction-date-inp" />
+            <input type="date" id="new-transaction-date-inp" name="transactDate" ngModel required/>
             <label>Select transaction source/purpose</label>
-            <!-- <select id="new-transaction-purpose-select">
-                @for (option of type; track option) {
+            <select id="new-transaction-purpose-select" name="transactCateg" ngModel required>
+                @for (option of arrOfOptions; track option) {
                     <option
                         style="font-weight: 600; font-size: 17px"
-                        value="entertainment"
+                        value="{{option}}"
                     >
-                        Entertainment
+                        {{option}}
                     </option>
                 }
-            </select> -->
-            <input id="save-transaction-btn" value="Save Transaction" type="submit">
+            </select>
+            <input id="save-transaction-btn" value="Save Transaction" type="submit"
+                [disabled]="newTransactForm.invalid"
+            >
             <span class="popup-errors" id="new-transact-error">
-                {{errorOut}}
+                @if (
+                    newTransactForm.form.get("transactTypeSel")?.touched &&
+                    newTransactForm.form.get("transactTypeSel")?.value == ""
+                ) {
+                    Transaction type can't be empty!
+                } @else if (
+                    newTransactForm.form.get("transactAmt")?.touched &&
+                    newTransactForm.form.get("transactAmt")?.errors?.['required']
+                ) {
+                    Transaction amount can't be empty!
+                } @else if (
+                    newTransactForm.form.get("transactAmt")?.touched &&
+                    (newTransactForm.form.get("transactAmt")?.errors?.['pattern'] ||
+                    newTransactForm.form.get("transactAmt")?.errors?.['min'])
+                ) {
+                    Transaction can only be a +ve number!
+                } @else if (
+                    newTransactForm.form.get("transactAmt")?.touched &&
+                    (newTransactForm.form.get("transactTypeSel")?.value == "expense" &&
+                    (newTransactForm.form.get("transactAmt")?.value > (loggedUserDashData.income - loggedUserDashData.expense)))
+                ) {
+                    Expense can't exceed balance!
+                } @else if (
+                    newTransactForm.form.get("transactDate")?.touched &&
+                    newTransactForm.form.get("transactDate")?.errors?.['required']
+                ) {
+                    A valid date must be selected!
+                } @else if (
+                    newTransactForm.form.get("transactCateg")?.touched &&
+                    newTransactForm.form.get("transactCateg")?.value == ""
+                ) {
+                    Transaction category can't be empty!
+                } @else {
+                    {{errorOut}}
+                }
             </span>
         </form>
     </div>

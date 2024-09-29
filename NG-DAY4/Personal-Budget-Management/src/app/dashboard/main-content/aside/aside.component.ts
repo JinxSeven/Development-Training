@@ -24,9 +24,6 @@ export class AsideComponent {
     }
 
     ngDoCheck() {
-        if (this.goalService.goalUpdate) {
-            this.updateDashBoardData();
-            this.goalService.goalUpdate = false;
-        }
+        this.updateDashBoardData();
     }
 }

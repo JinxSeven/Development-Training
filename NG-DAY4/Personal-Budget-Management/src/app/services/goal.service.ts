@@ -7,14 +7,13 @@ import { UserService } from './user.service';
     providedIn: 'root',
 })
 export class GoalService {
-    goalUpdate: boolean = false;
-
-    userDashData!: UserDash[];
-    loggedIndx!: number;
     userService = inject(UserService);
-    loggedUserDashData!: UserDash;
 
-    constructor() {
+    userDashData: UserDash[] = this.userService.getUserDashData();
+    loggedIndx: number = this.userService.getLoggedIndx();
+    loggedUserDashData: UserDash = this.userDashData[this.loggedIndx];
+
+    updateDashBoardData() {
         this.userDashData = this.userService.getUserDashData();
         this.loggedIndx = this.userService.getLoggedIndx();
         this.loggedUserDashData = this.userDashData[this.loggedIndx];
@@ -39,10 +38,12 @@ export class GoalService {
         overlay: HTMLDivElement,
         newGoalPopup: HTMLDivElement
     ) {
+        this.updateDashBoardData();
+        console.log(this.loggedUserDashData.income);
         const newGoal: Goal = {
             name: newGoalForm.form.get("goalName")?.value,
-            target: newGoalForm.form.get("goalTrgt")?.value,
-            contribution: newGoalForm.form.get("initFund")?.value
+            target: parseInt(newGoalForm.form.get("goalTrgt")?.value),
+            contribution: parseInt(newGoalForm.form.get("initFund")?.value)
         }
         if (newGoal.contribution > 0) {
             const date2Day = new Date().toISOString().split('T')[0];
@@ -53,12 +54,14 @@ export class GoalService {
                 category: "savings"
             }
             this.loggedUserDashData.transactions.push(newTransaction);
+            if (newTransaction.type === "expense") {
+                this.loggedUserDashData.expense += newTransaction.amount;
+            }
         }
         this.loggedUserDashData.goals.push(newGoal);
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
         this.closeNewGoalPopup(newGoalForm, overlay, newGoalPopup);
-        this.goalUpdate = !this.goalUpdate;
     }
 
     closeNewGoalPopup(

@@ -97,6 +97,7 @@
     font-size: 16px;
     background-color: #3b3b3b;
     color: #f0f0f0;
+    color-scheme: dark;
 }
 
 .overlay {
@@ -203,6 +204,7 @@
     cursor: pointer;
     width: 100%;
     margin-bottom: 1rem;
+    border: none;
     padding: 0.5rem;
     border-radius: 5px;
     font-size: 16px;
@@ -213,12 +215,19 @@
     background-color: #0056b3;
 }
 
+.section .transaction-form-div #new-transaction-form input[type="submit"]:disabled {
+    color: #696969;
+    background-color: #00264e;
+    cursor: default;
+}
+
 .section .transaction-form-div #new-transaction-form input {
     margin-bottom: 0.5rem;
     padding: 0.5rem;
     border: 1px solid #444444;
     border-radius: 5px;
     font-size: 16px;
+    color-scheme: dark;
     background-color: #3b3b3b;
     color: #f0f0f0;
 }
@@ -235,4 +244,8 @@
 
 .section .transaction-form-div #new-transaction-form label {
     margin: 10px 0;
+}
+
+.section .transaction-form-div #new-transaction-form input.ng-invalid.ng-touched {
+    border-color: #ff2121;
 }

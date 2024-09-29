@@ -15,13 +15,27 @@ import { TransactionService } from '../../../services/transaction.service';
     styleUrl: './section.component.css',
 })
 export class SectionComponent {
-    errorOut: string = "‎";
     userService = inject(UserService);
     goalService = inject(GoalService);
+    transactService = inject(TransactionService);
+    // selector: string = "expense";
+
     userDashData: UserDash[] = this.userService.getUserDashData();
     loggedIndx: number = this.userService.getLoggedIndx();
     loggedUserDashData: UserDash = this.userDashData[this.loggedIndx];
-    transactService = inject(TransactionService);
+
+    errorOut: string = "‎";
+    arrOfOptions: string[] = this.transactService.returnAptCategories("expense");
+
+    updateDashBoardData() {
+        this.userDashData = this.userService.getUserDashData();
+        this.loggedIndx = this.userService.getLoggedIndx();
+        this.loggedUserDashData = this.userDashData[this.loggedIndx];
+    }
+
+    ngDoCheck() {
+        this.updateDashBoardData();
+    }
 
     addNewGoal(
         newGoalForm: NgForm,
@@ -50,5 +64,32 @@ export class SectionComponent {
 
     openNewTransactPopup(overlay: HTMLDivElement, newTransactPopup: HTMLDivElement) {
         this.transactService.openNewTransactPopup(overlay, newTransactPopup);
+    }
+
+    loadAptCategories(newTransactForm: NgForm) {
+        if (newTransactForm.form.get('transactTypeSel')?.value == "income") {
+            this.arrOfOptions = this.transactService.returnAptCategories("income");
+            console.log("income");
+        } else {
+            this.arrOfOptions = this.transactService.returnAptCategories("expense");
+            console.log(this.arrOfOptions);
+        }
+    }
+
+    addNewTransaction(
+        newTransactForm: NgForm,
+        overlay: HTMLDivElement,
+        newTransactPopup: HTMLDivElement
+    ) {
+        console.log("newTransactAdded");
+        this.transactService.addNewTransaction(newTransactForm, overlay, newTransactPopup);
+    }
+
+    closeTransactGoalPopup(
+        newTransactForm: NgForm,
+        overlay: HTMLDivElement,
+        newTransactPopup: HTMLDivElement
+    ) {
+        this.transactService.closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup);
     }
 }
