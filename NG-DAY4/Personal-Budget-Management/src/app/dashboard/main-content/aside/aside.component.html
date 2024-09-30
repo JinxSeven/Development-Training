@@ -6,7 +6,12 @@
                 <p>{{goal.name}}</p>
                 <progress style="height:30px;width: 20%;" class="goal-prog-bar" value="{{goal.contribution}}" max="{{goal.target}}"></progress>
                 <p id="progressPercentage">{{((goal.contribution/goal.target)*100).toFixed(1)}}%</p>
-                <button id="{{$index}}" class="goal-fund-btn"><i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i></button>
+                <button id="{{$index}}"
+                    class="goal-fund-btn"
+                    (click)="openEditGoal($index, overlay, editGoalPopup)"
+                >
+                    <i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i>
+                </button>
                 <button id="{{$index}}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
             </div>
         } @empty {
@@ -22,5 +27,54 @@
                 <h3 style="color: #b3b2b2;">No goals to see here</h3>
             </div>
         }
+        <div class="overlay" id="overlay" #overlay></div>
+        <div class="goal-form-div" id="edit-goal-popup" #editGoalPopup>
+            <h2>{{editPopupGoalName}}</h2>
+            <button class="close-popup" id="close-goal-popup" (click)="closeGoalPopup(editGoalForm, overlay, editGoalPopup)">&times;</button>
+            <form action="" id="edit-goal-form"
+                (ngSubmit)="updateGoal(editGoalForm, overlay, editGoalPopup)"
+                #editGoalForm="ngForm"
+                >
+                <h4 style="font-weight: 500;" id="funds-on-goal">Contribution Status: {{editPopupGoalFund}} / {{editPopupGoalTrgt}}</h4>
+                <label>Add Contribution amount</label>
+                <input
+                    placeholder="Contribution amount"
+                    id="fund-goal-inp"
+                    type="number"
+                    ngModel
+                    name="fundGoal"
+                    pattern="[0-9]+"
+                    required
+                    min="1"
+                    max="{{editPopupGoalBlnc}}"
+                />
+                <input id="save-goal-btn" type="submit" value="Contribute Goal"
+                    [disabled]="(editGoalForm.invalid)"
+                >
+                <p class="popup-errors" id="new-goal-error">
+                    @if (
+                        editGoalForm.form.get('fundGoal')?.touched &&
+                        (editGoalForm.form.get('fundGoal')?.value == "" ||
+                        editGoalForm.form.get('fundGoal')?.value == null)
+                    ) {
+                        Contribution can't be empty!
+                    } @else if (
+                        editGoalForm.form.get('fundGoal')?.dirty && ((editGoalForm.form.get('fundGoal')?.value >
+                        (loggedUserDashData.income - loggedUserDashData.expense)) ||
+                        (editGoalForm.form.get('fundGoal')?.errors?.['max']))
+                    ) {
+                        contribution can't exceed balance | target!
+                    } @else if (
+                        editGoalForm.form.get('fundGoal')?.dirty &&
+                        editGoalForm.form.get('fundGoal')?.errors?.['pattern'] ||
+                        editGoalForm.form.get('fundGoal')?.errors?.['min']
+                    ) {
+                        Contribution must be greater than 0!
+                    } @else {
+                        {{errorOut}}
+                    }
+                </p>
+            </form>
+        </div>
     </div>
 </aside>

@@ -43,7 +43,7 @@
 }
 
 .section .mid-section .mid-section-one {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     display: grid;
     gap: 10px;
 }
@@ -52,6 +52,7 @@
     margin: 15px;
 }
 
+#dummy-btn,
 #new-goal-btn,
 #new-transaction-btn {
     width: 100%;
@@ -69,14 +70,14 @@
 }
 
 .section .mid-section .mid-section-one #new-goal-btn:hover,
-#new-bill-btn:hover,
+#dummy-btn:hover,
 #new-transaction-btn:hover {
     cursor: cell;
     background-color: #3f3f3f;
 }
 
 .section .mid-section .mid-section-one #new-goal-btn:active,
-#new-bill-btn:active,
+#dummy-btn:active,
 #new-transaction-btn:active {
     cursor: crosshair;
 }
@@ -246,6 +247,7 @@
     margin: 10px 0;
 }
 
-.section .transaction-form-div #new-transaction-form input.ng-invalid.ng-touched {
+.section .transaction-form-div #new-transaction-form input.ng-invalid.ng-touched,
+.section .transaction-form-div #new-transaction-form select.ng-invalid.ng-touched {
     border-color: #ff2121;
 }

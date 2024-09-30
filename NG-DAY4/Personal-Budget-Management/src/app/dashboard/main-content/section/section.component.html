@@ -28,6 +28,7 @@
                 <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
                 <label>+ Transaction</label>
             </button>
+            <button id="dummy-btn"></button>
         </div>
     </div>
     <div class="overlay" id="overlay" #overlay></div>
@@ -175,7 +176,8 @@
             <span class="popup-errors" id="new-transact-error">
                 @if (
                     newTransactForm.form.get("transactTypeSel")?.touched &&
-                    newTransactForm.form.get("transactTypeSel")?.value == ""
+                    (newTransactForm.form.get("transactTypeSel")?.value == "" ||
+                    newTransactForm.form.get("transactTypeSel")?.value == null)
                 ) {
                     Transaction type can't be empty!
                 } @else if (
@@ -202,7 +204,8 @@
                     A valid date must be selected!
                 } @else if (
                     newTransactForm.form.get("transactCateg")?.touched &&
-                    newTransactForm.form.get("transactCateg")?.value == ""
+                    (newTransactForm.form.get("transactTypeSel")?.value == "" ||
+                    newTransactForm.form.get("transactTypeSel")?.value == null)
                 ) {
                     Transaction category can't be empty!
                 } @else {

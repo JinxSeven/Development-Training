@@ -46,7 +46,7 @@ export class SectionComponent {
     }
 
     openNewGoalPopup(overlay: HTMLDivElement, newGoalPopup: HTMLDivElement) {
-        this.goalService.openNewGoalPopup(overlay, newGoalPopup);
+        this.goalService.openGoalPopup(overlay, newGoalPopup);
     }
 
     checkDuplicateGoals(newGoalForm: NgForm): boolean {
@@ -59,7 +59,7 @@ export class SectionComponent {
         overlay: HTMLDivElement,
         newGoalPopup: HTMLDivElement
     ) {
-        this.goalService.closeNewGoalPopup(newGoalForm, overlay, newGoalPopup);
+        this.goalService.closeGoalPopup(newGoalForm, overlay, newGoalPopup);
     }
 
     openNewTransactPopup(overlay: HTMLDivElement, newTransactPopup: HTMLDivElement) {

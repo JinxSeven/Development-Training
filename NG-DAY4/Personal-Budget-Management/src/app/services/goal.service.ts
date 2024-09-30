@@ -19,9 +19,9 @@ export class GoalService {
         this.loggedUserDashData = this.userDashData[this.loggedIndx];
     }
 
-    openNewGoalPopup(overlay: HTMLDivElement, newGoalPopup: HTMLDivElement) {
+    openGoalPopup(overlay: HTMLDivElement, goalPopup: HTMLDivElement) {
         overlay.style.display = "block";
-        newGoalPopup.style.display = "block";
+        goalPopup.style.display = "block";
     }
 
     checkDuplicateGoals(newGoalForm: NgForm): boolean {
@@ -54,23 +54,43 @@ export class GoalService {
                 category: "savings"
             }
             this.loggedUserDashData.transactions.push(newTransaction);
-            if (newTransaction.type === "expense") {
-                this.loggedUserDashData.expense += newTransaction.amount;
-            }
+            this.loggedUserDashData.expense += newTransaction.amount;
         }
         this.loggedUserDashData.goals.push(newGoal);
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
-        this.closeNewGoalPopup(newGoalForm, overlay, newGoalPopup);
+        this.closeGoalPopup(newGoalForm, overlay, newGoalPopup);
     }
 
-    closeNewGoalPopup(
-        newGoalForm: NgForm,
+    updateGoal(
+        editGoalForm: NgForm,
         overlay: HTMLDivElement,
-        newGoalPopup: HTMLDivElement
+        editGoalPopup: HTMLDivElement,
+        indx: number
     ) {
-        newGoalForm.reset();
+        this.updateDashBoardData();
+        const date2Day = new Date().toISOString().split('T')[0];
+        const newTransaction: Transaction = {
+            type: "expense",
+            amount: parseInt(editGoalForm.form.get('fundGoal')?.value),
+            date: date2Day,
+            category: "savings"
+        }
+        this.loggedUserDashData.transactions.push(newTransaction);
+        this.loggedUserDashData.expense += newTransaction.amount;
+        this.loggedUserDashData.goals[indx].contribution += newTransaction.amount;
+        this.userDashData[this.loggedIndx] = this.loggedUserDashData;
+        this.userService.setUserDashData(this.userDashData);
+        this.closeGoalPopup(editGoalForm, overlay, editGoalPopup);
+    }
+
+    closeGoalPopup(
+        goalForm: NgForm,
+        overlay: HTMLDivElement,
+        goalPopup: HTMLDivElement
+    ) {
+        goalForm.reset();
         overlay.style.display = "none";
-        newGoalPopup.style.display = "none";
+        goalPopup.style.display = "none";
     }
 }
