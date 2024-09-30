@@ -45,12 +45,15 @@ export class AsideComponent {
     openEditGoal(
         indx: number,
         overlay: HTMLDivElement,
-        editGoalPopup: HTMLDivElement
+        editGoalPopup: HTMLDivElement,
+        editGoalForm: NgForm
     ) {
         const goalToFund = this.loggedUserDashData.goals[indx];
         this.editPopupGoalIndx = indx;
         this.editPopupGoalName = goalToFund.name;
         this.editPopupGoalTrgt = goalToFund.target;
+        editGoalForm.controls['modGoalName'].setValue(goalToFund.name);
+        editGoalForm.controls['modGoalTrgt'].setValue(goalToFund.target);
         if (!goalToFund.contribution) this.editPopupGoalFund = 0;
         else this.editPopupGoalFund = goalToFund.contribution;
         this.editPopupGoalBlnc = this.editPopupGoalTrgt - this.editPopupGoalFund;
@@ -63,7 +66,7 @@ export class AsideComponent {
         editGoalPopup: HTMLDivElement,
         goalCompPopup: HTMLDivElement
     ) {
-        if (this.goalService.updateGoal(editGoalForm, overlay, editGoalPopup, this.editPopupGoalIndx)){
+        if (this.goalService.updateGoal(editGoalForm, overlay, editGoalPopup, this.editPopupGoalIndx)) {
             overlay.style.display = "block";
             goalCompPopup.style.display = "block";
         }

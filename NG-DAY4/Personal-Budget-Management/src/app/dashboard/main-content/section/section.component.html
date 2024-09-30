@@ -31,8 +31,63 @@
             <button id="dummy-btn"></button>
         </div>
     </div>
-    <div>
-        <canvas id="expenseChart"></canvas>
+    <div class="mid-section-two">
+        <div class="category">
+            <div class="mid2-head-div">
+                <h3 id="visual-exp">Visualize expense by category</h3>
+                <button class="chart-reset-btn" id="chart-filter-reset"
+                    (click)="filterChartReset()"
+                >
+                    <i class="fa-solid fa-arrow-rotate-right"></i>
+                </button>
+            </div>
+            <div class="category-btns">
+                <button id="chart-filter-entertain"
+                    (click)="filterChartEntertain()"
+                >
+                    <div><i class="fa-solid fa-film fa-2xl"></i></div>
+                    <label>Entertainment</label>
+                </button>
+                <button id="chart-filter-health"
+                    (click)="filterChartHealth()"
+                >
+                    <div><i class="fa-solid fa-briefcase-medical fa-2xl"></i></div>
+                    <label>Health</label>
+                </button>
+                <button id="chart-filter-shopping"
+                    (click)="filterChartShopping()"
+                >
+                    <div><i class="fa-solid fa-bag-shopping fa-2xl"></i></div>
+                    <label>Shopping</label>
+                </button>
+                <button id="chart-filter-travel"
+                    (click)="filterChartTravel()"
+                >
+                    <div><i class="fa-solid fa-plane fa-2xl"></i></div>
+                    <label>Travel</label>
+                </button>
+                <button id="chart-filter-education"
+                    (click)="filterChartEducation()"
+                >
+                    <div><i class="fa-solid fa-graduation-cap fa-2xl"></i></div>
+                    <label>Education</label>
+                </button>
+                <button id="chart-filter-other"
+                    (click)="filterChartOther()"
+                >
+                    <div><i class="fa-solid fa-o fa-2xl"></i></div>
+                    <label>Other</label>
+                </button>
+            </div>
+        </div>
+        <div class="canvas-div">
+            <canvas
+                id="expense-chart"
+                style="display: grid"
+                aria-label="Visual your expense"
+                #expenceChart
+            ></canvas>
+        </div>
     </div>
     <div class="overlay" id="overlay" #overlay></div>
     <div class="goal-form-div" id="new-goal-popup" #newGoalPopup>

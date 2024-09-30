@@ -69,15 +69,25 @@ export class GoalService {
     ): boolean {
         this.updateDashBoardData();
         const date2Day = new Date().toISOString().split('T')[0];
-        const newTransaction: Transaction = {
-            type: "expense",
-            amount: parseInt(editGoalForm.form.get('fundGoal')?.value),
-            date: date2Day,
-            category: "savings"
+        const contribution = this.loggedUserDashData.goals[indx].contribution >
+        editGoalForm.form.get('fundGoal')?.value ? this.loggedUserDashData.goals[indx].contribution :
+        editGoalForm.form.get('fundGoal')?.value;
+        if (contribution == editGoalForm.form.get('fundGoal')?.value) {
+            const newTransaction: Transaction = {
+                type: "expense",
+                amount: parseInt(editGoalForm.form.get('fundGoal')?.value),
+                date: date2Day,
+                category: "savings"
+            }
+            this.loggedUserDashData.transactions.push(newTransaction);
+            this.loggedUserDashData.expense += newTransaction.amount;
         }
-        this.loggedUserDashData.transactions.push(newTransaction);
-        this.loggedUserDashData.expense += newTransaction.amount;
-        this.loggedUserDashData.goals[indx].contribution += newTransaction.amount;
+        const goalUpdate: Goal = {
+            name: editGoalForm.form.get('modGoalName')?.value,
+            contribution: parseInt(contribution),
+            target: editGoalForm.form.get('modGoalTrgt')?.value
+        }
+        this.loggedUserDashData.goals[indx] = goalUpdate;
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
         this.closeGoalPopup(editGoalForm, overlay, editGoalPopup);
@@ -89,7 +99,7 @@ export class GoalService {
             return true;
         }
         return false;
-    }
+        }
 
     closeGoalPopup(
         goalForm: NgForm,

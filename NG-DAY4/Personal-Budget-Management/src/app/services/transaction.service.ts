@@ -7,6 +7,8 @@ import { NgForm } from '@angular/forms';
     providedIn: 'root',
 })
 export class TransactionService {
+    addedNewTransact: boolean = false;
+
     userService = inject(UserService);
 
     userDashData: UserDash[] = this.userService.getUserDashData();
@@ -77,5 +79,6 @@ export class TransactionService {
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
         this.closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup);
+        this.addedNewTransact = true;
     }
 }

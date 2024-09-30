@@ -1,4 +1,4 @@
-import { Component, inject, numberAttribute } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { UserDash } from '../../../interfaces/user-dash';
@@ -26,7 +26,9 @@ export class SectionComponent {
 
     errorOut: string = "‎";
     arrOfOptions: string[] = this.transactService.returnAptCategories("expense");
-    chartData: number[] = this.updateExpenseChartData();
+    expenseChart: Chart | null = null;
+
+    constructor() {}
 
     updateDashBoardData() {
         this.userDashData = this.userService.getUserDashData();
@@ -38,6 +40,10 @@ export class SectionComponent {
         this.updateDashBoardData();
         this.transactService.updateDashBoardData();
         this.goalService.updateDashBoardData();
+        if (this.transactService.addedNewTransact) {
+            this.updateChart();
+            this.transactService.addedNewTransact = false;
+        }
     }
 
     addNewGoal(
@@ -97,74 +103,133 @@ export class SectionComponent {
     }
 
     ngAfterViewInit() {
-        const chartx = document.getElementById('expenseChart') as HTMLCanvasElement;
+        const chartElement = document.getElementById('expense-chart') as HTMLCanvasElement;
+        if (!chartElement) return;
+        else this.initializeChart(chartElement);
+    }
 
-        new Chart(chartx, {
+    initializeChart(chartElement: HTMLCanvasElement) {
+        this.expenseChart = new Chart(chartElement, {
             type: 'bar',
             data: {
                 labels: [
-                    "Entertainment",
-                    "Health",
-                    "Shopping",
-                    "Travel",
-                    "Education",
-                    "Other"
+                "Entertainment",
+                "Health",
+                "Shopping",
+                "Travel",
+                "Education",
+                "Other"
                 ],
                 datasets: [{
-                    label: 'Expense',
-                    data: this.chartData,
-                    borderWidth: 1
-                }]
+                label: 'Expense',
+                data: this.updateExpenseChartData(),
+                backgroundColor: "#af92ff"
+            }]
             },
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                    beginAtZero: true
                     }
-                }
+                },
             }
         });
     }
 
-    updateExpenseChartData() {
-        const arrayOfTransactions = this.loggedUserDashData.transactions;
-        const expenses = arrayOfTransactions.filter((itr: any) => itr.type == "expense");
-        let temp = new Map();
+    updateExpenseChartData(): number[] {
+        const transactions = this.loggedUserDashData.transactions || [];
+        const expenses = transactions.filter((itr: any) => itr.type === "expense");
 
-        temp.set("Entertainment", 0);
-        temp.set("Health", 0);
-        temp.set("Shopping", 0);
-        temp.set("Travel", 0);
-        temp.set("Education", 0);
-        temp.set("Other", 0);
+        const categories = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+        const categoryMap = new Map(categories.map(categ => [categ, 0]));
 
-        for (let x = 0; x < expenses.length; x++) {
-            const purpose = expenses[x].category;
-            const amount = expenses[x].amount;
-
-            switch (purpose) {
-                case "entertainment":
-                    temp.set("Entertainment", temp.get("Entertainment")! + amount);
-                    break;
-                case "health":
-                    temp.set("Health", temp.get("Health")! + amount);
-                    break;
-                case "shopping":
-                    temp.set("Shopping", temp.get("Shopping")! + amount);
-                    break;
-                case "travel":
-                    temp.set("Travel", temp.get("Travel")! + amount);
-                    break;
-                case "education":
-                    temp.set("Education", temp.get("Education")! + amount);
-                    break;
-                case "other":
-                    temp.set("Other", temp.get("Other")! + amount);
-                    break;
-                default:
-                    break;
+        expenses.forEach(expense => {
+            const category = this.getCategoryFromPurpose(expense.category);
+            if (category) {
+                categoryMap.set(category, (categoryMap.get(category) || 0) + expense.amount);
             }
-        }
-        return Array.from(temp.values());
+        });
+
+        return Array.from(categoryMap.values());
     }
+
+    getCategoryFromPurpose(purpose: string): string | null {
+        const categories = [
+            { purpose: 'entertainment', category: 'Entertainment' },
+            { purpose: 'health', category: 'Health' },
+            { purpose: 'shopping', category: 'Shopping' },
+            { purpose: 'travel', category: 'Travel' },
+            { purpose: 'education', category: 'Education' },
+            { purpose: 'other', category: 'Other' }
+        ];
+
+        const matchingCategory = categories.find(categ => categ.purpose.toLowerCase() === purpose.toLowerCase());
+        return matchingCategory ? matchingCategory.category : null;
+    }
+
+    updateChart() {
+        if (this.expenseChart) {
+            this.expenseChart.data.datasets.forEach((dataset: any) => {
+                dataset.data = this.updateExpenseChartData();
+            });
+            this.expenseChart.update();
+        }
+    }
+
+    filterChartReset() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = exp;
+        this.expenseChart!.update();
+    }
+
+    filterChartEntertain() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Entertainment"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[0]];
+        this.expenseChart!.update();
+    }
+
+    filterChartHealth() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Health"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[1]];
+        this.expenseChart!.update();
+    }
+
+    filterChartShopping() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Shopping"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[2]];
+        this.expenseChart!.update();
+    }
+
+    filterChartTravel() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Travel"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[3]];
+        this.expenseChart!.update();
+    }
+
+    filterChartEducation() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Education"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[4]];
+        this.expenseChart!.update();
+    }
+
+    filterChartOther() {
+        const exp = this.updateExpenseChartData();
+        const expname = ["Other"];
+        this.expenseChart!.data.labels = expname;
+        this.expenseChart!.config.data.datasets[0].data = [exp[5]];
+        this.expenseChart!.update();
+    }
+
 }
