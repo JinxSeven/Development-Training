@@ -39,7 +39,6 @@ export class GoalService {
         newGoalPopup: HTMLDivElement
     ) {
         this.updateDashBoardData();
-        console.log(this.loggedUserDashData.income);
         const newGoal: Goal = {
             name: newGoalForm.form.get("goalName")?.value,
             target: parseInt(newGoalForm.form.get("goalTrgt")?.value),
@@ -67,7 +66,7 @@ export class GoalService {
         overlay: HTMLDivElement,
         editGoalPopup: HTMLDivElement,
         indx: number
-    ) {
+    ): boolean {
         this.updateDashBoardData();
         const date2Day = new Date().toISOString().split('T')[0];
         const newTransaction: Transaction = {
@@ -82,6 +81,14 @@ export class GoalService {
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
         this.closeGoalPopup(editGoalForm, overlay, editGoalPopup);
+        this.updateDashBoardData();
+        if (
+            this.loggedUserDashData.goals[indx].contribution ==
+            this.loggedUserDashData.goals[indx].target
+        ) {
+            return true;
+        }
+        return false;
     }
 
     closeGoalPopup(

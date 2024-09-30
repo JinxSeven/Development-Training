@@ -3,6 +3,8 @@ import { UserDash } from '../../../interfaces/user-dash';
 import { GoalService } from '../../../services/goal.service';
 import { UserService } from '../../../services/user.service';
 import { FormsModule, NgForm } from '@angular/forms';
+import { Block } from '@angular/compiler';
+import { TransactionService } from '../../../services/transaction.service';
 
 @Component({
     selector: 'app-aside',
@@ -16,6 +18,7 @@ export class AsideComponent {
 
     userService = inject(UserService);
     goalService = inject(GoalService);
+    transactService = inject(TransactionService);
 
     userDashData: UserDash[] = this.userService.getUserDashData();
     loggedIndx: number = this.userService.getLoggedIndx();
@@ -29,6 +32,8 @@ export class AsideComponent {
 
     ngDoCheck() {
         this.updateDashBoardData();
+        this.transactService.updateDashBoardData();
+        this.goalService.updateDashBoardData();
     }
 
     editPopupGoalIndx!: number;
@@ -55,9 +60,21 @@ export class AsideComponent {
     updateGoal(
         editGoalForm: NgForm,
         overlay: HTMLDivElement,
-        editGoalPopup: HTMLDivElement
+        editGoalPopup: HTMLDivElement,
+        goalCompPopup: HTMLDivElement
     ) {
-        this.goalService.updateGoal(editGoalForm, overlay, editGoalPopup, this.editPopupGoalIndx);
+        if (this.goalService.updateGoal(editGoalForm, overlay, editGoalPopup, this.editPopupGoalIndx)){
+            overlay.style.display = "block";
+            goalCompPopup.style.display = "block";
+        }
+    }
+
+    deleteGoal(indx: number) {
+        const amountToAdd = this.loggedUserDashData.goals[indx].contribution;
+        this.loggedUserDashData.expense -= amountToAdd;
+        this.loggedUserDashData.goals.splice(indx, 1);
+        this.userDashData[this.loggedIndx] = this.loggedUserDashData;
+        this.userService.setUserDashData(this.userDashData);
     }
 
     closeGoalPopup(

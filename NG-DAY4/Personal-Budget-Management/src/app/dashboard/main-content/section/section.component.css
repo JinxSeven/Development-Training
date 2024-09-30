@@ -251,3 +251,7 @@
 .section .transaction-form-div #new-transaction-form select.ng-invalid.ng-touched {
     border-color: #ff2121;
 }
+
+canvas {
+    max-height: 400px;
+}

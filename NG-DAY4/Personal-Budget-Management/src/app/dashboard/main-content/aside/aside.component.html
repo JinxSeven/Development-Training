@@ -2,18 +2,38 @@
     <div class="saving-goals-div">
         <h4>Saving Goals:</h4>
         @for (goal of loggedUserDashData.goals; track $index) {
-            <div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
-                <p>{{goal.name}}</p>
-                <progress style="height:30px;width: 20%;" class="goal-prog-bar" value="{{goal.contribution}}" max="{{goal.target}}"></progress>
-                <p id="progressPercentage">{{((goal.contribution/goal.target)*100).toFixed(1)}}%</p>
-                <button id="{{$index}}"
-                    class="goal-fund-btn"
-                    (click)="openEditGoal($index, overlay, editGoalPopup)"
-                >
-                    <i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i>
-                </button>
-                <button id="{{$index}}" class="goal-del-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button>
-            </div>
+            @if (goal.contribution == goal.target) {
+                <div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                    <p>{{goal.name}}</p>
+                    <progress style="height:30px;width: 20%;" class="goal-prog-bar" value="{{goal.contribution}}" max="{{goal.target}}"></progress>
+                    <p id="progressPercentage">{{goal.target}}₹</p>
+                    <i id="goal-indicator" class="fa-solid fa-square-check"></i>
+                    <button id="{{$index}}"
+                        class="goal-del-btn"
+                        (click)="deleteGoal($index)"
+                    >
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                    </button>
+                </div>
+            } @else {
+                <div style="display: flex;justify-content: space-evenly; align-items: center;" class="goals-div">
+                    <p>{{goal.name}}</p>
+                    <progress style="height:30px;width: 20%;" class="goal-prog-bar" value="{{goal.contribution}}" max="{{goal.target}}"></progress>
+                    <p id="progressPercentage">{{((goal.contribution/goal.target)*100).toFixed(1)}}%</p>
+                    <button id="{{$index}}"
+                        class="goal-fund-btn"
+                        (click)="openEditGoal($index, overlay, editGoalPopup)"
+                    >
+                        <i class="fa-solid fa-circle-dollar-to-slot fa-lg"></i>
+                    </button>
+                    <button id="{{$index}}"
+                        class="goal-del-btn"
+                        (click)="deleteGoal($index)"
+                    >
+                        <i class="fa-solid fa-trash-can fa-lg"></i>
+                    </button>
+                </div>
+            }
         } @empty {
             <div
                 id="zero-goals-div"
@@ -32,7 +52,7 @@
             <h2>{{editPopupGoalName}}</h2>
             <button class="close-popup" id="close-goal-popup" (click)="closeGoalPopup(editGoalForm, overlay, editGoalPopup)">&times;</button>
             <form action="" id="edit-goal-form"
-                (ngSubmit)="updateGoal(editGoalForm, overlay, editGoalPopup)"
+                (ngSubmit)="updateGoal(editGoalForm, overlay, editGoalPopup, goalCompPopup)"
                 #editGoalForm="ngForm"
                 >
                 <h4 style="font-weight: 500;" id="funds-on-goal">Contribution Status: {{editPopupGoalFund}} / {{editPopupGoalTrgt}}</h4>
@@ -75,6 +95,18 @@
                     }
                 </p>
             </form>
+        </div>
+        <div class="goal-form-div goal-comp-div" id="goal-complete-popup" #goalCompPopup>
+            <h2 style="margin-top: 8px" id="goal-complete-name">{{editPopupGoalName}}</h2>
+            <button class="close-popup" id="goal-complete-close-popup"
+            (click)="closeGoalPopup(editGoalForm, overlay, goalCompPopup)"
+            >
+                &times;
+            </button>
+            <h4 style="display: inline">Goal's target {{editPopupGoalTrgt}}₹ achived</h4>
+            <span style="padding-left: 10px; font-size: 18px"
+                ><i class="fa-solid fa-award fa-lg"></i>
+            </span>
         </div>
     </div>
 </aside>
