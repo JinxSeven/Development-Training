@@ -89,6 +89,54 @@
             ></canvas>
         </div>
     </div>
+    <div class="mid-section-three">
+        <h3>Transaction History</h3>
+        <div class="transaction-history-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Income/Expense</th>
+                        <th>Amount</th>
+                        <th>Date</th>
+                        <th>Source/purpose</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="table-tbody">
+                @for (transact of loggedUserDashData.transactions; track $index) {
+                    @if (transact.category != "savings") {
+                        <tr>
+                            <td>{{transact.type}}</td>
+                            <td>{{transact.amount}}₹</td>
+                            <td>{{transact.date}}</td>
+                            <td>{{transact.category}}</td>
+                            <td><button id="{{$index}}" class="edt-trans-btn"><i class="fa-solid fa-pen-to-square fa-lg"></i></button></td>
+                            <td><button id="{{$index}}" class="del-trans-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button></td>
+                        </tr>
+                    }
+                } @empty {
+                    <div
+                        id="zero-transaction-history"
+                        style="
+                            border-radius: 10px;
+                            margin-top: 20px;
+                            display: flex;
+                            background-color: #1e1e1e;
+                            justify-content: space-evenly;
+                            align-items: center;
+                            font-size: 15px;
+                        "
+                    >
+                    <h3 style="color: #b3b2b2;">
+                        Add transactions to see here
+                    </h3>
+                </div>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
     <div class="overlay" id="overlay" #overlay></div>
     <div class="goal-form-div" id="new-goal-popup" #newGoalPopup>
         <h2>New Goal</h2>
@@ -118,7 +166,7 @@
                 pattern="[0-9]+"
                 ngModel
                 required
-                min="0"
+                min="1"
             />
             <label>Add initial contribution (not mandatory)</label>
             <input
@@ -177,7 +225,7 @@
     <div class="transaction-form-div" id="new-transaction-popup" #newTransactPopup>
         <h2>New Transaction</h2>
         <button class="close-popup" id="close-transaction-popup"
-        (click)="closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup)"
+        (click)="closeTransactionPopup(newTransactForm, overlay, newTransactPopup)"
         >
             &times;
         </button>

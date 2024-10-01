@@ -48,7 +48,7 @@ export class TransactionService {
         else return income;
     }
 
-    closeTransactGoalPopup(
+    closeTransactionPopup(
         newTransactForm: NgForm,
         overlay: HTMLDivElement,
         newTransactPopup: HTMLDivElement
@@ -78,7 +78,7 @@ export class TransactionService {
         }
         this.userDashData[this.loggedIndx] = this.loggedUserDashData;
         this.userService.setUserDashData(this.userDashData);
-        this.closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup);
+        this.closeTransactionPopup(newTransactForm, overlay, newTransactPopup);
         this.addedNewTransact = true;
     }
 }

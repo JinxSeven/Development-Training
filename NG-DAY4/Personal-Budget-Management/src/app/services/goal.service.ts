@@ -69,10 +69,9 @@ export class GoalService {
     ): boolean {
         this.updateDashBoardData();
         const date2Day = new Date().toISOString().split('T')[0];
-        const contribution = this.loggedUserDashData.goals[indx].contribution >
-        editGoalForm.form.get('fundGoal')?.value ? this.loggedUserDashData.goals[indx].contribution :
-        editGoalForm.form.get('fundGoal')?.value;
-        if (contribution == editGoalForm.form.get('fundGoal')?.value) {
+        let contribution = this.loggedUserDashData.goals[indx].contribution;
+        if (editGoalForm.form.get('fundGoal')?.value > 0) {
+            contribution += parseInt(editGoalForm.form.get('fundGoal')?.value);
             const newTransaction: Transaction = {
                 type: "expense",
                 amount: parseInt(editGoalForm.form.get('fundGoal')?.value),
@@ -84,7 +83,7 @@ export class GoalService {
         }
         const goalUpdate: Goal = {
             name: editGoalForm.form.get('modGoalName')?.value,
-            contribution: parseInt(contribution),
+            contribution: contribution,
             target: editGoalForm.form.get('modGoalTrgt')?.value
         }
         this.loggedUserDashData.goals[indx] = goalUpdate;

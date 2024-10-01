@@ -94,12 +94,12 @@ export class SectionComponent {
         this.transactService.addNewTransaction(newTransactForm, overlay, newTransactPopup);
     }
 
-    closeTransactGoalPopup(
+    closeTransactionPopup(
         newTransactForm: NgForm,
         overlay: HTMLDivElement,
         newTransactPopup: HTMLDivElement
     ) {
-        this.transactService.closeTransactGoalPopup(newTransactForm, overlay, newTransactPopup);
+        this.transactService.closeTransactionPopup(newTransactForm, overlay, newTransactPopup);
     }
 
     ngAfterViewInit() {
@@ -231,5 +231,4 @@ export class SectionComponent {
         this.expenseChart!.config.data.datasets[0].data = [exp[5]];
         this.expenseChart!.update();
     }
-
 }

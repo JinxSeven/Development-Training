@@ -75,7 +75,7 @@
                     pattern="[0-9]+"
                     ngModel
                     required
-                    min="0"
+                    min="{{editPopupGoalFund}}"
                 />
                 <label>Add Contribution amount</label>
                 <input
@@ -89,15 +89,32 @@
                     max="{{editPopupGoalBlnc}}"
                 />
                 <input id="save-goal-btn" type="submit" value="Update Goal"
-                    [disabled]="(editGoalForm.invalid)"
+                    [disabled]="(editGoalForm.invalid || (editGoalForm.form.get('initFund')?.touched &&
+                    ((loggedUserDashData.income - loggedUserDashData.expense < editGoalForm.form.get('initFund')?.value)) ||
+                    (editGoalForm.form.get('initFund')?.value > editGoalForm.form.get('goalTrgt')?.value)) || (checkDuplicateGoals(editGoalForm, idx!)))"
                 >
                 <p class="popup-errors" id="new-goal-error">
                     @if (
-                        editGoalForm.form.get('fundGoal')?.touched &&
-                        (editGoalForm.form.get('fundGoal')?.value == "" ||
-                        editGoalForm.form.get('fundGoal')?.value == null)
+                        editGoalForm.form.get('modGoalName')?.touched &&
+                        editGoalForm.form.get('modGoalName')?.errors?.['required']
                     ) {
-                        Contribution can't be empty!
+                        Goal name can't be empty!
+                    } @else if (
+                        editGoalForm.form.get('modGoalName')?.dirty &&
+                        (checkDuplicateGoals(editGoalForm, idx!))
+                    ) {
+                        Duplicate names not allowed!
+                    } @else if (
+                        editGoalForm.form.get('modGoalTrgt')?.touched &&
+                        editGoalForm.form.get('modGoalTrgt')?.errors?.['required']
+                    ) {
+                        Goal target cant be empty!
+                    } @else if (
+                        editGoalForm.form.get('modGoalTrgt')?.touched &&
+                        editGoalForm.form.get('modGoalTrgt')?.errors?.['pattern'] ||
+                        editGoalForm.form.get('modGoalTrgt')?.errors?.['min']
+                    ) {
+                        Goal target less than contribution!
                     } @else if (
                         editGoalForm.form.get('fundGoal')?.dirty && ((editGoalForm.form.get('fundGoal')?.value >
                         (loggedUserDashData.income - loggedUserDashData.expense)) ||
@@ -123,7 +140,7 @@
             >
                 &times;
             </button>
-            <h4 style="display: inline">Goal's target {{editPopupGoalTrgt}}₹ achived</h4>
+            <h4 style="display: inline">Goal's target 100% achived</h4>
             <span style="padding-left: 10px; font-size: 18px"
                 ><i class="fa-solid fa-award fa-lg"></i>
             </span>

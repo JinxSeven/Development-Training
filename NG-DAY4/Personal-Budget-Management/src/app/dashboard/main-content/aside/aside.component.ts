@@ -15,6 +15,7 @@ import { TransactionService } from '../../../services/transaction.service';
 })
 export class AsideComponent {
     errorOut: string = "‎";
+    idx: number | null = null;
 
     userService = inject(UserService);
     goalService = inject(GoalService);
@@ -48,6 +49,7 @@ export class AsideComponent {
         editGoalPopup: HTMLDivElement,
         editGoalForm: NgForm
     ) {
+        this.idx = indx;
         const goalToFund = this.loggedUserDashData.goals[indx];
         this.editPopupGoalIndx = indx;
         this.editPopupGoalName = goalToFund.name;
@@ -86,5 +88,15 @@ export class AsideComponent {
         goalPopup: HTMLDivElement
     ) {
         this.goalService.closeGoalPopup(goalForm, overlay, goalPopup);
+    }
+
+    checkDuplicateGoals(editGoalForm: NgForm, idx: number): boolean {
+        for (let x = 0; x < this.loggedUserDashData.goals.length; x++) {
+            if (x == idx) continue;
+            if (this.loggedUserDashData.goals[x].name == editGoalForm.form.get("modGoalName")?.value) {
+                return true;
+            }
+        }
+        return false;
     }
 }
