@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostListener, inject } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { UserDash } from '../../../interfaces/user-dash';
@@ -155,8 +155,11 @@ export class SectionComponent {
                     beginAtZero: true
                     }
                 },
+                responsive: true,
             }
         });
+        if (window.innerWidth < 1404 && window.innerWidth > 1079) this.updateChartData();
+        if (window.innerWidth < 608) this.updateChartData();
     }
 
     updateExpenseChartData(): number[] {
@@ -197,8 +200,22 @@ export class SectionComponent {
             });
             this.expenseChart.update();
         }
-        console.log("update_chart");
     }
+
+
+    updateChartData() {
+        const chartDataXSmall = ["Ent..", "Hea..", "Shp..", "Tra..", "Edu..", "Oth.."];
+        this.expenseChart!.data.labels = chartDataXSmall;
+        this.expenseChart!.update();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event: Event) {
+        window.location.reload();
+        if (window.innerWidth < 1404 && window.innerWidth > 1079) this.updateChartData();
+        if (window.innerWidth < 608) this.updateChartData();
+    }
+
 
     filterChartReset() {
         const exp = this.updateExpenseChartData();
@@ -208,6 +225,8 @@ export class SectionComponent {
         this.expenseChart!.update();
         console.log("filter_chart_reset");
         this.updateChart()
+        if (window.innerWidth < 1404 && window.innerWidth > 1079) this.updateChartData();
+        if (window.innerWidth < 608) this.updateChartData();
     }
 
     filterChartEntertain() {

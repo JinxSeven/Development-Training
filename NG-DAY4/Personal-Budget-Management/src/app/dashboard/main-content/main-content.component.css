@@ -7,3 +7,10 @@
     background-color: #1e1e1e;
     height: 115vh;
 }
+
+@media only screen and (max-width: 855px) {
+    .main-content {
+        grid-template-columns: 1fr;
+        height: fit-content;
+    }
+}

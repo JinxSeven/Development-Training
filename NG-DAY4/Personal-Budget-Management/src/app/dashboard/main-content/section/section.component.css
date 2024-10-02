@@ -356,14 +356,14 @@
 
 .mid-section-two {
     display: grid;
-    grid-template-columns: 0.6fr 1.1fr;
+    grid-template-columns: 0.8fr 1fr;
     gap: 15px;
     color: #f0f0f0;
     background-color: #2c2c2c;
     border-radius: 10px;
     padding: 10px;
     /* align-items: start; */
-    justify-content: space-between;
+    justify-content: space-between !important;
 }
 
 .category .mid2-head-div {
@@ -379,6 +379,7 @@
     grid-template-rows: repeat(3, auto);
     gap: 0.5rem;
     align-items: stretch;
+    width: 100%;
 }
 
 .chart-reset-btn {
@@ -392,7 +393,8 @@
 }
 
 .category-btns button {
-    justify-self: stretch;
+    flex-grow: 1;
+    flex-shrink: 1;
     padding-top: 0.7vw;
     padding-bottom: 0.7vw;
     color: #af92ff;
@@ -412,19 +414,10 @@
     background-color: #222222fd;
 }
 
-/* .mid-section-two .canvas-div {
-    width: 40vw;
-    margin-top: 2em;
-    height: 300px;
-    display: grid;
-    justify-content: end;
-} */
-
 .mid-section-three {
     background-color: #2c2c2c;
     color: #f0f0f0;
     border-radius: 10px;
-    margin: 10px 0px 0px;
     padding: 0px 15px 15px;
     max-height: 205px;
 }
@@ -537,4 +530,93 @@
 .transaction-history-table .del-trans-btn:active {
     cursor: pointer;
     background-color: #b31e1e;
+}
+
+@media only screen and (max-width: 1080px) {
+    .section .mid-section-two {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    .section .mid-section-two .category-btns {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+    }
+    .section .mid-section-two .canvas-div {
+        width: 60vw;
+        margin-top: 2em;
+        display: grid;
+        justify-content: end;
+    }
+}
+
+@media only screen and (max-width: 855px) {
+    .section .mid-section-two .canvas-div {
+        width: 85vw;
+        margin-top: 2em;
+        display: grid;
+        justify-content: end;
+    }
+}
+
+@media only screen and (max-width: 444px) {
+    .section .top-section .income-div #ttl-inc,
+    .section .top-section .expense-div #ttl-exp,
+    .section .top-section .balance-div #ttl-bln {
+        display: none;
+    }
+
+    .section .mid-section .mid-section-one #new-goal-btn label,
+    #new-bill-btn label,
+    #new-transaction-btn label {
+        font-size: smaller;
+    }
+
+    .section .mid-section .mid-section-two .category-btns button {
+        font-size: smaller;
+    }
+
+    .section .top-section .income-div,
+    .section .top-section .expense-div,
+    .section .top-section .balance-div {
+        font-size: smaller;
+    }
+}
+
+@media only screen and (max-width: 855px) {
+    .goal-form-div,
+    .bill-form-div,
+    .transaction-form-div {
+        width: 70%;
+    }
+}
+
+@media only screen and (max-width: 444px) {
+    table td {
+        font-size: smaller;
+    }
+
+    table th {
+        font-size: x-small;
+    }
+
+    table tr button {
+        font-size: x-small;
+    }
+
+    .edt-trans-btn,
+    .del-trans-btn {
+        padding: 1px !important;
+        width: 20px !important;
+        height: 20px !important;
+    }
+
+    .edt-trans-btn {
+        padding-bottom: 2px !important;
+    }
+
+    .goal-form-div,
+    .bill-form-div,
+    .transaction-form-div {
+        width: 70%;
+    }
 }

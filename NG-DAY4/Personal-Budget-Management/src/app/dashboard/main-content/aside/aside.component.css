@@ -179,3 +179,38 @@
     display: none;
     z-index: 101;
 }
+
+@media only screen and (max-width: 855px) {
+    .aside {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        height: 255px;
+    }
+    .aside #zero-bills-div,
+    .aside #zero-goals-div {
+        width: 97%;
+    }
+    .aside .goals-div,
+    .aside .bills-div {
+        width: 97%;
+    }
+}
+
+@media only screen and (max-width: 515px) {
+    .aside .bills-div,
+    .aside #zero-bills-div,
+    .aside .saving-bills-div {
+        display: none;
+    }
+    .aside {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+}
+
+@media only screen and (max-width: 444px) {
+    .aside .goals-div,
+    .aside #zero-goals-div {
+        width: 100%;
+    }
+}
