@@ -24,7 +24,7 @@
                 <div><i class="fa-solid fa-bullseye fa-2xl"></i></div>
                 <label>+ Saving Goal</label>
             </button>
-            <button id="new-transaction-btn" (click)="openNewTransactPopup(overlay, newTransactPopup)">
+            <button id="new-transaction-btn" (click)="openTransactPopup(overlay, newTransactPopup, null, editTransactForm)">
                 <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
                 <label>+ Transaction</label>
             </button>
@@ -111,8 +111,12 @@
                             <td>{{transact.amount}}₹</td>
                             <td>{{transact.date}}</td>
                             <td>{{transact.category}}</td>
-                            <td><button id="{{$index}}" class="edt-trans-btn"><i class="fa-solid fa-pen-to-square fa-lg"></i></button></td>
-                            <td><button id="{{$index}}" class="del-trans-btn"><i class="fa-solid fa-trash-can fa-lg"></i></button></td>
+                            <td><button id="{{$index}}" class="edt-trans-btn"
+                                (click)="openTransactPopup(overlay, editTransactPopup, $index, editTransactForm)"
+                            ><i class="fa-solid fa-pen-to-square fa-lg"></i></button></td>
+                            <td><button id="{{$index}}" class="del-trans-btn"
+                                (click)="delTransaction($index)"
+                            ><i class="fa-solid fa-trash-can fa-lg"></i></button></td>
                         </tr>
                     }
                 } @empty {
@@ -312,6 +316,104 @@
                     newTransactForm.form.get("transactCateg")?.touched &&
                     (newTransactForm.form.get("transactTypeSel")?.value == "" ||
                     newTransactForm.form.get("transactTypeSel")?.value == null)
+                ) {
+                    Transaction category can't be empty!
+                } @else {
+                    {{errorOut}}
+                }
+            </span>
+        </form>
+    </div>
+    <div class="transaction-form-div" id="edit-transaction-popup" #editTransactPopup>
+        <h2>Edit Transaction</h2>
+        <button class="close-popup" id="close-transaction-popup"
+            (click)="closeTransactionPopup(editTransactForm, overlay, editTransactPopup)"
+        >
+            &times;
+        </button>
+        <form action="" id="edit-transaction-form" #editTransactForm="ngForm"
+            (submit)="updateTransaction(editTransactForm, overlay, editTransactPopup)"
+        >
+            <label>Edit transaction type</label>
+            <select id="edit-transaction-type-select"
+                (change)="loadAptCategories(editTransactForm)"
+                name="transactTypeSel"
+                required
+                ngModel
+            >
+                <option
+                    style="font-weight: 600; font-size: 17px"
+                    value="expense"
+                >
+                    Expense
+                </option>
+                <option
+                    style="font-weight: 600; font-size: 17px"
+                    value="income"
+                >
+                    Income
+                </option>
+            </select>
+            <label>Edit transaction amount</label>
+            <input
+                placeholder="Transaction amount"
+                type="text"
+                id="edit-transaction-amt-inp"
+                name="transactAmt"
+                ngModel
+                required
+                pattern="[0-9]+"
+                min="1"
+            />
+            <label>Edit transaction date</label>
+            <input type="date" id="edit-transaction-date-inp" name="transactDate" ngModel required/>
+            <label>Edit transaction source/purpose</label>
+            <select id="edit-transaction-purpose-select" name="transactCateg" ngModel required>
+                @for (option of arrOfOptions; track option) {
+                    <option
+                        style="font-weight: 600; font-size: 17px"
+                        value="{{option}}"
+                    >
+                        {{option}}
+                    </option>
+                }
+            </select>
+            <input id="edit-transaction-btn" value="Update Transaction" type="submit"
+                [disabled]="editTransactForm.invalid"
+            >
+            <span class="popup-errors" id="new-transact-error">
+                @if (
+                    editTransactForm.form.get("transactTypeSel")?.touched &&
+                    (editTransactForm.form.get("transactTypeSel")?.value == "" ||
+                    editTransactForm.form.get("transactTypeSel")?.value == null)
+                ) {
+                    Transaction type can't be empty!
+                } @else if (
+                    editTransactForm.form.get("transactAmt")?.touched &&
+                    editTransactForm.form.get("transactAmt")?.errors?.['required']
+                ) {
+                    Transaction amount can't be empty!
+                } @else if (
+                    editTransactForm.form.get("transactAmt")?.touched &&
+                    (editTransactForm.form.get("transactAmt")?.errors?.['pattern'] ||
+                    editTransactForm.form.get("transactAmt")?.errors?.['min'])
+                ) {
+                    Transaction can only be a +ve number!
+                } @else if (
+                    editTransactForm.form.get("transactAmt")?.touched &&
+                    (editTransactForm.form.get("transactTypeSel")?.value == "expense" &&
+                    (editTransactForm.form.get("transactAmt")?.value > (loggedUserDashData.income - loggedUserDashData.expense)))
+                ) {
+                    Expense can't exceed balance!
+                } @else if (
+                    editTransactForm.form.get("transactDate")?.touched &&
+                    editTransactForm.form.get("transactDate")?.errors?.['required']
+                ) {
+                    A valid date must be selected!
+                } @else if (
+                    editTransactForm.form.get("transactCateg")?.touched &&
+                    (editTransactForm.form.get("transactTypeSel")?.value == "" ||
+                    editTransactForm.form.get("transactTypeSel")?.value == null)
                 ) {
                     Transaction category can't be empty!
                 } @else {

@@ -27,6 +27,7 @@ export class SectionComponent {
     errorOut: string = "‎";
     arrOfOptions: string[] = this.transactService.returnAptCategories("expense");
     expenseChart: Chart | null = null;
+    idx: number | null = null;
 
     constructor() {}
 
@@ -40,9 +41,9 @@ export class SectionComponent {
         this.updateDashBoardData();
         this.transactService.updateDashBoardData();
         this.goalService.updateDashBoardData();
-        if (this.transactService.addedNewTransact) {
+        if (this.transactService.updateSignal) {
             this.updateChart();
-            this.transactService.addedNewTransact = false;
+            this.transactService.updateSignal = false;
         }
     }
 
@@ -71,17 +72,27 @@ export class SectionComponent {
         this.goalService.closeGoalPopup(newGoalForm, overlay, newGoalPopup);
     }
 
-    openNewTransactPopup(overlay: HTMLDivElement, newTransactPopup: HTMLDivElement) {
-        this.transactService.openNewTransactPopup(overlay, newTransactPopup);
+    openTransactPopup(
+        overlay: HTMLDivElement,
+        newTransactPopup: HTMLDivElement,
+        indx: number | null,
+        editTransactForm: NgForm
+    ) {
+        this.idx = indx;
+        this.transactService.openTransactPopup(overlay, newTransactPopup);
+        if (indx != null) {
+            this.arrOfOptions = this.transactService.returnAptCategories(
+                this.loggedUserDashData.transactions[indx].type
+            );
+            this.transactService.loadTransactionDtls(indx, editTransactForm);
+        }
     }
 
-    loadAptCategories(newTransactForm: NgForm) {
-        if (newTransactForm.form.get('transactTypeSel')?.value == "income") {
+    loadAptCategories(transactForm: NgForm) {
+        if (transactForm.form.get('transactTypeSel')?.value == "income") {
             this.arrOfOptions = this.transactService.returnAptCategories("income");
-            console.log("income");
         } else {
             this.arrOfOptions = this.transactService.returnAptCategories("expense");
-            console.log(this.arrOfOptions);
         }
     }
 
@@ -100,6 +111,18 @@ export class SectionComponent {
         newTransactPopup: HTMLDivElement
     ) {
         this.transactService.closeTransactionPopup(newTransactForm, overlay, newTransactPopup);
+    }
+
+    updateTransaction(
+        editTransactForm: NgForm,
+        overlay: HTMLDivElement,
+        editTransactPopup: HTMLDivElement
+    ) {
+        this.transactService.updateTransaction(editTransactForm, overlay, editTransactPopup, this.idx!);
+    }
+
+    delTransaction(indx: number): void {
+        this.transactService.delTransaction(indx);
     }
 
     ngAfterViewInit() {
@@ -174,6 +197,7 @@ export class SectionComponent {
             });
             this.expenseChart.update();
         }
+        console.log("update_chart");
     }
 
     filterChartReset() {
@@ -182,6 +206,8 @@ export class SectionComponent {
         this.expenseChart!.data.labels = expname;
         this.expenseChart!.config.data.datasets[0].data = exp;
         this.expenseChart!.update();
+        console.log("filter_chart_reset");
+        this.updateChart()
     }
 
     filterChartEntertain() {
