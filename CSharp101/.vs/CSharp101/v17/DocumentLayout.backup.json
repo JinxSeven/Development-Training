@@ -1,7 +1,20 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\ecommerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|solutionrelative:ecommerce\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\ecommerce\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|solutionrelative:ecommerce\\models\\cart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\ecommerce\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{11889119-AE51-4F92-B6C5-0AC2969522CC}|ECommerce\\ECommerceApp.csproj|solutionrelative:ecommerce\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,11 +22,46 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Product.cs",
+              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "ECommerce\\Models\\Product.cs",
+              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Models\\Product.cs",
+              "RelativeToolTip": "ECommerce\\Models\\Product.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAcwBoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T04:22:47.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Cart.cs",
+              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Models\\Cart.cs",
+              "RelativeDocumentMoniker": "ECommerce\\Models\\Cart.cs",
+              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Models\\Cart.cs",
+              "RelativeToolTip": "ECommerce\\Models\\Cart.cs",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAkwHAAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T05:34:06.713Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Program.cs",
+              "RelativeDocumentMoniker": "ECommerce\\Program.cs",
+              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\Program.cs",
+              "RelativeToolTip": "ECommerce\\Program.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAgwHQAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-04T04:10:47.871Z",
+              "EditorCaption": ""
             }
           ]
         }

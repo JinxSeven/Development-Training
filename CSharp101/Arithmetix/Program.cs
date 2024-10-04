@@ -15,26 +15,26 @@ Console.WriteLine($"5) Modulo artithmetic{Environment.NewLine}");
 while (true)
 {
     Console.Write("Enter a valid selection: ");
-    string userOptionStr = Console.ReadLine();
+    string userOptionStr = Console.ReadLine()!;
     try
     {
         userOption = int.Parse(userOptionStr);
         if (userOption < 1 || userOption > 5)
         {
-            Console.WriteLine("Number must be within range!");
+            Console.WriteLine("Input must be within range!");
         }
         else break;
     }
     catch (FormatException)
     { 
-        Console.WriteLine("Enter +ve numbers only!");
+        Console.WriteLine("Input can only be numbers!");
     }
 }
 
 while (true)
 {
     Console.Write("Enter the 1st number: ");
-    string userInput1Str = Console.ReadLine();
+    string userInput1Str = Console.ReadLine()!;
     try
     {
         userInput1 = int.Parse(userInput1Str);
@@ -42,14 +42,14 @@ while (true)
     }
     catch (FormatException)
     {
-        Console.WriteLine("Enter numbers only!");
+        Console.WriteLine("Input can only be numbers!");
     }
 }
 
 while (true)
 {
     Console.Write("Enter the 2nd number: ");
-    string userInput2Str = Console.ReadLine();
+    string userInput2Str = Console.ReadLine()!;
     try
     {
         userInput2 = int.Parse(userInput2Str);
@@ -57,7 +57,7 @@ while (true)
     }
     catch (FormatException)
     {
-        Console.WriteLine("Enter numbers only!");
+        Console.WriteLine("Input can only be numbers!");
     }
 }
 

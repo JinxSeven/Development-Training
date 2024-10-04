@@ -7,7 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hello", "CSharp101\Hello.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arithmetix", "Arithmetix\Arithmetix.csproj", "{E74D2A49-77A2-4539-856D-8B5174DD796A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Guessing", "Guessing\Guessing.csproj", "{5614490C-F06F-42E4-AC6F-D0BCB2797B53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Guessing", "Guessing\Guessing.csproj", "{5614490C-F06F-42E4-AC6F-D0BCB2797B53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ECommerceApp", "ECommerce\ECommerceApp.csproj", "{11889119-AE51-4F92-B6C5-0AC2969522CC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{5614490C-F06F-42E4-AC6F-D0BCB2797B53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5614490C-F06F-42E4-AC6F-D0BCB2797B53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5614490C-F06F-42E4-AC6F-D0BCB2797B53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11889119-AE51-4F92-B6C5-0AC2969522CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11889119-AE51-4F92-B6C5-0AC2969522CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11889119-AE51-4F92-B6C5-0AC2969522CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11889119-AE51-4F92-B6C5-0AC2969522CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
