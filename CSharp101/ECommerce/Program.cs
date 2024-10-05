@@ -12,11 +12,15 @@ public class Program
             new Product(104, "Smartwatch", 199.99m, 15),
             new Product(105, "Headphones", 89.99m, 20)
         };
+
         Cart cart = new Cart();
+
         Console.WriteLine("Hello Human, Pick an option listed below:");
+
         int userSelection = -1;
         string userInputStr;
         int prodId;
+
         while (userSelection != 6)
         {
             do
@@ -36,13 +40,13 @@ public class Program
                 catch (FormatException)
                 {
                     Console.Write($"{Environment.NewLine}");
-                    Console.WriteLine("Option input type invalid!");
+                    Console.WriteLine($"Option input type invalid!{Environment.NewLine}");
                     userSelection = -1;
                 }
                 if (userSelection == 0 || userSelection > 6)
                 {
                     Console.Write($"{Environment.NewLine}");
-                    Console.WriteLine("Input must be within range!");
+                    Console.WriteLine($"Input must be within range!{Environment.NewLine}");
                     userSelection = -1;
                 }
             }

@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Arithmetix\\Arithmetix.csproj",
-      "projectName": "Arithmetix",
-      "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Arithmetix\\Arithmetix.csproj",
+      "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Arithmetix\\Arithmetics.csproj",
+      "projectName": "Arithmetics",
+      "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Arithmetix\\Arithmetics.csproj",
       "packagesPath": "C:\\Users\\samuel.koilraj\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Arithmetix\\obj\\",
       "projectStyle": "PackageReference",
