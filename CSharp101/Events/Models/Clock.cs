@@ -17,10 +17,8 @@ namespace Events.Models
             timer.Elapsed += onTimerElapsed;
         }
 
-        // This method is called every time the timer elapses
         private void onTimerElapsed(object? sender, ElapsedEventArgs e)
         {
-            // Raise the event to notify subscribers
             EachSecond?.Invoke(this, EventArgs.Empty);
         }
 

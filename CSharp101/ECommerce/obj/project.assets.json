@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\samuel.koilraj\\.nuget\\packages\\": {}
+    "C:\\Users\\GodBless\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\ECommerceApp.csproj",
+      "projectUniqueName": "D:\\Learn Csc\\ClaySys\\CSharp101\\ECommerce\\ECommerceApp.csproj",
       "projectName": "ECommerceApp",
-      "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\ECommerceApp.csproj",
-      "packagesPath": "C:\\Users\\samuel.koilraj\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\ECommerce\\obj\\",
+      "projectPath": "D:\\Learn Csc\\ClaySys\\CSharp101\\ECommerce\\ECommerceApp.csproj",
+      "packagesPath": "C:\\Users\\GodBless\\.nuget\\packages\\",
+      "outputPath": "D:\\Learn Csc\\ClaySys\\CSharp101\\ECommerce\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\samuel.koilraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\GodBless\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

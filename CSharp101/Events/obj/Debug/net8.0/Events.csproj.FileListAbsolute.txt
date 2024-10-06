@@ -13,3 +13,18 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\CSharp
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.pdb
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.genruntimeconfig.cache
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\CSharp101\Events\obj\Debug\net8.0\ref\Events.dll
+D:\Learn Csc\ClaySys\CSharp101\Events\bin\Debug\net8.0\Events.exe
+D:\Learn Csc\ClaySys\CSharp101\Events\bin\Debug\net8.0\Events.deps.json
+D:\Learn Csc\ClaySys\CSharp101\Events\bin\Debug\net8.0\Events.runtimeconfig.json
+D:\Learn Csc\ClaySys\CSharp101\Events\bin\Debug\net8.0\Events.dll
+D:\Learn Csc\ClaySys\CSharp101\Events\bin\Debug\net8.0\Events.pdb
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.AssemblyInfoInputs.cache
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.AssemblyInfo.cs
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.csproj.CoreCompileInputs.cache
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.sourcelink.json
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.dll
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\refint\Events.dll
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.pdb
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\Events.genruntimeconfig.cache
+D:\Learn Csc\ClaySys\CSharp101\Events\obj\Debug\net8.0\ref\Events.dll

@@ -1,18 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\",
+  "WorkspaceRootPath": "D:\\Learn Csc\\ClaySys\\CSharp101\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\events\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|solutionrelative:events\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77C1B650-93C5-4C7E-832B-B88A8FFA57CF}|LINQ-1\\LINQ-1.csproj|d:\\learn csc\\claysys\\csharp101\\linq-1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77C1B650-93C5-4C7E-832B-B88A8FFA57CF}|LINQ-1\\LINQ-1.csproj|solutionrelative:linq-1\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\events\\models\\display.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|solutionrelative:events\\models\\display.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\csharp101\\events\\models\\clock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{45526299-7309-4B2B-A3BA-F920F1B0AA0D}|Events\\Events.csproj|solutionrelative:events\\models\\clock.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{77C1B650-93C5-4C7E-832B-B88A8FFA57CF}|LINQ-1\\LINQ-1.csproj|d:\\learn csc\\claysys\\csharp101\\linq-1\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{77C1B650-93C5-4C7E-832B-B88A8FFA57CF}|LINQ-1\\LINQ-1.csproj|solutionrelative:linq-1\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,45 +18,32 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\Learn Csc\\ClaySys\\CSharp101\\LINQ-1\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "LINQ-1\\Models\\Product.cs",
+              "ToolTip": "D:\\Learn Csc\\ClaySys\\CSharp101\\LINQ-1\\Models\\Product.cs",
+              "RelativeToolTip": "LINQ-1\\Models\\Product.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-06T13:20:30.399Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Program.cs",
-              "RelativeDocumentMoniker": "Events\\Program.cs",
-              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Program.cs",
-              "RelativeToolTip": "Events\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABIAAAAzAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\Learn Csc\\ClaySys\\CSharp101\\LINQ-1\\Program.cs",
+              "RelativeDocumentMoniker": "LINQ-1\\Program.cs",
+              "ToolTip": "D:\\Learn Csc\\ClaySys\\CSharp101\\LINQ-1\\Program.cs",
+              "RelativeToolTip": "LINQ-1\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T12:55:41.352Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Clock.cs",
-              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Models\\Clock.cs",
-              "RelativeDocumentMoniker": "Events\\Models\\Clock.cs",
-              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Models\\Clock.cs",
-              "RelativeToolTip": "Events\\Models\\Clock.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA1wAsAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T12:57:04.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Display.cs",
-              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Models\\Display.cs",
-              "RelativeDocumentMoniker": "Events\\Models\\Display.cs",
-              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\Events\\Models\\Display.cs",
-              "RelativeToolTip": "Events\\Models\\Display.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-05T12:57:22.888Z",
+              "WhenOpened": "2024-10-06T13:19:54.948Z",
               "EditorCaption": ""
             }
           ]
