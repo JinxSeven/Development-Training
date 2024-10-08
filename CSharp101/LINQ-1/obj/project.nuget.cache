@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ObLhDNZqwlY=",
+  "dgSpecHash": "IRv2ZqNQdH0=",
   "success": true,
-  "projectFilePath": "D:\\Learn Csc\\ClaySys\\CSharp101\\LINQ-1\\LINQ-1.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\CSharp101\\LINQ-1\\LINQ-1.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\samuel.koilraj\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
