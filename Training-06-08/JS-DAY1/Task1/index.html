@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Interest Calculator</title>
+    <link rel="stylesheet" href="./resources/css/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="main-container">
+            <h1>Advanced Simple Interest Calculator</h1>
+            <form class="calculator" action="">
+                <label>Principal Amount: <input id="principal" placeholder="Enter principal amount" type="text"><p id="ppl-err">Principal should be $500 - $10000 and can't be text!</p></label>
+                <label>Rate of Interest(%): <input id="rate-of-interest" placeholder="Enter interest rate" type="text"><p id="roi-err">Rate of interest can't be empty or text!</p></label>
+                <label>Time(Years): <input id="time" placeholder="Enter time in years" type="text"><p id="time-err">Time can't be empty or text!</p></label>
+                <input type="submit" value="Calculate Interest">
+            </form>
+            <div class="output">
+                <p><strong>Interest: </strong><span id="interest"></span></p>
+                <p><strong>Total Amount: </strong><span id="total-amount"></span></p>
+                <p><strong>Additional Information: </strong><span id="add-info"></span></p>
+            </div>
+        </div>
+    </main>
+    <script src="./resources/script/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+* {
+    font-family: 'Bahnschrift';
+}
+
+.task-form-div {
+    width: 500px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);;
+    padding: 20px;
+    background-color: #F9F9F9;
+    margin: 50px auto;
+}
+
+.task-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.task-form input[type=text] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.task-form #form-status {
+    color: #ff0077;
+    transition: opacity 0.3s;
+}
+
+.task-form button {
+    padding: 10px;
+    background-color: #285ba7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.task-form button:disabled,
+.task-form button:disabled:hover {
+    background-color: #1b488bea;
+    color: #a8a8a8;
+    cursor: default;
+}
+
+.task-form button:hover {
+    cursor: pointer;
+    background-color: #1b488b;
+    transition: background-color 0.3s;
+}
+
+.task-table-div {
+    width: 542px;
+    display: grid;
+    margin: 0 auto;
+}
+
+.task-table {
+    border-collapse: collapse;
+}
+
+.task-table th, .task-table td {
+    background-color: #dfdfdf;
+    border: 1px solid white;
+    padding: 8px;
+    text-align: center;
+}
+
+.task-table-div .task-table .edt-task-btn {
+    padding: 6px 10px;
+    background-color: #285ba7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 67px;
+}
+
+.task-table-div .task-table .edt-task-btn:disabled,
+.task-table-div .task-table .edt-task-btn:disabled:hover {
+    background-color: #1b488bea;
+    color: #a8a8a8;
+    cursor: default;
+}
+
+.task-table-div .task-table .edt-task-btn:hover {
+    cursor: pointer;
+    background-color: #1b488b;
+    transition: background-color 0.3s;
+}
+
+.task-table-div .task-table .del-task-btn {
+    padding: 6px 10px;
+    background-color: #ff0077;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 67px;
+}
+
+.task-table-div .task-table .del-task-btn:hover {
+    cursor: pointer;
+    background-color: #ca015f;
+    transition: background-color 0.3s;
+}
+
+.task-table-div .task-table .del-task-btn:disabled,
+.task-table-div .task-table .del-task-btn:disabled:hover {
+    background-color: #a3014d;
+    color: #a8a8a8;
+    cursor: default;
+}
+
+.task-table-div .task-table .select-status {
+    padding: 6.5px;
+    border-radius: 4px;
+    border: none;
+}

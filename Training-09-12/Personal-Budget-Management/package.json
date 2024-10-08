@@ -1,0 +1,21 @@
+{
+  "name": "personal-budget-management",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "chart.js": "^4.4.4",
+    "typescript": "^5.5.4"
+  },
+  "devDependencies": {
+    "@types/chart.js": "^2.9.41",
+    "ts-node": "^10.9.2"
+  }
+}

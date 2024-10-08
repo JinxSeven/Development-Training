@@ -1,0 +1,22 @@
+<div class="weather-monitor-div">
+    <h1>Weather Monitor</h1>
+    <form class="weather-form" (ngSubmit)="onCitySearch(weatherForm)" #weatherForm="ngForm">
+        <label>Enter City Name</label>
+        <div class="error-div">
+            @if (hasError) {
+                <span>{{errorMessage}}</span>
+            }
+        </div>
+        <input type="text" placeholder="City name" ngModel name="cityName" required>
+        <button type="submit" [disabled]="weatherForm.invalid">Search</button>
+    </form>
+    <div class="weather-display">
+        <span>City Name:</span><span>{{city}}</span>
+        <span>Humidity:</span><span>{{humidity}}</span>
+        <span>Temprature:</span><span>{{temprature}}</span>
+        <span>Icon:</span>
+        @if (iconLink != null) {
+            <img style="background-color: #a8a8a8; border-radius: 5px;" src="{{iconLink}}" width="40px">
+        }
+    </div>
+</div>

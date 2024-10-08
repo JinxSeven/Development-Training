@@ -1,0 +1,18 @@
+<aside class="sidebar">
+    <img class="logo1" style="border-radius: 5px;" src="./images/bringova-logo.png" alt="bringova-logo">
+    <img class="logo2" style="border-radius: 5px; height: 55px;" src="./images/bringova-logo2.jpg" alt="bringova-logo">
+    @for (btn of navBtns; track btn) {
+        <div class="btns">
+            <button class="aside-button">
+            <i style="margin-right: 5px;" class="{{btn.icon}}"></i>
+            <span class="cta-text">{{btn.name}}</span>
+            </button>
+        </div>
+    }
+
+    <div class="busy-mode">
+        <i class="fa-solid fa-gauge-high fa-lg"></i>
+        <p>Busy Mode</p>
+        <input class="busy-mode-chkbx" type="checkbox">
+    </div>
+</aside>

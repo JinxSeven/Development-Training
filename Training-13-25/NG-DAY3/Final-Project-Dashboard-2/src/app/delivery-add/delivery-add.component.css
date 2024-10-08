@@ -1,0 +1,44 @@
+:host {
+    --border-color: rgba(218, 219, 222, 1);
+}
+
+.address {
+    margin-top: 15.8125px;
+    padding: 15px;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    font-family: "Poppins", 'Ubuntu';
+    font-weight: 300;
+    font-size: small;
+    background-color: white;
+}
+
+.address p {
+    margin: 9px;
+}
+
+.address span {
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 470px) {
+    .address p {
+        font-size: 0.7rem !important;
+        margin-left: 12px;
+    }
+    .address span {
+        font-size: 0.7rem !important;
+    }
+    .address {
+        margin-top: 15.8125px;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .address {
+        width: 91%;
+    }
+}

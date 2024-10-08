@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF=8">
+        <meta name="viewport" content="width=device-width initial-scale=1.0">
+        <link rel="stylesheet" href="./main.css">
+        <title>day 2 - task 2</title>
+    </head>
+    <body>
+        <header>
+            <h1 style="text-align: center;">CSS Selector Practice</h1>
+            <nav>
+                <ul>
+                    <li><a href="">HOME</a></li>
+                    <li><a href="">ABOUT</a></li>
+                    <li><a href="">SERVICE</a></li>
+                    <li><a href="">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <h2>Universal Selector Example:</h2>
+            <p>Universal Selector '*' is used here to change font universally</p>
+            <div class="type-select-div">
+                <h2>Type Selector Example:</h2>
+                <h3>Type Selector Heading:</h3>
+                <p>Type Selector is used to style elements by calling their types</p>
+                <p>Using type selector h3 and multiple p tag's color and font-size and style is modified</p>
+            </div>
+            <div class="class-id-select-div">
+                <h2 class="class-select">Class and Id Selector</h2>
+                <p id="id-select">The above heading was accessed using class selctor '.' and this paragraph by id selector '#'</p>
+            </div>
+            <div class="attribute-select-div">
+                <h2>Attribute Selector Example:</h2>
+                <input type="text" placeholder="text type">
+                <input type="email" placeholder="email type">
+                <input type="text" placeholder="text type">
+            </div>
+            <div class="descendant-select-div">
+                <h2>Descendant Selector Example:</h2>
+                <ol>
+                    <li>This list-item tag is modified using Child Selector</li>
+                </ol>
+                <div class="adjacent-sibling-div">
+                    <h2>Adjacent Sibling Example:</h2>
+                    <p>not an adjacent sibling</p>
+                </div>
+                <p>adjacent sibling</p>
+                <p>not an adjacent sibling</p>
+                <div class="general-sibling-div">
+                    <h2>General Sibling Example:</h2>
+                    <p>not an genral sibling</p>
+                </div>
+                <p>genral sibling</p>
+                <p>genral sibling</p>
+            </div>
+        </main>
+        <footer><h2 style="text-align: center;">&copy; 2024 CSS Selectors Practice</h2></footer>
+    </body>
+</html>

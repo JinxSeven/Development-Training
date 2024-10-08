@@ -1,0 +1,46 @@
+<div class="task-form-div">
+    <h1>To-Do List</h1>
+    <form (ngSubmit)="addNewTask(taskForm)" class="task-form" #taskForm="ngForm">
+        <label for="">Enter Task</label>
+        <label for="">Assign To</label>
+        <input type="text" placeholder="Task name" [(ngModel)]="taskToEdit.taskName" name="taskName" required>
+        <input type="text" placeholder="User name" [(ngModel)]="taskToEdit.userName" name="userName" required>
+        <span id="form-status">
+            @if (taskForm.controls['taskName'].invalid && taskForm.controls['taskName'].dirty) {
+                <span >Task can't be empty!</span>
+            } @else if (taskForm.controls['userName'].invalid && taskForm.controls['userName'].dirty) {
+                <span >User can't be empty!</span>
+            }
+        </span>
+        <button type="submit" [disabled]="taskForm.invalid">
+            {{editMode? "Update Task" : "Assign Task"}}
+        </button>
+    </form>
+</div>
+<div class="task-table-div">
+    <table class="task-table">
+        <thead>
+            <tr>
+                <th>Task</th>
+                <th>Assigned To</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (task of taskData; track task; let idx = $index) {
+                <tr>
+                    <td>{{task.taskName}}</td>
+                    <td>{{task.userName}}</td>
+                    <td><select class="select-status" [(ngModel)]="task.taskStatus" (change)="onStatusChange(idx)">
+                        <option [value]="false">Incomplete</option>
+                        <option [value]="true">Complete</option>
+                    </select></td>
+                    <td><button class="edt-task-btn" (click)="onEditTask(idx)" [disabled]="editMode">Edit</button></td>
+                    <td><button class="del-task-btn" (click)="onDeleteTask(idx)" [disabled]="editMode">Delete</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

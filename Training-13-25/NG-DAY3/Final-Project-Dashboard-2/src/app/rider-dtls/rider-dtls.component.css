@@ -1,0 +1,85 @@
+:host {
+    --border-color: rgba(218, 219, 222, 1);
+}
+
+.rider-div {
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow-x: auto;
+    font-family: "Poppins", 'Ubuntu';
+    margin-top: 20px;
+    background-color: #fff;
+    overflow: hidden;
+    padding-bottom: 15px;
+    padding-top: 5px;
+}
+
+.rider-info {
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 10px !important
+}
+
+img {
+    width: 50px;
+    border-radius: 15px;
+}
+
+h2 {
+    text-align: left;
+    font-weight: 700;
+    font-size: 1.2rem;
+    padding-left: 15.8125px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    margin: 0px;
+    width: 100%;
+}
+
+button {
+    background-color: #ffb21e;
+    color: white;
+    height: 35px;
+    font-size: 0.7rem;
+    font-weight: 400;
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+}
+
+@media only screen and (max-width: 470px) {
+    .rider-div{
+        margin-top: 0;
+    }
+    .rider-info {
+        font-size: 0.8rem;
+    }
+    img {
+        width: 40px;
+        border-radius: 10px;
+    }
+    button {
+        background-color: #ffb21e;
+        color: white;
+        height: 25px;
+        width: 75px;
+    }
+    h2 {
+        font-size: 0.9rem;
+    }
+}
+
+@media only screen and (max-width: 370px) {
+    .rider-div {
+        width: 228px;
+    }
+    button {
+        height: 35px;
+    }
+}

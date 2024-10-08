@@ -1,0 +1,15 @@
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.GeneratedMSBuildEditorConfig.editorconfig
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.AssemblyInfoInputs.cache
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.AssemblyInfo.cs
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.csproj.CoreCompileInputs.cache
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.sourcelink.json
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\bin\Debug\net8.0\LambdaXprs.exe
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\bin\Debug\net8.0\LambdaXprs.deps.json
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\bin\Debug\net8.0\LambdaXprs.runtimeconfig.json
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\bin\Debug\net8.0\LambdaXprs.dll
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\bin\Debug\net8.0\LambdaXprs.pdb
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.dll
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\refint\LambdaXprs.dll
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.pdb
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\LambdaXprs.genruntimeconfig.cache
+D:\Learn Csc\ClaySys\CSharp101\LambdaXprs\obj\Debug\net8.0\ref\LambdaXprs.dll

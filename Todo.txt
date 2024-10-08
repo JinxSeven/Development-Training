@@ -1,0 +1,31 @@
+Topics to look into:
+    CSS variables - done
+    GitHub Pages: Hosting Final Project - done
+
+Site changes advised:
+    top-block change spacing - fixed
+    add message customer button - fixed
+    items-summary align text with images used - fixed
+    fix jogging buttons - fixed
+
+JS Fixes:
+    D1: Remove all alert validations add tags on focus and blur - fixed 
+    D1T2: Edit to-do tasks - fixed
+    D1T3: No repeating students - fixed
+    D2T1: Enhance edit inventory stock -fixed
+
+JS & TS Changes:
+    Inventory: Validate product existence on input blur - fixed
+    Calculator: Handle divide by zero - fixed
+    User Management System: Fix bugs and add validation and style - fixed
+
+Angular Progress:
+    Commands:
+        ng new <project_name> - Creates a new angular project
+        npm install - Create all node dependancies
+        ng serve - Runs angular project on local host
+
+        ng generate component <component_name> --<dir_name_flag>
+
+http://127.0.0.1:5500/
+https://demo.firefly-iii.org/

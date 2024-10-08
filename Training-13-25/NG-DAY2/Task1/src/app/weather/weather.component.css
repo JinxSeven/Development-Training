@@ -1,0 +1,60 @@
+* {
+    font-family: 'Bahnschrift';
+}
+
+.weather-monitor-div {
+    width: 400px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);;
+    padding: 20px;
+    background-color: #f9f9f9;
+    margin: 50px auto;
+}
+
+.weather-monitor-div .error-div {
+    color: #d41b1b;
+}
+
+.weather-monitor-div .weather-form {
+    display: grid;
+    grid-template-columns: 1fr 0.5fr;
+    gap: 15px;
+}
+
+.weather-monitor-div .weather-form input[type=text] {
+    padding: 10px;
+    border: 1px solid #a3a3a3;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.weather-monitor-div .weather-form button {
+    padding: 10px;
+    background-color: #285ba7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.weather-monitor-div .weather-form button:hover {
+    cursor: pointer;
+    background-color: #1b488b;
+    transition: background-color 0.3s;
+}
+
+.weather-monitor-div .weather-form button:disabled,
+.weather-monitor-div .weather-form button:disabled:hover {
+    background-color: #1b488bea;
+    color: #a8a8a8;
+    cursor: default;
+}
+
+.weather-monitor-div .weather-display {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 15px auto;
+    gap: 15px;
+    justify-content: space-between;
+}

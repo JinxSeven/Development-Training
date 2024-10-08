@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User-Management System</title>
+    <link rel="stylesheet" href="../src/main.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="main-div">
+            <h2>Add User</h2>
+            <form class="top-div">
+                <p>Name:</p><input id="name-input" type="text">
+                <p>Email:</p><input type="email" id="email-input">
+                <p>Role:</p><select id="role-select">
+                    <option value="user">User</option>
+                    <option value="admin">Admin</option>
+                </select>
+                <button id="add-user-btn">Add User</button>
+            </form>
+            <p id="dupe-email">Email already in use!</p>
+            <div class="bottom-div">
+                <h2 style="margin-top: 0px;">User List</h2>
+                <ol id="main-list"></ol>
+            </div>
+        </div>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
