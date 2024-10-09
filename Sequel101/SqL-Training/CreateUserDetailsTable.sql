@@ -1,0 +1,6 @@
+﻿CREATE TABLE user_details
+	(
+	UserID INT IDENTITY(101, 1) PRIMARY KEY,
+	Income INT DEFAULT 0,
+	Expense INT DEFAULT 0
+	);
