@@ -23,7 +23,6 @@ namespace Reflections.Models
                 Console.Write($"{property.Name}: ");
                 Console.WriteLine(property.GetValue(obj));
             }
-            Console.WriteLine();
 
             /*foreach (MethodInfo method in methods)
             {
