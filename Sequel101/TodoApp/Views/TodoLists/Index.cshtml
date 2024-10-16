@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TodoApp.Models.TodoList>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New Task</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Task Title
+                @* @Html.DisplayNameFor(model => model.TaskTitle) *@
+            </th>
+            <th>
+                Task Category
+                @* @Html.DisplayNameFor(model => model.TaskCategory) *@
+            </th>
+            <th>
+                Task Status
+                @* @Html.DisplayNameFor(model => model.TaskStatus) *@
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskCategory)
+            </td>
+            <td>
+                @* @Html.DisplayFor(modelItem => item.TaskStatus ? "Completed" : "Incomplete") *@
+                @* @Html.DisplayFor(modelItem => item.TaskStatus) *@
+                @if (item.TaskStatus) { <span>Completed</span> }
+                else { <span>Not Completed</span> }
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

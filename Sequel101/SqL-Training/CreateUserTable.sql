@@ -1,6 +1,0 @@
-﻿CREATE TABLE user_login 
-	(
-	UserID INT IDENTITY(101, 1) PRIMARY KEY,
-	UserName VARCHAR(50),
-	EmailID VARCHAR(100),
-	);

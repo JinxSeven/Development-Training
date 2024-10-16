@@ -1,0 +1,12 @@
+{
+  "name": "Samuel K",
+  "email": "samuel@email.com",
+  "password": "string101"
+}
+
+{
+  "userId": 106,
+  "name": "Test-Goal1",
+  "target": 2500,
+  "amount": 250
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\BudgetTrackerApp.Server.props" />
+</Project>
