@@ -1,0 +1,138 @@
+.tasks-page {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 98%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+}
+
+.top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin: 0;
+}
+
+.total-tasks {
+    color: #555;
+}
+
+.working-leave-btn,
+.add-task-btn {
+    background-color: #8e54b4;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.working-leave-btn {
+    color: #303030;
+    background-color: white;
+    border: 1px solid #8e54b4;
+}
+
+.add-task-btn {
+    background-color: #8e54b4;
+}
+
+.add-task-btn:hover {
+    background-color: #7b45a0;
+}
+
+.add-task-btn:active {
+    background-color: #623481;
+}
+
+.date-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.date-section label {
+    margin-right: 10px;
+}
+
+.date-section input[type="date"] {
+    padding: 5px;
+}
+
+.tasks-table,
+.activities-table {
+    margin-top: 20px;
+}
+
+.tasks-table table,
+.activities-table table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+    font-size: smaller;
+}
+
+thead th,
+tbody td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+thead th {
+    background-color: #f4f4f4;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.no-tasks {
+    color: #ff0000;
+}
+
+.edit-btn,
+.complete-btn,
+.add-activity-btn,
+.delete-btn {
+    font-size: 16px;
+}
+
+.add-activity-btn,
+.complete-btn {
+    color: #39b54a;
+}
+
+.edit-btn {
+    color: #0000ff;
+}
+
+.delete-btn {
+    color: #ff0000;
+}
+
+.activities-table table {
+    margin-top: 10px;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #774caf;
+    box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid #919090;
+}

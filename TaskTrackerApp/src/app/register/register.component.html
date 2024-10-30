@@ -1,0 +1,61 @@
+<body>
+    <div class="main-block">
+        <h1>ClaySys Task Tracker</h1>
+        <h3>Create New Account</h3>
+        <a routerLink="/login">Existing user?</a>
+        <form (ngSubmit)="onRegister(registerForm)" #registerForm="ngForm">
+            <label for="usrname-inp">Username:</label>
+            <input
+                id="usrname-inp"
+                type="text"
+                required
+                ngModel
+                name="usrname"
+                placeholder="Enter your username"
+            />
+
+            <label for="email-inp">Email Address:</label>
+            <input
+                id="email-inp"
+                type="email"
+                placeholder="Enter your email"
+                name="email"
+                ngModel
+                pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                required
+            />
+
+            <label for="pass-inp">Password:</label>
+            <input
+                id="pass-inp"
+                required
+                ngModel
+                name="pass"
+                min="8"
+                type="password"
+                placeholder="Enter your password"
+            />
+
+            <label for="cnfmpass-inp">Confirm Password:</label>
+            <input
+                id="cnfmpass-inp"
+                required
+                ngModel
+                type="password"
+                name="cnfmpass"
+                min="8"
+                placeholder="Confirm your password"
+            />
+
+            <input
+                type="submit"
+                value="Register"
+                [disabled]="
+                    registerForm.invalid ||
+                    registerForm.form.get('cnfmpass')?.value !==
+                        registerForm.form.get('pass')?.value
+                "
+            />
+        </form>
+    </div>
+</body>

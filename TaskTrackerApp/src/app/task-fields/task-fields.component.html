@@ -1,0 +1,337 @@
+<app-header></app-header>
+<div class="task-tracker-container">
+    <h2>Add New Task</h2>
+    <h3>Tasks</h3>
+    @if (editMode) {
+        <form (ngSubmit)="onUpdateTask(taskForm)" #taskForm="ngForm">
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="select1">Client Name*</label>
+                    <select id="select1" name="select1" required
+                        [(ngModel)]="editModeFieldsData.matchedTask.clientName"
+                    >
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="select2">Project Name*</label>
+                    <select id="select2" name="select2" required
+                        [(ngModel)]="editModeFieldsData.matchedTask.projectName"
+                    >
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput1">Title*</label>
+                    <input
+                        type="text"
+                        id="textInput1"
+                        name="textInput1"
+                        [(ngModel)]="editModeFieldsData.matchedTask.taskTitle"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput2">ETA (Hours)*</label>
+                    <input
+                        type="number"
+                        id="textInput2"
+                        name="textInput2"
+                        [(ngModel)]="editModeFieldsData.matchedTask.hours"
+                        required
+                        step="0.1"
+                        min="0.1"
+                        max="24"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="dateInput">Date*</label>
+                    <input
+                        type="date"
+                        id="dateInput"
+                        name="dateInput"
+                        [(ngModel)]="editModeFieldsData.matchedTask.dateTime.toString().split('T')[0]"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput3">Assigned To*</label>
+                    <input
+                        type="text"
+                        id="textInput3"
+                        name="textInput3"
+                        [(ngModel)]="editModeFieldsData.matchedTask.assignedTo"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput4">Assigned By*</label>
+                    <input
+                        type="text"
+                        id="textInput4"
+                        name="textInput4"
+                        [(ngModel)]="editModeFieldsData.matchedTask.assignedBy"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="select3">Support Type</label>
+                    <select id="select3" name="select3"
+                        [(ngModel)]="editModeFieldsData.matchedTask.supportType"
+                    >
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="select4">Priority</label>
+                    <select id="select4" name="select4"
+                        [(ngModel)]="editModeFieldsData.matchedTask.priority"
+                    >
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="description-container">
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    [(ngModel)]="editModeFieldsData.matchedTask.description"
+                    required
+                ></textarea>
+            </div>
+
+            <div class="button-group">
+                <button
+                    type="submit"
+                    [disabled]="this.enableNextTask || taskForm.invalid"
+                >
+                Update
+                </button>
+                <button
+                    type="button"
+                    (click)="onReset(taskForm)"
+                    [disabled]="taskForm.invalid"
+                >
+                Reset
+                </button>
+                <button
+                    type="button"
+                    (click)="onNextTask(taskForm)"
+                    [disabled]="this.editMode"
+                >
+                Add Next Task
+                </button>
+            </div>
+        </form>
+    } @else {
+        <form (ngSubmit)="onSaveTask(taskForm)" #taskForm="ngForm">
+            <div class="grid">
+
+                <div class="form-group">
+                    <label for="select1">Client Name*</label>
+                    <select id="select1" name="select1" ngModel required>
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="select2">Project Name*</label>
+                    <select id="select2" name="select2" ngModel required>
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput1">Title*</label>
+                    <input
+                        type="text"
+                        id="textInput1"
+                        name="textInput1"
+                        ngModel
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput2">ETA (Hours)*</label>
+                    <input
+                        type="number"
+                        id="textInput2"
+                        name="textInput2"
+                        ngModel
+                        required
+                        step="0.1"
+                        min="0.1"
+                        max="24"
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="dateInput">Date*</label>
+                    <input
+                        type="date"
+                        id="dateInput"
+                        name="dateInput"
+                        [(ngModel)]="this.toDate"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput3">Assigned To*</label>
+                    <input
+                        type="text"
+                        id="textInput3"
+                        name="textInput3"
+                        [(ngModel)]="this.loggedUser!.username"
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="textInput4">Assigned By*</label>
+                    <input
+                        type="text"
+                        id="textInput4"
+                        name="textInput4"
+                        ngModel
+                        required
+                    />
+                </div>
+
+                <div class="form-group">
+                    <label for="select3">Support Type</label>
+                    <select id="select3" name="select3" ngModel>
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="select4">Priority</label>
+                    <select id="select4" name="select4" ngModel>
+                        <option value="">Select...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="description-container">
+                <label for="description">Description</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    ngModel
+                    required
+                ></textarea>
+            </div>
+
+            <div class="button-group">
+                <button
+                    type="submit"
+                    [disabled]="this.enableNextTask || taskForm.invalid"
+                >
+                Save
+                </button>
+                <button
+                    type="button"
+                    (click)="onReset(taskForm)"
+                    [disabled]="taskForm.invalid"
+                >
+                Reset
+                </button>
+                <button
+                    type="button"
+                    (click)="onNextTask(taskForm)"
+                    [disabled]="!this.enableNextTask"
+                >
+                Add Next Task
+                </button>
+            </div>
+        </form>
+    }
+
+    <form (ngSubmit)="onSaveActivity(activityForm)" #activityForm="ngForm">
+        <h3>Activities</h3>
+        <div class="additional-inputs">
+            <div class="form-group">
+                <label for="additionalInput1">Title*</label>
+                <input
+                    type="text"
+                    id="additionalInput1"
+                    name="actInput1"
+                    ngModel
+                    required
+                />
+            </div>
+
+            <div class="form-group">
+                <label for="additionalDescription">Description*</label>
+                <textarea
+                    id="additionalDescription"
+                    name="activityDesc"
+                    ngModel
+                    required
+                ></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="textInput2">Hours*</label>
+                <input
+                    type="number"
+                    id="textInput2"
+                    name="actInput2"
+                    ngModel
+                    required
+                    step="0.1"
+                    min="0.1"
+                    max="2"
+                />
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button type="submit"
+                [disabled]="!this.enableNextTask || activityForm.invalid"
+            >Save</button>
+            <button
+                type="button"
+                (click)="onReset(activityForm)"
+                [disabled]="activityForm.invalid"
+            >Reset</button>
+        </div>
+    </form>
+</div>

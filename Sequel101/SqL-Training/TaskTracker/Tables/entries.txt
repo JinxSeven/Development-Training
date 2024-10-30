@@ -1,0 +1,22 @@
+{
+  "id": 0,
+  "userId": 101,
+  "clientName": "training",
+  "projectName": "dev",
+  "taskTitle": "AngularApp",
+  "hours": 2.50,
+  "dateTime": "Oct 17 2024  7:42PM",
+  "assignedTo": "samuel.livingston",
+  "assignedBy": "Aravind Nallasivam",
+  "supportType": "",
+  "priority": "",
+  "description": "Building fully functioning app using angular"
+}
+
+{
+  "id": 0,
+  "taskId": 27,
+  "activityTitle": "Test Activity",
+  "description": "Test Activity API Description!",
+  "hours": 2
+}

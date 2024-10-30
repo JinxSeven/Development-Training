@@ -1,0 +1,11 @@
+IF NOT EXISTS (SELECT * FROM sysobjects WHERE name = 'Categories')
+BEGIN
+	CREATE TABLE Categories
+	(
+		Id INT IDENTITY(1, 1) PRIMARY KEY,
+		UserId INT NOT NULL,
+		Type VARCHAR(10),
+		Category VARCHAR(25),
+		FOREIGN KEY (UserId) REFERENCES Users(Id) ON DELETE CASCADE
+	);
+END;

@@ -5,8 +5,35 @@
 }
 
 {
-  "userId": 106,
+  "userId": 1106,
   "name": "Test-Goal1",
   "target": 2500,
   "amount": 250
 }
+
+{
+  "userId": 101,
+  "type": "income",
+  "amount": 5000,
+  "category": "bonus",
+  "dateTime": "Oct 17 2024  7:42PM"
+}
+
+{
+  "id": 1007,
+  "name": "Test-Goal1",
+  "target": 2500,
+  "contribution": 250
+}
+
+
+
+{
+ "id": 2011,
+ "type": "expense",
+ "amount": 2500,
+ "category": "food",
+ "dateTime": "Oct 17 2024  7:42PM"
+}
+
+

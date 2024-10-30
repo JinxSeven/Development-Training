@@ -1,0 +1,14 @@
+﻿CREATE PROCEDURE deleteUserProcedure
+@id INT
+AS
+BEGIN
+    BEGIN TRY
+        BEGIN TRANSACTION;
+        DELETE FROM Users WHERE Id = @id;
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END;

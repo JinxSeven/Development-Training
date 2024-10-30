@@ -1,0 +1,87 @@
+* {
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body {
+    background-color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.main-block {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: #333;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.main-block h3 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.main-block form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-block form input,
+label {
+    font-size: 16px;
+    text-align: left;
+}
+
+.main-block form input[type="text"],
+.main-block form input[type="email"],
+.main-block form input[type="password"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.main-block form input[type="submit"] {
+    background-color: #8e54b4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.main-block form input[type="submit"]:hover {
+    background-color: #7b45a0;
+    cursor: pointer;
+}
+
+.main-block form input[type="submit"]:disabled {
+    background-color: #5f357a;
+    cursor: default;
+    color: #b9b9b9;
+}
+
+.main-block form input:focus {
+    outline: none;
+    border-color: #774caf;
+    box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+}

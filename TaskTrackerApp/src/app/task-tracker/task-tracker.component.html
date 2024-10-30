@@ -1,0 +1,98 @@
+<app-header></app-header>
+<div class="tasks-page">
+    <div class="top-section">
+        <h2>Tasks</h2>
+        <span class="total-tasks">{{totalTaskCount}} Item(s) In Total</span>
+        <button class="working-leave-btn">
+            Total {{totalTaskHours}} hour(s) of Working/Leave
+        </button>
+        <div></div>
+        <button
+            class="add-task-btn"
+            (click)="onPlusTask()"
+        >+ Add Task</button>
+    </div>
+
+    <div class="date-section">
+        <label for="date">Date</label>
+        <input type="date" id="date"
+            [(ngModel)]="this.selectedDate"
+            (ngModelChange)="onChange($event)"
+        />
+    </div>
+
+    <div class="tasks-table">
+        <h3>Added Tasks</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Task Title</th>
+                    <th>Assigned To</th>
+                    <th>Date</th>
+                    <th>Edit</th>
+                    <th>Task Completed</th>
+                    <th>Add Activity</th>
+                    <th>Delete</th>
+                    <th>Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (task of this.userTasks; track $index) {
+                    @if (
+                        task.dateTime.toString().split('T')[0] ==
+                        this.selectedDate
+                        ) {
+                            <tr>
+                                <td>{{task.clientName}}</td>
+                                <td>{{task.projectName}}</td>
+                                <td>{{task.taskTitle}}</td>
+                                <td>{{task.assignedTo}}</td>
+                                <td>{{task.dateTime.toString().split('T')[0]}}</td>
+                                <td><button class="edit-btn" id="{{task.id}}" (click)="onTaskEdit(task.id)"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                <td><button class="complete-btn" id="{{task.id}}"><i class="fa-solid fa-circle-check"></i></button></td>
+                                <td><button class="add-activity-btn" id="{{task.id}}"><i class="fa-solid fa-circle-plus"></i></button></td>
+                                <td><button class="delete-btn" id="{{task.id}}" (click)="onTaskDelete(task.id)"><i class="fa-solid fa-trash-can"></i></button></td>
+                                <td>{{task.hours}}</td>
+                            </tr>
+                    }
+                }
+                @if (totalTaskCount == 0) {
+                    <td colspan="10" class="no-tasks">No tasks found for the selected date: {{ selectedDate }}</td>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <h2>Activities</h2>
+    <div class="activities-table">
+        <h3>Added Activities</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Project</th>
+                    <th>Task Title</th>
+                    <th>Activity</th>
+                    <th>Description</th>
+                    <th>Hours</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (data of selectedDateData; track $index) {
+                    <tr>
+                        <td>{{data.matchedTask.clientName}}</td>
+                        <td>{{data.matchedTask.projectName}}</td>
+                        <td>{{data.matchedTask.taskTitle}}</td>
+                        <td>{{data.act.activityTitle}}</td>
+                        <td>{{data.act.description}}</td>
+                        <td>{{data.act.hours}}</td>
+                    </tr>
+                } @empty {
+                    <td colspan="10" class="no-tasks">No activities found for the selected date: {{ selectedDate }}</td>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

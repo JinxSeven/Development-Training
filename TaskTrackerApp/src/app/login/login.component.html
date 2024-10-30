@@ -1,0 +1,31 @@
+<body>
+    <div class="main-block">
+        <h1>ClaySys Task Tracker</h1>
+        <h3>Login to Your Account</h3>
+        <a routerLink="/register">New user?</a>
+        <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
+            <label for="user-inp">Username:</label>
+            <input
+                id="user-inp"
+                type="text"
+                placeholder="Enter your username"
+                name="usrname"
+                ngModel
+                required
+            />
+
+            <label for="pass-inp">Password:</label>
+            <input
+                id="pass-inp"
+                required
+                ngModel
+                min="8"
+                name="pass"
+                type="password"
+                placeholder="Enter your password"
+            />
+
+            <input type="submit" value="Login" [disabled]="loginForm.invalid" />
+        </form>
+    </div>
+</body>
