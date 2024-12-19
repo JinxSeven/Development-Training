@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
 export class AppComponent {
     title = '';
     body = '';
+    
     ngDoCheck() {
         console.log(`Title: ${this.title} Body: ${this.body}`);
     }

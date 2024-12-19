@@ -42,6 +42,7 @@ export class AppComponent {
         blogTitle: new FormControl(''),
         blogBody: new FormControl(''),
     });
+    
     handleFormSubmit() {
         this.postBlog(
             this.blogForm.value.blogTitle,

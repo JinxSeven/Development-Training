@@ -19,3 +19,10 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\Login-wpf.pdb
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\Login-wpf.genruntimeconfig.cache
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\ref\Login-wpf.dll
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\Logo.g.cs
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\GeneratedInternalTypeHelper.g.cs
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\Logo.baml
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\CustomTextBox.g.cs
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\CustomTextBox.baml
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\CustomPasswordBox.g.cs
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\obj\Debug\net8.0-windows\View\UserControls\CustomPasswordBox.baml

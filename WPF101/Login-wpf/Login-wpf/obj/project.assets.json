@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\WPF101\\Login-wpf\\Login-wpf\\Login-wpf.csproj",
-      "projectName": "Login-wpf",
-      "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\WPF101\\Login-wpf\\Login-wpf\\Login-wpf.csproj",
+      "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\WPF101\\Login-wpf\\Login-wpf\\RegLog-wpf.csproj",
+      "projectName": "RegLog-wpf",
+      "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\WPF101\\Login-wpf\\Login-wpf\\RegLog-wpf.csproj",
       "packagesPath": "C:\\Users\\samuel.koilraj\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\WPF101\\Login-wpf\\Login-wpf\\obj\\",
       "projectStyle": "PackageReference",
@@ -49,7 +49,7 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
       "SdkAnalysisLevel": "9.0.100"
     },
@@ -75,7 +75,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

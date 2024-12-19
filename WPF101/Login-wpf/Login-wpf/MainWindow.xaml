@@ -4,33 +4,107 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Login_wpf"
+        xmlns:userControls="clr-namespace:Login_wpf.View.UserControls"
         mc:Ignorable="d"
-        Title="Login Window"
+        Title="Registration Window"
         Width="800"
         Height="450"
+		FontFamily="JetBrains Mono NL"
         Background="#332D2D">
-    <Grid VerticalAlignment="Top">
-        <Label Content="Login Page"
-               HorizontalAlignment="Center"
-               Margin="0,46,0,0"
-               FontSize="26"
-                Foreground="#fff"
-               VerticalAlignment="Top"/>
-        <Label Content="Username: "
-                HorizontalAlignment="Left"
-                Margin="138,116,0,0"
-                FontSize="22"
-                Foreground="#fff"
-                VerticalAlignment="Top"/>
-        <Label Content="Password: "
-                HorizontalAlignment="Left"
-                Margin="138,201,0,0"
-                FontSize="22"
-                Foreground="#fff"
-                VerticalAlignment="Top" RenderTransformOrigin="0.529,-0.564"/>
-        <TextBox Name="UsernameInput" HorizontalAlignment="Center" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="514" Height="38" Margin="0,158,0,0"/>
-        <PasswordBox Name="PasswordInput" HorizontalAlignment="Center" Margin="0,242,0,0" VerticalAlignment="Top" Width="514" Password="" Height="38"/>
-        <Button Click="OnLogin" Content="Login" FontSize="22" Background="#3B71CA" Foreground="#fff" HorizontalAlignment="Center" Margin="0,308,0,0" VerticalAlignment="Top" Height="49" Width="146"/>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="95"/>
+            <RowDefinition/>
+            <RowDefinition Height="25"/>
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="500*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="1" Foreground="#C2C2C2" Text="Registration Form" FontSize="30" TextAlignment="Center" VerticalAlignment="Center" />
+            <userControls:Logo/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Label
+				Grid.Row="0" Grid.Column="1"
+				Content="Username:"
+				FontSize="16"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Left"
+				Foreground="#C2C2C2"
+			/>
+            <userControls:CustomTextBox x:Name="UsernameInput" Grid.Row="0" Grid.Column="2" Placeholder="Username*" Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label
+				Grid.Row="1" Grid.Column="1"
+				Content="Email:"
+				VerticalAlignment="Center"
+				FontSize="16"
+				HorizontalAlignment="Left"
+				Foreground="#C2C2C2"
+			/>
+            <userControls:CustomTextBox
+				x:Name="EmailInput"
+				Placeholder="Email*" Grid.Row="1" Grid.Column="2" 
+                Text="{Binding Email, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+			/>
+            <Label
+				Grid.Row="2" Grid.Column="1"
+				Content="Password:"
+				FontSize="16"
+				VerticalAlignment="Center"
+				HorizontalAlignment="Left"
+				Foreground="#C2C2C2"
+			/>
+            <userControls:CustomPasswordBox
+                Placeholder="Password >= 8 Chars*"
+				x:Name="PasswordInput"
+                Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+				Grid.Row="2" Grid.Column="2"
+			/>
+            <Label
+				VerticalAlignment="Center"
+				Grid.Row="3" Grid.Column="1"
+				Content="Confirm Password:"
+				FontSize="16"
+				HorizontalAlignment="Left"
+				Foreground="#C2C2C2"
+			/>
+            <userControls:CustomPasswordBox
+				x:Name="ConfirmPasswordInput"
+                Password="{Binding ConfirmPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                Placeholder="Must match password*"
+				Grid.Row="3" Grid.Column="2"
+			/>
+            <Grid Grid.Column="2" Grid.Row="5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Button Command="{Binding RegisterCommand}" Name="RegisterButton" Grid.Column="0" Margin="0" Content="Register" FontSize="14" Height="40"/>
+                <Button Click="NavigateLogin_Click" Name="NavigateLogin" Grid.Column="1" Margin="5,0,0,0" Content="Login->" Height="40" FontSize="14"/>
+            </Grid>
+        </Grid>
     </Grid>
 </Window>

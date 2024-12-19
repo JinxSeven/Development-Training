@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:Login_wpf"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        
     </Application.Resources>
+    
 </Application>

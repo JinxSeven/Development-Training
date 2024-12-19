@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET8_0;NETCOREAPP
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\WPF101\Login-wpf\Login-wpf\App.xaml
-11407045341
+4-374811654
 
-6221801951
+10434082482
 198-1431420039
-MainWindow.xaml;
+MainWindow.xaml;View\UserControls\CustomPasswordBox.xaml;View\UserControls\CustomTextBox.xaml;View\UserControls\Logo.xaml;
 
 True
 
