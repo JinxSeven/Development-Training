@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\data\\tasksrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\data\\tasksrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\data\\activitiesrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\data\\activitiesrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -42,11 +46,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
+              "Title": "TasksRepo.cs",
+              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\TasksRepo.cs",
+              "RelativeDocumentMoniker": "TaskTracker\\Data\\TasksRepo.cs",
+              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\TasksRepo.cs",
+              "RelativeToolTip": "TaskTracker\\Data\\TasksRepo.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA2wAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T06:54:19.349Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "ActivityController.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Controllers\\ActivityController.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Controllers\\ActivityController.cs",
@@ -58,7 +75,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "ActivityData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\ActivityData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\ActivityData.cs",
@@ -70,20 +87,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "ActivitiesRepo.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\ActivitiesRepo.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Data\\ActivitiesRepo.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\ActivitiesRepo.cs",
               "RelativeToolTip": "TaskTracker\\Data\\ActivitiesRepo.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABMAAAAAAAAAAAAUwAsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T20:38:30.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Controllers\\UserController.cs",
@@ -91,12 +108,11 @@
               "RelativeToolTip": "TaskTracker\\Controllers\\UserController.cs",
               "ViewState": "AgIAABkAAAAAAAAAAAAUwB4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T07:03:28.606Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T07:03:28.606Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UsersRepo.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\UsersRepo.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Data\\UsersRepo.cs",
@@ -104,12 +120,11 @@
               "RelativeToolTip": "TaskTracker\\Data\\UsersRepo.cs",
               "ViewState": "AgIAABwAAAAAAAAAAAAUwCAAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T05:40:53.378Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T05:40:53.378Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "UserData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\UserData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\UserData.cs",
@@ -117,12 +132,11 @@
               "RelativeToolTip": "TaskTracker\\Models\\UserData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T12:38:32.559Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-23T12:38:32.559Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "TaskData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\TaskData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\TaskData.cs",
@@ -130,12 +144,11 @@
               "RelativeToolTip": "TaskTracker\\Models\\TaskData.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T12:27:48.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-23T12:27:48.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Program.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Program.cs",

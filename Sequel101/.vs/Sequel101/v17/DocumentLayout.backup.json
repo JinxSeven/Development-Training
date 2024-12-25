@@ -7,6 +7,22 @@
       "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\data\\activitiesrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\models\\taskdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\models\\taskdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\models\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\models\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\data\\usersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\data\\usersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\controllers\\activitycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -15,24 +31,8 @@
       "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\models\\activitydata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\data\\usersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\data\\usersrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\models\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\models\\userdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\tasktracker\\models\\taskdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{23B85C6E-EE1D-4649-AA7E-C373B15C9F90}|TaskTracker\\TaskTracker.csproj|solutionrelative:tasktracker\\models\\taskdata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -46,7 +46,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "ActivityController.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Controllers\\ActivityController.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Controllers\\ActivityController.cs",
@@ -54,12 +54,11 @@
               "RelativeToolTip": "TaskTracker\\Controllers\\ActivityController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAZAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-24T20:43:32.364Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-24T20:43:32.364Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "ActivityData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\ActivityData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\ActivityData.cs",
@@ -77,14 +76,14 @@
               "RelativeDocumentMoniker": "TaskTracker\\Data\\ActivitiesRepo.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Data\\ActivitiesRepo.cs",
               "RelativeToolTip": "TaskTracker\\Data\\ActivitiesRepo.cs",
-              "ViewState": "AgIAAD8AAAAAAAAAAAAQwA0AAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAUwAsAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-24T20:38:30.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "UserController.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Controllers\\UserController.cs",
@@ -108,7 +107,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "UserData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\UserData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\UserData.cs",
@@ -120,19 +119,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "TaskData.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\TaskData.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Models\\TaskData.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Models\\TaskData.cs",
               "RelativeToolTip": "TaskTracker\\Models\\TaskData.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAA2wAkAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-23T12:27:48.222Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Program.cs",
               "RelativeDocumentMoniker": "TaskTracker\\Program.cs",
