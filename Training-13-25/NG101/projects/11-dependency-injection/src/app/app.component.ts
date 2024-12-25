@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { User } from './data';
 import { UserInfoComponent } from './user-info/user-info.component';
@@ -10,7 +10,7 @@ import { UserInfoComponent } from './user-info/user-info.component';
                 @for (user of userData; track $index) {
                     <app-user-info [user]='user'/>
                 } @empty {
-                    <app-user-info />
+                    <app-user-info></app-user-info>
                 }
     `,
     imports: [UserInfoComponent],
@@ -18,10 +18,17 @@ import { UserInfoComponent } from './user-info/user-info.component';
 export class AppComponent {
     userInfoService = inject(UserService);
     userData: User[] = [];
+
+    async ngOnInit() {
+        this.userData = await this.userInfoService.getUserData();
+    }
+
     constructor() {
-        this.userInfoService.getUserData().then((data) => {
+        this.userInfoService.getUserData()
+        .then((data) => {
             this.userData = data;
-        }).catch((error) => {
+        })
+        .catch((error) => {
             console.error(error);
             alert('Error fetching user data');
         });
