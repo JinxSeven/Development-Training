@@ -1,0 +1,60 @@
+<h2>TODO App</h2>
+<form
+    [formGroup]="todoForm"
+    (ngSubmit)="addTodoTask(taskForm)"
+    #taskForm="ngForm"
+>
+    <label>Task Id:</label>
+    <input type="number" required formControlName="taskId" />
+    <label>Task Title:</label>
+    <input type="text" required formControlName="taskTitle" />
+    <label>Task Status:</label>
+    <select formControlName="taskStatus">
+        <option>Incomplete</option>
+        <option>Complete</option>
+    </select>
+    <input type="submit" />
+</form>
+<div class="counter">
+    <div class="counter-item">Total Tasks: {{ noOfTasks() }}</div>
+    <div class="counter-item">
+        <span>Completed Tasks: {{ completedTasks() }}</span>
+    </div>
+    <div class="counter-item">
+        <span>Incomplete Tasks: {{ inCompleteTasks() }}</span>
+    </div>
+</div>
+<div class="todo-container">
+    <table class="todo-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (todo of todos(); track $index) {
+            <tr>
+                <td>
+                    <span [ngStyle]="{'text-decoration': todo.status ? 'line-through' : 'none'}">{{ todo.id }}</span>
+                </td>
+                <td>
+                    <span [class.completed]="todo.status">{{
+                        todo.title
+                    }}</span>
+                </td>
+                <td>
+                    <span
+                        [class.status]="
+                            todo.status ? 'completed' : 'incomplete'
+                        "
+                    >
+                        {{ todo.status ? "Completed" : "Incomplete" }}
+                    </span>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>
