@@ -1,0 +1,29 @@
+﻿<Window x:Class="DataBindings.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataBindings"
+        mc:Ignorable="d"
+        FontFamily="JetBrains Mono NL"
+        Title="MainWindow" Height="450" Width="801">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox x:Name="TextBoxInput" FontSize="22" VerticalContentAlignment="Center" Margin="10"/>
+            <Button x:Name="AddButton" Click="AddButton_Click" Grid.Column="1" Content="Add" FontSize="22" Width="90" HorizontalAlignment="Left" Margin="1,10,0,10"/>
+            <Button x:Name="DelButton" Click="DelButton_Click" Grid.Column="1" Content="Del" FontSize="22" Width="90" HorizontalAlignment="Left" Margin="101,10,0,10"/>
+            <Button x:Name="UpdButton" Click="UpdButton_Click" Grid.Column="1" Content="Upd" FontSize="22" Width="90" HorizontalAlignment="Left" Margin="200,10,0,10"/>
+            <Button x:Name="ClrButton" Click="ClrButton_Click" Grid.Column="1" Content="Clr" FontSize="22" Width="90"  Margin="298,10,12,10"/>
+        </Grid>
+        <ListView x:Name="ListViewEntries" Grid.Row="1" VerticalContentAlignment="Center" FontSize="22" ItemsSource="{Binding ListEntries}"></ListView>
+    </Grid>
+</Window>
