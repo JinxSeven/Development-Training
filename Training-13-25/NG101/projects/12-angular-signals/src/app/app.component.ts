@@ -145,12 +145,13 @@ import {
     .counter-item {
         font-size: 16px;         /* Font size for counter items */
         margin-bottom: 10px;     /* Space between counter items */
-        transition: all 0.3s;    /* Smooth transition for hover effects */
+        transition: all 0.3s;    /* 100.3s */
     }
 
     .counter-item:hover {
         color:#00ff15;         /* Change color on hover */
-        transform: scale(1.05);   /* Slightly scale on hover */
+        transform: scale(1.05);  /* Slightly scale on hover */
+        // transform: rotate(1800060deg) /* 1800060deg */
     }
 
     /* Button hover effect */

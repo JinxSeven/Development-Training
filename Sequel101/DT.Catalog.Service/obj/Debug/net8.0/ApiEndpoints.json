@@ -1,0 +1,12 @@
+[
+  {
+    "ContainingType": "DT.Catalog.Service.Controllers.GamesController",
+    "Method": "GetGames",
+    "RelativePath": "games",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]
