@@ -7,14 +7,6 @@
       "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\controllers\\gamescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\repos\\idataaccess.interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\repos\\idataaccess.interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\entities\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\entities\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\repos\\gamesrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\repos\\gamesrepo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -23,8 +15,12 @@
       "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+      "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\entities\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\entities\\game.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|c:\\users\\samuel.koilraj\\onedrive - claysys technologies\\documents\\claysys\\sequel101\\dt.catalog.service\\repos\\idataaccess.interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0458F8A2-016C-4EE3-B02E-DA152E8101EA}|DT.Catalog.Service\\DT.Catalog.Service.csproj|solutionrelative:dt.catalog.service\\repos\\idataaccess.interface.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,33 +30,19 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Program.cs",
               "RelativeDocumentMoniker": "DT.Catalog.Service\\Program.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Program.cs",
               "RelativeToolTip": "DT.Catalog.Service\\Program.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABoAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T12:12:08.014Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "GamesRepo.cs",
-              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\GamesRepo.cs",
-              "RelativeDocumentMoniker": "DT.Catalog.Service\\Repos\\GamesRepo.cs",
-              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\GamesRepo.cs",
-              "RelativeToolTip": "DT.Catalog.Service\\Repos\\GamesRepo.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAABoAAAARAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T12:11:55.095Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T12:12:08.014Z"
             },
             {
               "$type": "Document",
@@ -70,7 +52,7 @@
               "RelativeDocumentMoniker": "DT.Catalog.Service\\Controllers\\GamesController.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Controllers\\GamesController.cs",
               "RelativeToolTip": "DT.Catalog.Service\\Controllers\\GamesController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA0AAAAyAAAAAAAAAA==",
+              "ViewState": "AgIAADcAAAAAAAAAAAAxwB8AAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-03T12:04:32.712Z",
               "EditorCaption": ""
@@ -78,41 +60,39 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "GamesRepo.cs",
+              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\GamesRepo.cs",
+              "RelativeDocumentMoniker": "DT.Catalog.Service\\Repos\\GamesRepo.cs",
+              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\GamesRepo.cs",
+              "RelativeToolTip": "DT.Catalog.Service\\Repos\\GamesRepo.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAqwB0AAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-03T12:11:55.095Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "IDataAccess.Interface.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\IDataAccess.Interface.cs",
               "RelativeDocumentMoniker": "DT.Catalog.Service\\Repos\\IDataAccess.Interface.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Repos\\IDataAccess.Interface.cs",
               "RelativeToolTip": "DT.Catalog.Service\\Repos\\IDataAccess.Interface.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T07:36:12.295Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T07:36:12.295Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Game.cs",
               "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Entities\\Game.cs",
               "RelativeDocumentMoniker": "DT.Catalog.Service\\Entities\\Game.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\Entities\\Game.cs",
               "RelativeToolTip": "DT.Catalog.Service\\Entities\\Game.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAgAAAAXAAAAAAAAAA==",
+              "ViewState": "AgIAAAUAAAAAAAAAAAA3wAAAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-03T06:37:17.404Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\appsettings.json",
-              "RelativeDocumentMoniker": "DT.Catalog.Service\\appsettings.json",
-              "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\appsettings.json",
-              "RelativeToolTip": "DT.Catalog.Service\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-01-03T06:21:01.009Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-03T06:37:17.404Z"
             }
           ]
         }

@@ -1,12 +1,44 @@
 [
   {
     "ContainingType": "DT.Catalog.Service.Controllers.GamesController",
+    "Method": "PostGame",
+    "RelativePath": "games",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "game",
+        "Type": "DT.Catalog.Service.Entities.PostGame",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DT.Catalog.Service.Controllers.GamesController",
     "Method": "GetGames",
     "RelativePath": "games",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "DT.Catalog.Service.Controllers.GamesController",
+    "Method": "GetGamesById",
+    "RelativePath": "games/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   }
 ]
