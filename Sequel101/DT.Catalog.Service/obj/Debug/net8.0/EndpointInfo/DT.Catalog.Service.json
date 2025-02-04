@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/games": {
+    "/games/post": {
       "post": {
         "tags": [
           "Games"
@@ -34,19 +34,9 @@
             "description": "OK"
           }
         }
-      },
-      "get": {
-        "tags": [
-          "Games"
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
       }
     },
-    "/games/{id}": {
+    "/games/get/{id}": {
       "get": {
         "tags": [
           "Games"
@@ -62,6 +52,114 @@
             }
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/delete/{id}": {
+      "delete": {
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/put/{id}": {
+      "put": {
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostGame"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostGame"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostGame"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/games/get": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/users/post": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUser"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUser"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostUser"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -94,10 +192,42 @@
             "nullable": true
           },
           "gamePrice": {
-            "maximum": 499,
+            "maximum": 499.99,
             "minimum": 0,
             "type": "number",
             "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PostUser": {
+        "required": [
+          "userEmail",
+          "userName",
+          "userPassword",
+          "userRole"
+        ],
+        "type": "object",
+        "properties": {
+          "userName": {
+            "type": "string",
+            "nullable": true
+          },
+          "userEmail": {
+            "maxLength": 50,
+            "minLength": 5,
+            "pattern": "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$",
+            "type": "string",
+            "nullable": true
+          },
+          "userPassword": {
+            "type": "string",
+            "nullable": true
+          },
+          "userRole": {
+            "pattern": "^(?i)(creator|customer)$",
+            "type": "string",
+            "nullable": true
           }
         },
         "additionalProperties": false

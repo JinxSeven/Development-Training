@@ -13,8 +13,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDataAccess>(provide =>
 {
     var dbConnStr = builder.Configuration.GetConnectionString("DBConn");
+    Console.WriteLine(dbConnStr);
     return new DataAccess(new SqlConnection(dbConnStr));
 });
+builder.Services.AddScoped<UsersRepo>();
 builder.Services.AddScoped<GamesRepo>();
 
 var app = builder.Build();

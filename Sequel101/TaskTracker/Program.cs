@@ -18,7 +18,7 @@ namespace TaskTracker
 
             builder.Services.AddScoped<IDataAccess>(provider =>
             {
-                var connStr = builder.Configuration.GetConnectionString("DBCon");
+                var connStr = builder.Configuration.GetConnectionString("DBConn");
                 return new DataAccess(connStr);
             });
             builder.Services.AddScoped<UsersRepo>();

@@ -146,6 +146,7 @@ import {
         font-size: 16px;         /* Font size for counter items */
         margin-bottom: 10px;     /* Space between counter items */
         transition: all 0.3s;    /* 100.3s */
+        // transition: all 100.3s;    /* 100.3s */
     }
 
     .counter-item:hover {

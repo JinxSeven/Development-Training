@@ -17,7 +17,7 @@ namespace DT.Catalog.Service.Entities
         public required string GameCategory { get; set; }
         public required string GameDescription { get; set; }
         [Required]
-        [Range(0, 499)]
+        [Range(0, 499.99)]
         public decimal GamePrice { get; set; }
     }
 }

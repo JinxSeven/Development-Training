@@ -1,13 +1,14 @@
 ﻿using DT.Catalog.Service.Entities;
 using DT.Catalog.Service.Repos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 
 namespace DT.Catalog.Service.Controllers
 {
     [ApiController]
     [Route("games")]
-    public class GamesController : Controller
+    public class GamesController : ControllerBase
     {
         private readonly GamesRepo _gamesRepo;
 
@@ -16,20 +17,13 @@ namespace DT.Catalog.Service.Controllers
             _gamesRepo = gamesRepo;
         }
 
-        [HttpPost]
-        public ActionResult PostGame([FromBody] PostGame game)
+        [HttpPost("post")]
+        public IActionResult PostGame([FromBody] PostGame game)
         {
             try
             {
                 Object? res = _gamesRepo.PostGame(game);
-                if (res == null && res == DBNull.Value)
-                {
-                    return BadRequest("Something went wrong!");
-                }
-
-                Guid id = Guid.Parse(res!.ToString()!);
-                Console.WriteLine(id.GetType() + $": {id}");
-                return Ok($"Game inserted with Id: {id}");
+                return Ok($"Game inserted with Id: {res}");
             }
             catch (Exception ex)
             {
@@ -37,7 +31,7 @@ namespace DT.Catalog.Service.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("get/{id}")]
         public IActionResult GetGamesById(Guid id)
         {
             try
@@ -55,7 +49,43 @@ namespace DT.Catalog.Service.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteGameById(Guid id)
+        {
+            try
+            {
+                _gamesRepo.DeleteGameById(id);
+                return NoContent();
+            }
+            catch (SqlException ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpPut("put/{id}")]
+        public IActionResult PutGameById(Guid id, PostGame updatedGame)
+        {
+            try
+            {
+                _gamesRepo.PutGameById(id, updatedGame);
+                return Ok(new { Message = "Game update successful!", UpdatedGame = updatedGame });
+            }
+            catch (SqlException ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
+
+        [HttpGet("get")]
         public IActionResult GetGames()
         {
             try

@@ -1,0 +1,10 @@
+CREATE TABLE Users
+	(
+		UserId UNIQUEIDENTIFIER DEFAULT NEWID(),
+		UserName NVARCHAR(255),
+		UserEmail NVARCHAR(255),
+		UserPassword NVARCHAR(255),
+		UserRole NVARCHAR(50)
+	);
+
+SELECT * FROM Users;
