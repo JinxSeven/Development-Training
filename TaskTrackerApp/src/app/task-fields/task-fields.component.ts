@@ -5,13 +5,15 @@ import { Task } from '../interfaces/task';
 import { ApiService } from '../api.service';
 import { Activity } from '../interfaces/activity';
 import { HeaderComponent } from "../header/header.component";
+import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
     selector: 'app-task-fields',
     standalone: true,
     imports: [
     FormsModule,
-    HeaderComponent
+    HeaderComponent,
+    MatTabsModule
     ],
     templateUrl: './task-fields.component.html',
     styleUrl: './task-fields.component.css',

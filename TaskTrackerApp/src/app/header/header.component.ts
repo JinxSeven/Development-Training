@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { User } from '../interfaces/user';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-header',
@@ -12,6 +13,12 @@ import { RouterModule } from '@angular/router';
     styleUrl: './header.component.css',
 })
 export class HeaderComponent {
+    router = inject(Router);
+    apiServe = inject(ApiService);
+    logout() {
+        this.router.navigate(['/login']);
+        this.apiServe.setAuthenticated(false);
+    }
     loggerUser!: User;
 
     constructor() {

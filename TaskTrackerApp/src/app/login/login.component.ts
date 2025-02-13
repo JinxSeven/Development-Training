@@ -22,6 +22,7 @@ export class LoginComponent {
             next: (response: any) => {
                 if (response) {
                     alert('Login successful!');
+                    this.apiCalls.setAuthenticated(true);
                     sessionStorage.setItem('LoggedUser', JSON.stringify(response));
                     this.router.navigate(['/tasktracker']);
                 }

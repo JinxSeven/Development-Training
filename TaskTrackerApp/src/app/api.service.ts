@@ -14,6 +14,8 @@ export class ApiService {
     editMode: boolean = false;
     dataToEdit: any;
 
+    private loggedIn: boolean = false;
+
     private handleError(error: HttpErrorResponse) {
         if (error.status === 200) {
             console.error(
@@ -27,6 +29,10 @@ export class ApiService {
             () => new Error('Something went wrong; please try again later.')
         );
     }
+
+    isAuthenticated() { console.log(this.loggedIn); return this.loggedIn; }
+
+    setAuthenticated(state: boolean) { this.loggedIn = state; console.log(this.loggedIn) }
 
     LoggingUser(username: string, password: string): Observable<User> {
         return this.http.get<User>(
