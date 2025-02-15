@@ -2,7 +2,7 @@
     padding: 20px;
     background-color: #ffffff;
     border-radius: 10px;
-    max-width: 98%;
+    max-width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
     margin: auto;
 }
@@ -25,21 +25,21 @@
 }
 
 .form-group input {
-    width: 95%;
+    width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
 
 .description-container {
-    width: 98.2%;
+    width: 100%;
     flex-basis: 100%;
     margin-top: 20px;
 }
 
 .form-group textarea {
     margin-top: 5px;
-    width: 98.2%;
+    width: 100%;
     flex-basis: 100%;
 }
 
@@ -75,7 +75,7 @@ textarea {
 }
 
 .additional-inputs input {
-    width: 98.2%;
+    width: 100%;
 }
 
 .button-group button {

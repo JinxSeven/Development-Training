@@ -109,6 +109,7 @@
             <button
                 type="button"
                 [disabled]="taskForm.invalid"
+                (click)="onReset()"
             >
                 Reset
             </button>
@@ -170,11 +171,15 @@
             </button>
             <button
                 type="button"
-                (click)="onReset(activityForm)"
+                (click)="onReset()"
                 [disabled]="activityForm.invalid"
             >
                 Reset
             </button>
         </div>
     </form>
+
+    <div class="card flex justify-center">
+        <p-toast />
+    </div>
 </div>

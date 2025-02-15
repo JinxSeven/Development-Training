@@ -4,6 +4,7 @@ import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
+    standalone: true,
     selector: 'app-header',
     imports: [
         RouterModule

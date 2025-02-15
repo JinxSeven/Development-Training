@@ -49,7 +49,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public int AddNewTask(Models.TaskData taskData)
+        public Guid AddNewTask(Models.TaskData taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -69,10 +69,17 @@ namespace TaskTracker.Data
                 addNewTaskCmd.Parameters.AddWithValue("@priority", taskData.Priority);
                 addNewTaskCmd.Parameters.AddWithValue("@description", taskData.Description);
 
-                var response = Convert.ToInt32(addNewTaskCmd.ExecuteScalar());
-                connection.Close();
+                SqlParameter outputIdParam = new SqlParameter("@task_id", System.Data.SqlDbType.UniqueIdentifier)
+                {
+                    Direction = System.Data.ParameterDirection.Output
+                };
+                addNewTaskCmd.Parameters.Add(outputIdParam);
 
-                return response;
+                addNewTaskCmd.ExecuteNonQuery();
+
+                Guid newTaskId = (Guid)outputIdParam.Value;
+
+                return newTaskId;
             }
         }
 

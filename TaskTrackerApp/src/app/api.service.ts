@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { User } from './interfaces/user';
 import { Task } from './interfaces/task';
 import { Activity } from './interfaces/activity';
@@ -40,21 +40,21 @@ export class ApiService {
         );
     }
 
-    addNewUser(postData: User): Promise<any> {
+    addNewUser(postData: User): Observable<any> {
         return this.http.post<any>(
             'http://localhost:5016/api/User/AddNewUser', postData
         );
     }
- 
+
     addNewTask(postData: Task): Observable<any> {
         return this.http.post<any>(
-            'https://localhost:5016/api/Task/AddNewTask', postData
+            'http://localhost:5016/api/Task/AddNewTask', postData
         );
     }
 
     addNewActivity(postData: Activity): Observable<any> {
         return this.http.post<any>(
-            'https://localhost:5016/api/Activity/Post', postData
+            'http://localhost:5016/api/Activity/Post', postData
         );
     }
 
@@ -66,19 +66,19 @@ export class ApiService {
 
     getTaskActivities(taskId: string): Observable<any> {
         return this.http.get<any>(
-            `https://localhost:5016/api/Activity/Get?taskId=${taskId}`
+            `http://localhost:5016/api/Activity/Get?taskId=${taskId}`
         );
     }
 
     updateTask(postData: Task): Observable<any> {
         return this.http.put<any>(
-            'https://localhost:5016/api/Task/Edit', postData
+            'http://localhost:5016/api/Task/Edit', postData
         );
     }
 
     deleteTask(taskId: string): Observable<any> {
         return this.http.delete<any>(
-            `https://localhost:5016/api/Task/Delete?taskId=${taskId}`
+            `http://localhost:5016/api/Task/Delete?taskId=${taskId}`
         )
     }
 }

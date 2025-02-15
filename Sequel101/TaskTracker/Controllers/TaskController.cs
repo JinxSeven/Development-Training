@@ -21,7 +21,7 @@ namespace TaskTracker.Controllers
         {
             try
             {
-                int addedId = _taskRepo.AddNewTask(taskData);
+                Guid addedId = _taskRepo.AddNewTask(taskData);
                 return Ok(addedId);
             }
             catch (Exception ex)

@@ -8,6 +8,7 @@ import { User } from '../interfaces/user';
 import { Activity } from '../interfaces/activity';
 
 @Component({
+    standalone: true,
     selector: 'app-task-tracker',
     imports: [
         HeaderComponent,

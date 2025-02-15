@@ -5,6 +5,7 @@ import { User } from '../interfaces/user';
 import { RouterModule } from '@angular/router';
 
 @Component({
+    standalone: true,
     selector: 'app-register',
     imports: [FormsModule, RouterModule],
     templateUrl: './register.component.html',
