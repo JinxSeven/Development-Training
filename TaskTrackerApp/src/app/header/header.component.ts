@@ -5,12 +5,11 @@ import { ApiService } from '../api.service';
 
 @Component({
     selector: 'app-header',
-    standalone: true,
     imports: [
         RouterModule
     ],
     templateUrl: './header.component.html',
-    styleUrl: './header.component.css',
+    styleUrl: './header.component.css'
 })
 export class HeaderComponent {
     router = inject(Router);

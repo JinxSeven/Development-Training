@@ -9,13 +9,12 @@ import { Activity } from '../interfaces/activity';
 
 @Component({
     selector: 'app-task-tracker',
-    standalone: true,
     imports: [
         HeaderComponent,
         FormsModule
     ],
     templateUrl: './task-tracker.component.html',
-    styleUrl: './task-tracker.component.css',
+    styleUrl: './task-tracker.component.css'
 })
 export class TaskTrackerComponent {
     apiCalls = inject(ApiService)

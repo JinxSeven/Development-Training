@@ -9,7 +9,6 @@ import {MatTabsModule} from '@angular/material/tabs';
 
 @Component({
     selector: 'app-task-fields',
-    standalone: true,
     imports: [
         FormsModule,
         HeaderComponent,
@@ -17,7 +16,7 @@ import {MatTabsModule} from '@angular/material/tabs';
         ReactiveFormsModule
     ],
     templateUrl: './task-fields.component.html',
-    styleUrl: './task-fields.component.css',
+    styleUrl: './task-fields.component.css'
 })
 export class TaskFieldsComponent implements OnInit {
     loggedUser?: User;

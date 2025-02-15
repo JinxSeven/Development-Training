@@ -40,12 +40,12 @@ export class ApiService {
         );
     }
 
-    addNewUser(postData: User): Observable<any> {
+    addNewUser(postData: User): Promise<any> {
         return this.http.post<any>(
             'http://localhost:5016/api/User/AddNewUser', postData
         );
     }
-
+ 
     addNewTask(postData: Task): Observable<any> {
         return this.http.post<any>(
             'https://localhost:5016/api/Task/AddNewTask', postData
