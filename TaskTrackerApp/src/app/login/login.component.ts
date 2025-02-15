@@ -22,18 +22,18 @@ export class LoginComponent {
             next: (response: any) => {
                 if (response) {
                     alert('Login successful!');
-                    this.apiCalls.setAuthenticated(true);
+                    // this.apiCalls.setAuthenticated(true);
                     sessionStorage.setItem('LoggedUser', JSON.stringify(response));
                     this.router.navigate(['/tasktracker']);
                 }
             },
             error: (error: HttpErrorResponse) => {
                 if (error.status === 400) {
-                    alert('Invalid username or password: ' + error.error);
+                    alert('Invalid username or password!');
                 } else if (error.status === 500) {
                     alert('Internal server error: ' + error.error);
                 } else {
-                    alert('Unexpected error occurred.');
+                    alert('An unexpected error occurred!');
                 }
             },
         });

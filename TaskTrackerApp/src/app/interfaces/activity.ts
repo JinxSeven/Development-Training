@@ -1,6 +1,6 @@
 export interface Activity {
-    id: number,
-    taskId: number,
+    id: string,
+    taskId: string,
     activityTitle: string,
     description: string,
     hours: number

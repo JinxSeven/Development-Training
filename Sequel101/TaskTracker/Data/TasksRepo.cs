@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System;
+using TaskTracker.Models;
 
 namespace TaskTracker.Data
 {
@@ -11,33 +12,33 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public List<Object> GetTasks(int user_id)
+        public List<TaskData> GetTasks(Guid userId)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
                 connection.Open();
 
-                SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM fnGetUserTasks(@user_id)", connection);
-                getTasksCmd.Parameters.AddWithValue("@user_id", user_id);
+                SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM Tasks WHERE user_id = @user_id", connection);
+                getTasksCmd.Parameters.AddWithValue("@user_id", userId);
                 var reader = getTasksCmd.ExecuteReader();
 
-                var userTasks = new List<Object>();
+                var userTasks = new List<TaskData>();
                 while (reader.Read())
                 {
-                    userTasks.Add(new
+                    userTasks.Add(new TaskData
                     {
-                        Id = reader["id"],
-                        UserId = reader["userId"],
-                        ClientName = reader["clientName"],
-                        ProjectName = reader["projectName"],
-                        TaskTitle = reader["taskTitle"],
-                        Hours = reader["hours"],
-                        DateTime = reader["dateTime"],
-                        AssignedTo = reader["assignedTo"],
-                        AssignedBy = reader["assignedBy"],
-                        SupportType = reader["supportType"],
-                        Priority = reader["priority"],
-                        Description = reader["description"],
+                        Id = Guid.Parse(reader["id"].ToString()!),
+                        UserId = Guid.Parse(reader["user_id"].ToString()!),
+                        ClientName = reader["client_name"].ToString()!,
+                        ProjectName = reader["project_name"].ToString()!,
+                        TaskTitle = reader["task_title"].ToString()!,
+                        Hours = (decimal)reader["hours"],
+                        DateTime = (DateTime)reader["date_time"],
+                        AssignedTo = reader["assigned_to"].ToString()!,
+                        AssignedBy = reader["assigned_by"].ToString()!,
+                        TaskState = reader["task_state"].ToString()!,
+                        Priority = reader["priority"].ToString()!,
+                        Description = reader["description"].ToString()!,
                     });
                 }
 
@@ -54,7 +55,7 @@ namespace TaskTracker.Data
             {
                 connection.Open();
 
-                SqlCommand addNewTaskCmd = new SqlCommand("spAddTask", connection);
+                SqlCommand addNewTaskCmd = new SqlCommand("usp_AddTask", connection);
                 addNewTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
                 addNewTaskCmd.Parameters.AddWithValue("@user_id", taskData.UserId);
                 addNewTaskCmd.Parameters.AddWithValue("@client_name", taskData.ClientName);
@@ -64,7 +65,7 @@ namespace TaskTracker.Data
                 addNewTaskCmd.Parameters.AddWithValue("@date_time", taskData.DateTime);
                 addNewTaskCmd.Parameters.AddWithValue("@assigned_to", taskData.AssignedTo);
                 addNewTaskCmd.Parameters.AddWithValue("@assigned_by", taskData.AssignedBy);
-                addNewTaskCmd.Parameters.AddWithValue("@support_type", taskData.supportType);
+                addNewTaskCmd.Parameters.AddWithValue("@task_state", taskData.TaskState);
                 addNewTaskCmd.Parameters.AddWithValue("@priority", taskData.Priority);
                 addNewTaskCmd.Parameters.AddWithValue("@description", taskData.Description);
 
@@ -81,7 +82,7 @@ namespace TaskTracker.Data
             {
                 connection.Open();
 
-                SqlCommand editTaskCmd = new SqlCommand("spEditTask", connection);
+                SqlCommand editTaskCmd = new SqlCommand("usp_EditTask", connection);
                 editTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
                 editTaskCmd.Parameters.AddWithValue("@task_id", taskData.Id);
                 editTaskCmd.Parameters.AddWithValue("@client_name", taskData.ClientName);
@@ -91,7 +92,7 @@ namespace TaskTracker.Data
                 editTaskCmd.Parameters.AddWithValue("@date_time", taskData.DateTime);
                 editTaskCmd.Parameters.AddWithValue("@assigned_to", taskData.AssignedTo);
                 editTaskCmd.Parameters.AddWithValue("@assigned_by", taskData.AssignedBy);
-                editTaskCmd.Parameters.AddWithValue("@support_type", taskData.supportType);
+                editTaskCmd.Parameters.AddWithValue("@task_state", taskData.TaskState);
                 editTaskCmd.Parameters.AddWithValue("@priority", taskData.Priority);
                 editTaskCmd.Parameters.AddWithValue("@description", taskData.Description);
                 editTaskCmd.ExecuteNonQuery();
@@ -100,19 +101,19 @@ namespace TaskTracker.Data
             }
         }
 
-        public void DeleteTask(int taskId)
-        {
-            using (var connection = _dataAccess.ReturnConn())
-            {
-                connection.Open();
+        // public void DeleteTask(int taskId)
+        // {
+        //     using (var connection = _dataAccess.ReturnConn())
+        //     {
+        //         connection.Open();
 
-                var deleteTaskCmd = new SqlCommand("spDeleteTask", connection);
-                deleteTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
-                deleteTaskCmd.Parameters.AddWithValue("@task_id", taskId);
-                deleteTaskCmd.ExecuteNonQuery();
+        //         var deleteTaskCmd = new SqlCommand("spDeleteTask", connection);
+        //         deleteTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
+        //         deleteTaskCmd.Parameters.AddWithValue("@task_id", taskId);
+        //         deleteTaskCmd.ExecuteNonQuery();
 
-                connection.Close();
-            }
-        }
+        //         connection.Close();
+        //     }
+        // }
     }
 }

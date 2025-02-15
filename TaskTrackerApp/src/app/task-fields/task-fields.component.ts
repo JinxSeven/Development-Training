@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 import { User } from '../interfaces/user';
 import { Task } from '../interfaces/task';
 import { ApiService } from '../api.service';
@@ -11,29 +11,46 @@ import {MatTabsModule} from '@angular/material/tabs';
     selector: 'app-task-fields',
     standalone: true,
     imports: [
-    FormsModule,
-    HeaderComponent,
-    MatTabsModule
+        FormsModule,
+        HeaderComponent,
+        MatTabsModule,
+        ReactiveFormsModule
     ],
     templateUrl: './task-fields.component.html',
     styleUrl: './task-fields.component.css',
 })
-export class TaskFieldsComponent {
+export class TaskFieldsComponent implements OnInit {
     loggedUser?: User;
     toDate: string;
     enableNextTask: boolean = false;
-    latestTaskId: number | null = null;
+    latestTaskId: string | null = null;
     editModeFieldsData?: any;
-    editMode!: boolean;
+    editMode: boolean = false;
 
     apiCalls = inject(ApiService);
 
-    constructor() {
+    taskForm!: FormGroup;
+
+    constructor(private fb: FormBuilder) {
         this.loggedUser = this.getLoggedUserId();
-        const todayDate = new Date();
-        this.toDate = todayDate.toISOString().split('T')[0];
+        this.toDate = new Date().toISOString().split('T')[0];
         this.editMode = this.apiCalls.editMode;
         this.onEditMode(this.editMode);
+    }
+
+    ngOnInit(): void {
+        this.taskForm = this.fb.group({
+            clientName: ['', Validators.required],
+            projectName: ['', Validators.required],
+            taskTitle: ['', Validators.required],
+            taskETA: [null, [Validators.required, Validators.min(0.1), Validators.max(24)]],
+            taskDate: [this.toDate.substring(0, 10), Validators.required],
+            assignedTo: [this.loggedUser!.username, Validators.required],
+            assignedBy: ['', Validators.required],
+            taskState: ['', Validators.required],
+            taskPriority: ['', Validators.required],
+            description: ['', Validators.required]
+        });
     }
 
     getLoggedUserId(): User {
@@ -41,21 +58,23 @@ export class TaskFieldsComponent {
         return JSON.parse(loggedUser!);
     }
 
-    onSaveTask(taskForm: NgForm) {
+    onSaveTask() {
+        if (this.taskForm.valid) return;
         const postData: Task = {
-            id: 0,
-            userId: this.loggedUser?.id!,
-            clientName: taskForm.controls["select1"].value,
-            projectName: taskForm.controls["select2"].value,
-            taskTitle: taskForm.controls["textInput1"].value,
-            hours: taskForm.controls["textInput2"].value,
-            dateTime: taskForm.controls["dateInput"].value,
-            assignedTo: taskForm.controls["textInput3"].value,
-            assignedBy: taskForm.controls["textInput4"].value,
-            supportType: taskForm.controls["select3"].value,
-            priority: taskForm.controls["select4"].value,
-            description: taskForm.controls["description"].value
+            id: '',
+            userId: this.loggedUser!.id!,
+            clientName: this.taskForm.controls["clientName"].value,
+            projectName: this.taskForm.controls["projectName"].value,
+            taskTitle: this.taskForm.controls["taskTitle"].value,
+            hours: this.taskForm.controls["taskETA"].value,
+            dateTime: this.taskForm.controls["taskDate"].value,
+            assignedTo: this.taskForm.controls["assignedTo"].value,
+            assignedBy: this.taskForm.controls["assignedBy"].value,
+            taskState: this.taskForm.controls["taskState"].value,
+            priority: this.taskForm.controls["taskPriority"].value,
+            description: this.taskForm.controls["description"].value
         }
+        console.log(postData);
         this.apiCalls.addNewTask(postData).subscribe({
             next: (response: any) => {
                 this.latestTaskId = response;
@@ -89,7 +108,7 @@ export class TaskFieldsComponent {
             dateTime: taskForm.controls["dateInput"].value,
             assignedTo: taskForm.controls["textInput3"].value,
             assignedBy: taskForm.controls["textInput4"].value,
-            supportType: taskForm.controls["select3"].value,
+            taskState: taskForm.controls["select3"].value,
             priority: taskForm.controls["select4"].value,
             description: taskForm.controls["description"].value
         }
@@ -99,7 +118,7 @@ export class TaskFieldsComponent {
                 console.log("Task updated", response);
             }, error: error => {
                 if (error.status === 400) {
-                    console.error("PUT failed", error);
+                    console.error("PUT request failed", error);
                 } else {
                     console.error("Error: ", error);
                 }
@@ -107,10 +126,9 @@ export class TaskFieldsComponent {
         })
     }
 
-    onNextTask(taskForm: NgForm) {
+    onNextTask() {
         this.enableNextTask = !this.enableNextTask;
         this.latestTaskId = null;
-        taskForm.reset();
     }
 
     onSaveActivity(activityForm: NgForm) {
@@ -119,7 +137,7 @@ export class TaskFieldsComponent {
             return;
         }
         const postData: Activity = {
-            id: 0,
+            id: '',
             taskId: this.latestTaskId!,
             activityTitle: activityForm.controls['actInput1'].value,
             description: activityForm.controls['activityDesc'].value,

@@ -17,7 +17,7 @@ export class HeaderComponent {
     apiServe = inject(ApiService);
     logout() {
         this.router.navigate(['/login']);
-        this.apiServe.setAuthenticated(false);
+        // this.apiServe.setAuthenticated(false);
     }
     loggerUser!: User;
 

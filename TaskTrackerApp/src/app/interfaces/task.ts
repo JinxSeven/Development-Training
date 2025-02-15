@@ -1,6 +1,6 @@
 export interface Task {
-    id: number,
-    userId: number,
+    id: string,
+    userId: string,
     clientName: string,
     projectName: string,
     taskTitle: string,
@@ -8,7 +8,7 @@ export interface Task {
     dateTime: Date,
     assignedTo: string,
     assignedBy: string,
-    supportType: string,
+    taskState: string,
     priority: string,
     description: string
 }

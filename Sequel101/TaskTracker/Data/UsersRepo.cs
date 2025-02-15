@@ -14,15 +14,15 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public UserData GetLoggerUser(string username, string password)
+        public UserData? GetLoggedUser(string username, string password)
         {
-            UserData loggerUser = null;
+            UserData? loggedUser = null;
 
             using (var connection = _dataAccess.ReturnConn())
             {
                 connection.Open();
 
-                using (SqlCommand getLoggedUserCmd = new SqlCommand("spGetLoggedUser", connection))
+                using (SqlCommand getLoggedUserCmd = new SqlCommand("usp_GetLoggedUser", connection))
                 {
                     getLoggedUserCmd.CommandType = CommandType.StoredProcedure;
                     getLoggedUserCmd.Parameters.AddWithValue("@username", username);
@@ -32,9 +32,9 @@ namespace TaskTracker.Data
 
                     if (reader.Read())
                     {
-                        loggerUser = new UserData
+                        loggedUser = new UserData
                         {
-                            Id = Convert.ToInt32(reader["id"]),
+                            Id = Guid.Parse(reader["id"].ToString()!),
                             Username = reader["userName"].ToString()!,
                             Email = reader["email"].ToString()!
                         };
@@ -44,7 +44,7 @@ namespace TaskTracker.Data
                 }
             }
 
-            return loggerUser;
+            return loggedUser;
         }
 
 
@@ -54,27 +54,12 @@ namespace TaskTracker.Data
             {
                 connection.Open();
 
-                SqlCommand addNewUSerCmd = new SqlCommand("spAddUser", connection);
+                SqlCommand addNewUSerCmd = new SqlCommand("usp_AddUser", connection);
                 addNewUSerCmd.CommandType = CommandType.StoredProcedure;
                 addNewUSerCmd.Parameters.AddWithValue("@username", userData.Username);
                 addNewUSerCmd.Parameters.AddWithValue("@email", userData.Email);
                 addNewUSerCmd.Parameters.AddWithValue("@password", userData.Password);
                 addNewUSerCmd.ExecuteNonQuery();
-
-                connection.Close();
-            }
-        }
-
-        public void DeleteUser(int user_id)
-        {
-            using (var connection = _dataAccess.ReturnConn())
-            {
-                connection.Open();
-
-                SqlCommand deleteUSerCmd = new SqlCommand("spDeleteUser", connection);
-                deleteUSerCmd.CommandType = CommandType.StoredProcedure;
-                deleteUSerCmd.Parameters.AddWithValue("@user_id", user_id);
-                deleteUSerCmd.ExecuteNonQuery();
 
                 connection.Close();
             }

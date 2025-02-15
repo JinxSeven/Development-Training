@@ -16,12 +16,12 @@ namespace TaskTracker.Controllers
         }
 
         [HttpGet]
-        [Route("Login")]
+        [Route("GetLoggedUser")]
         public IActionResult GetLoggedUser(string username, string password)
         {
             try
             {
-                var loggedUser = _userRepo.GetLoggerUser(username, password);
+                var loggedUser = _userRepo.GetLoggedUser(username, password);
                 return Ok(loggedUser);
             }
             catch (Exception ex)
@@ -31,26 +31,13 @@ namespace TaskTracker.Controllers
         }
 
         [HttpPost]
+        [Route("AddNewUser")]
         public IActionResult AddNewUser(Models.UserData userData)
         {
             try
             {
                 _userRepo.AddNewUser(userData);
                 return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
-        [HttpDelete]
-        [Route("Delete")]
-        public IActionResult Delete(int user_id)
-        {
-            try
-            {
-                _userRepo.DeleteUser(user_id); return Ok();
             }
             catch (Exception ex)
             {

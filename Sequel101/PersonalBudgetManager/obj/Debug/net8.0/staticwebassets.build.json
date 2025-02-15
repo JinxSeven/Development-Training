@@ -1,11 +1,12 @@
 {
   "Version": 1,
-  "Hash": "8yy77nm+jJkDSL9br2E7jll2yTvF4rP+liMdmIRyMJ4=",
+  "Hash": "SJAjbcibUqi9m0eRLBfBsDvS3NvhLJa0gkIs9V8ln1k=",
   "Source": "PersonalBudgetManager",
   "BasePath": "_content/PersonalBudgetManager",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
   "DiscoveryPatterns": [],
-  "Assets": []
+  "Assets": [],
+  "Endpoints": []
 }

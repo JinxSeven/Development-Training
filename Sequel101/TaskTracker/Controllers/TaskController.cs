@@ -16,7 +16,7 @@ namespace TaskTracker.Controllers
         }
 
         [HttpPost]
-        [Route("Post")]
+        [Route("AddNewTask")]
         public IActionResult AddNewTask(TaskData taskData)
         {
             try
@@ -31,12 +31,12 @@ namespace TaskTracker.Controllers
         }
 
         [HttpGet]
-        [Route("Get")]
-        public IActionResult GetTasks(int user_id)
+        [Route("GetTasks")]
+        public IActionResult GetTasks(Guid userId)
         {
             try
             { 
-                var responce = _taskRepo.GetTasks(user_id);
+                var responce = _taskRepo.GetTasks(userId);
                 return Ok(responce);
             }
             catch (Exception ex)
@@ -45,32 +45,32 @@ namespace TaskTracker.Controllers
             }
         }
 
-        [HttpPut]
-        [Route("Edit")]
-        public IActionResult EditTask(TaskData taskData)
-        {
-            try
-            {
-                _taskRepo.EditTask(taskData); return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        // [HttpPut]
+        // [Route("Edit")]
+        // public IActionResult EditTask(TaskData taskData)
+        // {
+        //     try
+        //     {
+        //         _taskRepo.EditTask(taskData); return Ok();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
 
-        [HttpDelete]
-        [Route("Delete")]
-        public IActionResult DeleteTask(int taskId)
-        {
-            try
-            {
-                _taskRepo.DeleteTask(taskId); return Ok();
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
+        // [HttpDelete]
+        // [Route("Delete")]
+        // public IActionResult DeleteTask(int taskId)
+        // {
+        //     try
+        //     {
+        //         _taskRepo.DeleteTask(taskId); return Ok();
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(ex.Message);
+        //     }
+        // }
     }
 }

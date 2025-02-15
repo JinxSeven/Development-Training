@@ -17,7 +17,7 @@ export class RegisterComponent {
     onRegister(registerForm: NgForm) {
         console.log(registerForm);
         const postData: User = {
-            id: 0,
+            id: '',
             username: registerForm.controls['usrname'].value,
             email: registerForm.controls['email'].value,
             password: registerForm.controls['pass'].value,

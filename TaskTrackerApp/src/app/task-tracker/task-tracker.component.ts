@@ -24,7 +24,7 @@ export class TaskTrackerComponent {
     loggerUser: User;
     totalTaskHours: number = 0;
     totalTaskCount: number = 0;
-    taskIds: number[] = [];
+    taskIds: string[] = [];
     selectedDateData: any = [];
 
     constructor(private router: Router) {
@@ -34,7 +34,7 @@ export class TaskTrackerComponent {
         this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
             next: response => {
                 this.userTasks = response;
-                console.log("API response: 200");
+                console.log("Response: 200");
                 this.totalTaskHours = this.calculateTotalHours();
             },
             error: error => {
@@ -51,7 +51,7 @@ export class TaskTrackerComponent {
         this.totalTaskHours = this.calculateTotalHours();
     }
 
-    onTaskEdit(task_id: number) {
+    onTaskEdit(task_id: string) {
         this.apiCalls.dataToEdit = null;
 
         const taskData = this.userTasks
@@ -74,7 +74,7 @@ export class TaskTrackerComponent {
         this.router.navigate(["/taskfields"]);
     }
 
-    onTaskDelete(taskId: number) {
+    onTaskDelete(taskId: string) {
         console.log(taskId);
         this.apiCalls.deleteTask(taskId).subscribe({
             next: (response: any) => {
@@ -82,7 +82,7 @@ export class TaskTrackerComponent {
                 this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
                     next: response => {
                         this.userTasks = response;
-                        console.log("API response: 200");
+                        console.log("Response: 200");
                         this.totalTaskHours = this.calculateTotalHours();
                     },
                     error: error => {
