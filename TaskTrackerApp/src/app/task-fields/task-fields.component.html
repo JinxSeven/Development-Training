@@ -109,7 +109,7 @@
             <button
                 type="button"
                 [disabled]="taskForm.invalid"
-                (click)="onReset()"
+                (click)="onTaskFormReset()"
             >
                 Reset
             </button>
@@ -123,7 +123,7 @@
         </div>
     </form>
 
-    <form (ngSubmit)="onSaveActivity(activityForm)" #activityForm="ngForm">
+    <form (ngSubmit)="onSaveActivity()" [formGroup]="actForm">
         <h3>Activities</h3>
         <div class="additional-inputs">
             <div class="form-group">
@@ -131,9 +131,7 @@
                 <input
                     type="text"
                     id="additionalInput1"
-                    name="actInput1"
-                    ngModel
-                    required
+                    formControlName="actTitle"
                 />
             </div>
 
@@ -141,9 +139,7 @@
                 <label for="additionalDescription">Description*</label>
                 <textarea
                     id="additionalDescription"
-                    name="activityDesc"
-                    ngModel
-                    required
+                    formControlName="actDescription"
                 ></textarea>
             </div>
 
@@ -152,12 +148,8 @@
                 <input
                     type="number"
                     id="textInput2"
-                    name="actInput2"
-                    ngModel
-                    required
+                    formControlName="actHours"
                     step="0.1"
-                    min="0.1"
-                    max="2"
                 />
             </div>
         </div>
@@ -165,14 +157,14 @@
         <div class="button-group">
             <button
                 type="submit"
-                [disabled]="!this.enableNextTask || activityForm.invalid"
+                [disabled]="actForm.invalid"
             >
                 Save
             </button>
             <button
                 type="button"
-                (click)="onReset()"
-                [disabled]="activityForm.invalid"
+                (click)="onActFormReset()"
+                [disabled]="actForm.invalid"
             >
                 Reset
             </button>
@@ -180,6 +172,6 @@
     </form>
 
     <div class="card flex justify-center">
-        <p-toast />
+        <p-toast position="bottom-right"/>
     </div>
 </div>

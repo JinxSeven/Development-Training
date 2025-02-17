@@ -6,13 +6,15 @@ import { FormsModule } from '@angular/forms';
 import { Task } from '../interfaces/task';
 import { User } from '../interfaces/user';
 import { Activity } from '../interfaces/activity';
+import { Tag } from 'primeng/tag';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
     standalone: true,
     selector: 'app-task-tracker',
     imports: [
         HeaderComponent,
-        FormsModule
+        FormsModule, Tag, DropdownModule
     ],
     templateUrl: './task-tracker.component.html',
     styleUrl: './task-tracker.component.css'
@@ -27,15 +29,17 @@ export class TaskTrackerComponent {
     taskIds: string[] = [];
     selectedDateData: any = [];
 
+    selectedTaskState = '';
+
     constructor(private router: Router) {
         const todayDate = new Date();
         this.selectedDate = todayDate.toISOString().split('T')[0];
-        this.loggerUser = this.getLoggedUserId()
+        this.loggerUser = this.getLoggedUser()
         this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
             next: response => {
                 this.userTasks = response;
                 console.log("Response: 200");
-                this.totalTaskHours = this.calculateTotalHours();
+                this.totalTaskHours = this.getRelevantData();
             },
             error: error => {
                 if (error.status === 400) {
@@ -47,8 +51,13 @@ export class TaskTrackerComponent {
         });
     }
 
-    onChange(event: any) {
-        this.totalTaskHours = this.calculateTotalHours();
+    onTaskStateChange(taskId: string, event: Event) {
+        const newTaskState = (event.target as HTMLSelectElement).value;
+        console.log(taskId ,newTaskState);
+    }
+
+    onDateChange(event: any) {
+        this.totalTaskHours = this.getRelevantData();
     }
 
     onTaskEdit(task_id: string) {
@@ -78,12 +87,11 @@ export class TaskTrackerComponent {
         console.log(taskId);
         this.apiCalls.deleteTask(taskId).subscribe({
             next: (response: any) => {
-                console.log("DELETE done");
                 this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
                     next: response => {
                         this.userTasks = response;
                         console.log("Response: 200");
-                        this.totalTaskHours = this.calculateTotalHours();
+                        this.totalTaskHours = this.getRelevantData();
                     },
                     error: error => {
                         if (error.status === 400) {
@@ -104,7 +112,7 @@ export class TaskTrackerComponent {
         });
     }
 
-    calculateTotalHours(): number {
+    getRelevantData(): number {
         this.totalTaskHours = 0;
         this.totalTaskCount = 0;
         this.selectedDateData = [];
@@ -119,11 +127,11 @@ export class TaskTrackerComponent {
                 this.apiCalls.getTaskActivities(task.id).subscribe({
                     next: response => {
                         response.forEach((act: Activity) => {
-                            const matchedTask = this.userTasks.find(task => task.id === act.taskId);
-                            if (matchedTask) {
+                            const matchingTasks = this.userTasks.find(task => task.id === act.taskId);
+                            if (matchingTasks) {
                                 const combinedObject = {
                                     act,
-                                    matchedTask
+                                    matchingTasks
                                 };
                             this.selectedDateData.push(combinedObject);
                             }
@@ -135,7 +143,7 @@ export class TaskTrackerComponent {
         return this.totalTaskHours;
     }
 
-    getLoggedUserId(): User {
+    getLoggedUser(): User {
         const loggedUser = sessionStorage.getItem("LoggedUser");
         return JSON.parse(loggedUser!);
     }

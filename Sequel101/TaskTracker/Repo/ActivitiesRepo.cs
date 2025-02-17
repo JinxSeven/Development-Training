@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using System.Diagnostics;
+using TaskTracker.Models;
 
 namespace TaskTracker.Data
 {
@@ -11,26 +12,26 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public List<Object> GetTaskActicities(int task_id)
+        public List<ActivityData> GetTaskActivities(Guid task_id)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
                 connection.Open();
 
-                SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM fnGetUserActivities(@task_id)", connection);
+                SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM Activities WHERE task_id = @task_id", connection);
                 getTasksCmd.Parameters.AddWithValue("@task_id", task_id);
                 var reader = getTasksCmd.ExecuteReader();
 
-                var taskActivities = new List<Object>();
+                var taskActivities = new List<ActivityData>();
                 while (reader.Read())
                 {
-                    taskActivities.Add(new
+                    taskActivities.Add(new ActivityData
                     {
-                        Id = reader["id"],
-                        TaskId = reader["taskId"],
-                        ActivityTitle = reader["activityTitle"],
-                        Description = reader["description"],
-                        Hours = reader["hours"]
+                        Id = Guid.Parse(reader["id"].ToString()!),
+                        TaskId = Guid.Parse(reader["task_id"].ToString()!),
+                        ActivityTitle = reader["activity_title"].ToString()!,
+                        Description = reader["description"].ToString()!,
+                        Hours = (decimal)reader["hours"]
                     });
                 }
 
@@ -47,7 +48,7 @@ namespace TaskTracker.Data
             {
                 connection.Open();
 
-                SqlCommand addNewActCmd = new SqlCommand("spAddActivity", connection);
+                SqlCommand addNewActCmd = new SqlCommand("usp_AddActivity", connection);
                 addNewActCmd.CommandType = System.Data.CommandType.StoredProcedure;
                 addNewActCmd.Parameters.AddWithValue("@task_id", activityData.TaskId);
                 addNewActCmd.Parameters.AddWithValue("@activity_title", activityData.ActivityTitle);

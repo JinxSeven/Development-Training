@@ -4,7 +4,7 @@
         <h2>Tasks</h2>
         <span class="total-tasks">{{totalTaskCount}} Item(s) In Total</span>
         <button class="working-leave-btn">
-            Total {{totalTaskHours}} hour(s) of Working/Leave
+            Total {{totalTaskHours}} hour(s) of Working
         </button>
         <div></div>
         <button
@@ -17,7 +17,7 @@
         <label for="date">Date</label>
         <input type="date" id="date"
             [(ngModel)]="this.selectedDate"
-            (ngModelChange)="onChange($event)"
+            (ngModelChange)="onDateChange($event)"
         />
     </div>
 
@@ -30,12 +30,13 @@
                     <th>Project</th>
                     <th>Task Title</th>
                     <th>Assigned To</th>
-                    <th>Date</th>
-                    <th>Edit</th>
-                    <th>Task Completed</th>
+                    <th>Assigned By</th>
+                    <th>ETA</th>
+                    <th>Task Priority</th>
+                    <th>Task State</th>
                     <th>Add Activity</th>
+                    <th>Edit</th>
                     <th>Delete</th>
-                    <th>Hours</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,12 +50,29 @@
                                 <td>{{task.projectName}}</td>
                                 <td>{{task.taskTitle}}</td>
                                 <td>{{task.assignedTo}}</td>
-                                <td>{{task.dateTime.toString().split('T')[0]}}</td>
-                                <td><button class="edit-btn" id="{{task.id}}" (click)="onTaskEdit(task.id)"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                                <td><button class="complete-btn" id="{{task.id}}"><i class="fa-solid fa-circle-check"></i></button></td>
-                                <td><button class="add-activity-btn" id="{{task.id}}"><i class="fa-solid fa-circle-plus"></i></button></td>
-                                <td><button class="delete-btn" id="{{task.id}}" (click)="onTaskDelete(task.id)"><i class="fa-solid fa-trash-can"></i></button></td>
+                                <td>{{task.assignedBy}}</td>
                                 <td>{{task.hours}}</td>
+                                <td>
+                                    @if (task.priority === 'low') {
+                                        <p-tag severity="success" value="Low" />
+                                    }
+                                    @else if (task.priority === 'medium') {
+                                        <p-tag severity="warn" value="Medium" />
+                                    }
+                                    @else {
+                                        <p-tag severity="danger" value="High" />
+                                    }
+                                </td>
+                                <td>
+                                    <select id="select4" value="{{task.taskState}}" (change)="onTaskStateChange(task.id, $event)">
+                                        <option value="new">New</option>
+                                        <option value="active">Active</option>
+                                        <option value="complete">Complete</option>
+                                    </select>
+                                </td>
+                                <td><button class="add-activity-btn" id="{{task.id}}"><i class="fa-solid fa-circle-plus"></i></button></td>
+                                <td><button class="edit-btn" id="{{task.id}}" (click)="onTaskEdit(task.id)"><i class="fa-solid fa-pen-to-square"></i></button></td>
+                                <td><button class="delete-btn" id="{{task.id}}" (click)="onTaskDelete(task.id)"><i class="fa-solid fa-trash-can"></i></button></td>
                             </tr>
                     }
                 }
@@ -74,7 +92,7 @@
                     <th>Client</th>
                     <th>Project</th>
                     <th>Task Title</th>
-                    <th>Activity</th>
+                    <th>Activity Title</th>
                     <th>Description</th>
                     <th>Hours</th>
                 </tr>
@@ -82,9 +100,9 @@
             <tbody>
                 @for (data of selectedDateData; track $index) {
                     <tr>
-                        <td>{{data.matchedTask.clientName}}</td>
-                        <td>{{data.matchedTask.projectName}}</td>
-                        <td>{{data.matchedTask.taskTitle}}</td>
+                        <td>{{data.matchingTasks.clientName}}</td>
+                        <td>{{data.matchingTasks.projectName}}</td>
+                        <td>{{data.matchingTasks.taskTitle}}</td>
                         <td>{{data.act.activityTitle}}</td>
                         <td>{{data.act.description}}</td>
                         <td>{{data.act.hours}}</td>
@@ -96,3 +114,9 @@
         </table>
     </div>
 </div>
+<!--
+<p-tag severity="success" value="Success" />
+<p-tag severity="info" value="Info" />
+<p-tag severity="warn" value="Warn" />
+<p-tag severity="danger" value="Danger" />
+-->

@@ -16,12 +16,12 @@ namespace TaskTracker.Controllers
         }
 
         [HttpGet]
-        [Route("Get")]
-        public IActionResult GetTaskActicities(int taskId)
+        [Route("GetTaskActivities")]
+        public IActionResult GetTaskActivities(Guid taskId)
         {
             try
             {
-                var response = _activityRepo.GetTaskActicities(taskId);
+                var response = _activityRepo.GetTaskActivities(taskId);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -31,7 +31,7 @@ namespace TaskTracker.Controllers
         }
 
         [HttpPost]
-        [Route("Post")]
+        [Route("AddNewActivity")]
         public IActionResult AddNewActivity(ActivityData activityData)
         {
             try

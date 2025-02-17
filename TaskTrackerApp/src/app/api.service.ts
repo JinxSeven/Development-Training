@@ -54,7 +54,7 @@ export class ApiService {
 
     addNewActivity(postData: Activity): Observable<any> {
         return this.http.post<any>(
-            'http://localhost:5016/api/Activity/Post', postData
+            'http://localhost:5016/api/Activity/AddNewActivity', postData
         );
     }
 
@@ -66,7 +66,7 @@ export class ApiService {
 
     getTaskActivities(taskId: string): Observable<any> {
         return this.http.get<any>(
-            `http://localhost:5016/api/Activity/Get?taskId=${taskId}`
+            `http://localhost:5016/api/Activity/GetTaskActivities?taskId=${taskId}`
         );
     }
 

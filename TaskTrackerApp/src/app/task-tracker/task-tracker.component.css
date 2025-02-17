@@ -2,7 +2,7 @@
     font-family: Arial, sans-serif;
     padding: 20px;
     border-radius: 10px;
-    max-width: 98%;
+    max-width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
 }
 
@@ -15,6 +15,21 @@
 
 h2 {
     margin: 0;
+}
+
+p-tag {
+    font-size: 12px;
+    font-weight: 400;
+    min-width: 58.63px;
+    margin: -25px;
+}
+
+select {
+    width: 100%;
+    padding: 1.5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin: -8px;
 }
 
 .total-tasks {

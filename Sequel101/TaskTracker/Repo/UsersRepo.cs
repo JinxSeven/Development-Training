@@ -36,7 +36,8 @@ namespace TaskTracker.Data
                         {
                             Id = Guid.Parse(reader["id"].ToString()!),
                             Username = reader["userName"].ToString()!,
-                            Email = reader["email"].ToString()!
+                            Email = reader["email"].ToString()!,
+                            Password = ""
                         };
                     }
 

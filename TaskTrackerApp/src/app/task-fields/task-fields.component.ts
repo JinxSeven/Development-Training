@@ -16,7 +16,6 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
-import { Ripple } from 'primeng/ripple';
 
 @Component({
     standalone: true,
@@ -29,7 +28,7 @@ import { Ripple } from 'primeng/ripple';
         ButtonModule,
         Toast,
     ],
-    providers: [MessageService],
+    providers: [ MessageService ],
     templateUrl: './task-fields.component.html',
     styleUrl: './task-fields.component.css',
 })
@@ -44,6 +43,7 @@ export class TaskFieldsComponent implements OnInit {
     apiCalls = inject(ApiService);
 
     taskForm!: FormGroup;
+    actForm!: FormGroup;
 
     constructor(
         private fb: FormBuilder,
@@ -71,6 +71,12 @@ export class TaskFieldsComponent implements OnInit {
             taskPriority: ['', Validators.required],
             description: ['', Validators.required],
         });
+
+        this.actForm = this.fb.group({
+            actTitle: ['', Validators.required],
+            actDescription: ['', Validators.required],
+            actHours: [null, [Validators.required, Validators.min(0.1), Validators.max(2)]]
+        })
     }
 
     getLoggedUserId(): User {
@@ -102,7 +108,7 @@ export class TaskFieldsComponent implements OnInit {
                 // console.log("Task added!", this.latestTaskId);
                 this.showToast(
                     'success',
-                    'Yay!',
+                    'Great!',
                     'Your task is ready for liftoff!'
                 );
             },
@@ -112,7 +118,7 @@ export class TaskFieldsComponent implements OnInit {
                 } else {
                     console.error('POST request failed', error);
                 }
-                this.showToast('warn', 'Oops!', 'Houston, we have a problem!');
+                this.showToast('error', 'Oops!', 'Houston, we have a problem!');
             },
         });
     }
@@ -123,6 +129,7 @@ export class TaskFieldsComponent implements OnInit {
         }
     }
 
+    /*
     onUpdateTask(taskForm: NgForm) {
         const postData: Task = {
             id: this.editModeFieldsData.matchedTask.id,
@@ -152,28 +159,30 @@ export class TaskFieldsComponent implements OnInit {
             },
         });
     }
+    */
 
     onNextTask() {
         this.enableNextTask = !this.enableNextTask;
         this.latestTaskId = null;
-        this.onReset();
+        this.onTaskFormReset();
     }
 
-    onSaveActivity(activityForm: NgForm) {
+    onSaveActivity() {
         if (!this.latestTaskId) {
-            alert('No task to link activity with!');
+            this.showToast(`warn`, `Oops!`, `No task to link activity with!`)
             return;
         }
         const postData: Activity = {
-            id: '',
+            id: this.latestTaskId!,
             taskId: this.latestTaskId!,
-            activityTitle: activityForm.controls['actInput1'].value,
-            description: activityForm.controls['activityDesc'].value,
-            hours: activityForm.controls['actInput2'].value,
+            activityTitle: this.actForm.controls['actTitle'].value,
+            description: this.actForm.controls['actDescription'].value,
+            hours: this.actForm.controls['actHours'].value,
         };
         this.apiCalls.addNewActivity(postData).subscribe({
             next: (response) => {
-                console.log('Activity added!', response);
+                // console.log('Activity added!', response);
+                this.showToast(`success`, `Excellent!`, `Your task journey just got brighter!`)
             },
             error: (error) => {
                 if (error.status === 400) {
@@ -181,18 +190,21 @@ export class TaskFieldsComponent implements OnInit {
                 } else {
                     console.error('POST request failed', error);
                 }
+                this.showToast('error', 'Oops!', 'Houston, we have a problem!');
             },
         });
-        this.onReset();
+        this.onActFormReset();
     }
 
-    onReset() {
+    onTaskFormReset() {
         console.log(`runs`)
         this.taskForm.reset({
             taskDate: this.toDate.substring(0, 10),
             assignedTo: this.loggedUser!.username
         });
     }
+
+    onActFormReset() { this.actForm.reset(); }
 
     showToast(severity: string, summary: string, detail: string) {
         this.messageService.add({
