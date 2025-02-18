@@ -36,49 +36,64 @@ export class ApiService {
 
     LoggingUser(username: string, password: string): Observable<User> {
         return this.http.get<User>(
-            `http://localhost:5016/api/User/GetLoggedUser?username=${username}&password=${password}`
+            `https://localhost:7042/api/User/GetLoggedUser?username=${username}&password=${password}`
         );
     }
 
     addNewUser(postData: User): Observable<any> {
         return this.http.post<any>(
-            'http://localhost:5016/api/User/AddNewUser', postData
+            'https://localhost:7042/api/User/AddNewUser', postData
         );
     }
 
     addNewTask(postData: Task): Observable<any> {
         return this.http.post<any>(
-            'http://localhost:5016/api/Task/AddNewTask', postData
+            'https://localhost:7042/api/Task/AddNewTask', postData
         );
     }
 
     addNewActivity(postData: Activity): Observable<any> {
         return this.http.post<any>(
-            'http://localhost:5016/api/Activity/AddNewActivity', postData
+            'https://localhost:7042/api/Activity/AddNewActivity', postData
         );
     }
 
     getUserTasks(userId: string): Observable<any> {
         return this.http.get<any>(
-            `http://localhost:5016/api/Task/GetTasks?userId=${userId}`
+            `https://localhost:7042/api/Task/GetTasks?userId=${userId}`
         );
     }
 
     getTaskActivities(taskId: string): Observable<any> {
         return this.http.get<any>(
-            `http://localhost:5016/api/Activity/GetTaskActivities?taskId=${taskId}`
+            `https://localhost:7042/api/Activity/GetTaskActivities?taskId=${taskId}`
         );
     }
 
+    async updateTaskState(taskId: string, newState: string): Promise<Response> {
+        const link = `https://localhost:7042/api/Task/UpdateTaskState?taskId=${taskId}&taskState=${newState}`
+
+        const response = await fetch(link, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        });
+
+        return response;
+    }
+
+
+    /* Unused API Calls */
     updateTask(postData: Task): Observable<any> {
         return this.http.put<any>(
-            'http://localhost:5016/api/Task/Edit', postData
+            'https://localhost:7042/api/Task/Edit', postData
         );
     }
 
     deleteTask(taskId: string): Observable<any> {
         return this.http.delete<any>(
-            `http://localhost:5016/api/Task/Delete?taskId=${taskId}`
+            `https://localhost:7042/api/Task/Delete?taskId=${taskId}`
         )
     }
 }

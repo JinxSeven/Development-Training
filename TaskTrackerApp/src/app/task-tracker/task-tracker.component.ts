@@ -8,16 +8,22 @@ import { User } from '../interfaces/user';
 import { Activity } from '../interfaces/activity';
 import { Tag } from 'primeng/tag';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { Toast } from 'primeng/toast';
+import { ButtonModule } from 'primeng/button';
+
 
 @Component({
     standalone: true,
     selector: 'app-task-tracker',
     imports: [
-        HeaderComponent,
-        FormsModule, Tag, DropdownModule
+        HeaderComponent, ToastModule, Toast,
+        FormsModule, Tag, DropdownModule, ButtonModule
     ],
     templateUrl: './task-tracker.component.html',
-    styleUrl: './task-tracker.component.css'
+    styleUrl: './task-tracker.component.css',
+    providers: [ MessageService ]
 })
 export class TaskTrackerComponent {
     apiCalls = inject(ApiService)
@@ -31,7 +37,7 @@ export class TaskTrackerComponent {
 
     selectedTaskState = '';
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private messageService: MessageService) {
         const todayDate = new Date();
         this.selectedDate = todayDate.toISOString().split('T')[0];
         this.loggerUser = this.getLoggedUser()
@@ -53,7 +59,19 @@ export class TaskTrackerComponent {
 
     onTaskStateChange(taskId: string, event: Event) {
         const newTaskState = (event.target as HTMLSelectElement).value;
-        console.log(taskId ,newTaskState);
+        this.apiCalls.updateTaskState(taskId, newTaskState).then((response) => {
+            if (response.ok) {
+                if (newTaskState === `complete`) {
+                    this.showToast(`success`, `Awesome!`, `Here's to learning, growing, and crushing it!`)
+                    return;
+                }
+                this.showToast(`info`, `Voilà!`, `Your task state just got updated!`)
+            }
+        }).catch((error) => {
+            this.showToast('error', 'Oops!', 'Houston, we have a problem!');
+        });
+
+
     }
 
     onDateChange(event: any) {
@@ -152,5 +170,14 @@ export class TaskTrackerComponent {
         this.router.navigate(["/taskfields"]);
         this.apiCalls.dataToEdit = null;
         this.apiCalls.editMode = false;
+    }
+
+    showToast(severity: string, summary: string, detail: string) {
+        this.messageService.add({
+            severity: `${severity}`,
+            summary: `${summary}`,
+            detail: `${detail}`,
+            life: 3000,
+        });
     }
 }

@@ -41,10 +41,10 @@ export class LoginComponent {
                     this.showToast(`warn`, `Incorrect Creds!`, `Maybe your cat walked on the keyboard?`);
                 } else if (error.status === 500) {
                     // alert('Internal server error: ' + error.error);
-                    this.showToast(`error`, `Uh oh!`, `Server's experiencing an existential crisis`);
+                    this.showToast(`error`, `Oops!`, `Server's experiencing an existential crisis`);
                 } else {
                     // alert('An unexpected error occurred!');
-                    this.showToast('error', 'Oops!', 'Houston, we have a problem!');
+                    this.showToast('error', 'Yikes!', 'Houston, we have a problem!');
                 }
             },
         });

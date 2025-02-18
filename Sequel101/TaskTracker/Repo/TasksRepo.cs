@@ -12,18 +12,18 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public List<TaskData> GetTasks(Guid userId)
+        public async Task<List<TaskData>> GetTasks(Guid userId)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
-                connection.Open();
+                connection.OpenAsync();
 
                 SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM Tasks WHERE user_id = @user_id", connection);
                 getTasksCmd.Parameters.AddWithValue("@user_id", userId);
                 var reader = getTasksCmd.ExecuteReader();
 
                 var userTasks = new List<TaskData>();
-                while (reader.Read())
+                while (await reader.ReadAsync())
                 {
                     userTasks.Add(new TaskData
                     {
@@ -49,11 +49,11 @@ namespace TaskTracker.Data
             }
         }
 
-        public Guid AddNewTask(Models.TaskData taskData)
+        public async Task<Guid> AddNewTask(Models.TaskData taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
-                connection.Open();
+                await connection.OpenAsync();
 
                 SqlCommand addNewTaskCmd = new SqlCommand("usp_AddTask", connection);
                 addNewTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -75,11 +75,27 @@ namespace TaskTracker.Data
                 };
                 addNewTaskCmd.Parameters.Add(outputIdParam);
 
-                addNewTaskCmd.ExecuteNonQuery();
+                await addNewTaskCmd.ExecuteNonQueryAsync();
 
                 Guid newTaskId = (Guid)outputIdParam.Value;
 
                 return newTaskId;
+            }
+        }
+
+        public void UpdateTaskState(Guid taskId, string taskState)
+        {
+            using (SqlConnection connection = _dataAccess.ReturnConn())
+            {
+                connection.Open();
+
+                SqlCommand setStateCmd = new SqlCommand("usp_UpdateTaskState", connection);
+                setStateCmd.CommandType = System.Data.CommandType.StoredProcedure;
+                setStateCmd.Parameters.AddWithValue("@id", taskId);
+                setStateCmd.Parameters.AddWithValue("@task_state", taskState);
+                setStateCmd.ExecuteNonQuery();
+
+                connection.Close();
             }
         }
 

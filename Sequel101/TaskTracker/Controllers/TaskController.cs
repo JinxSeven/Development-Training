@@ -15,13 +15,29 @@ namespace TaskTracker.Controllers
             _taskRepo = taskRepo;
         }
 
+
+        [HttpGet]
+        [Route("GetTasks")]
+        public async Task<IActionResult> GetTasks(Guid userId)
+        {
+            try
+            { 
+                var responce = await _taskRepo.GetTasks(userId);
+                return Ok(responce);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("AddNewTask")]
-        public IActionResult AddNewTask(TaskData taskData)
+        public async Task<IActionResult> AddNewTask(TaskData taskData)
         {
             try
             {
-                Guid addedId = _taskRepo.AddNewTask(taskData);
+                Guid addedId = await _taskRepo.AddNewTask(taskData);
                 return Ok(addedId);
             }
             catch (Exception ex)
@@ -30,14 +46,13 @@ namespace TaskTracker.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("GetTasks")]
-        public IActionResult GetTasks(Guid userId)
-        {
-            try
-            { 
-                var responce = _taskRepo.GetTasks(userId);
-                return Ok(responce);
+        [HttpPatch]
+        [Route("UpdateTaskState")]
+        public IActionResult UpdateTaskState(Guid taskId, string taskState) {
+            try 
+            {
+                _taskRepo.UpdateTaskState(taskId, taskState);
+                return Ok();
             }
             catch (Exception ex)
             {
