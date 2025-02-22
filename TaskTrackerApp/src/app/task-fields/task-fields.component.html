@@ -74,9 +74,9 @@
                 <label for="select3">State*</label>
                 <select id="select3" formControlName="taskState">
                     <option value="">Select...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="new">New</option>
+                    <option value="active">Active</option>
+                    <option value="complete">Complete</option>
                 </select>
             </div>
 
@@ -84,9 +84,9 @@
                 <label for="select4">Priority*</label>
                 <select id="select4" formControlName="taskPriority">
                     <option value="">Select...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="hign">High</option>
                 </select>
             </div>
         </div>
@@ -100,12 +100,21 @@
         </div>
 
         <div class="button-group">
-            <button
-                type="submit"
-                [disabled]="this.enableNextTask || taskForm.invalid"
-            >
-                Save
-            </button>
+            @if (editMode$ | async) {
+                <button
+                    [disabled]="this.enableNextTask || taskForm.invalid"
+                    (click)="onUpdateTask()"
+                >
+                    Update
+                </button>
+            } @else {
+                <button
+                    type="submit"
+                    [disabled]="this.enableNextTask || taskForm.invalid"
+                >
+                    Save
+                </button>
+            }
             <button
                 type="button"
                 [disabled]="taskForm.invalid"
@@ -123,53 +132,68 @@
         </div>
     </form>
 
-    <form (ngSubmit)="onSaveActivity()" [formGroup]="actForm">
-        <h3>Activities</h3>
-        <div class="additional-inputs">
-            <div class="form-group">
-                <label for="additionalInput1">Title*</label>
-                <input
-                    type="text"
-                    id="additionalInput1"
-                    formControlName="actTitle"
-                />
-            </div>
+    <h3>Activities</h3>
 
-            <div class="form-group">
-                <label for="additionalDescription">Description*</label>
-                <textarea
-                    id="additionalDescription"
-                    formControlName="actDescription"
-                ></textarea>
-            </div>
 
-            <div class="form-group">
-                <label for="textInput2">Hours*</label>
-                <input
-                    type="number"
-                    id="textInput2"
-                    formControlName="actHours"
-                    step="0.1"
-                />
-            </div>
-        </div>
+    <p-tabs value="0">
+        <p-tablist>
+            <p-tab value="0">Add Activity</p-tab>
+            <p-tab value="1">Edit Activity</p-tab>
+        </p-tablist>
+        <p-tabpanels>
+            <p-tabpanel value="0">
+                <form (ngSubmit)="onSaveActivity()" [formGroup]="actForm">
+                    <div class="additional-inputs">
+                        <div class="form-group">
+                            <label for="additionalInput1">Title*</label>
+                            <input
+                                type="text"
+                                id="additionalInput1"
+                                formControlName="actTitle"
+                            />
+                        </div>
 
-        <div class="button-group">
-            <button
-                type="submit"
-                [disabled]="actForm.invalid"
-            >
-                Save
-            </button>
-            <button
-                type="button"
-                (click)="onActFormReset()"
-                [disabled]="actForm.invalid"
-            >
-                Reset
-            </button>
-        </div>
-    </form>
+                        <div class="form-group">
+                            <label for="additionalDescription">Description*</label>
+                            <textarea
+                                id="additionalDescription"
+                                formControlName="actDescription"
+                            ></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="textInput2">Hours*</label>
+                            <input
+                                type="number"
+                                id="textInput2"
+                                formControlName="actHours"
+                                step="0.1"
+                            />
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button
+                            type="submit"
+                            [disabled]="actForm.invalid"
+                        >
+                            Save
+                        </button>
+                        <button
+                            type="button"
+                            (click)="onActFormReset()"
+                            [disabled]="actForm.invalid"
+                        >
+                            Reset
+                        </button>
+                    </div>
+                </form>
+            </p-tabpanel>
+            <p-tabpanel value="1">
+                <div style="height: 375px;"></div>
+            </p-tabpanel>
+        </p-tabpanels>
+    </p-tabs>
 
     <div class="card flex justify-center">
         <p-toast position="bottom-right"/>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.SqlClient;
-using System;
 using TaskTracker.Models;
 
 namespace TaskTracker.Data
@@ -16,7 +15,7 @@ namespace TaskTracker.Data
         {
             using (var connection = _dataAccess.ReturnConn())
             {
-                connection.OpenAsync();
+                await connection.OpenAsync();
 
                 SqlCommand getTasksCmd = new SqlCommand("SELECT * FROM Tasks WHERE user_id = @user_id", connection);
                 getTasksCmd.Parameters.AddWithValue("@user_id", userId);
@@ -42,14 +41,14 @@ namespace TaskTracker.Data
                     });
                 }
 
-                reader.Close();
-                connection.Close();
+                await reader.CloseAsync();
+                await connection.CloseAsync();
 
                 return userTasks;
             }
         }
 
-        public async Task<Guid> AddNewTask(Models.TaskData taskData)
+        public async Task<Guid> AddNewTask(TaskData taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -99,7 +98,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public void EditTask(Models.TaskData taskData)
+        public void EditTask(TaskData taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {

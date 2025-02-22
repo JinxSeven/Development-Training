@@ -13,65 +13,90 @@ import { ToastModule } from 'primeng/toast';
 import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 
-
 @Component({
     standalone: true,
     selector: 'app-task-tracker',
     imports: [
-        HeaderComponent, ToastModule, Toast,
-        FormsModule, Tag, DropdownModule, ButtonModule
+        HeaderComponent,
+        ToastModule,
+        Toast,
+        FormsModule,
+        Tag,
+        DropdownModule,
+        ButtonModule,
     ],
     templateUrl: './task-tracker.component.html',
     styleUrl: './task-tracker.component.css',
-    providers: [ MessageService ]
+    providers: [MessageService],
 })
 export class TaskTrackerComponent {
-    apiCalls = inject(ApiService)
+    apiCalls = inject(ApiService);
     selectedDate: string;
-    userTasks:Task[] = [];
+    userTasks: Task[] = [];
     loggerUser: User;
     totalTaskHours: number = 0;
     totalTaskCount: number = 0;
     taskIds: string[] = [];
-    selectedDateData: any = [];
+    dataByDate: any = [];
 
     selectedTaskState = '';
 
-    constructor(private router: Router, private messageService: MessageService) {
+    constructor(
+        private router: Router,
+        private messageService: MessageService
+    ) {
         const todayDate = new Date();
         this.selectedDate = todayDate.toISOString().split('T')[0];
-        this.loggerUser = this.getLoggedUser()
+        this.loggerUser = this.getLoggedUser();
         this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
-            next: response => {
+            next: (response) => {
                 this.userTasks = response;
-                console.log("Response: 200");
+                console.log('Response: 200');
                 this.totalTaskHours = this.getRelevantData();
             },
-            error: error => {
+            error: (error) => {
                 if (error.status === 400) {
-                    console.error("Error: ", error);
+                    console.error('Error: ', error);
                 } else {
-                    console.error("Something went wrong! ", error);
+                    console.error('Something went wrong! ', error);
                 }
-            }
+                this.showToast(
+                    'error',
+                    'Oops!',
+                    'The server is taking a coffee break. Try again in a bit!'
+                );
+            },
         });
     }
 
     onTaskStateChange(taskId: string, event: Event) {
         const newTaskState = (event.target as HTMLSelectElement).value;
-        this.apiCalls.updateTaskState(taskId, newTaskState).then((response) => {
-            if (response.ok) {
-                if (newTaskState === `complete`) {
-                    this.showToast(`success`, `Awesome!`, `Here's to learning, growing, and crushing it!`)
-                    return;
+        this.apiCalls
+            .updateTaskState(taskId, newTaskState)
+            .then((response) => {
+                if (response.ok) {
+                    if (newTaskState === `complete`) {
+                        this.showToast(
+                            `success`,
+                            `Task Conquered!`,
+                            `Here's to learning, growing, and conquering it!`
+                        );
+                        return;
+                    }
+                    this.showToast(
+                        `info`,
+                        `Voilà!`,
+                        `Your task state just got updated!`
+                    );
                 }
-                this.showToast(`info`, `Voilà!`, `Your task state just got updated!`)
-            }
-        }).catch((error) => {
-            this.showToast('error', 'Oops!', 'Houston, we have a problem!');
-        });
-
-
+            })
+            .catch((error) => {
+                this.showToast(
+                    'error',
+                    'Oops!',
+                    'The server is taking a coffee break. Try again in a bit!'
+                );
+            });
     }
 
     onDateChange(event: any) {
@@ -81,24 +106,36 @@ export class TaskTrackerComponent {
     onTaskEdit(task_id: string) {
         this.apiCalls.dataToEdit = null;
 
-        const taskData = this.userTasks
-        .find((data: any) => data.id === task_id);
-        const combinedData = this.selectedDateData
-        .find((data: any) => data.matchedTask.id === task_id);
+        const taskData = this.userTasks.find(
+            (data: any) => data.id === task_id
+        );
 
-        if (combinedData) {
-            this.apiCalls.dataToEdit = combinedData;
+        if (taskData) {
+            this.apiCalls.dataToEdit = taskData;
         } else {
-            const matchedTask = taskData
-            const act: any = {};
-            const Data = {
-                act,
-                matchedTask
-            }
-            this.apiCalls.dataToEdit = Data;
+            this.showToast(
+                'error',
+                'Oops!',
+                'The server is taking a coffee break. Try again in a bit!'
+            );
+            return;
         }
-        this.apiCalls.editMode = true;
-        this.router.navigate(["/taskfields"]);
+
+        // if (combinedData) {
+        //     this.apiCalls.dataToEdit = combinedData;
+        // } else {
+        //     const matchedTask = taskData;
+        //     const act: any = {};
+        //     const data = {
+        //         act,
+        //         matchedTask,
+        //     };
+        //     // this.apiCalls.dataToEdit = Data;
+        //     console.log(data);
+        // }
+
+        this.apiCalls.setEditMode(true);
+        this.router.navigate(['/taskfields']);
     }
 
     onTaskDelete(taskId: string) {
@@ -106,70 +143,68 @@ export class TaskTrackerComponent {
         this.apiCalls.deleteTask(taskId).subscribe({
             next: (response: any) => {
                 this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
-                    next: response => {
+                    next: (response) => {
                         this.userTasks = response;
-                        console.log("Response: 200");
+                        console.log('Response: 200');
                         this.totalTaskHours = this.getRelevantData();
                     },
-                    error: error => {
+                    error: (error) => {
                         if (error.status === 400) {
-                            console.error("Error: ", error);
+                            console.error('Error: ', error);
                         } else {
-                            console.error("Something went wrong! ", error);
+                            console.error('Something went wrong! ', error);
                         }
-                    }
+                    },
                 });
             },
             error: (error: any) => {
                 if (error.status === 400) {
-                    console.error("API response: ", error);
+                    console.error('API response: ', error);
                 } else {
-                    console.error("Error: ", error);
+                    console.error('Error: ', error);
                 }
-            }
+            },
         });
     }
 
     getRelevantData(): number {
         this.totalTaskHours = 0;
         this.totalTaskCount = 0;
-        this.selectedDateData = [];
-        this.userTasks.forEach(task => {
-            if
-            (
-                task.dateTime.toString().split('T')[0] ==
-                this.selectedDate
-            ) {
+        this.dataByDate = [];
+        this.userTasks.forEach((task) => {
+            if (task.dateTime.toString().split('T')[0] == this.selectedDate) {
                 this.totalTaskHours += task.hours;
                 this.totalTaskCount++;
                 this.apiCalls.getTaskActivities(task.id).subscribe({
-                    next: response => {
+                    next: (response) => {
                         response.forEach((act: Activity) => {
-                            const matchingTasks = this.userTasks.find(task => task.id === act.taskId);
+                            const matchingTasks = this.userTasks.find(
+                                (task) => task.id === act.taskId
+                            );
                             if (matchingTasks) {
                                 const combinedObject = {
                                     act,
-                                    matchingTasks
+                                    matchingTasks,
                                 };
-                            this.selectedDateData.push(combinedObject);
+                                this.dataByDate.push(combinedObject);
                             }
                         });
-                    }
-                })
+                    },
+                });
             }
         });
         return this.totalTaskHours;
     }
 
     getLoggedUser(): User {
-        const loggedUser = sessionStorage.getItem("LoggedUser");
+        const loggedUser = sessionStorage.getItem('LoggedUser');
         return JSON.parse(loggedUser!);
     }
 
     onPlusTask() {
-        this.router.navigate(["/taskfields"]);
+        this.router.navigate(['/taskfields']);
         this.apiCalls.dataToEdit = null;
-        this.apiCalls.editMode = false;
+        this.apiCalls.setEditMode(false);
     }
 
     showToast(severity: string, summary: string, detail: string) {

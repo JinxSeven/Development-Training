@@ -98,7 +98,7 @@
                 </tr>
             </thead>
             <tbody>
-                @for (data of selectedDateData; track $index) {
+                @for (data of dataByDate; track $index) {
                     <tr>
                         <td>{{data.matchingTasks.clientName}}</td>
                         <td>{{data.matchingTasks.projectName}}</td>

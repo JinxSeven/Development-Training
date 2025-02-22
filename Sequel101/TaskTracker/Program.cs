@@ -43,7 +43,6 @@ namespace TaskTracker
 
             app.UseAuthorization();
 
-
             app.MapControllers();
 
             app.Run();

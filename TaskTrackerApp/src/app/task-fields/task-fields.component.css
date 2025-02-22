@@ -105,8 +105,35 @@ textarea {
     color: #b9b9b9;
 }
 
-input:focus, select:focus, textarea:focus {
+input:focus,
+select:focus,
+textarea:focus {
     outline: none;
     border-color: #774caf;
     box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+}
+
+
+:host ::ng-deep .p-tablist {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #8e54b4;
+}
+
+:host ::ng-deep .p-tab {
+    padding: 12px 20px;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000;
+}
+
+:host ::ng-deep .p-tab-active {
+    color: #8e54b4;
+    border-radius: 5px 5px 0 0;
+}
+
+:host ::ng-deep .p-tablist-active-bar {
+    background-color: #8e54b4;
+    height: 4px;
 }

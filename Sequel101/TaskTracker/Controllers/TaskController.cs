@@ -60,19 +60,19 @@ namespace TaskTracker.Controllers
             }
         }
 
-        // [HttpPut]
-        // [Route("Edit")]
-        // public IActionResult EditTask(TaskData taskData)
-        // {
-        //     try
-        //     {
-        //         _taskRepo.EditTask(taskData); return Ok();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
+        [HttpPut]
+        [Route("EditTask")]
+        public IActionResult EditTask(TaskData taskData)
+        {
+            try
+            {
+                _taskRepo.EditTask(taskData); return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
         // [HttpDelete]
         // [Route("Delete")]

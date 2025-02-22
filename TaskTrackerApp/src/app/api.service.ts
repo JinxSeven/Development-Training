@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from './interfaces/user';
 import { Task } from './interfaces/task';
 import { Activity } from './interfaces/activity';
@@ -11,14 +11,20 @@ import { Activity } from './interfaces/activity';
 export class ApiService {
     constructor(private http: HttpClient) {}
 
-    editMode: boolean = false;
-    dataToEdit: any;
+    private editMode = new BehaviorSubject<boolean>(false);
+    editMode$ = this.editMode.asObservable();
+
+    dataToEdit!: Task | null;
 
     private loggedIn: boolean = false;
 
     isAuthenticated() { return this.loggedIn; }
 
     setAuthenticated(state: boolean) { this.loggedIn = state; }
+
+    setEditMode(state: boolean) {
+        this.editMode.next(state);
+    }
 
     private handleError(error: HttpErrorResponse) {
         if (error.status === 200) {
@@ -87,7 +93,7 @@ export class ApiService {
     /* Unused API Calls */
     updateTask(postData: Task): Observable<any> {
         return this.http.put<any>(
-            'https://localhost:7042/api/Task/Edit', postData
+            'https://localhost:7042/api/Task/EditTask', postData
         );
     }
 

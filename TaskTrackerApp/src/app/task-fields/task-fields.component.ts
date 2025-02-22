@@ -16,6 +16,9 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { TabsModule } from 'primeng/tabs';
+import { Observable } from 'rxjs';
+import { CommonModule } from '@angular/common';
 
 @Component({
     standalone: true,
@@ -26,21 +29,23 @@ import { ButtonModule } from 'primeng/button';
         ReactiveFormsModule,
         ToastModule,
         ButtonModule,
-        Toast,
+        Toast, TabsModule,
+        CommonModule
     ],
-    providers: [ MessageService ],
+    providers: [MessageService],
     templateUrl: './task-fields.component.html',
     styleUrl: './task-fields.component.css',
 })
 export class TaskFieldsComponent implements OnInit {
+    apiCalls = inject(ApiService);
+
+
     loggedUser?: User;
     toDate: string;
     enableNextTask: boolean = false;
     latestTaskId: string | null = null;
-    editModeFieldsData?: any;
-    editMode: boolean = false;
-
-    apiCalls = inject(ApiService);
+    editData?: Task;
+    editMode$: Observable<boolean> = this.apiCalls.editMode$;
 
     taskForm!: FormGroup;
     actForm!: FormGroup;
@@ -49,37 +54,70 @@ export class TaskFieldsComponent implements OnInit {
         private fb: FormBuilder,
         private messageService: MessageService
     ) {
-        this.loggedUser = this.getLoggedUserId();
+        this.loggedUser = this.getLoggedUser();
         this.toDate = new Date().toISOString().split('T')[0];
-        this.editMode = this.apiCalls.editMode;
-        this.onEditMode(this.editMode);
+        // this.editMode$ = ;
     }
 
-    ngOnInit(): void {
-        this.taskForm = this.fb.group({
-            clientName: ['', Validators.required],
-            projectName: ['', Validators.required],
-            taskTitle: ['', Validators.required],
-            taskETA: [
-                null,
-                [Validators.required, Validators.min(0.1), Validators.max(24)],
-            ],
-            taskDate: [this.toDate.substring(0, 10), Validators.required],
-            assignedTo: [this.loggedUser!.username, Validators.required],
-            assignedBy: ['', Validators.required],
-            taskState: ['', Validators.required],
-            taskPriority: ['', Validators.required],
-            description: ['', Validators.required],
+    async ngOnInit(): Promise<void> {
+        await this.editMode$.subscribe((next) => {
+            if (next) {
+                this.editData = this.apiCalls.dataToEdit!;
+
+                this.taskForm = this.fb.group({
+                    clientName: [this.editData.clientName, Validators.required],
+                    projectName: [this.editData.projectName, Validators.required],
+                    taskTitle: [this.editData.taskTitle, Validators.required],
+                    taskETA: [
+                        this.editData.hours,
+                        [Validators.required, Validators.min(0.1), Validators.max(24)],
+                    ],
+                    taskDate: [this.editData.dateTime.toString().split('T')[0], Validators.required],
+                    assignedTo: [this.editData.assignedTo, Validators.required],
+                    assignedBy: [this.editData.assignedBy, Validators.required],
+                    taskState: [this.editData.taskState, Validators.required],
+                    taskPriority: [this.editData.priority, Validators.required],
+                    description: [this.editData.description, Validators.required],
+                });
+
+                this.actForm = this.fb.group({
+                    actTitle: ['', Validators.required],
+                    actDescription: ['', Validators.required],
+                    actHours: [
+                        null,
+                        [Validators.required, Validators.min(0.1), Validators.max(2)],
+                    ],
+                });
+            } else {
+                this.taskForm = this.fb.group({
+                    clientName: ['', Validators.required],
+                    projectName: ['', Validators.required],
+                    taskTitle: ['', Validators.required],
+                    taskETA: [
+                        null,
+                        [Validators.required, Validators.min(0.1), Validators.max(24)],
+                    ],
+                    taskDate: [this.toDate.substring(0, 10), Validators.required],
+                    assignedTo: [this.loggedUser!.username, Validators.required],
+                    assignedBy: ['', Validators.required],
+                    taskState: ['', Validators.required],
+                    taskPriority: ['', Validators.required],
+                    description: ['', Validators.required],
+                });
+
+                this.actForm = this.fb.group({
+                    actTitle: ['', Validators.required],
+                    actDescription: ['', Validators.required],
+                    actHours: [
+                        null,
+                        [Validators.required, Validators.min(0.1), Validators.max(2)],
+                    ],
+                });
+            }
         });
-
-        this.actForm = this.fb.group({
-            actTitle: ['', Validators.required],
-            actDescription: ['', Validators.required],
-            actHours: [null, [Validators.required, Validators.min(0.1), Validators.max(2)]]
-        })
     }
 
-    getLoggedUserId(): User {
+    getLoggedUser(): User {
         const loggedUser = sessionStorage.getItem('LoggedUser');
         return JSON.parse(loggedUser!);
     }
@@ -108,8 +146,8 @@ export class TaskFieldsComponent implements OnInit {
                 // console.log("Task added!", this.latestTaskId);
                 this.showToast(
                     'success',
-                    'Great!',
-                    'Your task is ready for liftoff!'
+                    'Task Created!',
+                    'Another masterpiece added to your task list!'
                 );
             },
             error: (error) => {
@@ -118,32 +156,35 @@ export class TaskFieldsComponent implements OnInit {
                 } else {
                     console.error('POST request failed', error);
                 }
-                this.showToast('error', 'Oops!', 'Houston, we have a problem!');
+                this.showToast(
+                    'error',
+                    'Oops!',
+                    'The server is taking a coffee break. Try again in a bit!'
+                );
             },
         });
     }
 
-    onEditMode(editMode: boolean) {
-        if (editMode) {
-            this.editModeFieldsData = this.apiCalls.dataToEdit;
-        }
-    }
+    // onEditMode(editMode: boolean) {
+    //     if (editMode) {
+    //         this.editModeFieldsData = this.apiCalls.dataToEdit;
+    //     }
+    // }
 
-    /*
-    onUpdateTask(taskForm: NgForm) {
+    onUpdateTask() {
         const postData: Task = {
-            id: this.editModeFieldsData.matchedTask.id,
-            userId: this.loggedUser?.id!,
-            clientName: taskForm.controls['select1'].value,
-            projectName: taskForm.controls['select2'].value,
-            taskTitle: taskForm.controls['textInput1'].value,
-            hours: taskForm.controls['textInput2'].value,
-            dateTime: taskForm.controls['dateInput'].value,
-            assignedTo: taskForm.controls['textInput3'].value,
-            assignedBy: taskForm.controls['textInput4'].value,
-            taskState: taskForm.controls['select3'].value,
-            priority: taskForm.controls['select4'].value,
-            description: taskForm.controls['description'].value,
+            id: this.editData!.id,
+            userId: this.editData!.userId,
+            clientName: this.taskForm.controls['clientName'].value,
+            projectName: this.taskForm.controls['projectName'].value,
+            taskTitle: this.taskForm.controls['taskTitle'].value,
+            hours: this.taskForm.controls['taskETA'].value,
+            dateTime: this.taskForm.controls['taskDate'].value,
+            assignedTo: this.taskForm.controls['assignedTo'].value,
+            assignedBy: this.taskForm.controls['assignedBy'].value,
+            taskState: this.taskForm.controls['taskState'].value,
+            priority: this.taskForm.controls['taskPriority'].value,
+            description: this.taskForm.controls['description'].value,
         };
         console.log(postData);
         this.apiCalls.updateTask(postData).subscribe({
@@ -159,7 +200,6 @@ export class TaskFieldsComponent implements OnInit {
             },
         });
     }
-    */
 
     onNextTask() {
         this.enableNextTask = !this.enableNextTask;
@@ -169,7 +209,7 @@ export class TaskFieldsComponent implements OnInit {
 
     onSaveActivity() {
         if (!this.latestTaskId) {
-            this.showToast(`warn`, `Oops!`, `No task to link activity with!`)
+            this.showToast(`warn`, `Uh-oh!`, `No task to link activity with!`);
             return;
         }
         const postData: Activity = {
@@ -182,7 +222,11 @@ export class TaskFieldsComponent implements OnInit {
         this.apiCalls.addNewActivity(postData).subscribe({
             next: (response) => {
                 // console.log('Activity added!', response);
-                this.showToast(`success`, `Excellent!`, `Your task journey just got brighter!`)
+                this.showToast(
+                    `success`,
+                    `Activity Added!`,
+                    `Your task journey just got brighter!`
+                );
             },
             error: (error) => {
                 if (error.status === 400) {
@@ -190,21 +234,27 @@ export class TaskFieldsComponent implements OnInit {
                 } else {
                     console.error('POST request failed', error);
                 }
-                this.showToast('error', 'Oops!', 'Houston, we have a problem!');
+                this.showToast(
+                    'error',
+                    'Oops!',
+                    'The server is taking a coffee break. Try again in a bit!'
+                );
             },
         });
         this.onActFormReset();
     }
 
     onTaskFormReset() {
-        console.log(`runs`)
+        console.log(`runs`);
         this.taskForm.reset({
             taskDate: this.toDate.substring(0, 10),
-            assignedTo: this.loggedUser!.username
+            assignedTo: this.loggedUser!.username,
         });
     }
 
-    onActFormReset() { this.actForm.reset(); }
+    onActFormReset() {
+        this.actForm.reset();
+    }
 
     showToast(severity: string, summary: string, detail: string) {
         this.messageService.add({

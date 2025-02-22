@@ -14,11 +14,14 @@ import { ButtonModule } from 'primeng/button';
     imports: [FormsModule, RouterModule, ToastModule, Toast, ButtonModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
-    providers: [ MessageService ]
+    providers: [MessageService],
 })
 export class LoginComponent {
     apiCalls = inject(ApiService);
-    constructor(private router: Router, private messageService: MessageService) {}
+    constructor(
+        private router: Router,
+        private messageService: MessageService
+    ) {}
 
     onLogin(loginForm: NgForm) {
         const username = loginForm.controls['usrname'].value;
@@ -28,8 +31,15 @@ export class LoginComponent {
                 if (response) {
                     // alert('Login successful!');
                     // this.apiCalls.setAuthenticated(true);
-                    sessionStorage.setItem('LoggedUser', JSON.stringify(response));
-                    this.showToast(`success`, `Howdy!`, `Your mission briefing awaits...`);
+                    sessionStorage.setItem(
+                        'LoggedUser',
+                        JSON.stringify(response)
+                    );
+                    this.showToast(
+                        `success`,
+                        `Welcome back!`,
+                        `We and your tasks missed you!`
+                    );
                     setTimeout(() => {
                         this.router.navigate(['/tasktracker']);
                     }, 3500);
@@ -38,13 +48,25 @@ export class LoginComponent {
             error: (error: HttpErrorResponse) => {
                 if (error.status === 400) {
                     // alert('Invalid username or password!');
-                    this.showToast(`warn`, `Incorrect Creds!`, `Maybe your cat walked on the keyboard?`);
+                    this.showToast(
+                        `warn`,
+                        `Incorrect Creds!`,
+                        `Maybe your cat walked on the keyboard?`
+                    );
                 } else if (error.status === 500) {
                     // alert('Internal server error: ' + error.error);
-                    this.showToast(`error`, `Oops!`, `Server's experiencing an existential crisis`);
+                    this.showToast(
+                        `error`,
+                        `Oops!`,
+                        `500... The server is experiencing an existential crisis`
+                    );
                 } else {
                     // alert('An unexpected error occurred!');
-                    this.showToast('error', 'Yikes!', 'Houston, we have a problem!');
+                    this.showToast(
+                        'error',
+                        'Oops!',
+                        'The server is taking a coffee break. Try again in a bit!'
+                    );
                 }
             },
         });
