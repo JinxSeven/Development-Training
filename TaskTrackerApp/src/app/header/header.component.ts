@@ -19,10 +19,12 @@ export class HeaderComponent {
         this.router.navigate(['/login']);
         // this.apiServe.setAuthenticated(false);
     }
-    loggerUser!: User;
+    loggedUser!: User;
+    isUser: boolean;
 
     constructor() {
-        this.loggerUser = this.getLoggedUserId()
+        this.loggedUser = this.getLoggedUserId();
+        this.isUser = this.loggedUser?.password === 'True' ? false : true;
     }
 
     getLoggedUserId(): User {

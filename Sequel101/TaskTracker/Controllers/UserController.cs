@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using TaskTracker.Data;
@@ -25,6 +26,34 @@ namespace TaskTracker.Controllers
                 return Ok(loggedUser);
             }
             catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllAdminNames")]
+        public async Task<IActionResult> GetAllAdminNames() {
+            try 
+            {
+                var result = await _userRepo.GetAllAdminNames();
+                return Ok(result);
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetAllUserNames")]
+        public async Task<IActionResult> GetAllUserNames() {
+            try 
+            {
+                var result = await _userRepo.GetAllUserNames();
+                return Ok(result);
+            }
+            catch (Exception ex) 
             {
                 return BadRequest(ex.Message);
             }

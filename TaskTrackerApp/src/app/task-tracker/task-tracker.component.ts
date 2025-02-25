@@ -12,6 +12,8 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { TaskData } from '../interfaces/taskData';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
     standalone: true,
@@ -45,13 +47,15 @@ export class TaskTrackerComponent {
         private router: Router,
         private messageService: MessageService
     ) {
+        this.apiCalls.setEditMode(false);
+
         const todayDate = new Date();
         this.selectedDate = todayDate.toISOString().split('T')[0];
         this.loggerUser = this.getLoggedUser();
         this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
             next: (response) => {
                 this.userTasks = response;
-                console.log('Response: 200');
+                console.log('getUserTasks Response: 200');
                 this.totalTaskHours = this.getRelevantData();
             },
             error: (error) => {
@@ -75,6 +79,12 @@ export class TaskTrackerComponent {
             .updateTaskState(taskId, newTaskState)
             .then((response) => {
                 if (response.ok) {
+                    this.userTasks.forEach((task) => {
+                        if (task.id === taskId) {
+                            task.taskState = newTaskState;
+                        }
+                    });
+                    
                     if (newTaskState === `complete`) {
                         this.showToast(
                             `success`,
@@ -103,38 +113,35 @@ export class TaskTrackerComponent {
         this.totalTaskHours = this.getRelevantData();
     }
 
-    onTaskEdit(task_id: string) {
+    async onTaskEdit(task_id: string) {
         this.apiCalls.dataToEdit = null;
 
-        const taskData = this.userTasks.find(
-            (data: any) => data.id === task_id
-        );
+        const task = this.userTasks.find((data: any) => data.id === task_id);
 
-        if (taskData) {
+        if (!task) return;
+
+        try {
+            const response = await lastValueFrom(
+                this.apiCalls.getTaskActivities(task.id)
+            );
+
+            const taskData: TaskData = {
+                task: task,
+                activities: response,
+            };
+
             this.apiCalls.dataToEdit = taskData;
-        } else {
+            this.apiCalls.setEditMode(true);
+        } catch (error) {
             this.showToast(
                 'error',
                 'Oops!',
                 'The server is taking a coffee break. Try again in a bit!'
             );
+            console.error(error);
             return;
         }
 
-        // if (combinedData) {
-        //     this.apiCalls.dataToEdit = combinedData;
-        // } else {
-        //     const matchedTask = taskData;
-        //     const act: any = {};
-        //     const data = {
-        //         act,
-        //         matchedTask,
-        //     };
-        //     // this.apiCalls.dataToEdit = Data;
-        //     console.log(data);
-        // }
-
-        this.apiCalls.setEditMode(true);
         this.router.navigate(['/taskfields']);
     }
 
@@ -145,7 +152,7 @@ export class TaskTrackerComponent {
                 this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
                     next: (response) => {
                         this.userTasks = response;
-                        console.log('Response: 200');
+                        console.log('deleteTask Response: 200');
                         this.totalTaskHours = this.getRelevantData();
                     },
                     error: (error) => {
@@ -177,16 +184,16 @@ export class TaskTrackerComponent {
                 this.totalTaskCount++;
                 this.apiCalls.getTaskActivities(task.id).subscribe({
                     next: (response) => {
-                        response.forEach((act: Activity) => {
+                        response.forEach((activity: Activity) => {
                             const matchingTasks = this.userTasks.find(
-                                (task) => task.id === act.taskId
+                                (task) => task.id === activity.taskId
                             );
                             if (matchingTasks) {
-                                const combinedObject = {
-                                    act,
+                                const data = {
+                                    activity,
                                     matchingTasks,
                                 };
-                                this.dataByDate.push(combinedObject);
+                                this.dataByDate.push(data);
                             }
                         });
                     },

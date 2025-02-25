@@ -42,7 +42,7 @@ export class LoginComponent {
                     );
                     setTimeout(() => {
                         this.router.navigate(['/tasktracker']);
-                    }, 3500);
+                    }, 2250);
                 }
             },
             error: (error: HttpErrorResponse) => {
@@ -77,7 +77,7 @@ export class LoginComponent {
             severity: `${severity}`,
             summary: `${summary}`,
             detail: `${detail}`,
-            life: 3000,
+            life: 2000,
         });
     }
 }

@@ -4,6 +4,7 @@ import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from './interfaces/user';
 import { Task } from './interfaces/task';
 import { Activity } from './interfaces/activity';
+import { TaskData } from './interfaces/taskData';
 
 @Injectable({
     providedIn: 'root',
@@ -14,7 +15,7 @@ export class ApiService {
     private editMode = new BehaviorSubject<boolean>(false);
     editMode$ = this.editMode.asObservable();
 
-    dataToEdit!: Task | null;
+    dataToEdit!: TaskData | null;
 
     private loggedIn: boolean = false;
 
@@ -52,6 +53,18 @@ export class ApiService {
         );
     }
 
+    getAdminList(): Observable<any> {
+        return this.http.get<any>(
+            `https://localhost:7042/api/User/GetAllAdminNames`
+        )
+    }
+
+    getUserList(): Observable<any> {
+        return this.http.get<any>(
+            `https://localhost:7042/api/User/GetAllUserNames`
+        )
+    }
+
     addNewTask(postData: Task): Observable<any> {
         return this.http.post<any>(
             'https://localhost:7042/api/Task/AddNewTask', postData
@@ -70,7 +83,7 @@ export class ApiService {
         );
     }
 
-    getTaskActivities(taskId: string): Observable<any> {
+    getTaskActivities(taskId: string): Observable<Activity[]> {
         return this.http.get<any>(
             `https://localhost:7042/api/Activity/GetTaskActivities?taskId=${taskId}`
         );
@@ -89,8 +102,6 @@ export class ApiService {
         return response;
     }
 
-
-    /* Unused API Calls */
     updateTask(postData: Task): Observable<any> {
         return this.http.put<any>(
             'https://localhost:7042/api/Task/EditTask', postData

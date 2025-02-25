@@ -4,8 +4,10 @@
         <a routerLink="/tasktracker" class="link">Task Tracker</a>
     </div>
     <div class="user-info">
+        @if (isUser) { <i class="fa-solid fa-user fa-xs" style="margin-right: 5px;"></i> <p>user</p> }
+        @else { <i class="fa-solid fa-user-tie fa-xs" style="margin-right: 5px;"></i> <p>admin</p> }
         <span class="welcome">
-            {{loggerUser.username}}
+            : {{ loggedUser.username }}
         </span>
         <a (click)="logout()" class="link">Logout</a>
     </div>

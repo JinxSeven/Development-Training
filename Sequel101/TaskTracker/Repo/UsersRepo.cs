@@ -35,9 +35,9 @@ namespace TaskTracker.Data
                         loggedUser = new UserData
                         {
                             Id = Guid.Parse(reader["id"].ToString()!),
-                            Username = reader["userName"].ToString()!,
+                            Username = reader["username"].ToString()!,
                             Email = reader["email"].ToString()!,
-                            Password = ""
+                            Password = reader["is_admin"].ToString()!
                         };
                     }
 
@@ -47,7 +47,6 @@ namespace TaskTracker.Data
 
             return loggedUser;
         }
-
 
         public void AddNewUser(UserData userData)
         {
@@ -64,6 +63,55 @@ namespace TaskTracker.Data
 
                 connection.Close();
             }
+        }
+
+        public async Task<List<object>> GetAllAdminNames() {
+            List<object> adminUsers = [];
+
+            using (var connection = _dataAccess.ReturnConn()) {
+                await connection.OpenAsync();
+
+                SqlCommand getAdmins = new SqlCommand("usp_GetAdmins", connection);
+                getAdmins.CommandType = CommandType.StoredProcedure;
+                var reader = await getAdmins.ExecuteReaderAsync();
+
+
+                while (reader.Read()) {
+                    adminUsers.Add(new {
+                        username = reader["username"].ToString()!,
+                        id = reader["id"].ToString()!,
+                    });
+                }
+
+                await connection.CloseAsync();
+            }
+
+            return adminUsers;
+        }
+
+        public async Task<List<object>> GetAllUserNames()
+        {
+            List<object> userUsers = [];
+
+            using (var connection = _dataAccess.ReturnConn()) {
+                await connection.OpenAsync();
+
+                SqlCommand getAdmins = new SqlCommand("usp_GetUsers", connection);
+                getAdmins.CommandType = CommandType.StoredProcedure;
+                var reader = await getAdmins.ExecuteReaderAsync();
+
+
+                while (reader.Read()) {
+                    userUsers.Add(new {
+                        username = reader["username"].ToString()!,
+                        id = reader["id"].ToString()!
+                    });
+                }
+
+                await connection.CloseAsync();
+            }
+
+            return userUsers;
         }
     }
 }
