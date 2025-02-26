@@ -1,6 +1,22 @@
 [
   {
     "ContainingType": "TaskTracker.Controllers.ActivityController",
+    "Method": "AddNewActivity",
+    "RelativePath": "api/Activity/AddNewActivity",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "activityData",
+        "Type": "TaskTracker.Models.ActivityData",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ActivityController",
     "Method": "DeleteActivity",
     "RelativePath": "api/Activity/Delete",
     "HttpMethod": "DELETE",
@@ -33,31 +49,31 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.ActivityController",
-    "Method": "GetTaskActicities",
-    "RelativePath": "api/Activity/Get",
+    "Method": "GetTaskActivities",
+    "RelativePath": "api/Activity/GetTaskActivities",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
         "Name": "taskId",
-        "Type": "System.Int32",
+        "Type": "System.Guid",
         "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
-    "ContainingType": "TaskTracker.Controllers.ActivityController",
-    "Method": "AddNewActivity",
-    "RelativePath": "api/Activity/Post",
+    "ContainingType": "TaskTracker.Controllers.TaskController",
+    "Method": "AddNewTask",
+    "RelativePath": "api/Task/AddNewTask",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "activityData",
-        "Type": "TaskTracker.Models.ActivityData",
+        "Name": "taskData",
+        "Type": "TaskTracker.Models.TaskData",
         "IsRequired": true
       }
     ],
@@ -65,24 +81,8 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.TaskController",
-    "Method": "DeleteTask",
-    "RelativePath": "api/Task/Delete",
-    "HttpMethod": "DELETE",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "taskId",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "TaskTracker.Controllers.TaskController",
     "Method": "EditTask",
-    "RelativePath": "api/Task/Edit",
+    "RelativePath": "api/Task/EditTask",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -98,14 +98,14 @@
   {
     "ContainingType": "TaskTracker.Controllers.TaskController",
     "Method": "GetTasks",
-    "RelativePath": "api/Task/Get",
+    "RelativePath": "api/Task/GetTasks",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "user_id",
-        "Type": "System.Int32",
+        "Name": "userId",
+        "Type": "System.Guid",
         "IsRequired": false
       }
     ],
@@ -113,16 +113,21 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.TaskController",
-    "Method": "AddNewTask",
-    "RelativePath": "api/Task/Post",
-    "HttpMethod": "POST",
+    "Method": "UpdateTaskState",
+    "RelativePath": "api/Task/UpdateTaskState",
+    "HttpMethod": "PATCH",
     "IsController": true,
     "Order": 0,
     "Parameters": [
       {
-        "Name": "taskData",
-        "Type": "TaskTracker.Models.TaskData",
-        "IsRequired": true
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "taskState",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -130,7 +135,7 @@
   {
     "ContainingType": "TaskTracker.Controllers.UserController",
     "Method": "AddNewUser",
-    "RelativePath": "api/User",
+    "RelativePath": "api/User/AddNewUser",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -145,24 +150,28 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.UserController",
-    "Method": "Delete",
-    "RelativePath": "api/User/Delete",
-    "HttpMethod": "DELETE",
+    "Method": "GetAllAdminNames",
+    "RelativePath": "api/User/GetAllAdminNames",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [
-      {
-        "Name": "user_id",
-        "Type": "System.Int32",
-        "IsRequired": false
-      }
-    ],
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.UserController",
+    "Method": "GetAllUserNames",
+    "RelativePath": "api/User/GetAllUserNames",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
     "ContainingType": "TaskTracker.Controllers.UserController",
     "Method": "GetLoggedUser",
-    "RelativePath": "api/User/Login",
+    "RelativePath": "api/User/GetLoggedUser",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -1,0 +1,17 @@
+<app-header></app-header>
+
+<div class="dash-main-container">
+    <h3>All Employees</h3>
+    <div class="emp-grid-card">
+        @for (item of [1, 2, 3, 4]; track $index) {
+            <p-card header="Simple Card" >
+                <p class="m-0">
+                    Employee Task Progress Details
+                </p>
+                <div class="card">
+                    <p-metergroup [value]="value" />
+                </div>
+            </p-card>
+        }
+    </div>
+</div>

@@ -1,0 +1,23 @@
+.dash-main-container {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+}
+
+.emp-grid-card {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    max-height: 230px;
+    overflow: auto;
+}
+
+:host ::ng-deep .p-card .p-card-body {
+    border-radius: 10px;
+    background-color: #f3f3f3;
+}
+
+:host ::ng-deep .p-metergroup .p-metergroup-label-text {
+    font-size: 14px;
+}

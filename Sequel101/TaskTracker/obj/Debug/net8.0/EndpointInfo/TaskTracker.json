@@ -5,7 +5,7 @@
     "version": "1.0"
   },
   "paths": {
-    "/api/Activity/Get": {
+    "/api/Activity/GetTaskActivities": {
       "get": {
         "tags": [
           "Activity"
@@ -15,8 +15,8 @@
             "name": "taskId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "format": "uuid"
             }
           }
         ],
@@ -27,7 +27,7 @@
         }
       }
     },
-    "/api/Activity/Post": {
+    "/api/Activity/AddNewActivity": {
       "post": {
         "tags": [
           "Activity"
@@ -111,7 +111,29 @@
         }
       }
     },
-    "/api/Task/Post": {
+    "/api/Task/GetTasks": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Task/AddNewTask": {
       "post": {
         "tags": [
           "Task"
@@ -142,18 +164,25 @@
         }
       }
     },
-    "/api/Task/Get": {
-      "get": {
+    "/api/Task/UpdateTaskState": {
+      "patch": {
         "tags": [
           "Task"
         ],
         "parameters": [
           {
-            "name": "user_id",
+            "name": "taskId",
             "in": "query",
             "schema": {
-              "type": "integer",
-              "format": "int32"
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "taskState",
+            "in": "query",
+            "schema": {
+              "type": "string"
             }
           }
         ],
@@ -164,7 +193,7 @@
         }
       }
     },
-    "/api/Task/Edit": {
+    "/api/Task/EditTask": {
       "put": {
         "tags": [
           "Task"
@@ -195,29 +224,7 @@
         }
       }
     },
-    "/api/Task/Delete": {
-      "delete": {
-        "tags": [
-          "Task"
-        ],
-        "parameters": [
-          {
-            "name": "taskId",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
-    },
-    "/api/User/Login": {
+    "/api/User/GetLoggedUser": {
       "get": {
         "tags": [
           "User"
@@ -245,7 +252,31 @@
         }
       }
     },
-    "/api/User": {
+    "/api/User/GetAllAdminNames": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/GetAllUserNames": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/User/AddNewUser": {
       "post": {
         "tags": [
           "User"
@@ -275,28 +306,6 @@
           }
         }
       }
-    },
-    "/api/User/Delete": {
-      "delete": {
-        "tags": [
-          "User"
-        ],
-        "parameters": [
-          {
-            "name": "user_id",
-            "in": "query",
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success"
-          }
-        }
-      }
     }
   },
   "components": {
@@ -305,12 +314,12 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "taskId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "activityTitle": {
             "type": "string",
@@ -331,12 +340,13 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
           },
           "userId": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "clientName": {
             "type": "string",
@@ -356,7 +366,7 @@
           },
           "dateTime": {
             "type": "string",
-            "nullable": true
+            "format": "date-time"
           },
           "assignedTo": {
             "type": "string",
@@ -366,7 +376,7 @@
             "type": "string",
             "nullable": true
           },
-          "supportType": {
+          "taskState": {
             "type": "string",
             "nullable": true
           },
@@ -385,8 +395,8 @@
         "type": "object",
         "properties": {
           "id": {
-            "type": "integer",
-            "format": "int32"
+            "type": "string",
+            "format": "uuid"
           },
           "username": {
             "type": "string",

@@ -7,11 +7,12 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
     standalone: true,
     selector: 'app-login',
-    imports: [FormsModule, RouterModule, ToastModule, Toast, ButtonModule],
+    imports: [FormsModule, RouterModule, ToastModule, Toast, ButtonModule, CommonModule],
     templateUrl: './login.component.html',
     styleUrl: './login.component.css',
     providers: [MessageService],

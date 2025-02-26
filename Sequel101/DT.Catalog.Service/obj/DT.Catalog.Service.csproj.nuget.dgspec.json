@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj": {}
+    "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj": {}
   },
   "projects": {
-    "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj": {
+    "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
+        "projectUniqueName": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
         "projectName": "DT.Catalog.Service",
-        "projectPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
-        "packagesPath": "C:\\Users\\GodBless\\.nuget\\packages\\",
-        "outputPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\obj\\",
+        "projectPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
+        "packagesPath": "C:\\Users\\samuel.koilraj\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\DT.Catalog.Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\GodBless\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\samuel.koilraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,8 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://geniedevops.unysite.com/Genie/_packaging/GeniePackages/nuget/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
@@ -70,24 +71,6 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.AspNetCore.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Host.win-x64",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[8.0.13, 8.0.13]"
-            }
-          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
