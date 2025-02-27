@@ -77,7 +77,11 @@
                     }
                 }
                 @if (totalTaskCount == 0) {
-                    <td colspan="11" class="no-tasks">No tasks found for the selected date: {{ selectedDate }}</td>
+                    <tr>
+                        <td colspan="11" class="no-tasks">
+                            No tasks found for the selected date: {{ selectedDate }}
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
@@ -108,7 +112,11 @@
                         <td>{{data.activity.hours}}</td>
                     </tr>
                 } @empty {
-                    <td colspan="10" class="no-tasks">No activities found for the selected date: {{ selectedDate }}</td>
+                    <tr>
+                        <td colspan="10" class="no-tasks">
+                            No activities found for the selected date: {{ selectedDate }}
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>

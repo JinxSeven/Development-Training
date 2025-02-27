@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using TaskTracker.Models;
 
 namespace TaskTracker.Data
@@ -121,6 +122,36 @@ namespace TaskTracker.Data
 
                 connection.Close();
             }
+        }
+
+        public async Task<List<object>?> GetUserTaskStats()
+        {
+            List<object> userTaskStates = [];
+
+            using (var connection = _dataAccess.ReturnConn()) {
+                await connection.OpenAsync();
+
+                var getTaskStates = new SqlCommand("usp_GetUserTaskStats", connection);
+                getTaskStates.CommandType = CommandType.StoredProcedure;
+                var reader = await getTaskStates.ExecuteReaderAsync();
+
+                while (await reader.ReadAsync()) {
+                    userTaskStates.Add(new {
+                        username = reader["username"].ToString(),
+                        id = reader["user_id"].ToString(),
+                        email = reader["email"].ToString(),
+                        isAdmin = Convert.ToBoolean(reader["is_admin"]),
+                        totalTasks = int.Parse(reader["total_tasks"].ToString()!),
+                        newPercentage = double.Parse(reader["new_percentage"].ToString()!),
+                        activePercentage = double.Parse(reader["active_percentage"].ToString()!),
+                        completePercentage = double.Parse(reader["complete_percentage"].ToString()!)
+                    });
+                }
+
+                await connection.CloseAsync();
+            }
+
+            return userTaskStates;
         }
 
         // public void DeleteTask(int taskId)

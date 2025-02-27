@@ -1,17 +1,19 @@
 <app-header></app-header>
 
 <div class="dash-main-container">
-    <h3>All Employees</h3>
+    <h2>All Employees</h2>
     <div class="emp-grid-card">
-        @for (item of [1, 2, 3, 4]; track $index) {
-            <p-card header="Simple Card" >
-                <p class="m-0">
-                    Employee Task Progress Details
-                </p>
-                <div class="card">
-                    <p-metergroup [value]="value" />
+        @for (stat of userTaskStats; track $index) {
+            <p-card header="{{ stat.username }}" [subheader]="stat.isAdmin ? 'Admin Permissions' : 'User Permissions'">
+                <p class="m-0"><strong>Id:</strong>  {{ stat.id }}</p>
+                <p class="m-0"><strong>Email:</strong> {{ stat.email }}</p>
+                <p-divider />
+                <p class="m-0">Employee Overall Performance</p>
+                <div class="metergroup-container">
+                    <p-metergroup [value]="stat.value" />
                 </div>
             </p-card>
         }
     </div>
+    <!-- <p-divider /> -->
 </div>

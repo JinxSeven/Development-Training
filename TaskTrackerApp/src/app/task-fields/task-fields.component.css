@@ -1,10 +1,11 @@
 .task-tracker-container {
     padding: 20px;
-    background-color: #ffffff;
+    background-color: #0a192f;
     border-radius: 10px;
     max-width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
     margin: auto;
+    color: #c3ceec;
 }
 
 .grid {
@@ -28,7 +29,7 @@
     width: 100%;
     padding: 10px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
 }
 
 .description-container {
@@ -41,11 +42,18 @@
     margin-top: 5px;
     width: 100%;
     flex-basis: 100%;
+    border: none;
+    color-scheme: dark;
 }
 
 .form-group input,
-select {
+.form-group select {
     margin-top: 5px;
+    color-scheme: dark;
+    /* border: 1px solid #253849;
+    background-color: #23384b; */
+    border: 1px solid #142f5a;
+    background-color: #11274b;
 }
 
 .additional-inputs .form-group {
@@ -57,8 +65,11 @@ textarea {
     width: 100%;
     height: 100px;
     border-radius: 5px;
-    border: 1px solid #ccc;
     padding: 10px;
+    border: none;
+    color-scheme: dark;
+    border: 1px solid #142f5a;
+    background-color: #11274b;
 }
 
 .button-group {
@@ -79,30 +90,28 @@ textarea {
 }
 
 .button-group button {
-    background-color: #8e54b4;
-    color: white;
+    color: #62fbd7;
+    background-color: #213c66;
     border: none;
     border-radius: 5px;
     padding: 12px;
-    transition: background-color 0.3s ease;
-    width: 15%;
+    transition: all 0.25s ease;
+    width: 10%;
     text-align: center;
 }
 
 .button-group button:hover {
-    background-color: #7b45a0;
     cursor: pointer;
-}
-
-.button-group button:active {
-    background-color: #623481;
-    cursor: pointer;
+    background-color: #213c66;
+    color: #62fbd7;
+    box-shadow: 0 0 3px #62fbd7;
 }
 
 .button-group button:disabled {
-    background-color: #623481;
+    background-color: #1a2c47;
+    color: #40a58d;
     cursor: default;
-    color: #b9b9b9;
+    box-shadow: none;
 }
 
 input:focus,
@@ -110,14 +119,24 @@ select:focus,
 textarea:focus {
     outline: none;
     border-color: #774caf;
-    box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+    box-shadow: 0 0 5px #62fbd780;
 }
 
 
-:host ::ng-deep .p-tablist {
+:host ::ng-deep .p-tablist-tab-list {
     display: flex;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #8e54b4;
+    border-bottom: 1px solid #213c66;
+    background-color: #0d1f3b;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+:host ::ng-deep p-tabpanels {
+    background-color: #0d1f3b;
+    /* background-color: #172836; */
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: #d9e0f3;
 }
 
 :host ::ng-deep .p-tab {
@@ -129,11 +148,34 @@ textarea:focus {
 }
 
 :host ::ng-deep .p-tab-active {
-    color: #8e54b4;
-    border-radius: 5px 5px 0 0;
+    color: #62fbd7;
+}
+
+:host ::ng-deep .p-disabled {
+    color: #40a58d;
+}
+
+h2 {
+    margin: 0;
 }
 
 :host ::ng-deep .p-tablist-active-bar {
-    background-color: #8e54b4;
+    background-color: #62fbd7;
     height: 4px;
+}
+
+.p-tab:not(.p-tab-active) {
+    border: none;
+}
+
+.p-tab:not(.p-tab-active):not(.p-disabled) {
+    color: #40a58d;
+}
+
+.form-box {
+    /* background-color: #172836; */
+    background-color: #0d1f3b;
+    padding: 20px;
+    border-radius: 10px;
+    color: #d9e0f3;
 }

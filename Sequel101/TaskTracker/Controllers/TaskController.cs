@@ -31,6 +31,20 @@ namespace TaskTracker.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetUserTaskStats")]
+        public async Task<IActionResult> GetUserTaskStats() {
+            try
+            {
+                var result = await _taskRepo.GetUserTaskStats();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
         [HttpPost]
         [Route("AddNewTask")]
         public async Task<IActionResult> AddNewTask(TaskData taskData)

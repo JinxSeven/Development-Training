@@ -4,6 +4,8 @@
     border-radius: 10px;
     max-width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+    background-color: #0a192f;
+    color: #c3ceec;
 }
 
 .top-section {
@@ -33,36 +35,33 @@ select {
 }
 
 .total-tasks {
-    color: #555;
+    font-size: 14px;
 }
 
-.working-leave-btn,
-.add-task-btn {
-    background-color: #8e54b4;
-    color: white;
-    border: none;
+.working-leave-btn {
+    border: 1px solid #05b68d;
     padding: 8px 16px;
     border-radius: 5px;
+    color: #c3ceec;
+    border-radius: 10px;
+}
+
+.add-task-btn {
+    background-color: #213c66;
+    color: #62fbd7;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-align: center;
+    transition: all 0.25s ease;
     cursor: pointer;
     margin-left: 10px;
 }
 
-.working-leave-btn {
-    color: #303030;
-    background-color: white;
-    border: 1px solid #8e54b4;
-}
-
-.add-task-btn {
-    background-color: #8e54b4;
-}
-
 .add-task-btn:hover {
-    background-color: #7b45a0;
-}
-
-.add-task-btn:active {
-    background-color: #623481;
+    background-color: #213c66;
+    color: #62fbd7;
+    cursor: pointer;
+    box-shadow: 0 0 3px #62fbd7;
 }
 
 .date-section {
@@ -95,16 +94,22 @@ select {
 thead th,
 tbody td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 2px solid #0a192f;
     text-align: center;
 }
 
 thead th {
-    background-color: #f4f4f4;
+    background-color: #172a46;
+    color: #d6def7;
+    font-size: larger;
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #f9f9f9;
+    background-color: #223b61;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #192d4b;
 }
 
 button {
@@ -126,11 +131,11 @@ button {
 
 .add-activity-btn,
 .complete-btn {
-    color: #39b54a;
+    color: #198754;
 }
 
 .edit-btn {
-    color: #0000ff;
+    color: #0d6efd;
 }
 
 .delete-btn {
@@ -143,11 +148,21 @@ button {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #774caf;
-    box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+    border-color: #62fbd7;
+    box-shadow: 0 0 5px #62fbd780;
 }
 
 input {
     border-radius: 5px;
     border: 1px solid #919090;
+    border: none;
+    box-shadow: 0 0 5px #62fbd780;
+    color-scheme: dark;
+}
+
+select {
+    color-scheme: dark;
+    border: none;
+    box-shadow: 0 0 5px #62fbd780;
+    padding: 5px 7px;
 }

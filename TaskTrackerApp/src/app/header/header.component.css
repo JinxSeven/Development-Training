@@ -3,15 +3,17 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 20px;
-    background-color: white;
+    background-color: #0a192f;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.425);
     border-radius: 10px;
     margin-bottom: 10px;
+    color: #c3ceec;
 }
 
 a.disabled-link {
     pointer-events: none;
-    background-color: #5b3574;
+    background-color: #152742;
+    color: #40a58d;
     cursor: default;
 }
 
@@ -22,21 +24,16 @@ a.disabled-link {
 
 .link {
     display: inline-block;
-    background-color: #8e54b4;
-    color: white;
-    border: none;
+    color: #62fbd7;
+    background-color: #213c66;
     border-radius: 5px;
-    padding: 7px 15px;
+    padding: 8px 16px;
     text-align: center;
     text-decoration: none;
-    transition: background-color 0.3s ease;
+    transition: all 0.25s ease;
     margin-left: 20px;
     font-weight: 400;
     font-size: 13.33333px;
-}
-
-.link:hover {
-    cursor: pointer;
 }
 
 .user-info {
@@ -49,24 +46,11 @@ a.disabled-link {
     font-size: 16px;
 }
 
-.logout-button {
-    background-color: #8e54b4;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 7px 15px;
-    transition: background-color 0.3s ease;
+.link:hover {
     cursor: pointer;
-}
-
-.logout-button:hover, .link:hover {
-    background-color: #7b45a0;
-}
-
-.logout-button:disabled {
-    background-color: #5f357a;
-    cursor: default;
-    color: #b9b9b9;
+    background-color: #213c66;
+    color: #62fbd7;
+    box-shadow: 0 0 3px #62fbd7;
 }
 
 .user-info span {

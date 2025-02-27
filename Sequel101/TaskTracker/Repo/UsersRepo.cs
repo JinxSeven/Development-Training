@@ -65,7 +65,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public async Task<List<object>> GetAllAdminNames() {
+        public async Task<List<object?>> GetAllAdminNames() {
             List<object> adminUsers = [];
 
             using (var connection = _dataAccess.ReturnConn()) {
@@ -86,10 +86,10 @@ namespace TaskTracker.Data
                 await connection.CloseAsync();
             }
 
-            return adminUsers;
+            return adminUsers!;
         }
 
-        public async Task<List<object>> GetAllUserNames()
+        public async Task<List<object?>> GetAllUserNames()
         {
             List<object> userUsers = [];
 
@@ -111,7 +111,7 @@ namespace TaskTracker.Data
                 await connection.CloseAsync();
             }
 
-            return userUsers;
+            return userUsers!;
         }
     }
 }

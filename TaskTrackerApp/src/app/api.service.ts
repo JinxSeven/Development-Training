@@ -5,6 +5,7 @@ import { User } from './interfaces/user';
 import { Task } from './interfaces/task';
 import { Activity } from './interfaces/activity';
 import { TaskData } from './interfaces/taskData';
+import { TaskStats } from './interfaces/taskStats';
 
 @Injectable({
     providedIn: 'root',
@@ -100,6 +101,12 @@ export class ApiService {
         });
 
         return response;
+    }
+
+    getUserTaskStats(): Observable<TaskStats[]> {
+        return this.http.get<TaskStats[]>(
+            `https://localhost:7042/api/Task/GetUserTaskStats`
+        );
     }
 
     updateTask(postData: Task): Observable<any> {
