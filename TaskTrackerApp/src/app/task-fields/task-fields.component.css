@@ -1,6 +1,6 @@
 .task-tracker-container {
     padding: 20px;
-    background-color: #0a192f;
+    background-color: #111827;
     border-radius: 10px;
     max-width: 100%;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
@@ -42,7 +42,8 @@
     margin-top: 5px;
     width: 100%;
     flex-basis: 100%;
-    border: none;
+    border: 1px solid #283141;
+    background-color: #111827;
     color-scheme: dark;
 }
 
@@ -50,26 +51,36 @@
 .form-group select {
     margin-top: 5px;
     color-scheme: dark;
-    /* border: 1px solid #253849;
-    background-color: #23384b; */
-    border: 1px solid #142f5a;
-    background-color: #11274b;
+    border: 1px solid #283141;
+    color: #f3f4f6;
+    background-color: #111827;
+    font-size: 15px;
 }
 
 .additional-inputs .form-group {
     margin-bottom: 15px;
 }
 
+label {
+    color: #9ca3af;
+}
+
+input::placeholder {
+    color: #9ca3af;
+}
+
 textarea {
     margin-top: 5px;
     width: 100%;
     height: 100px;
+    font-size: 15px;
     border-radius: 5px;
     padding: 10px;
     border: none;
     color-scheme: dark;
-    border: 1px solid #142f5a;
-    background-color: #11274b;
+    border: 1px solid #283141;
+    color: #f3f4f6;
+    background-color: #111827;
 }
 
 .button-group {
@@ -90,8 +101,8 @@ textarea {
 }
 
 .button-group button {
-    color: #62fbd7;
-    background-color: #213c66;
+    color: #ffffff;
+    background-color: #614eee;
     border: none;
     border-radius: 5px;
     padding: 12px;
@@ -102,15 +113,14 @@ textarea {
 
 .button-group button:hover {
     cursor: pointer;
-    background-color: #213c66;
-    color: #62fbd7;
-    box-shadow: 0 0 3px #62fbd7;
+    background-color: #614eee;
+    box-shadow: 0 0 8px #614eee;
 }
 
 .button-group button:disabled {
-    background-color: #1a2c47;
-    color: #40a58d;
+    background-color: #614eeecb;
     cursor: default;
+    color: #cfcdcd;
     box-shadow: none;
 }
 
@@ -118,22 +128,20 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    border-color: #774caf;
-    box-shadow: 0 0 5px #62fbd780;
+    box-shadow: 0 0 5px #614eee6c;
 }
 
 
 :host ::ng-deep .p-tablist-tab-list {
     display: flex;
-    border-bottom: 1px solid #213c66;
-    background-color: #0d1f3b;
+    border-bottom: 1px solid #283141;
+    background-color: #111827;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
 
 :host ::ng-deep p-tabpanels {
-    background-color: #0d1f3b;
-    /* background-color: #172836; */
+    background-color: #111827;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
     color: #d9e0f3;
@@ -148,19 +156,24 @@ textarea:focus {
 }
 
 :host ::ng-deep .p-tab-active {
-    color: #62fbd7;
+    color: #614eee;
 }
 
 :host ::ng-deep .p-disabled {
-    color: #40a58d;
+    color: #614eeecb;
 }
 
 h2 {
     margin: 0;
+    color: #f3f4f6;
+}
+
+h3 {
+    color: #f3f4f6;
 }
 
 :host ::ng-deep .p-tablist-active-bar {
-    background-color: #62fbd7;
+    background-color: #614eee;
     height: 4px;
 }
 
@@ -169,13 +182,12 @@ h2 {
 }
 
 .p-tab:not(.p-tab-active):not(.p-disabled) {
-    color: #40a58d;
+    color: #614eeecb;
 }
 
 .form-box {
-    /* background-color: #172836; */
-    background-color: #0d1f3b;
-    padding: 20px;
+    /* background-color: #0d1f3b; */
+    /* padding: 20px; */
     border-radius: 10px;
-    color: #d9e0f3;
+    color: #f3f4f6;
 }

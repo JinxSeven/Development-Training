@@ -47,7 +47,7 @@ namespace TaskTracker.Controllers
 
         [HttpPost]
         [Route("AddNewTask")]
-        public async Task<IActionResult> AddNewTask(TaskData taskData)
+        public async Task<IActionResult> AddNewTask(Models.Task taskData)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace TaskTracker.Controllers
 
         [HttpPut]
         [Route("EditTask")]
-        public IActionResult EditTask(TaskData taskData)
+        public IActionResult EditTask(Models.Task taskData)
         {
             try
             {
@@ -88,18 +88,18 @@ namespace TaskTracker.Controllers
             }
         }
 
-        // [HttpDelete]
-        // [Route("Delete")]
-        // public IActionResult DeleteTask(int taskId)
-        // {
-        //     try
-        //     {
-        //         _taskRepo.DeleteTask(taskId); return Ok();
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
+        [HttpDelete]
+        [Route("DeleteTask")]
+        public IActionResult DeleteTask(Guid taskId)
+        {
+            try
+            {
+                _taskRepo.DeleteTask(taskId); return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

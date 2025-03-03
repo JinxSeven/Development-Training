@@ -38,12 +38,12 @@ export class LoginComponent {
                     );
                     this.showToast(
                         `success`,
-                        `Welcome back!`,
+                        `Welcome Back!`,
                         `We and your tasks missed you!`
                     );
                     setTimeout(() => {
                         this.router.navigate(['/tasktracker']);
-                    }, 2250);
+                    }, 2350);
                 }
             },
             error: (error: HttpErrorResponse) => {

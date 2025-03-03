@@ -68,7 +68,7 @@ export class TaskFieldsComponent implements OnInit {
             this.userList.push(...userdata);
         });
 
-        this.isUser = this.loggedUser?.password === 'True' ? false : true;
+        this.isUser = !this.loggedUser?.isAdmin;
 
         this.toDate = new Date().toISOString().split('T')[0];
 
@@ -101,7 +101,7 @@ export class TaskFieldsComponent implements OnInit {
                     Validators.required,
                 ],
                 assignedBy: ['', Validators.required],
-                taskState: ['', Validators.required],
+                taskState: ['new', Validators.required],
                 taskPriority: ['', Validators.required],
                 description: ['', Validators.required],
             });
@@ -123,7 +123,7 @@ export class TaskFieldsComponent implements OnInit {
                 { value: this.loggedUser!.username, disabled: true },
                 Validators.required,
             ],
-            taskState: ['', Validators.required],
+            taskState: ['new', Validators.required],
             taskPriority: ['', Validators.required],
             description: ['', Validators.required],
         });

@@ -14,13 +14,15 @@ export const appConfig: ApplicationConfig = {
         provideRouter(routes),
         provideHttpClient(),
         provideAnimationsAsync(),
-        providePrimeNG({  theme: {
-            preset: Aura,
-            options: {
-                prefix: 'p',
-                darkModeSelector: 'ng-app-dark',
-                // cssLayer: false
-            }
-        } })
+        providePrimeNG({
+            theme: {
+                preset: Aura,
+                options: {
+                    prefix: 'p',
+                    darkModeSelector: true,
+                    cssLayer: false
+                },
+            },
+        }),
     ],
 };

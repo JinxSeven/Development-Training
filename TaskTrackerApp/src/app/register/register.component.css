@@ -5,7 +5,7 @@
 }
 
 body {
-    background-color: #ffffff;
+    background-color: #000000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,23 +14,24 @@ body {
 }
 
 .main-block {
-    background-color: white;
+    background-color: #111827;
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+    box-shadow: 0 0px 12px #7d6ef16c;
     width: 100%;
     max-width: 500px;
     text-align: center;
 }
+
 h1 {
-    color: #333;
+    color: #f3f4f6;
     font-size: 32px;
     text-align: center;
     margin-bottom: 20px;
 }
 
 .main-block h3 {
-    color: #333;
+    color: #f3f4f6;
     margin-bottom: 20px;
 }
 
@@ -40,47 +41,60 @@ h1 {
     gap: 15px;
 }
 
-.main-block form input,
-label {
+.main-block form input {
     font-size: 16px;
     text-align: left;
+    color: #f3f4f6;
+    background-color: #111827;
+}
+
+label,
+input::placeholder {
+    text-align: left;
+    color: #9ca3af;
+}
+
+label {
+    margin-bottom: -10px;
 }
 
 .main-block form input[type="text"],
 .main-block form input[type="email"],
 .main-block form input[type="password"] {
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #283141;
     border-radius: 5px;
     width: 100%;
     font-size: 16px;
 }
 
 .main-block form input[type="submit"] {
-    background-color: #8e54b4;
-    color: white;
+    background-color: #614eee;
+    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 12px;
     font-size: 18px;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: all 0.3s ease;
     width: 100%;
     text-align: center;
 }
 
-.main-block form input[type="submit"]:hover {
-    background-color: #7b45a0;
+.main-block form input[type="submit"]:not(:disabled):hover {
+    background-color: #614eee;
     cursor: pointer;
+    /* transform: translateY(-1px); */
+    box-shadow: 0 0 8px #614eee;
 }
 
 .main-block form input[type="submit"]:disabled {
-    background-color: #5f357a;
+    background-color: #614eeecb;
     cursor: default;
-    color: #b9b9b9;
+    color: #cfcdcd;
 }
 
 .main-block form input:focus {
     outline: none;
-    border-color: #774caf;
-    box-shadow: 0 0 5px rgba(144, 76, 175, 0.5);
+    box-shadow: 0 0 5px #614eee6c;
 }

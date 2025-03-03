@@ -3,9 +3,9 @@
     padding: 20px;
     border-radius: 10px;
     max-width: 100%;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
-    background-color: #0a192f;
-    color: #c3ceec;
+    box-shadow: 0 4px 12px #0000006c;
+    background-color: #111827;
+    color: #fff;
 }
 
 .top-section {
@@ -39,16 +39,15 @@ select {
 }
 
 .working-leave-btn {
-    border: 1px solid #05b68d;
+    border: 1px solid #614eee;
     padding: 8px 16px;
-    border-radius: 5px;
     color: #c3ceec;
-    border-radius: 10px;
+    border-radius: 5px;
 }
 
 .add-task-btn {
-    background-color: #213c66;
-    color: #62fbd7;
+    background-color: #614eee;
+    color: #ffffff;
     border-radius: 5px;
     padding: 8px 16px;
     text-align: center;
@@ -58,10 +57,9 @@ select {
 }
 
 .add-task-btn:hover {
-    background-color: #213c66;
-    color: #62fbd7;
+    background-color: #614eee;
     cursor: pointer;
-    box-shadow: 0 0 3px #62fbd7;
+    box-shadow: 0 0 8px #614eee;
 }
 
 .date-section {
@@ -81,6 +79,8 @@ select {
 .tasks-table,
 .activities-table {
     margin-top: 20px;
+    height: 415px;
+    max-height: 415px;
 }
 
 .tasks-table table,
@@ -91,35 +91,62 @@ select {
     font-size: smaller;
 }
 
-thead th,
-tbody td {
-    padding: 10px;
-    border: 2px solid #0a192f;
+:host ::ng-deep .p-datatable th,
+:host ::ng-deep .p-datatable td {
     text-align: center;
-}
-
-thead th {
-    background-color: #172a46;
+    background-color: #111827;
     color: #d6def7;
-    font-size: larger;
 }
 
-tbody tr:nth-child(odd) {
-    background-color: #223b61;
+:host ::ng-deep .p-datatable th {
+    font-weight: 700;
+    background-color: #614eee;
 }
 
-tbody tr:nth-child(even) {
-    background-color: #192d4b;
+:host ::ng-deep .p-datatable th:first-child {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+:host ::ng-deep .p-datatable th:last-child {
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+:host ::ng-deep .p-datatable tr .no-tasks:last-child {
+    border: none;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-input {
+    width: 110px;
+    border: none;
+    font-size: 14px;
+    box-shadow: 0 0 5px #614eee6c;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-input:focus {
+    border: none;
+    box-shadow: 0 0 5px #614eee6c;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-prev-button,
+:host ::ng-deep .p-datepicker .p-datepicker-next-button {
+    color: #614eee;
+    font-size: 20px;
 }
 
 button {
-    background: none;
     border: none;
+    background: none;
     cursor: pointer;
 }
 
-.no-tasks {
-    color: #ff0000;
+button:focus {
+    outline: none;
+}
+
+:host ::ng-deep .p-datatable td.no-tasks {
+    color: #dc3545;
 }
 
 .edit-btn,
@@ -139,7 +166,7 @@ button {
 }
 
 .delete-btn {
-    color: #ff0000;
+    color: #dc3545;
 }
 
 .activities-table table {
@@ -148,21 +175,43 @@ button {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    border-color: #62fbd7;
-    box-shadow: 0 0 5px #62fbd780;
+    box-shadow: 0 0 5px #614eee6c;
 }
 
 input {
     border-radius: 5px;
-    border: 1px solid #919090;
+    border: 1px solid #283141;
+    box-shadow: 0 0 5px #614eee6c;
     border: none;
-    box-shadow: 0 0 5px #62fbd780;
     color-scheme: dark;
 }
 
 select {
     color-scheme: dark;
     border: none;
-    box-shadow: 0 0 5px #62fbd780;
+    box-shadow: 0 0 5px #614eee6c;
     padding: 5px 7px;
+}
+
+.cnfm-dialog-btns {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+.cnfm-dialog-btns button {
+    height: 45px;
+    width: 50%;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 5px;
+}
+
+:host ::ng-deep .p-dialog {
+    background-color: #111827;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-close-button:focus {
+    outline: none;
 }

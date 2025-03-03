@@ -24,11 +24,11 @@ export class HeaderComponent {
             JSON.stringify(null));
     }
     loggedUser!: User;
-    isUser: boolean;
+    isAdmin: boolean;
 
     constructor() {
         this.loggedUser = this.getLoggedUserId();
-        this.isUser = this.loggedUser?.password === 'True' ? false : true;
+        this.isAdmin = this.loggedUser?.isAdmin;
     }
 
     getLoggedUserId(): User {

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="1080" height="1080" viewBox="0 0 1080 1080" xml:space="preserve">
+<desc>Created with Fabric.js 5.2.4</desc>
+<defs>
+</defs>
+<rect x="0" y="0" width="100%" height="100%" fill="transparent"></rect>
+<g transform="matrix(1 0 0 1 540 540)" id="b8bce2dd-5031-4174-9be0-c820d0fe7537"  >
+<rect style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1; visibility: hidden;" vector-effect="non-scaling-stroke"  x="-540" y="-540" rx="0" ry="0" width="1080" height="1080" />
+</g>
+<g transform="matrix(1 0 0 1 540 540)" id="4c3b1b47-2d61-41f0-9c80-121d49b01542"  >
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(1 0 0 1 540 540)"  >
+<g style="" vector-effect="non-scaling-stroke"   >
+		<g transform="matrix(1 0 0 1 0 0)"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(25,135,84); fill-rule: nonzero; opacity: 0.4;" vector-effect="non-scaling-stroke"  transform=" translate(-256, -256)" d="M 256 512 C 397.38489595668307 512 512 397.38489595668307 512 256 C 512 114.61510404331693 397.38489595668307 0 256 0 C 114.6151040433169 0 0 114.6151040433169 0 256 C 0 397.38489595668307 114.6151040433169 512 256 512 z M 232 344 L 232 280 L 168 280 C 154.7 280 144 269.3 144 256 C 144 242.7 154.7 232 168 232 L 232 232 L 232 168 C 232 154.7 242.7 144 256 144 C 269.3 144 280 154.7 280 168 L 280 232 L 344 232 C 357.3 232 368 242.7 368 256 C 368 269.3 357.3 280 344 280 L 280 280 L 280 344 C 280 357.3 269.3 368 256 368 C 242.7 368 232 357.3 232 344 z" stroke-linecap="round" />
+</g>
+		<g transform="matrix(1 0 0 1 0 0)"  >
+<path style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-dashoffset: 0; stroke-linejoin: miter; stroke-miterlimit: 4; fill: rgb(25,135,84); fill-rule: nonzero; opacity: 1;" vector-effect="non-scaling-stroke"  transform=" translate(-256, -256)" d="M 232 280 L 232 344 C 232 357.3 242.7 368 256 368 C 269.3 368 280 357.3 280 344 L 280 280 L 344 280 C 357.3 280 368 269.3 368 256 C 368 242.7 357.3 232 344 232 L 280 232 L 280 168 C 280 154.7 269.3 144 256 144 C 242.7 144 232 154.7 232 168 L 232 232 L 168 232 C 154.7 232 144 242.7 144 256 C 144 269.3 154.7 280 168 280 L 232 280 z" stroke-linecap="round" />
+</g>
+</g>
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+<g transform="matrix(NaN NaN NaN NaN 0 0)"  >
+<g style=""   >
+</g>
+</g>
+</svg>

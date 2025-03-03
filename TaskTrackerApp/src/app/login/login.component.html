@@ -2,17 +2,11 @@
     <div class="main-block">
         <h1>Employee Task Tracker</h1>
         <h3>Login to Your Account</h3>
-        <a routerLink="/register">New user?</a>
+        <a style="color: #7d6ef1" routerLink="/register">New user?</a>
         <form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm">
             <label for="user-inp">Username:</label>
-            <input
-                id="user-inp"
-                type="text"
-                placeholder="Enter your username"
-                name="usrname"
-                ngModel
-                required
-            />
+            <input id="user-inp" type="text" name="usrname" ngModel required />
+            <!-- placeholder="Enter your username" -->
 
             <label for="pass-inp">Password:</label>
             <input
@@ -22,13 +16,13 @@
                 min="8"
                 name="pass"
                 type="password"
-                placeholder="Enter your password"
             />
+            <!-- placeholder="Enter your password" -->
 
             <input type="submit" value="Login" [disabled]="loginForm.invalid" />
         </form>
     </div>
     <div class="card flex justify-center">
-        <p-toast position="bottom-right"/>
+        <p-toast position="bottom-right" />
     </div>
 </body>

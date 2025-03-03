@@ -12,7 +12,7 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public async Task<List<TaskData>> GetTasks(Guid userId)
+        public async Task<List<Models.Task>> GetTasks(Guid userId)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -22,10 +22,10 @@ namespace TaskTracker.Data
                 getTasksCmd.Parameters.AddWithValue("@user_id", userId);
                 var reader = getTasksCmd.ExecuteReader();
 
-                var userTasks = new List<TaskData>();
+                var userTasks = new List<Models.Task>();
                 while (await reader.ReadAsync())
                 {
-                    userTasks.Add(new TaskData
+                    userTasks.Add(new Models.Task
                     {
                         Id = Guid.Parse(reader["id"].ToString()!),
                         UserId = Guid.Parse(reader["user_id"].ToString()!),
@@ -49,7 +49,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public async Task<Guid> AddNewTask(TaskData taskData)
+        public async Task<Guid> AddNewTask(Models.Task taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -99,7 +99,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public void EditTask(TaskData taskData)
+        public void EditTask(Models.Task taskData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -154,19 +154,19 @@ namespace TaskTracker.Data
             return userTaskStates;
         }
 
-        // public void DeleteTask(int taskId)
-        // {
-        //     using (var connection = _dataAccess.ReturnConn())
-        //     {
-        //         connection.Open();
+        public void DeleteTask(Guid taskId)
+        {
+            using (var connection = _dataAccess.ReturnConn())
+            {
+                connection.Open();
 
-        //         var deleteTaskCmd = new SqlCommand("spDeleteTask", connection);
-        //         deleteTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
-        //         deleteTaskCmd.Parameters.AddWithValue("@task_id", taskId);
-        //         deleteTaskCmd.ExecuteNonQuery();
+                var deleteTaskCmd = new SqlCommand("usp_DeleteTask", connection);
+                deleteTaskCmd.CommandType = System.Data.CommandType.StoredProcedure;
+                deleteTaskCmd.Parameters.AddWithValue("@task_id", taskId);
+                deleteTaskCmd.ExecuteNonQuery();
 
-        //         connection.Close();
-        //     }
-        // }
+                connection.Close();
+            }
+        }
     }
 }

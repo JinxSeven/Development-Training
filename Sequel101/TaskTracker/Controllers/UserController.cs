@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using TaskTracker.Data;
+using TaskTracker.Models;
 
 namespace TaskTracker.Controllers
 {
@@ -61,7 +62,7 @@ namespace TaskTracker.Controllers
 
         [HttpPost]
         [Route("AddNewUser")]
-        public IActionResult AddNewUser(Models.UserData userData)
+        public IActionResult AddNewUser(User userData)
         {
             try
             {

@@ -2,33 +2,36 @@
 <div class="tasks-page">
     <div class="top-section">
         <h2>Tasks</h2>
-        <span class="total-tasks">{{totalTaskCount}} Item(s) In Total</span>
+        <span class="total-tasks">{{ totalTaskCount }} Item(s) In Total</span>
         <button class="working-leave-btn">
-            Total {{totalTaskHours}} hour(s) of Working
+            Total {{ totalTaskHours }} hour(s) of Working
         </button>
         <div></div>
-        <button
-            class="add-task-btn"
-            (click)="onPlusTask()"
-        >+ Add Task</button>
+        <button class="add-task-btn" (click)="onPlusTask()">+ Add Task</button>
     </div>
 
     <div class="date-section">
-        <label for="date">Date</label>
-        <input type="date" id="date"
+        <label for="date">Date:</label>
+        <!-- <input type="date" id="date"
             [(ngModel)]="this.selectedDate"
+            (ngModelChange)="onDateChange($event)"
+        /> -->
+        <p-datepicker
+            [(ngModel)]="todayDate"
+            dateFormat="dd.mm.yy"
+            [showIcon]="false"
             (ngModelChange)="onDateChange($event)"
         />
     </div>
 
     <div class="tasks-table">
         <h3>Added Tasks</h3>
-        <table>
-            <thead>
+        <p-table [value]="taskByDate" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
                 <tr>
+                    <th>Task Title</th>
                     <th>Client</th>
                     <th>Project</th>
-                    <th>Task Title</th>
                     <th>Assigned To</th>
                     <th>Assigned By</th>
                     <th>ETA</th>
@@ -38,60 +41,97 @@
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
-            </thead>
-            <tbody>
-                @for (task of this.userTasks; track $index) {
-                    @if (
-                        task.dateTime.toString().split('T')[0] ==
-                        this.selectedDate
-                        ) {
-                            <tr>
-                                <td>{{task.clientName}}</td>
-                                <td>{{task.projectName}}</td>
-                                <td>{{task.taskTitle}}</td>
-                                <td>{{task.assignedTo}}</td>
-                                <td>{{task.assignedBy}}</td>
-                                <td>{{task.hours}}</td>
-                                <td>
-                                    @if (task.priority === 'low') {
-                                        <p-tag severity="success" value="Low" />
-                                    }
-                                    @else if (task.priority === 'medium') {
-                                        <p-tag severity="warn" value="Medium" />
-                                    }
-                                    @else {
-                                        <p-tag severity="danger" value="High" />
-                                    }
-                                </td>
-                                <td>
-                                    <select id="select4" value="{{task.taskState}}" (change)="onTaskStateChange(task.id, $event)">
-                                        <option value="new">New</option>
-                                        <option value="active">Active</option>
-                                        <option value="complete">Complete</option>
-                                    </select>
-                                </td>
-                                <td><button class="add-activity-btn" id="{{task.id}}"><i class="fa-solid fa-circle-plus"></i></button></td>
-                                <td><button class="edit-btn" id="{{task.id}}" (click)="onTaskEdit(task.id)"><i class="fa-solid fa-pen-to-square"></i></button></td>
-                                <td><button class="delete-btn" id="{{task.id}}" (click)="onTaskDelete(task.id)"><i class="fa-solid fa-trash-can"></i></button></td>
-                            </tr>
-                    }
-                }
-                @if (totalTaskCount == 0) {
-                    <tr>
-                        <td colspan="11" class="no-tasks">
-                            No tasks found for the selected date: {{ selectedDate }}
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            </ng-template>
+            <ng-template #body let-task>
+                <tr>
+                    <td>{{ task.taskTitle }}</td>
+                    <td>{{ task.clientName }}</td>
+                    <td>{{ task.projectName }}</td>
+                    <td>{{ task.assignedTo }}</td>
+                    <td>{{ task.assignedBy }}</td>
+                    <td>{{ task.hours }}</td>
+                    <td>
+                        @if (task.priority === 'low') {
+                        <p-tag severity="success" value="Low" />
+                        } @else if (task.priority === 'medium') {
+                        <p-tag severity="warn" value="Medium" />
+                        } @else {
+                        <p-tag severity="danger" value="High" />
+                        }
+                    </td>
+                    <td>
+                        <select
+                            id="select4"
+                            value="{{ task.taskState }}"
+                            (change)="onTaskStateChange(task.id, $event)"
+                        >
+                            <option value="new">New</option>
+                            <option value="active">Active</option>
+                            <option value="complete">Complete</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="add-activity-btn" id="{{ task.id }}">
+                            <img
+                                src="assets\icons\circle-plus.svg"
+                                style="height: 40px; margin: -15px"
+                            />
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            class="edit-btn"
+                            id="{{ task.id }}"
+                            (click)="onTaskEdit(task.id)"
+                        >
+                            <img
+                                src="assets\icons\edit-check-pen.svg"
+                                style="height: 40px; margin: -15px"
+                            />
+                        </button>
+                    </td>
+                    <td>
+                        <button
+                            class="delete-btn"
+                            id="{{ task.id }}"
+                            (click)="openConfirmationDialog(task.id)"
+                        >
+                            <img
+                                src="assets\icons\trash-can-xmark.svg"
+                                style="height: 40px; margin: -15px"
+                            />
+                        </button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="11" class="no-tasks">
+                        <img
+                            src="assets\no-data-img.webp"
+                            style="height: 250px"
+                            alt="no data image"
+                        />
+                        <!-- No tasks found for the selected date: {{ selectedDate }} -->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="11" class="no-tasks">
+                        <!-- <img src="assets\no-data-img.webp" style="height: 250px;"> -->
+                        No tasks found for the selected date: {{ selectedDate }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
+
+    <p-divider />
 
     <h2>Activities</h2>
     <div class="activities-table">
         <h3>Added Activities</h3>
-        <table>
-            <thead>
+        <p-table [value]="dataByDate" [tableStyle]="{ 'min-width': '50rem' }">
+            <ng-template #header>
                 <tr>
                     <th>Client</th>
                     <th>Project</th>
@@ -100,29 +140,39 @@
                     <th>Description</th>
                     <th>Hours</th>
                 </tr>
-            </thead>
-            <tbody>
-                @for (data of dataByDate; track $index) {
-                    <tr>
-                        <td>{{data.matchingTasks.clientName}}</td>
-                        <td>{{data.matchingTasks.projectName}}</td>
-                        <td>{{data.matchingTasks.taskTitle}}</td>
-                        <td>{{data.activity.activityTitle}}</td>
-                        <td>{{data.activity.description}}</td>
-                        <td>{{data.activity.hours}}</td>
-                    </tr>
-                } @empty {
-                    <tr>
-                        <td colspan="10" class="no-tasks">
-                            No activities found for the selected date: {{ selectedDate }}
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            </ng-template>
+            <ng-template #body let-data>
+                <tr>
+                    <td>{{ data.matchingTasks.clientName }}</td>
+                    <td>{{ data.matchingTasks.projectName }}</td>
+                    <td>{{ data.matchingTasks.taskTitle }}</td>
+                    <td>{{ data.activity.activityTitle }}</td>
+                    <td>{{ data.activity.description }}</td>
+                    <td>{{ data.activity.hours }}</td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="11" class="no-tasks">
+                        <img
+                            src="assets\no-data-img.webp"
+                            style="height: 250px"
+                            alt="no data image"
+                        />
+                        <!-- No tasks found for the selected date: {{ selectedDate }} -->
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="11" class="no-tasks">
+                        No activities found for the selected date:
+                        {{ selectedDate }}
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
     </div>
     <div class="card flex justify-center">
-        <p-toast position="bottom-right"/>
+        <p-toast position="bottom-right" />
     </div>
 </div>
 <!--
@@ -131,3 +181,31 @@
 <p-tag severity="warn" value="Warn" />
 <p-tag severity="danger" value="Danger" />
 -->
+<p-dialog
+    header="You Sure?"
+    [modal]="true"
+    [(visible)]="showConfirmationDialog"
+    draggable="false"
+    [style]="{ width: '27rem' }"
+>
+    <span class="p-text-secondary block mb-8"
+        >Task and its activities will be deleted</span
+    >
+
+    <div class="flex justify-end gap-2 cnfm-dialog-btns">
+        <button (click)="cancelConfirmation()"
+            style="background-color: #614eee; transition: all 0.3s ease"
+            onmouseout="this.style.boxShadow='0 0 0px #614eee'"
+            onmouseover="this.style.boxShadow='0 0 8px #614eee'"
+        >
+            Cancel
+        </button>
+        <button (click)="onTaskDelete(taskToDeleteId)"
+            style="background-color: #dc3545; transition: all 0.3s ease"
+            onmouseout="this.style.boxShadow='0 0 0px #dc3545'"
+            onmouseover="this.style.boxShadow='0 0 8px #dc3545'"
+        >
+            Delete
+        </button>
+    </div>
+</p-dialog>

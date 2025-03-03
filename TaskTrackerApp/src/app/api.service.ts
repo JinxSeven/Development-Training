@@ -117,7 +117,7 @@ export class ApiService {
 
     deleteTask(taskId: string): Observable<any> {
         return this.http.delete<any>(
-            `https://localhost:7042/api/Task/Delete?taskId=${taskId}`
+            `https://localhost:7042/api/Task/DeleteTask?taskId=${taskId}`
         )
     }
 }

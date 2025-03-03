@@ -14,9 +14,9 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public UserData? GetLoggedUser(string username, string password)
+        public User? GetLoggedUser(string username, string password)
         {
-            UserData? loggedUser = null;
+            User? loggedUser = null;
 
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -32,12 +32,14 @@ namespace TaskTracker.Data
 
                     if (reader.Read())
                     {
-                        loggedUser = new UserData
+                        loggedUser = new User
                         {
                             Id = Guid.Parse(reader["id"].ToString()!),
                             Username = reader["username"].ToString()!,
                             Email = reader["email"].ToString()!,
-                            Password = reader["is_admin"].ToString()!
+                            Password = "********",
+                            IsAdmin = Convert.ToBoolean(reader["is_admin"])
+                            
                         };
                     }
 
@@ -48,7 +50,7 @@ namespace TaskTracker.Data
             return loggedUser;
         }
 
-        public void AddNewUser(UserData userData)
+        public void AddNewUser(User userData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -59,8 +61,9 @@ namespace TaskTracker.Data
                 addNewUSerCmd.Parameters.AddWithValue("@username", userData.Username);
                 addNewUSerCmd.Parameters.AddWithValue("@email", userData.Email);
                 addNewUSerCmd.Parameters.AddWithValue("@password", userData.Password);
-                addNewUSerCmd.ExecuteNonQuery();
+                addNewUSerCmd.Parameters.AddWithValue("@is_admin", userData.IsAdmin);
 
+                addNewUSerCmd.ExecuteNonQuery();
                 connection.Close();
             }
         }

@@ -12,7 +12,7 @@ namespace TaskTracker.Data
             _dataAccess = dataAccess;
         }
 
-        public List<ActivityData> GetTaskActivities(Guid task_id)
+        public List<Models.Activity> GetTaskActivities(Guid task_id)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -22,10 +22,10 @@ namespace TaskTracker.Data
                 getTasksCmd.Parameters.AddWithValue("@task_id", task_id);
                 var reader = getTasksCmd.ExecuteReader();
 
-                var taskActivities = new List<ActivityData>();
+                var taskActivities = new List<Models.Activity>();
                 while (reader.Read())
                 {
-                    taskActivities.Add(new ActivityData
+                    taskActivities.Add(new Models.Activity
                     {
                         Id = Guid.Parse(reader["id"].ToString()!),
                         TaskId = Guid.Parse(reader["task_id"].ToString()!),
@@ -42,7 +42,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public void AddNewActivity(Models.ActivityData activityData)
+        public void AddNewActivity(Models.Activity activityData)
         {
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -60,7 +60,7 @@ namespace TaskTracker.Data
             }
         }
 
-        public void EditActivity(Models.ActivityData activityData)
+        public void EditActivity(Models.Activity activityData)
         {
             using(var connection = _dataAccess.ReturnConn())
             {

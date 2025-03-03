@@ -6,14 +6,18 @@ import { FormsModule } from '@angular/forms';
 import { Task } from '../interfaces/task';
 import { User } from '../interfaces/user';
 import { Activity } from '../interfaces/activity';
+import { Dialog } from 'primeng/dialog';
 import { Tag } from 'primeng/tag';
+import { DividerModule } from 'primeng/divider';
 import { DropdownModule } from 'primeng/dropdown';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { Toast } from 'primeng/toast';
+import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { TaskData } from '../interfaces/taskData';
 import { lastValueFrom } from 'rxjs';
+import { DatePicker } from 'primeng/datepicker';
 
 @Component({
     standalone: true,
@@ -22,26 +26,38 @@ import { lastValueFrom } from 'rxjs';
         HeaderComponent,
         ToastModule,
         Toast,
+        DividerModule,
         FormsModule,
+        DatePicker,
         Tag,
+        TableModule,
         DropdownModule,
         ButtonModule,
+        Dialog,
     ],
     templateUrl: './task-tracker.component.html',
     styleUrl: './task-tracker.component.css',
     providers: [MessageService],
 })
 export class TaskTrackerComponent {
+    cancelConfirmation() {
+        throw new Error('Method not implemented.');
+    }
     apiCalls = inject(ApiService);
+
+    todayDate: Date;
     selectedDate: string;
     userTasks: Task[] = [];
+    taskByDate: Task[] = [];
     loggerUser: User;
     totalTaskHours: number = 0;
     totalTaskCount: number = 0;
-    taskIds: string[] = [];
     dataByDate: any = [];
 
     selectedTaskState = '';
+
+    showConfirmationDialog = false;
+    taskToDeleteId = '';
 
     constructor(
         private router: Router,
@@ -49,8 +65,15 @@ export class TaskTrackerComponent {
     ) {
         this.apiCalls.setEditMode(false);
 
-        const todayDate = new Date();
-        this.selectedDate = todayDate.toISOString().split('T')[0];
+        this.todayDate = new Date();
+        const year = this.todayDate.getFullYear();
+        const month = String(this.todayDate.getMonth() + 1).padStart(2, '0'); // Ensure two digits
+        const day = String(this.todayDate.getDate()).padStart(2, '0');
+
+        this.selectedDate = `${year}-${month}-${day}`;
+
+        console.log(this.selectedDate);
+
         this.loggerUser = this.getLoggedUser();
         this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
             next: (response) => {
@@ -84,7 +107,7 @@ export class TaskTrackerComponent {
                             task.taskState = newTaskState;
                         }
                     });
-                    
+
                     if (newTaskState === `complete`) {
                         this.showToast(
                             `success`,
@@ -110,6 +133,11 @@ export class TaskTrackerComponent {
     }
 
     onDateChange(event: any) {
+        const year = this.todayDate.getFullYear();
+        const month = String(this.todayDate.getMonth() + 1).padStart(2, '0');
+        const day = String(this.todayDate.getDate()).padStart(2, '0');
+        this.selectedDate = `${year}-${month}-${day}`;
+        console.log(this.selectedDate);
         this.totalTaskHours = this.getRelevantData();
     }
 
@@ -145,10 +173,20 @@ export class TaskTrackerComponent {
         this.router.navigate(['/taskfields']);
     }
 
+    openConfirmationDialog(id: string) {
+        this.showConfirmationDialog = true;
+        this.taskToDeleteId = id;
+    }
+
     onTaskDelete(taskId: string) {
         console.log(taskId);
         this.apiCalls.deleteTask(taskId).subscribe({
             next: (response: any) => {
+                this.showToast(
+                    'error',
+                    'Task Deleted!',
+                    "Task and all its activities were deleted successfully"
+                );
                 this.apiCalls.getUserTasks(this.loggerUser.id).subscribe({
                     next: (response) => {
                         this.userTasks = response;
@@ -161,6 +199,11 @@ export class TaskTrackerComponent {
                         } else {
                             console.error('Something went wrong! ', error);
                         }
+                        this.showToast(
+                            'error',
+                            'Oops!',
+                            'The server is taking a coffee break. Try again in a bit!'
+                        );
                     },
                 });
             },
@@ -172,14 +215,19 @@ export class TaskTrackerComponent {
                 }
             },
         });
+
+        this.showConfirmationDialog = false;
     }
 
     getRelevantData(): number {
         this.totalTaskHours = 0;
         this.totalTaskCount = 0;
         this.dataByDate = [];
+        this.taskByDate = [];
         this.userTasks.forEach((task) => {
+            console.log(task.dateTime, ' - ', this.selectedDate);
             if (task.dateTime.toString().split('T')[0] == this.selectedDate) {
+                this.taskByDate.push(task);
                 this.totalTaskHours += task.hours;
                 this.totalTaskCount++;
                 this.apiCalls.getTaskActivities(task.id).subscribe({

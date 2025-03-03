@@ -2,7 +2,7 @@
     <div class="main-block">
         <h1>Employee Task Tracker</h1>
         <h3>Create New Account</h3>
-        <a routerLink="/login">Existing user?</a>
+        <a style="color: #7d6ef1" routerLink="/login">Existing user?</a>
         <form (ngSubmit)="onRegister(registerForm)" #registerForm="ngForm">
             <label for="usrname-inp">Username:</label>
             <input
@@ -11,19 +11,19 @@
                 required
                 ngModel
                 name="usrname"
-                placeholder="Enter your username"
             />
+            <!-- placeholder="Enter your username" -->
 
             <label for="email-inp">Email Address:</label>
             <input
                 id="email-inp"
                 type="email"
-                placeholder="Enter your email"
                 name="email"
                 ngModel
                 pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
                 required
             />
+            <!-- placeholder="Enter your email" -->
 
             <label for="pass-inp">Password:</label>
             <input
@@ -33,8 +33,8 @@
                 name="pass"
                 min="8"
                 type="password"
-                placeholder="Enter your password"
             />
+            <!-- placeholder="Enter your password" -->
 
             <label for="cnfmpass-inp">Confirm Password:</label>
             <input
@@ -44,8 +44,8 @@
                 type="password"
                 name="cnfmpass"
                 min="8"
-                placeholder="Confirm your password"
             />
+            <!-- placeholder="Confirm your password" -->
 
             <input
                 type="submit"
@@ -57,5 +57,8 @@
                 "
             />
         </form>
+    </div>
+    <div class="card flex justify-center">
+        <p-toast position="bottom-right" />
     </div>
 </body>
