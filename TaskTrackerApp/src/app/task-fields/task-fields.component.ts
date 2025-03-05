@@ -50,6 +50,8 @@ export class TaskFieldsComponent implements OnInit {
 
     adminList: any[] = [];
     userList: any[] = [];
+    clientList: any[] = [];
+    projectList: any[] = [];
 
     isUser: boolean;
 
@@ -64,8 +66,11 @@ export class TaskFieldsComponent implements OnInit {
         this.apiCalls.getAdminList().subscribe((usernames) => {
             this.adminList.push(...usernames);
         });
-        this.apiCalls.getUserList().subscribe((userdata) => {
-            this.userList.push(...userdata);
+        this.apiCalls.getUserList().subscribe((usernames) => {
+            this.userList.push(...usernames);
+        });
+        this.apiCalls.getClientList().subscribe((clients) => {
+            this.clientList.push(...clients);
         });
 
         this.isUser = !this.loggedUser?.isAdmin;
@@ -163,6 +168,17 @@ export class TaskFieldsComponent implements OnInit {
     getLoggedUser(): User {
         const loggedUser = sessionStorage.getItem('LoggedUser');
         return JSON.parse(loggedUser!);
+    }
+
+    getProjectsByClientId() {
+        const clientName = this.taskForm.controls['clientName'].value;
+        const selectedClient = this.clientList.find((client) => client.clientName === clientName);
+
+        this.projectList = [];
+
+        this.apiCalls.getProjectsByClientId(selectedClient.id).subscribe((projects) =>{
+            this.projectList.push(...projects);
+        })
     }
 
     findAssignedToId(username: string) : string {

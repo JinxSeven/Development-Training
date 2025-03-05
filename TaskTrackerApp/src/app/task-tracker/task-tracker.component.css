@@ -96,6 +96,7 @@ select {
     text-align: center;
     background-color: #111827;
     color: #d6def7;
+    font-size: 0.9em;
 }
 
 :host ::ng-deep .p-datatable th {

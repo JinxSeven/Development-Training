@@ -12,6 +12,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { User } from '../interfaces/user';
 import { MessageService } from 'primeng/api';
+import { AccordionModule } from 'primeng/accordion';
 
 @Component({
     standalone: true,
@@ -22,7 +23,7 @@ import { MessageService } from 'primeng/api';
         CardModule,
         MeterGroup,
         Dialog,
-        Toast,
+        Toast, AccordionModule,
         FormsModule,
         DividerModule,
         ButtonModule,

@@ -70,7 +70,6 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\TaskTracker.staticwebassets.endpoints.json
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\staticwebassets.build.endpoints.json
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\staticwebassets\msbuild.TaskTracker.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\appsettings.Development.json
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\appsettings.json
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\TaskTracker.staticwebassets.endpoints.json
@@ -143,3 +142,4 @@ D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\refint\TaskTr
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.pdb
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.genruntimeconfig.cache
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\ref\TaskTracker.dll
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

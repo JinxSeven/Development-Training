@@ -1,5 +1,6 @@
 
 using TaskTracker.Data;
+using TaskTracker.Repo;
 
 namespace TaskTracker
 {
@@ -23,6 +24,7 @@ namespace TaskTracker
             builder.Services.AddScoped<UsersRepo>();
             builder.Services.AddScoped<TasksRepo>();
             builder.Services.AddScoped<ActivitiesRepo>();
+            builder.Services.AddScoped<ClientRepo>();
 
             var app = builder.Build();
 

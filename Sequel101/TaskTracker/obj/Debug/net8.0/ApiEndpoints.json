@@ -9,7 +9,7 @@
     "Parameters": [
       {
         "Name": "activityData",
-        "Type": "TaskTracker.Models.ActivityData",
+        "Type": "TaskTracker.Models.Activity",
         "IsRequired": true
       }
     ],
@@ -41,7 +41,7 @@
     "Parameters": [
       {
         "Name": "activityData",
-        "Type": "TaskTracker.Models.ActivityData",
+        "Type": "TaskTracker.Models.Activity",
         "IsRequired": true
       }
     ],
@@ -64,6 +64,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskTracker.Controllers.ClientController",
+    "Method": "GetAllClientNames",
+    "RelativePath": "api/Client/GetAllClientNames",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ClientController",
+    "Method": "GetProjectsByClientId",
+    "RelativePath": "api/Client/GetProjectsByClientId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskTracker.Controllers.TaskController",
     "Method": "AddNewTask",
     "RelativePath": "api/Task/AddNewTask",
@@ -73,8 +99,24 @@
     "Parameters": [
       {
         "Name": "taskData",
-        "Type": "TaskTracker.Models.TaskData",
+        "Type": "TaskTracker.Models.Task",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.TaskController",
+    "Method": "DeleteTask",
+    "RelativePath": "api/Task/DeleteTask",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "taskId",
+        "Type": "System.Guid",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -89,7 +131,7 @@
     "Parameters": [
       {
         "Name": "taskData",
-        "Type": "TaskTracker.Models.TaskData",
+        "Type": "TaskTracker.Models.Task",
         "IsRequired": true
       }
     ],
@@ -109,6 +151,16 @@
         "IsRequired": false
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.TaskController",
+    "Method": "GetUserTaskStats",
+    "RelativePath": "api/Task/GetUserTaskStats",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {
@@ -142,7 +194,7 @@
     "Parameters": [
       {
         "Name": "userData",
-        "Type": "TaskTracker.Models.UserData",
+        "Type": "TaskTracker.Models.User",
         "IsRequired": true
       }
     ],

@@ -7,11 +7,11 @@
         <div class="grid">
             <div class="form-group">
                 <label for="select1">Client Name*</label>
-                <select id="select1" formControlName="clientName">
+                <select id="select1" formControlName="clientName" (change)="getProjectsByClientId()">
                     <option value="">Select...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    @for (client of clientList; track $index) {
+                        <option value="{{ client.clientName }}">{{ client.clientName }}</option>
+                    }
                 </select>
             </div>
 
@@ -19,9 +19,9 @@
                 <label for="select2">Project Name*</label>
                 <select id="select2" formControlName="projectName">
                     <option value="">Select...</option>
-                    <option value="option1">Option 1</option>
-                    <option value="option2">Option 2</option>
-                    <option value="option3">Option 3</option>
+                    @for (project of projectList; track $index) {
+                        <option value="{{ project.projectName }}">{{ project.projectName }}</option>
+                    }
                 </select>
             </div>
 

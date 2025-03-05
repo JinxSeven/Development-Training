@@ -36,17 +36,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             }
           }
@@ -67,17 +67,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ActivityData"
+                "$ref": "#/components/schemas/Activity"
               }
             }
           }
@@ -111,6 +111,40 @@
         }
       }
     },
+    "/api/Client/GetAllClientNames": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Client/GetProjectsByClientId": {
+      "get": {
+        "tags": [
+          "Client"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Task/GetTasks": {
       "get": {
         "tags": [
@@ -133,6 +167,18 @@
         }
       }
     },
+    "/api/Task/GetUserTaskStats": {
+      "get": {
+        "tags": [
+          "Task"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Task/AddNewTask": {
       "post": {
         "tags": [
@@ -142,17 +188,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
@@ -202,21 +248,43 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/TaskData"
+                "$ref": "#/components/schemas/Task"
               }
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Task/DeleteTask": {
+      "delete": {
+        "tags": [
+          "Task"
+        ],
+        "parameters": [
+          {
+            "name": "taskId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "Success"
@@ -285,17 +353,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/User"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/User"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/UserData"
+                "$ref": "#/components/schemas/User"
               }
             }
           }
@@ -310,7 +378,7 @@
   },
   "components": {
     "schemas": {
-      "ActivityData": {
+      "Activity": {
         "type": "object",
         "properties": {
           "id": {
@@ -336,7 +404,7 @@
         },
         "additionalProperties": false
       },
-      "TaskData": {
+      "Task": {
         "type": "object",
         "properties": {
           "id": {
@@ -391,7 +459,7 @@
         },
         "additionalProperties": false
       },
-      "UserData": {
+      "User": {
         "type": "object",
         "properties": {
           "id": {
@@ -409,6 +477,9 @@
           "password": {
             "type": "string",
             "nullable": true
+          },
+          "isAdmin": {
+            "type": "boolean"
           }
         },
         "additionalProperties": false
