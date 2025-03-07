@@ -25,6 +25,7 @@ namespace TaskTracker
             builder.Services.AddScoped<TasksRepo>();
             builder.Services.AddScoped<ActivitiesRepo>();
             builder.Services.AddScoped<ClientRepo>();
+            builder.Services.AddScoped<ProjectRepo>();
 
             var app = builder.Build();
 

@@ -31,20 +31,7 @@ namespace TaskTracker.Controllers
         }
 
         [HttpGet]
-        [Route("GetProjectsByClientId")]
-        public async Task<IActionResult> GetProjectsByClientId(Guid clientId)
-        {
-            try
-            {
-                var projectList = await _clientRepo.GetProjectsByClientId(clientId);
-                return Ok(projectList);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
-        }
-
+        [Route("GetAllClients")]
         public async Task<IActionResult> GetAllClients()
         {
             try

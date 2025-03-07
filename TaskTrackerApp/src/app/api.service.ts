@@ -6,6 +6,8 @@ import { Task } from './interfaces/task';
 import { Activity } from './interfaces/activity';
 import { TaskData } from './interfaces/taskData';
 import { TaskStats } from './interfaces/taskStats';
+import { Client } from './interfaces/client';
+import { Project } from './interfaces/project';
 
 @Injectable({
     providedIn: 'root',
@@ -77,10 +79,22 @@ export class ApiService {
         );
     }
 
-    getProjectsByClientId(clientId: string): Observable<any> {
+    getProjectListByClientId(clientId: string): Observable<any> {
         return this.http.get<any>(
-            `https://localhost:7042/api/Client/GetProjectsByClientId?clientId=${clientId}`
+            `https://localhost:7042/api/Project/GetProjectListByClientId?clientId=${clientId}`
         );
+    }
+
+    getProjectsByClientId(clientId: string): Observable<Project[]> {
+        return this.http.get<Project[]>(
+            `https://localhost:7042/api/Project/getProjectsByClientId?clientId=${clientId}`
+        )
+    }
+
+    getAllClients(): Observable<Client[]> {
+        return this.http.get<Client[]>(
+            `https://localhost:7042/api/Client/GetAllClients`
+        )
     }
 
     addNewTask(postData: Task): Observable<any> {

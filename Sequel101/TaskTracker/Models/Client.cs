@@ -7,7 +7,7 @@ namespace TaskTracker.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ClientId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(100)]
@@ -16,7 +16,7 @@ namespace TaskTracker.Models
         [MaxLength(255)]
         public string ContactEmail { get; set; }
 
-        [MaxLength(15)]
+        [MaxLength(20)]
         public string ContactPhone { get; set; }
 
         public DateTime CreatedDate { get; set; } = DateTime.UtcNow;

@@ -13,6 +13,8 @@ import { Toast } from 'primeng/toast';
 import { User } from '../interfaces/user';
 import { MessageService } from 'primeng/api';
 import { AccordionModule } from 'primeng/accordion';
+import { Client } from '../interfaces/client';
+import { Project } from '../interfaces/project';
 
 @Component({
     standalone: true,
@@ -36,6 +38,9 @@ export class AdminDashComponent {
     apiCalls = inject(ApiService);
     userTaskStats: TaskStats[] = [];
 
+    clientData: Client[] = [];
+    projectsByClient: Project[] = [];
+
     showCreateUser = false;
 
     constructor(private messageService: MessageService) {
@@ -44,6 +49,22 @@ export class AdminDashComponent {
             this.addValues();
         });
         console.log(this.userTaskStats);
+
+        this.apiCalls.getAllClients().subscribe((clients) => {
+            this.clientData = clients;
+            this.apiCalls.getProjectsByClientId(this.clientData[0].id).subscribe((projects) =>{
+                this.projectsByClient = projects;
+            });
+        });
+
+    }
+
+    getProjectDataByClientId(clientId: string) {
+        console.log(clientId);
+        this.apiCalls.getProjectsByClientId(clientId).subscribe((projects) =>{
+            this.projectsByClient = projects;
+        });
+        // throw new Error('Method not implemented.');
     }
 
     showCreateUserDialog() {

@@ -38,37 +38,27 @@ namespace TaskTracker.Repo
             return clientList;
         }
 
-        public async Task<List<object>?> GetProjectsByClientId(Guid clientId)
-        {
-            List<object> projectsByClient = [];
-            using (var connection = _dataAccess.ReturnConn())
-            {
-                await connection.OpenAsync();
-
-                SqlCommand getProjectsCmd = new SqlCommand("SELECT id, project_name FROM Projects WHERE client_id = @client_id", connection);
-                getProjectsCmd.Parameters.AddWithValue("@client_id", clientId);
-                var reader = await getProjectsCmd.ExecuteReaderAsync();
-
-                while (await reader.ReadAsync())
-                {
-                    projectsByClient.Add(new
-                    {
-                        id = Guid.Parse(reader["id"].ToString()!),
-                        projectName = reader["project_name"].ToString()!
-                    });
-                }
-            }
-
-            return projectsByClient;
-        }
-
-        public async Task<List<Client>> GetAllClients()
+        public async Task<List<Client>?> GetAllClients()
         {
             List<Client> clientData = [];
             using (var connection = _dataAccess.ReturnConn())
             {
+                await connection.OpenAsync();
+                SqlCommand getClientsCmd = new SqlCommand("SELECT * FROM Clients", connection);
+                var reader = await getClientsCmd.ExecuteReaderAsync();
 
+                while (await reader.ReadAsync()) {
+                    clientData.Add(new Client {
+                        Id = Guid.Parse(reader["id"].ToString()!),
+                        ClientName = reader["client_name"].ToString()!,
+                        ContactEmail = reader["contact_mail"].ToString()!,
+                        ContactPhone = reader["contact_phone"].ToString()!,
+                        CreatedDate = (DateTime)reader["created_date"]
+                    });
+                }
             }
+
+            return clientData;
         }
     }
 }

@@ -150,3 +150,16 @@ label {
 .add-user-btn img {
     height: 15px;
 }
+
+.client-dtl-head {
+    font-weight: 600;
+}
+
+.client-dtl {
+    font-weight: 700;
+    color: #cfcdcd;
+}
+
+.client-dtl-res {
+    font-weight: 400;
+}

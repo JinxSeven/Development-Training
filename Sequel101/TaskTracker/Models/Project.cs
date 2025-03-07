@@ -7,7 +7,7 @@ namespace TaskTracker.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid ProjectId { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         [MaxLength(100)]

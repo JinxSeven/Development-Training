@@ -2,7 +2,7 @@
 
 namespace TaskTracker.Data
 {
-     public interface IDataAccess
+    public interface IDataAccess
     {
         SqlConnection ReturnConn();
     }

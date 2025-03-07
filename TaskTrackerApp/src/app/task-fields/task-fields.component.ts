@@ -170,13 +170,13 @@ export class TaskFieldsComponent implements OnInit {
         return JSON.parse(loggedUser!);
     }
 
-    getProjectsByClientId() {
+    getProjectListByClientId() {
         const clientName = this.taskForm.controls['clientName'].value;
         const selectedClient = this.clientList.find((client) => client.clientName === clientName);
 
         this.projectList = [];
 
-        this.apiCalls.getProjectsByClientId(selectedClient.id).subscribe((projects) =>{
+        this.apiCalls.getProjectListByClientId(selectedClient.id).subscribe((projects) =>{
             this.projectList.push(...projects);
         })
     }
