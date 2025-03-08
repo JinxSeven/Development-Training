@@ -75,8 +75,34 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.ClientController",
+    "Method": "GetAllClients",
+    "RelativePath": "api/Client/GetAllClients",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ProjectController",
+    "Method": "GetProjectListByClientId",
+    "RelativePath": "api/Project/GetProjectListByClientId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "clientId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ProjectController",
     "Method": "GetProjectsByClientId",
-    "RelativePath": "api/Client/GetProjectsByClientId",
+    "RelativePath": "api/Project/getProjectsByClientId",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

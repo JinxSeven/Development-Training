@@ -39,14 +39,14 @@ select {
 }
 
 .working-leave-btn {
-    border: 1px solid #614eee;
+    border: 1px solid #6950E8;
     padding: 8px 16px;
     color: #c3ceec;
     border-radius: 7px;
 }
 
 .add-task-btn {
-    background-color: #614eee;
+    background-color: #6950E8;
     color: #ffffff;
     border-radius: 5px;
     padding: 8px 16px;
@@ -57,9 +57,9 @@ select {
 }
 
 .add-task-btn:hover {
-    background-color: #614eee;
+    background-color: #592BE7;
     cursor: pointer;
-    box-shadow: 0 0 8px #614eee;
+    box-shadow: 0 0 5px #592BE7;
 }
 
 .date-section {
@@ -96,12 +96,11 @@ select {
     text-align: center;
     background-color: #111827;
     color: #d6def7;
-    font-size: 0.9em;
 }
 
 :host ::ng-deep .p-datatable th {
-    font-weight: 700;
-    background-color: #614eee;
+    font-weight: 600;
+    background-color: #6950E8;
 }
 
 :host ::ng-deep .p-datatable th:first-child {
@@ -122,17 +121,17 @@ select {
     width: 110px;
     border: none;
     font-size: 14px;
-    box-shadow: 0 0 5px #614eee6c;
+    /* box-shadow: 0 0 5px #6950E86c; */
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-input:focus {
     border: none;
-    box-shadow: 0 0 5px #614eee6c;
+    box-shadow: 0 0 5px #6950E86c;
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-prev-button,
 :host ::ng-deep .p-datepicker .p-datepicker-next-button {
-    color: #614eee;
+    color: #6950E8;
     font-size: 20px;
 }
 
@@ -176,13 +175,13 @@ button:focus {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #614eee6c;
+    box-shadow: 0 0 5px #6950E86c;
 }
 
 input {
     border-radius: 5px;
     border: 1px solid #283141;
-    box-shadow: 0 0 5px #614eee6c;
+    box-shadow: 0 0 5px #6950E86c;
     border: none;
     color-scheme: dark;
 }
@@ -190,7 +189,7 @@ input {
 select {
     color-scheme: dark;
     border: none;
-    box-shadow: 0 0 5px #614eee6c;
+    /* box-shadow: 0 0 5px #6950E86c; */
     padding: 5px 7px;
 }
 

@@ -78,7 +78,7 @@ label {
 }
 
 .main-block form input[type="submit"] {
-    background-color: #614eee;
+    background-color: #6950E8;
     color: white;
     font-weight: bold;
     border: none;
@@ -91,19 +91,19 @@ label {
 }
 
 .main-block form input[type="submit"]:not(:disabled):hover {
-    background-color: #614eee;
+    background-color: #592BE7;
     cursor: pointer;
-    box-shadow: 0 0 8px #614eee;
+    box-shadow: 0 0 5px #592BE7;
 }
 
 .main-block form input[type="submit"]:disabled {
-    background-color: #614eeecb;
+    background-color: #6950E8cb;
     cursor: default;
     color: #cfcdcd;
 }
 
 .main-block form input:focus {
     outline: none;
-    box-shadow: 0 0 5px #614eee6c;
-    /* border-color: #614eee; */
+    box-shadow: 0 0 5px #6950E86c;
+    /* border-color: #6950E8; */
 }

@@ -34,7 +34,7 @@ h2 {
     font-size: 14px;
 }
 
-:host ::ng-deep .p-card .p-card-title  {
+:host ::ng-deep .p-card .p-card-title {
     font-size: 1.6em;
     font-weight: 600;
 }
@@ -88,7 +88,7 @@ label {
 }
 
 .reg-form form input[type="submit"] {
-    background-color: #614eee;
+    background-color: #6950e8;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -101,13 +101,13 @@ label {
 }
 
 .reg-form form input[type="submit"]:not(:disabled):hover {
-    background-color: #614eee;
+    background-color: #592be7;
     cursor: pointer;
-    box-shadow: 0 0 8px #614eee;
+    box-shadow: 0 0 5px #592be7;
 }
 
 .reg-form form input[type="submit"]:disabled {
-    background-color: #614eeecb;
+    background-color: #6950e8cb;
     cursor: default;
     color: #cfcdcd;
 }
@@ -115,7 +115,7 @@ label {
 .reg-form form input:focus,
 .reg-form form select:focus {
     outline: none;
-    box-shadow: 0 0 5px #614eee6c;
+    box-shadow: 0 0 5px #6950e86c;
 }
 
 .header-div {
@@ -129,7 +129,7 @@ label {
     color: #ffffff;
     border: none;
     border-radius: 5px;
-    background-color: #614eee;
+    background-color: #6950e8;
     padding: 10px 18px 10px 10px;
     height: fit-content;
     font-size: 14px;
@@ -142,9 +142,9 @@ label {
 }
 
 .add-user-btn:hover {
-    background-color: #614eee;
+    background-color: #592be7;
     cursor: pointer;
-    box-shadow: 0 0 8px #614eee;
+    box-shadow: 0 0 5px #592be7;
 }
 
 .add-user-btn img {
@@ -157,9 +157,50 @@ label {
 
 .client-dtl {
     font-weight: 700;
-    color: #cfcdcd;
+    color: #f3f4f6;
 }
 
 .client-dtl-res {
     font-weight: 400;
+    color: #8590AE;
+    margin-top: -10px;
+}
+
+:host ::ng-deep .p-accordion .p-accordionheader {
+    background-color: #1f2937;
+}
+
+:host ::ng-deep .p-accordion .p-accordionheader:focus {
+    outline: none;
+}
+
+:host ::ng-deep .p-accordion .p-accordioncontent {
+    background-color: #1f2937;
+}
+
+:host ::ng-deep .p-accordion .p-accordioncontent .p-accordioncontent-content {
+    background-color: #1f2937;
+}
+
+:host {
+    --p-accordion-header-active-background: #28313f;
+    --p-accordion-header-first-top-border-radius: 10px;
+    --p-accordion-header-active-hover-background: #28313f;
+    --p-accordion-header-hover-background: #28313f;
+    --p-accordion-header-last-bottom-border-radius: 10px;
+
+    --p-stepper-step-title-active-color: #6950e8;
+    --p-stepper-step-number-active-color: #6950e8;
+    --p-stepper-separator-active-background: #6950e8;
+    --p-stepper-step-number-active-border-color: #6950e8;
+
+    --p-button-primary-background: #6950e8;
+    --p-button-primary-hover-background: #592be7;
+    --p-button-primary-active-background: #592be7;
+    --p-button-primary-border-color: #6950e8;
+    --p-button-primary-color: #f3f3f3;
+    --p-button-primary-hover-color: #f3f3f3;
+    --p-button-primary-active-color: #f3f3f3;
+    --p-button-primary-hover-border-color: #592be7;
+    --p-button-primary-active-border-color: #592be7;
 }

@@ -43,7 +43,7 @@
     width: 100%;
     flex-basis: 100%;
     border: 1px solid #283141;
-    background-color: #111827;
+    background-color: #1F2937;
     color-scheme: dark;
 }
 
@@ -53,7 +53,7 @@
     color-scheme: dark;
     border: 1px solid #283141;
     color: #f3f4f6;
-    background-color: #111827;
+    background-color: #1F2937;
     font-size: 15px;
 }
 
@@ -80,7 +80,7 @@ textarea {
     color-scheme: dark;
     border: 1px solid #283141;
     color: #f3f4f6;
-    background-color: #111827;
+    background-color: #1F2937;
 }
 
 .button-group {
@@ -102,7 +102,7 @@ textarea {
 
 .button-group button {
     color: #ffffff;
-    background-color: #614eee;
+    background-color: #6950E8;
     border: none;
     border-radius: 5px;
     padding: 12px;
@@ -113,12 +113,12 @@ textarea {
 
 .button-group button:hover {
     cursor: pointer;
-    background-color: #614eee;
-    box-shadow: 0 0 8px #614eee;
+    background-color: #592BE7;
+    box-shadow: 0 0 5px #592BE7;
 }
 
 .button-group button:disabled {
-    background-color: #614eeecb;
+    background-color: #6950E8cb;
     cursor: default;
     color: #cfcdcd;
     box-shadow: none;
@@ -128,7 +128,7 @@ input:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #614eee6c;
+    box-shadow: 0 0 5px #6950E86c;
 }
 
 
@@ -156,11 +156,11 @@ textarea:focus {
 }
 
 :host ::ng-deep .p-tab-active {
-    color: #614eee;
+    color: #6950E8;
 }
 
 :host ::ng-deep .p-disabled {
-    color: #614eeecb;
+    color: #6950E8cb;
 }
 
 h2 {
@@ -173,7 +173,7 @@ h3 {
 }
 
 :host ::ng-deep .p-tablist-active-bar {
-    background-color: #614eee;
+    background-color: #6950E8;
     height: 4px;
 }
 
@@ -182,7 +182,7 @@ h3 {
 }
 
 .p-tab:not(.p-tab-active):not(.p-disabled) {
-    color: #614eeecb;
+    color: #6950E8cb;
 }
 
 .form-box {

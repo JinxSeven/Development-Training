@@ -123,10 +123,44 @@
         }
       }
     },
-    "/api/Client/GetProjectsByClientId": {
+    "/api/Client/GetAllClients": {
       "get": {
         "tags": [
           "Client"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Project/GetProjectListByClientId": {
+      "get": {
+        "tags": [
+          "Project"
+        ],
+        "parameters": [
+          {
+            "name": "clientId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/Project/getProjectsByClientId": {
+      "get": {
+        "tags": [
+          "Project"
         ],
         "parameters": [
           {

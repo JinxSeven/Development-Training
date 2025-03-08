@@ -12,7 +12,7 @@
 
 a.disabled-link {
     pointer-events: none;
-    background-color: #614eeecb;
+    background-color: #6950E8cb;
     cursor: default;
     color: #cfcdcd;
 }
@@ -25,7 +25,7 @@ a.disabled-link {
 .link {
     display: inline-block;
     color: #ffffff;
-    background-color: #614eee;
+    background-color: #6950E8;
     border-radius: 5px;
     padding: 8px 16px;
     text-align: center;
@@ -51,9 +51,9 @@ a:focus {
 }
 
 .link:hover {
-    background-color: #614eee;
+    background-color: #592BE7;
     cursor: pointer;
-    box-shadow: 0 0 8px #614eee;
+    box-shadow: 0 0 5px #592BE7;
 }
 
 .user-info span {

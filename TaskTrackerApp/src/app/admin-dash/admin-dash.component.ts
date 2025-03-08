@@ -7,6 +7,7 @@ import { DividerModule } from 'primeng/divider';
 import { ApiService } from '../api.service';
 import { TaskStats } from '../interfaces/taskStats';
 import { Dialog } from 'primeng/dialog';
+import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Toast } from 'primeng/toast';
@@ -24,7 +25,7 @@ import { Project } from '../interfaces/project';
         HeaderComponent,
         CardModule,
         MeterGroup,
-        Dialog,
+        Dialog, StepperModule,
         Toast, AccordionModule,
         FormsModule,
         DividerModule,
@@ -42,6 +43,9 @@ export class AdminDashComponent {
     projectsByClient: Project[] = [];
 
     showCreateUser = false;
+    showCreateCompliance = false;
+
+    optionCount = [1, 2];
 
     constructor(private messageService: MessageService) {
         this.apiCalls.getUserTaskStats().subscribe((taskStats) => {
@@ -56,19 +60,26 @@ export class AdminDashComponent {
                 this.projectsByClient = projects;
             });
         });
+    }
 
+    addOption(count: number) {
+        this.optionCount.push(count);
     }
 
     getProjectDataByClientId(clientId: string) {
-        console.log(clientId);
         this.apiCalls.getProjectsByClientId(clientId).subscribe((projects) =>{
             this.projectsByClient = projects;
         });
         // throw new Error('Method not implemented.');
+        console.log(this.projectsByClient);
     }
 
     showCreateUserDialog() {
         this.showCreateUser = true;
+    }
+
+    showCreateComplianceDialog() {
+        this.showCreateCompliance = true;
     }
 
     addValues() {
