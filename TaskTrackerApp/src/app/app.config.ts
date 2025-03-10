@@ -20,7 +20,7 @@ export const appConfig: ApplicationConfig = {
                 options: {
                     prefix: 'p',
                     darkModeSelector: true,
-                    cssLayer: false
+                    cssLayer: false,
                 },
             },
         }),

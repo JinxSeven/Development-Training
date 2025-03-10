@@ -189,18 +189,71 @@ label {
     --p-accordion-header-hover-background: #28313f;
     --p-accordion-header-last-bottom-border-radius: 10px;
 
-    --p-stepper-step-title-active-color: #6950e8;
-    --p-stepper-step-number-active-color: #6950e8;
-    --p-stepper-separator-active-background: #6950e8;
-    --p-stepper-step-number-active-border-color: #6950e8;
-
-    --p-button-primary-background: #6950e8;
     --p-button-primary-hover-background: #592be7;
+    --p-button-primary-background: #6950e8;
     --p-button-primary-active-background: #592be7;
     --p-button-primary-border-color: #6950e8;
     --p-button-primary-color: #f3f3f3;
     --p-button-primary-hover-color: #f3f3f3;
     --p-button-primary-active-color: #f3f3f3;
-    --p-button-primary-hover-border-color: #592be7;
     --p-button-primary-active-border-color: #592be7;
+    --p-button-primary-hover-border-color: #592be7;
+
+    --p-stepper-step-title-active-color: #6950e8;
+    --p-stepper-separator-active-background: #6950e8;
+    --p-stepper-step-number-active-border-color: #6950e8;
+    --p-stepper-step-number-active-color: #6950e8;
 }
+
+.question-form {
+    display: flex;
+    flex-direction: column;
+    /* flex: 1 1 calc(33.33% - 10px); */
+}
+
+.question-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.question-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    /* border: 1px solid #ccc; */
+}
+
+.question-form textarea {
+    margin-top: 5px;
+    border-radius: 5px;
+    min-width: 100%;
+    padding: 10px;
+    max-width: 100%;
+    flex-basis: 100%;
+    min-height: 150px;
+    border: 1px solid #283141;
+    background-color: #1F2937;
+    color-scheme: dark;
+}
+
+.question-form input,
+.question-form select {
+    margin-top: 5px;
+    color-scheme: dark;
+    border: 1px solid #283141;
+    color: #f3f4f6;
+    background-color: #1F2937;
+    font-size: 15px;
+}
+
+.question-form label {
+    color: #9ca3af;
+    margin-bottom: 5px;
+}
+
+.question-form input::placeholder {
+    color: #9ca3af;
+}
+
