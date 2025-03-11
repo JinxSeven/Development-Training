@@ -9,7 +9,7 @@ import { TaskStats } from '../interfaces/taskStats';
 import { Dialog } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { User } from '../interfaces/user';
 import { MessageService } from 'primeng/api';
@@ -27,7 +27,7 @@ import { Project } from '../interfaces/project';
         MeterGroup,
         Dialog, StepperModule,
         Toast, AccordionModule,
-        FormsModule,
+        FormsModule, ReactiveFormsModule,
         DividerModule,
         ButtonModule,
     ],
@@ -46,6 +46,17 @@ export class AdminDashComponent {
     showCreateCompliance = false;
 
     optionCount = [1, 2];
+    question: string = '';
+    options: string[] = ['', ''];
+    correctOptionIndx: number | null = null;
+
+    selectedPresentation: File | null = null;
+
+    complianceForm = new FormGroup({
+        complianceTitle: new FormControl(''),
+        complianceDesc: new FormControl(''),
+        compliancePercent: new FormControl(100)
+    });
 
     constructor(private messageService: MessageService) {
         this.apiCalls.getUserTaskStats().subscribe((taskStats) => {
@@ -62,8 +73,75 @@ export class AdminDashComponent {
         });
     }
 
+    onFileChange(event: any) {
+        const file = event.target.files[0]; // Get the selected file
+
+        if (file) {
+            // List of allowed file types (MIME types for .ppt and .pptx)
+            const allowedTypes = ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+
+            // Check if the selected file type is allowed
+            if (!allowedTypes.includes(file.type)) {
+                this.showToast(
+                    `error`,
+                    `Yikes!`,
+                    `Please choose a .ppt or .pptx file to continue.`
+                );
+                event.target.value = ''; // Reset the input field to allow another selection
+                this.selectedPresentation = null;
+                return; // Reject the file
+            }
+
+            // If file is valid, you can process it here
+            this.selectedPresentation = file;
+            console.log('File selected:', this.selectedPresentation);
+        }
+    }
+
+
     addOption(count: number) {
         this.optionCount.push(count);
+        this.options.push('');
+    }
+
+    removeOption() {
+        this.optionCount.pop();
+        this.options.pop();
+    }
+
+    setCorrectOption(index: number) {
+        this.correctOptionIndx = index;
+    }
+
+    addQuestion() {
+        if (this.question.trim() === '') {
+            this.showToast(
+                `warn`,
+                `Attention!`,
+                `Your input is required: Please add a question.`
+            );
+            return;
+        }
+
+        if (this.options.some(option => option.trim() === '')) {
+            this.showToast(
+                `warn`,
+                `Attention!`,
+                `Your input is required: Please add options.`
+            );
+            return;
+        }
+
+        if (this.correctOptionIndx === null) {
+            this.showToast(
+                `warn`,
+                `Attention!`,
+                `The correct option is required to proceed.`
+            );
+            return;
+        }
+
+        alert(`${this.correctOptionIndx}, ${this.options[this.correctOptionIndx]}`);
     }
 
     getProjectDataByClientId(clientId: string) {
@@ -126,7 +204,7 @@ export class AdminDashComponent {
                 this.showToast(
                     `success`,
                     `Welcome Aboard!`,
-                    `The new account is now ready to be used`
+                    `The new account is now ready to be used.`
                 );
                 this.apiCalls.getUserTaskStats().subscribe((taskStats) => {
                     this.userTaskStats = taskStats;
@@ -145,7 +223,7 @@ export class AdminDashComponent {
                 this.showToast(
                     `error`,
                     `Oops!`,
-                    `500... The server is experiencing an existential crisis`
+                    `500... The server is experiencing an existential crisis.`
                 );
             },
         });
