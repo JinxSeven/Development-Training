@@ -16,6 +16,8 @@ import { MessageService } from 'primeng/api';
 import { AccordionModule } from 'primeng/accordion';
 import { Client } from '../interfaces/client';
 import { Project } from '../interfaces/project';
+import { Question } from '../interfaces/question';
+import { Option } from '../interfaces/option';
 
 @Component({
     standalone: true,
@@ -50,6 +52,8 @@ export class AdminDashComponent {
     options: string[] = ['', ''];
     correctOptionIndx: number | null = null;
 
+    questions: Question[] = [];
+
     selectedPresentation: File | null = null;
 
     complianceForm = new FormGroup({
@@ -63,7 +67,6 @@ export class AdminDashComponent {
             this.userTaskStats = taskStats;
             this.addValues();
         });
-        console.log(this.userTaskStats);
 
         this.apiCalls.getAllClients().subscribe((clients) => {
             this.clientData = clients;
@@ -84,7 +87,7 @@ export class AdminDashComponent {
             if (!allowedTypes.includes(file.type)) {
                 this.showToast(
                     `error`,
-                    `Yikes!`,
+                    `Nope!`,
                     `Please choose a .ppt or .pptx file to continue.`
                 );
                 event.target.value = ''; // Reset the input field to allow another selection
@@ -94,10 +97,9 @@ export class AdminDashComponent {
 
             // If file is valid, you can process it here
             this.selectedPresentation = file;
-            console.log('File selected:', this.selectedPresentation);
+            // console.log('File selected:', this.selectedPresentation);
         }
     }
-
 
     addOption(count: number) {
         this.optionCount.push(count);
@@ -117,7 +119,7 @@ export class AdminDashComponent {
         if (this.question.trim() === '') {
             this.showToast(
                 `warn`,
-                `Attention!`,
+                `Hold On!`,
                 `Your input is required: Please add a question.`
             );
             return;
@@ -126,7 +128,7 @@ export class AdminDashComponent {
         if (this.options.some(option => option.trim() === '')) {
             this.showToast(
                 `warn`,
-                `Attention!`,
+                `Hold On!`,
                 `Your input is required: Please add options.`
             );
             return;
@@ -135,13 +137,38 @@ export class AdminDashComponent {
         if (this.correctOptionIndx === null) {
             this.showToast(
                 `warn`,
-                `Attention!`,
+                `Hold On!`,
                 `The correct option is required to proceed.`
             );
             return;
         }
 
-        alert(`${this.correctOptionIndx}, ${this.options[this.correctOptionIndx]}`);
+        const options: Option[] = [];
+
+        for (let index = 0; index < this.options.length; index++) {
+            options.push({
+                option: this.options[index],
+                isCorrect: this.correctOptionIndx === index ? true : false
+            });
+        }
+
+        const question: Question = {
+            question: this.question,
+            options: options
+        }
+
+        this.questions.push(question);
+        // const formValues = this.complianceForm.value;
+    }
+
+    saveCompliance() {
+        if (this.questions.length === 0) {
+            this.showToast(
+                `warn`,
+                `Hold On!`,
+                `Requires a minimum of 1 question to proceed.`
+            );
+        }
     }
 
     getProjectDataByClientId(clientId: string) {
@@ -149,7 +176,7 @@ export class AdminDashComponent {
             this.projectsByClient = projects;
         });
         // throw new Error('Method not implemented.');
-        console.log(this.projectsByClient);
+        // console.log(this.projectsByClient);
     }
 
     showCreateUserDialog() {
@@ -236,7 +263,7 @@ export class AdminDashComponent {
             severity: `${severity}`,
             summary: `${summary}`,
             detail: `${detail}`,
-            life: 2000,
+            life: 3000,
         });
     }
 }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ilCPGXaGOB0=",
+  "dgSpecHash": "GQtF9B4+95E=",
   "success": true,
   "projectFilePath": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TodoApp(SqLite)\\TodoApp(SqLite).csproj",
   "expectedPackageFiles": [
@@ -11,5 +11,12 @@
     "C:\\Users\\samuel.koilraj\\.nuget\\packages\\sqlitepclraw.provider.e_sqlite3\\2.1.10\\sqlitepclraw.provider.e_sqlite3.2.1.10.nupkg.sha512",
     "C:\\Users\\samuel.koilraj\\.nuget\\packages\\system.memory\\4.5.3\\system.memory.4.5.3.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1900",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Error occurred while getting package vulnerability data: Unable to load the service index for source https://geniedevops.unysite.com/Genie/_packaging/GeniePackages/nuget/v3/index.json."
+    }
+  ]
 }

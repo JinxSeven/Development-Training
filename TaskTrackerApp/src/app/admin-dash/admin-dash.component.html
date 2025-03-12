@@ -166,7 +166,7 @@
     [(visible)]="showCreateCompliance"
     [style]="{ width: '70rem' }"
 >
-    <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+    <p-stepper [value]="1" class="basis-[50rem]" [linear]="false">
         <p-step-list>
             <p-step [value]="1">Details</p-step>
             <p-step [value]="2">Content</p-step>
@@ -257,7 +257,8 @@
                     </div>
                     <div class="flex pt-6 justify-start question-btns">
                         <p-button label="Back" [style]="{'font-size': '14px'}" (onClick)="activateCallback(2)" />
-                        <button>Save Compliance</button>
+                        <button (click)="saveCompliance()">Save Compliance</button>
+                        <button class="qcount">Questions Added: {{ questions.length }}</button>
                     </div>
                 </ng-template>
             </p-step-panel>
