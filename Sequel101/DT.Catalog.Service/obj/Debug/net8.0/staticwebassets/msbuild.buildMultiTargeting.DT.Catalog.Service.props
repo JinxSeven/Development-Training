@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\DT.Catalog.Service.props" />
+</Project>

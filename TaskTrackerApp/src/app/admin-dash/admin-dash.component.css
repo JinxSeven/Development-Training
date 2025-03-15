@@ -142,6 +142,30 @@ label {
     justify-content: center;
 }
 
+.assign-comp {
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    background-color: #6950e8;
+    padding: 10px 12px;
+    height: fit-content;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.flex-box {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.assign-comp:hover,
 .add-user-btn:hover {
     background-color: #592be7;
     cursor: pointer;
@@ -154,7 +178,15 @@ label {
 }
 
 .client-dtl-head {
+    font-size: 16px;
     font-weight: 600;
+}
+
+.grid-container {
+    display: grid;
+    width: 50%;
+    grid-template-columns: repeat(2, 1fr); /* Three equal-width columns */
+    align-items: center; /* Vertically align items */
 }
 
 .client-dtl {
@@ -164,7 +196,7 @@ label {
 
 .client-dtl-res {
     font-weight: 400;
-    color: #8590AE;
+    color: #8590ae;
     margin-top: -10px;
 }
 
@@ -189,29 +221,37 @@ label {
     padding: 16px 16px;
 }
 
+:host ::ng-deep .p-select {
+    width: 250px;
+}
+
 :host {
+    --p-accordion-header-hover-background: #28313f;
     --p-accordion-header-active-background: #28313f;
     --p-accordion-header-first-top-border-radius: 10px;
-    --p-accordion-header-active-hover-background: #28313f;
-    --p-accordion-header-hover-background: #28313f;
     --p-accordion-header-last-bottom-border-radius: 10px;
+    --p-accordion-header-active-hover-background: #28313f;
 
-    --p-button-primary-hover-background: #592be7;
-    --p-button-primary-background: #6950e8;
-    --p-button-primary-active-background: #592be7;
-    --p-button-primary-border-color: #6950e8;
     --p-button-primary-color: #f3f3f3;
-    --p-button-primary-active-color: #f3f3f3;
     --p-button-primary-hover-color: #f3f3f3;
+    --p-button-primary-active-color: #f3f3f3;
+
+    --p-button-primary-background: #6950e8;
+    --p-button-primary-border-color: #6950e8;
+    --p-button-primary-hover-background: #592be7;
+    --p-stepper-step-title-active-color: #6950e8;
+    --p-stepper-step-number-active-color: #6950e8;
+    --p-button-primary-active-background: #592be7;
     --p-button-primary-hover-border-color: #592be7;
     --p-button-primary-active-border-color: #592be7;
-
-    --p-stepper-step-title-active-color: #6950e8;
     --p-stepper-separator-active-background: #6950e8;
     --p-stepper-step-number-active-border-color: #6950e8;
-    --p-stepper-step-number-active-color: #6950e8;
 
     --p-button-label-font-weight: 400;
+
+    --p-select-focus-border-color: #6950e8;
+    --p-select-option-selected-background: #5a2be730;
+    --p-select-option-selected-focus-background: #5a2be730;
 }
 
 .compliance-details,
@@ -246,7 +286,7 @@ label {
     flex-basis: 100%;
     min-height: 150px;
     border: 1px solid #283141;
-    background-color: #1F2937;
+    background-color: #1f2937;
     font-size: 15px;
     color-scheme: dark;
 }
@@ -258,7 +298,7 @@ label {
     color-scheme: dark;
     border: 1px solid #283141;
     color: #f3f4f6;
-    background-color: #1F2937;
+    background-color: #1f2937;
     font-size: 15px;
 }
 
@@ -305,7 +345,7 @@ label {
 input[type="file"]::file-selector-button,
 .content-upload button,
 .question-btns button {
-    background-color: #6950E8;
+    background-color: #6950e8;
     color: #ffffff;
     border-radius: 5px;
     text-align: center;
@@ -327,13 +367,12 @@ input[type="file"]::file-selector-button,
     color: #9596a2;
     cursor: default;
     box-shadow: none;
-
 }
 
 .content-upload button:hover,
 .question-btns button:hover {
-    box-shadow: 0 0 5px #592BE7;
-    background-color: #592BE7;
+    box-shadow: 0 0 5px #592be7;
+    background-color: #592be7;
     cursor: pointer;
 }
 
@@ -347,11 +386,11 @@ input[type="number"]:focus,
 select:focus,
 textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #6950E86c;
+    box-shadow: 0 0 5px #6950e86c;
 }
 
 input[type="file"] {
-    border: 1px dashed #592BE7;
+    border: 1px dashed #592be7;
     padding: 10px;
     border-radius: 5px;
 }
@@ -384,5 +423,6 @@ input[type="file"]::file-selector-button,
 .qcount {
     pointer-events: none;
     background-color: #111827 !important;
-    box-shadow: 0 0 5px #6950E86c;
+    box-shadow: 0 0 5px #6950e86c;
+    /* border: 1px solid #592BE7; */
 }

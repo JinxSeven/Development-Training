@@ -5,19 +5,19 @@
 }
 
 body {
-    background-color: #000000;
+    background-color: #111827;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 95vh;
+    height: 98vh;
     margin: 0;
 }
 
 .main-block {
-    background-color: #111827;
+    /* background-color: #111827; */
     padding: 30px;
     border-radius: 10px;
-    box-shadow: 0 0px 12px #7d6ef16c;
+    /* box-shadow: 0 0px 12px #7d6ef16c; */
     width: 100%;
     max-width: 500px;
     text-align: center;
@@ -64,6 +64,7 @@ label {
     padding: 10px;
     border: 1px solid #283141;
     border-radius: 5px;
+    background-color: #1F2937;
     width: 100%;
     font-size: 16px;
 }

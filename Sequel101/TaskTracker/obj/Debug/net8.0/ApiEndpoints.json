@@ -84,6 +84,32 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "TaskTracker.Controllers.ComplianceController",
+    "Method": "AddNewComplianceAsync",
+    "RelativePath": "api/Compliance/AddNewCompliance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "compliance",
+        "Type": "TaskTracker.Models.Compliance",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ComplianceController",
+    "Method": "GetComplianceDetails",
+    "RelativePath": "api/Compliance/GetComplianceDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "TaskTracker.Controllers.ProjectController",
     "Method": "GetProjectListByClientId",
     "RelativePath": "api/Project/GetProjectListByClientId",

@@ -1,4 +1,5 @@
 export interface Option {
-    option: string;
+    id?: string;
+    optionText: string;
     isCorrect: boolean;
 }

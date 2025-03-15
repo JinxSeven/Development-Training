@@ -27,11 +27,11 @@ export class HeaderComponent {
     isAdmin: boolean;
 
     constructor() {
-        this.loggedUser = this.getLoggedUserId();
+        this.loggedUser = this.getLoggedUser();
         this.isAdmin = this.loggedUser?.isAdmin;
     }
 
-    getLoggedUserId(): User {
+    getLoggedUser(): User {
         const loggedUser = sessionStorage.getItem("LoggedUser");
         return JSON.parse(loggedUser!);
     }

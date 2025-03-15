@@ -8,6 +8,8 @@ import { TaskData } from './interfaces/taskData';
 import { TaskStats } from './interfaces/taskStats';
 import { Client } from './interfaces/client';
 import { Project } from './interfaces/project';
+import { compliance } from './interfaces/compliance';
+import { ComplianceDTO } from './interfaces/compliance-dto';
 
 @Injectable({
     providedIn: 'root',
@@ -58,6 +60,19 @@ export class ApiService {
         return this.http.post<any>(
             'https://localhost:7042/api/User/AddNewUser',
             postData
+        );
+    }
+
+    addNewCompliance(postData: compliance): Observable<any> {
+        return this.http.post<any>(
+            'https://localhost:7042/api/Compliance/AddNewCompliance',
+            postData
+        );
+    }
+
+    getComplianceDetails(): Observable<ComplianceDTO[]> {
+        return this.http.get<ComplianceDTO[]>(
+            `https://localhost:7042/api/Compliance/GetComplianceDetails`
         );
     }
 

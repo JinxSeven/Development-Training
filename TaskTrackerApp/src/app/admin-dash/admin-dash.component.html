@@ -43,47 +43,39 @@
 
         <div class="accordion">
             <p-accordion [value]="0">
-                @for (client of clientData; track $index) {
+                @for (compliance of complianceData; track $index) {
                 <p-accordion-panel
                     [value]="$index"
-                    (click)="getProjectDataByClientId(client.id)"
+                    (click)="getProjectDataByClientId(compliance.id)"
                 >
                     <p-accordion-header>{{
-                        client.clientName
+                        compliance.title
                     }}</p-accordion-header>
                     <p-accordion-content>
-                        <h3 class="m-0 client-dtl-head">Client Details</h3>
-                        <p class="client-dtl">Phone:</p>
-                        <p class="client-dtl-res">{{ client.contactPhone }}</p>
-                        <p class="client-dtl">Email:</p>
-                        <p class="client-dtl-res">{{ client.contactEmail }}</p>
-                        <p class="client-dtl">Created:</p>
-                        <p class="client-dtl-res">{{ client.createdDate.toString().split("T")[0] }}</p>
-                        <p-accordion>
-                            <div class="header-div">
-                                <h3 style="font-weight: 500;">Client Projects:</h3>
-                                <button class="add-user-btn" (click)="showCreateUserDialog()">
-                                    <img style="height: 17px;" src="assets\icons\diagram-project.svg" alt="" >
-                                    <!-- <i style="color: #342872;" class="fa-solid fa-diagram-project"></i> -->
-                                    Add New Project
+                        <div class="header-div">
+                            <h3 class="m-0 client-dtl-head">Compliance Details</h3>
+                            <div class="flex-box">
+                                <div class="card flex justify-center">
+                                    <p-select
+                                        [options]="userTaskStats"
+                                        [showClear]="true"
+                                        [(ngModel)]="selectedUserToAssign"
+                                        optionLabel="username" placeholder="Select User"
+                                        class="w-full md:w-56" />
+                                </div>
+                                <button class="assign-comp" (click)="assignCompliance(compliance.id)">
+                                    <img style="height: 17px;" src="assets\icons\paper-plane.svg" alt="" >
                                 </button>
                             </div>
-                            @for (project of projectsByClient; track $index) {
-                            <p-accordion-panel [value]="$index">
-                                <p-accordion-header>{{
-                                    project.projectName
-                                }}</p-accordion-header>
-                                <p-accordion-content>
-                                    <p class="client-dtl">Start:</p>
-                                    <p class="client-dtl-res">{{ project.startDate!.toString().split("T")[0] }}</p>
-                                    <p class="client-dtl">End:</p>
-                                    <p class="client-dtl-res">{{ project.endDate!.toString().split("T")[0] }}</p>
-                                    <p class="client-dtl">Description:</p>
-                                    <p class="client-dtl-res">{{ project.description }}</p>
-                                </p-accordion-content>
-                            </p-accordion-panel>
-                            }
-                        </p-accordion>
+                        </div>
+                        <div class="grid-container">
+                            <p class="client-dtl">Required Percentage: <span class="client-dtl-res">{{ compliance.requiredPercentage }}%</span></p>
+                            <p class="client-dtl">No of Questions: <span class="client-dtl-res">{{ compliance.questionsCount }}</span></p>
+                            <p class="client-dtl">Created By: <span class="client-dtl-res">{{ compliance.createdBy }}</span></p>
+                            <p class="client-dtl">Created On: <span class="client-dtl-res">{{ compliance.createdDate.toString().split("T")[0] | date:'mediumDate' }}</span></p>
+                        </div>
+                        <p class="client-dtl">Description: </p>
+                        <span class="client-dtl-res">{{ compliance.description }}</span>
                     </p-accordion-content>
                 </p-accordion-panel>
             }
@@ -118,10 +110,10 @@
                         <p class="client-dtl">Email:</p>
                         <p class="client-dtl-res">{{ client.contactEmail }}</p>
                         <p class="client-dtl">Created:</p>
-                        <p class="client-dtl-res">{{ client.createdDate.toString().split("T")[0] }}</p>
+                        <p class="client-dtl-res">{{ client.createdDate.toString().split("T")[0] | date:'mediumDate' }}</p>
                         <p-accordion>
                             <div class="header-div">
-                                <h3 style="font-weight: 500;">Client Projects:</h3>
+                                <h3 style="font-weight: 500; font-size: 16px">Client Projects:</h3>
                                 <button class="add-user-btn" (click)="showCreateUserDialog()">
                                     <img style="height: 17px;" src="assets\icons\diagram-project.svg" alt="" >
                                     <!-- <i style="color: #342872;" class="fa-solid fa-diagram-project"></i> -->
@@ -135,9 +127,9 @@
                                 }}</p-accordion-header>
                                 <p-accordion-content>
                                     <p class="client-dtl">Start:</p>
-                                    <p class="client-dtl-res">{{ project.startDate!.toString().split("T")[0] }}</p>
-                                    <p class="client-dtl">End:</p>
-                                    <p class="client-dtl-res">{{ project.endDate!.toString().split("T")[0] }}</p>
+                                    <p class="client-dtl-res">{{ project.startDate!.toString().split("T")[0] | date:'mediumDate' }}</p>
+                                    <p class="client-dtl">Dead Line:</p>
+                                    <p class="client-dtl-res">{{ project.endDate!.toString().split("T")[0] | date:'mediumDate' }}</p>
                                     <p class="client-dtl">Description:</p>
                                     <p class="client-dtl-res">{{ project.description }}</p>
                                 </p-accordion-content>
@@ -166,7 +158,7 @@
     [(visible)]="showCreateCompliance"
     [style]="{ width: '70rem' }"
 >
-    <p-stepper [value]="1" class="basis-[50rem]" [linear]="false">
+    <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
         <p-step-list>
             <p-step [value]="1">Details</p-step>
             <p-step [value]="2">Content</p-step>
@@ -257,7 +249,7 @@
                     </div>
                     <div class="flex pt-6 justify-start question-btns">
                         <p-button label="Back" [style]="{'font-size': '14px'}" (onClick)="activateCallback(2)" />
-                        <button (click)="saveCompliance()">Save Compliance</button>
+                        <button (click)="saveCompliance()" (onClick)="activateCallback(1)">Save Compliance</button>
                         <button class="qcount">Questions Added: {{ questions.length }}</button>
                     </div>
                 </ng-template>

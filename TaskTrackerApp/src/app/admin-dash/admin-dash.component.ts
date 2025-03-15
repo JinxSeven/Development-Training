@@ -9,7 +9,13 @@ import { TaskStats } from '../interfaces/taskStats';
 import { Dialog } from 'primeng/dialog';
 import { StepperModule } from 'primeng/stepper';
 import { ButtonModule } from 'primeng/button';
-import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
+import {
+    FormControl,
+    FormGroup,
+    FormsModule,
+    NgForm,
+    ReactiveFormsModule,
+} from '@angular/forms';
 import { Toast } from 'primeng/toast';
 import { User } from '../interfaces/user';
 import { MessageService } from 'primeng/api';
@@ -18,6 +24,11 @@ import { Client } from '../interfaces/client';
 import { Project } from '../interfaces/project';
 import { Question } from '../interfaces/question';
 import { Option } from '../interfaces/option';
+import { compliance } from '../interfaces/compliance';
+import { Presentation } from '../interfaces/presentation';
+import { v4 as uuidv4 } from 'uuid';
+import { ComplianceDTO } from '../interfaces/compliance-dto';
+import { Select } from 'primeng/select';
 
 @Component({
     standalone: true,
@@ -27,9 +38,13 @@ import { Option } from '../interfaces/option';
         HeaderComponent,
         CardModule,
         MeterGroup,
-        Dialog, StepperModule,
-        Toast, AccordionModule,
-        FormsModule, ReactiveFormsModule,
+        Dialog,
+        Toast,
+        Select,
+        StepperModule,
+        AccordionModule,
+        FormsModule,
+        ReactiveFormsModule,
         DividerModule,
         ButtonModule,
     ],
@@ -38,11 +53,13 @@ import { Option } from '../interfaces/option';
     providers: [MessageService],
 })
 export class AdminDashComponent {
-    apiCalls = inject(ApiService);
+    apiServe = inject(ApiService);
     userTaskStats: TaskStats[] = [];
 
     clientData: Client[] = [];
     projectsByClient: Project[] = [];
+
+    complianceData: ComplianceDTO[] = [];
 
     showCreateUser = false;
     showCreateCompliance = false;
@@ -59,21 +76,41 @@ export class AdminDashComponent {
     complianceForm = new FormGroup({
         complianceTitle: new FormControl(''),
         complianceDesc: new FormControl(''),
-        compliancePercent: new FormControl(100)
+        compliancePercent: new FormControl(100),
     });
 
+    loggedUser!: User;
+
+    selectedUserToAssign: any;
+
     constructor(private messageService: MessageService) {
-        this.apiCalls.getUserTaskStats().subscribe((taskStats) => {
+        this.apiServe.getUserTaskStats().subscribe((taskStats) => {
             this.userTaskStats = taskStats;
             this.addValues();
         });
 
-        this.apiCalls.getAllClients().subscribe((clients) => {
+        // this.userNameList = this.userTaskStats.map(user => user.username);
+
+        this.apiServe.getAllClients().subscribe((clients) => {
             this.clientData = clients;
-            this.apiCalls.getProjectsByClientId(this.clientData[0].id).subscribe((projects) =>{
-                this.projectsByClient = projects;
-            });
+            this.apiServe
+                .getProjectsByClientId(this.clientData[0].id)
+                .subscribe((projects) => {
+                    this.projectsByClient = projects;
+                });
         });
+
+
+        this.apiServe.getComplianceDetails().subscribe((compliances) => {
+            this.complianceData = compliances;
+        })
+
+        this.loggedUser = this.getLoggedUser();
+    }
+
+    getLoggedUser(): User {
+        const loggedUser = sessionStorage.getItem('LoggedUser');
+        return JSON.parse(loggedUser!);
     }
 
     onFileChange(event: any) {
@@ -81,7 +118,10 @@ export class AdminDashComponent {
 
         if (file) {
             // List of allowed file types (MIME types for .ppt and .pptx)
-            const allowedTypes = ['application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation'];
+            const allowedTypes = [
+                'application/vnd.ms-powerpoint',
+                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+            ];
 
             // Check if the selected file type is allowed
             if (!allowedTypes.includes(file.type)) {
@@ -125,7 +165,7 @@ export class AdminDashComponent {
             return;
         }
 
-        if (this.options.some(option => option.trim() === '')) {
+        if (this.options.some((option) => option.trim() === '')) {
             this.showToast(
                 `warn`,
                 `Hold On!`,
@@ -147,18 +187,34 @@ export class AdminDashComponent {
 
         for (let index = 0; index < this.options.length; index++) {
             options.push({
-                option: this.options[index],
-                isCorrect: this.correctOptionIndx === index ? true : false
+                id: uuidv4(),
+                optionText: this.options[index],
+                isCorrect: this.correctOptionIndx === index ? true : false,
             });
         }
 
         const question: Question = {
-            question: this.question,
-            options: options
-        }
+            id: uuidv4(),
+            questionText: this.question,
+            options: options,
+        };
 
         this.questions.push(question);
-        // const formValues = this.complianceForm.value;
+
+        this.question = '';
+        this.options = ['', ''];
+        this.optionCount = [1, 2];
+
+        console.log(this.questions);
+    }
+
+    arrayBufferToBase64(buffer: ArrayBuffer): string {
+        let binary = '';
+        const bytes = new Uint8Array(buffer);
+        for (let i = 0; i < bytes.length; i++) {
+            binary += String.fromCharCode(bytes[i]);
+        }
+        return btoa(binary);
     }
 
     saveCompliance() {
@@ -169,10 +225,78 @@ export class AdminDashComponent {
                 `Requires a minimum of 1 question to proceed.`
             );
         }
+
+        const quests = this.questions;
+        const formValues = this.complianceForm.value;
+
+        const reader = new FileReader();
+        reader.onload = async () => {
+            const base64ConFile = this.arrayBufferToBase64(
+                reader.result as ArrayBuffer
+            );
+
+            const newPresentation: Presentation = {
+                id: uuidv4(),
+                fileName: this.selectedPresentation!.name,
+                fileData: base64ConFile,
+            };
+
+            const newCompliance: compliance = {
+                id: uuidv4(),
+                title: formValues.complianceTitle!,
+                description: formValues.complianceDesc!,
+                requiredPercentage: formValues.compliancePercent!,
+                createdBy: this.loggedUser.username,
+                createdDate: new Date(),
+
+                presentation: newPresentation, // ✅ Now properly assigned
+
+                questions: quests,
+            };
+
+            console.log(newCompliance); // ✅ Now logs correctly with presentation
+            this.apiServe.addNewCompliance(newCompliance).subscribe({
+                next: () => {
+                    console.log('POST request successful');
+                    this.showToast(
+                        `success`,
+                        `Lets Go!`,
+                        `Compliance is ready to empower your team!`
+                    );
+                    this.showCreateCompliance = false;
+                },
+            });
+        };
+
+        reader.readAsArrayBuffer(this.selectedPresentation!);
+        this.questions = [];
+    }
+
+    assignCompliance(complianceId: string) {
+        if (this.selectedUserToAssign == null) {
+            this.showToast(
+                `warn`,
+                `Hold On!`,
+                `Please choose someone to assign the compliance to.`
+            );
+            return;
+        }
+
+        /*this.apiServe.assignCompliance(complianceId, this.selectedUserToAssign.id).subscribe({
+            next: () => {
+                console.log('POST request successful');
+                this.showToast(
+                    `success`,
+                    `Compliance Assigned!`,
+                    `Your compliance is now assigned to ${this.selectedUserToAssign.username}!`
+                );
+                this.showCreateCompliance = false;
+            },
+        });*/
     }
 
     getProjectDataByClientId(clientId: string) {
-        this.apiCalls.getProjectsByClientId(clientId).subscribe((projects) =>{
+        this.apiServe.getProjectsByClientId(clientId).subscribe((projects) => {
             this.projectsByClient = projects;
         });
         // throw new Error('Method not implemented.');
@@ -225,7 +349,7 @@ export class AdminDashComponent {
             isAdmin: !isUser,
         };
         console.log(postData);
-        this.apiCalls.addNewUser(postData).subscribe({
+        this.apiServe.addNewUser(postData).subscribe({
             next: (response) => {
                 console.log('POST request successful', response);
                 this.showToast(
@@ -233,7 +357,7 @@ export class AdminDashComponent {
                     `Welcome Aboard!`,
                     `The new account is now ready to be used.`
                 );
-                this.apiCalls.getUserTaskStats().subscribe((taskStats) => {
+                this.apiServe.getUserTaskStats().subscribe((taskStats) => {
                     this.userTaskStats = taskStats;
                     this.addValues();
                 });

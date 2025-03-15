@@ -2,7 +2,9 @@ CREATE TABLE Compliance (
     id UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
     comp_name NVARCHAR(200) NOT NULL,
     comp_description NVARCHAR(500),
-	created_by NVARCHAR(100)
+	req_percentage DECIMAL(4,2),
+	created_by NVARCHAR(100),
+	created_date DATETIME
 );
 
 CREATE TABLE Presentations (
