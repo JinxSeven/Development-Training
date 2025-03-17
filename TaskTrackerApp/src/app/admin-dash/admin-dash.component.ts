@@ -29,6 +29,7 @@ import { Presentation } from '../interfaces/presentation';
 import { v4 as uuidv4 } from 'uuid';
 import { ComplianceDTO } from '../interfaces/compliance-dto';
 import { Select } from 'primeng/select';
+import { CreateNewClientComponent } from './create-new-client/create-new-client.component';
 
 @Component({
     standalone: true,
@@ -63,6 +64,9 @@ export class AdminDashComponent {
 
     showCreateUser = false;
     showCreateCompliance = false;
+    showCreateClient = false;
+
+    createClientComp = CreateNewClientComponent;
 
     optionCount = [1, 2];
     question: string = '';

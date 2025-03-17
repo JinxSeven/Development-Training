@@ -147,6 +147,7 @@ button:focus {
 
 :host ::ng-deep .p-datatable td.no-tasks {
     color: #dc3545;
+    font-weight: 500;
 }
 
 .edit-btn,

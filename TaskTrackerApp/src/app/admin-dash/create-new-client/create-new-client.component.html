@@ -1,0 +1,35 @@
+<form #clientForm="ngForm" (ngSubmit)="onAddClient(clientForm)">
+    <label for="usrname-inp">Client Name:</label>
+    <input id="usrname-inp" type="text" required ngModel name="usrname" />
+
+    <label for="countryc-code">Country:</label>
+    <p-select [options]="dataServe.countryCodes" [(ngModel)]="selectedCountry" optionLabel="name" [filter]="true" filterBy="name" ngModel name="country" [showClear]="true" placeholder="" class="w-full md:w-56" required>
+    </p-select>
+
+    <label for="email-inp">Email Address:</label>
+    <input
+        id="email-inp"
+        type="email"
+        name="email"
+        ngModel
+        pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+        required
+    />
+
+    <label for="pass-inp">Phone Number:</label>
+    <input
+        id="pass-inp"
+        required
+        ngModel
+        name="pass"
+        min="10"
+        max="10"
+        type="number"
+    />
+
+    <input
+        type="submit"
+        value="Add Client"
+        [disabled]="clientForm.invalid"
+    />
+</form>

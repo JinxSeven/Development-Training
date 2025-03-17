@@ -35,7 +35,11 @@
         <div class="header-div">
             <h2>Compliance</h2>
             <button class="add-user-btn" (click)="showCreateComplianceDialog()">
-                <img style="height: 17px;" src="assets\icons\shield-halved.svg" alt="" >
+                <img
+                    style="height: 17px"
+                    src="assets\icons\shield-halved.svg"
+                    alt=""
+                />
                 <!-- <i style="color: #342872;" class="fa-solid fa-handshake-angle fa-lg"></i> -->
                 Add New Compliance
             </button>
@@ -53,41 +57,80 @@
                     }}</p-accordion-header>
                     <p-accordion-content>
                         <div class="header-div">
-                            <h3 class="m-0 client-dtl-head">Compliance Details</h3>
+                            <h3 class="m-0 client-dtl-head">
+                                Compliance Details
+                            </h3>
                             <div class="flex-box">
                                 <div class="card flex justify-center">
                                     <p-select
                                         [options]="userTaskStats"
                                         [showClear]="true"
                                         [(ngModel)]="selectedUserToAssign"
-                                        optionLabel="username" placeholder="Select User"
-                                        class="w-full md:w-56" />
+                                        optionLabel="username"
+                                        placeholder="Select User"
+                                        class="w-full md:w-56"
+                                    />
                                 </div>
-                                <button class="assign-comp" (click)="assignCompliance(compliance.id)">
-                                    <img style="height: 17px;" src="assets\icons\paper-plane.svg" alt="" >
+                                <button
+                                    class="assign-comp"
+                                    (click)="assignCompliance(compliance.id)"
+                                >
+                                    <img
+                                        style="height: 17px"
+                                        src="assets\icons\paper-plane.svg"
+                                        alt=""
+                                    />
                                 </button>
                             </div>
                         </div>
                         <div class="grid-container">
-                            <p class="client-dtl">Required Percentage: <span class="client-dtl-res">{{ compliance.requiredPercentage }}%</span></p>
-                            <p class="client-dtl">No of Questions: <span class="client-dtl-res">{{ compliance.questionsCount }}</span></p>
-                            <p class="client-dtl">Created By: <span class="client-dtl-res">{{ compliance.createdBy }}</span></p>
-                            <p class="client-dtl">Created On: <span class="client-dtl-res">{{ compliance.createdDate.toString().split("T")[0] | date:'mediumDate' }}</span></p>
+                            <p class="client-dtl">
+                                Required Percentage:
+                                <span class="client-dtl-res"
+                                    >{{ compliance.requiredPercentage }}%</span
+                                >
+                            </p>
+                            <p class="client-dtl">
+                                No of Questions:
+                                <span class="client-dtl-res">{{
+                                    compliance.questionsCount
+                                }}</span>
+                            </p>
+                            <p class="client-dtl">
+                                Created By:
+                                <span class="client-dtl-res">{{
+                                    compliance.createdBy
+                                }}</span>
+                            </p>
+                            <p class="client-dtl">
+                                Created On:
+                                <span class="client-dtl-res">{{
+                                    compliance.createdDate
+                                        .toString()
+                                        .split("T")[0] | date : "mediumDate"
+                                }}</span>
+                            </p>
                         </div>
-                        <p class="client-dtl">Description: </p>
-                        <span class="client-dtl-res">{{ compliance.description }}</span>
+                        <p class="client-dtl">Description:</p>
+                        <span class="client-dtl-res">{{
+                            compliance.description
+                        }}</span>
                     </p-accordion-content>
                 </p-accordion-panel>
-            }
-        </p-accordion>
+                }
+            </p-accordion>
         </div>
     </div>
 
     <div class="third-container">
         <div class="header-div">
             <h2>Clients</h2>
-            <button class="add-user-btn" (click)="showCreateUserDialog()">
-                <img style="height: 17px;" src="assets\icons\handshake-simple.svg" alt="" >
+            <button class="add-user-btn" (click)="showCreateClient = true">
+                <img
+                    style="height: 17px"
+                    src="assets\icons\handshake-simple.svg"
+                    alt=""
+                />
                 <!-- <i style="color: #342872;" class="fa-solid fa-handshake-angle fa-lg"></i> -->
                 Add New Client
             </button>
@@ -110,12 +153,26 @@
                         <p class="client-dtl">Email:</p>
                         <p class="client-dtl-res">{{ client.contactEmail }}</p>
                         <p class="client-dtl">Created:</p>
-                        <p class="client-dtl-res">{{ client.createdDate.toString().split("T")[0] | date:'mediumDate' }}</p>
+                        <p class="client-dtl-res">
+                            {{
+                                client.createdDate.toString().split("T")[0]
+                                    | date : "mediumDate"
+                            }}
+                        </p>
                         <p-accordion>
                             <div class="header-div">
-                                <h3 style="font-weight: 500; font-size: 16px">Client Projects:</h3>
-                                <button class="add-user-btn" (click)="showCreateUserDialog()">
-                                    <img style="height: 17px;" src="assets\icons\diagram-project.svg" alt="" >
+                                <h3 style="font-weight: 500; font-size: 16px">
+                                    Client Projects:
+                                </h3>
+                                <button
+                                    class="add-user-btn"
+                                    (click)="showCreateUserDialog()"
+                                >
+                                    <img
+                                        style="height: 17px"
+                                        src="assets\icons\diagram-project.svg"
+                                        alt=""
+                                    />
                                     <!-- <i style="color: #342872;" class="fa-solid fa-diagram-project"></i> -->
                                     Add New Project
                                 </button>
@@ -127,21 +184,36 @@
                                 }}</p-accordion-header>
                                 <p-accordion-content>
                                     <p class="client-dtl">Start:</p>
-                                    <p class="client-dtl-res">{{ project.startDate!.toString().split("T")[0] | date:'mediumDate' }}</p>
+                                    <p class="client-dtl-res">
+                                        {{
+                                            project
+                                                .startDate!.toString()
+                                                .split("T")[0]
+                                                | date : "mediumDate"
+                                        }}
+                                    </p>
                                     <p class="client-dtl">Dead Line:</p>
-                                    <p class="client-dtl-res">{{ project.endDate!.toString().split("T")[0] | date:'mediumDate' }}</p>
+                                    <p class="client-dtl-res">
+                                        {{
+                                            project
+                                                .endDate!.toString()
+                                                .split("T")[0]
+                                                | date : "mediumDate"
+                                        }}
+                                    </p>
                                     <p class="client-dtl">Description:</p>
-                                    <p class="client-dtl-res">{{ project.description }}</p>
+                                    <p class="client-dtl-res">
+                                        {{ project.description }}
+                                    </p>
                                 </p-accordion-content>
                             </p-accordion-panel>
                             }
                         </p-accordion>
                     </p-accordion-content>
                 </p-accordion-panel>
-            }
-        </p-accordion>
+                }
+            </p-accordion>
         </div>
-
     </div>
     <!-- <p-divider /> -->
     <div class="card flex justify-center">
@@ -172,24 +244,55 @@
                             class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
                         >
                             <div>
-                                <form name="complianceForm" [formGroup]="complianceForm" class="compliance-details">
+                                <form
+                                    name="complianceForm"
+                                    [formGroup]="complianceForm"
+                                    class="compliance-details"
+                                >
                                     <div class="details-layout">
                                         <label for="title">Title:</label>
-                                        <label for="title">Required Percentage:</label>
+                                        <label for="title"
+                                            >Required Percentage:</label
+                                        >
                                     </div>
                                     <div class="details-layout">
-                                        <input type="text" id="title" required formControlName="complianceTitle" placeholder="Enter compliance title" />
-                                        <input type="number" id="percent" min="35" max="100" required formControlName="compliancePercent" placeholder="Enter compliance percentage" />
+                                        <input
+                                            type="text"
+                                            id="title"
+                                            required
+                                            formControlName="complianceTitle"
+                                            placeholder="Enter compliance title"
+                                        />
+                                        <input
+                                            type="number"
+                                            id="percent"
+                                            min="35"
+                                            max="100"
+                                            required
+                                            formControlName="compliancePercent"
+                                            placeholder="Enter compliance percentage"
+                                        />
                                     </div>
-                                    <br>
+                                    <br />
                                     <label>Description:</label>
-                                    <textarea type="text" id="question" placeholder="Enter compliance description" formControlName="complianceDesc" required></textarea>
+                                    <textarea
+                                        type="text"
+                                        id="question"
+                                        placeholder="Enter compliance description"
+                                        formControlName="complianceDesc"
+                                        required
+                                    ></textarea>
                                 </form>
-                                <br>
+                                <br />
                             </div>
                         </div>
                         <div class="flex pt-6 justify-end">
-                            <p-button label="Continue" [style]="{'font-size': '14px'}" [disabled]="complianceForm.invalid" (onClick)="activateCallback(2)" />
+                            <p-button
+                                label="Continue"
+                                [style]="{ 'font-size': '14px' }"
+                                [disabled]="complianceForm.invalid"
+                                (onClick)="activateCallback(2)"
+                            />
                         </div>
                     </div>
                 </ng-template>
@@ -202,18 +305,33 @@
                             class="content-upload border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
                         >
                             <label>Upload PPT:</label>
-                            <input type="file" (change)="onFileChange($event)" accept=".ppt, .pptx" required />
+                            <input
+                                type="file"
+                                (change)="onFileChange($event)"
+                                accept=".ppt, .pptx"
+                                required
+                            />
                             <!-- <br>
                             <button type="submit">
                                 <img src="assets\icons\upload.svg" alt="" >
                                 Upload
                             </button> -->
                         </div>
-                        <br>
+                        <br />
                     </div>
                     <div class="flex pt-6 justify-between question-btns">
-                        <p-button label="Back" [style]="{'font-size': '14px'}" severity="secondary" (onClick)="activateCallback(1)" />
-                        <p-button label="Continue"[style]="{'font-size': '14px'}" (onClick)="activateCallback(3)" [disabled]="selectedPresentation === null" />
+                        <p-button
+                            label="Back"
+                            [style]="{ 'font-size': '14px' }"
+                            severity="secondary"
+                            (onClick)="activateCallback(1)"
+                        />
+                        <p-button
+                            label="Continue"
+                            [style]="{ 'font-size': '14px' }"
+                            (onClick)="activateCallback(3)"
+                            [disabled]="selectedPresentation === null"
+                        />
                     </div>
                 </ng-template>
             </p-step-panel>
@@ -222,35 +340,73 @@
                 <ng-template #content let-activateCallback="activateCallback">
                     <div class="flex flex-col h-48">
                         <div
-                            class="border-2 border-dashed border-surface-200
-                                dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950
-                                flex-auto flex justify-center items-center font-medium question-form"
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium question-form"
                         >
                             <label>Question:</label>
-                            <textarea type="text" id="question" placeholder="Enter your question" required [(ngModel)]="question"></textarea>
-                            <br>
+                            <textarea
+                                type="text"
+                                id="question"
+                                placeholder="Enter your question"
+                                required
+                                [(ngModel)]="question"
+                            ></textarea>
+                            <br />
                             <label>Options:</label>
                             <div id="options-container">
                                 @for (items of optionCount; track $index) {
-                                    <div class="option-row">
-                                        <input type="radio" name="correctOption" class="option-radio" value="{{ $index }}" (change)="setCorrectOption($index)">
-                                        <input type="text" class="option-input" placeholder="Option {{ $index + 1 }}" [(ngModel)]="options[$index]">
-                                    </div>
+                                <div class="option-row">
+                                    <input
+                                        type="radio"
+                                        name="correctOption"
+                                        class="option-radio"
+                                        value="{{ $index }}"
+                                        (change)="setCorrectOption($index)"
+                                    />
+                                    <input
+                                        type="text"
+                                        class="option-input"
+                                        placeholder="Option {{ $index + 1 }}"
+                                        [(ngModel)]="options[$index]"
+                                    />
+                                </div>
                                 }
                             </div>
-                            <br>
+                            <br />
                             <div class="question-btns">
-                                <button (click)="addOption(optionCount.length + 1)" [disabled]="optionCount.length >= 4">Add Option</button>
-                                <button (click)="removeOption()" [disabled]="optionCount.length <= 2">Remove Option</button>
-                                <button (click)="addQuestion()">Save Question</button>
+                                <button
+                                    (click)="addOption(optionCount.length + 1)"
+                                    [disabled]="optionCount.length >= 4"
+                                >
+                                    Add Option
+                                </button>
+                                <button
+                                    (click)="removeOption()"
+                                    [disabled]="optionCount.length <= 2"
+                                >
+                                    Remove Option
+                                </button>
+                                <button (click)="addQuestion()">
+                                    Save Question
+                                </button>
                             </div>
-                            <br>
+                            <br />
                         </div>
                     </div>
                     <div class="flex pt-6 justify-start question-btns">
-                        <p-button label="Back" [style]="{'font-size': '14px'}" (onClick)="activateCallback(2)" />
-                        <button (click)="saveCompliance()" (onClick)="activateCallback(1)">Save Compliance</button>
-                        <button class="qcount">Questions Added: {{ questions.length }}</button>
+                        <p-button
+                            label="Back"
+                            [style]="{ 'font-size': '14px' }"
+                            (onClick)="activateCallback(2)"
+                        />
+                        <button
+                            (click)="saveCompliance()"
+                            (onClick)="activateCallback(1)"
+                        >
+                            Save Compliance
+                        </button>
+                        <button class="qcount">
+                            Questions Added: {{ questions.length }}
+                        </button>
                     </div>
                 </ng-template>
             </p-step-panel>
@@ -321,4 +477,15 @@
             "
         />
     </form>
+</p-dialog>
+
+<!-- Create Client Dialog -->
+<p-dialog
+    header="Add New Client"
+    [modal]="true"
+    draggable="false"
+    [(visible)]="showCreateClient"
+    [style]="{ width: '30rem', height: '35rem' }"
+>
+    <ng-container *ngComponentOutlet="createClientComp"></ng-container>
 </p-dialog>

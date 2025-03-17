@@ -1,0 +1,99 @@
+:host ::ng-deep .p-dialog {
+    background-color: #111827;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-close-button:focus {
+    outline: none;
+}
+
+:host ::ng-deep .p-select {
+    width: 100% !important;
+    background-color: #111827;
+    border: 1px solid #283141;
+    color: #9ca3af;
+    padding: 2.5px;
+    border-radius: 5px;
+}
+
+:host ::ng-deep .p-select:hover {
+    border: 1px solid #283141 !important;
+}
+
+:host ::ng-deep .p-select .p-select-trigger {
+    background-color: #6950e8;
+}
+
+::ng-deep .p-select:focus {
+    box-shadow: 0 0 5px #6950e86c !important;
+}
+
+:host ::ng-deep .p-select-filter:focus {
+    border-color: #6950e8;
+    border-radius: 5px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+form select,
+form input {
+    font-size: 16px;
+    text-align: left;
+    color: #f3f4f6;
+    background-color: #111827;
+}
+
+label,
+input::placeholder {
+    text-align: left;
+    color: #9ca3af;
+}
+
+label {
+    margin-bottom: -10px;
+}
+
+form select,
+form input[type="text"],
+form input[type="email"],
+form input[type="number"] {
+    padding: 10px;
+    border: 1px solid #283141;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+form input[type="submit"] {
+    background-color: #6950e8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+form input[type="submit"]:not(:disabled):hover {
+    background-color: #592be7;
+    cursor: pointer;
+    box-shadow: 0 0 5px #592be7;
+}
+
+form input[type="submit"]:disabled {
+    background-color: #6950e8cb;
+    cursor: default;
+    color: #cfcdcd;
+}
+
+form input:focus,
+form select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #6950e86c;
+}
