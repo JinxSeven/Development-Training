@@ -34,9 +34,13 @@ namespace TaskTracker.Controllers
         public async Task<IActionResult> AssignCompliance(Guid userId, Guid compId) 
         {
             int rowsAffected = await _complianceRepo.AssignCompliance(userId, compId);
-            if (rowsAffected > 0)
+            if (rowsAffected == 1)
             {
                 return Ok(new { Message = "Compliance assigned successfully." });
+            }
+            else if (rowsAffected == -1)
+            {
+                return StatusCode(409, new { message = "Error getting compliance" });
             }
             else
             {

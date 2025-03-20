@@ -102,15 +102,15 @@ namespace TaskTracker.Repo
             {
                 await conn.OpenAsync();
                 SqlCommand checkCmd = new("usp_IsComplianceAlreadyAssigned", conn);
+
+                checkCmd.CommandType = CommandType.StoredProcedure;
+
                 checkCmd.Parameters.AddWithValue("@user_id", userId);
                 checkCmd.Parameters.AddWithValue("@comp_id", compId);
 
                 int res = (int)checkCmd.ExecuteScalar();
 
-                if (res == 1)
-                {
-                    throw new Exception("Compliance has already been assigned!");
-                }
+                if (res == 1) return -1;
 
                 SqlCommand assignCmd = new
                     (

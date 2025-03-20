@@ -34,7 +34,8 @@
               "RelativeToolTip": "TaskTracker\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-03-18T17:24:39.405Z"
+              "WhenOpened": "2025-03-18T17:24:39.405Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -44,9 +45,10 @@
               "RelativeDocumentMoniker": "TaskTracker\\Controllers\\ComplianceController.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Controllers\\ComplianceController.cs",
               "RelativeToolTip": "TaskTracker\\Controllers\\ComplianceController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAywB4AAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAUwCMAAABFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-15T06:24:10.927Z"
+              "WhenOpened": "2025-03-15T06:24:10.927Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +58,7 @@
               "RelativeDocumentMoniker": "TaskTracker\\Repo\\ComplianceRepo.cs",
               "ToolTip": "C:\\Users\\samuel.koilraj\\OneDrive - ClaySys Technologies\\Documents\\ClaySys\\Sequel101\\TaskTracker\\Repo\\ComplianceRepo.cs",
               "RelativeToolTip": "TaskTracker\\Repo\\ComplianceRepo.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAUwGEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHAAAAAAAAAAAAAAAHoAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-13T15:32:15.665Z",
               "EditorCaption": ""

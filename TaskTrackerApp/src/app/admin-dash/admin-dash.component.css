@@ -436,3 +436,54 @@ input[type="file"]::file-selector-button,
     box-shadow: 0 0 5px #6950e86c;
     /* border: 1px solid #592BE7; */
 }
+
+/* Overlay Styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.45); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+/* Notification Box Styling */
+.notification-box {
+    position: absolute;
+    backdrop-filter: blur(10px); /* Additional blur inside the box */
+    border-radius: 16px; /* Rounded corners */
+    backdrop-filter: blur(5px); /* Blur effect */
+    padding: 20px;
+    background-color: rgba(105, 80, 232, 0.05);
+    width: 400px;
+    top: 25.75%;
+    right: 2%;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Title Styling */
+.notification-box h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #f8f8f8;
+}
+
+/* Message Styling */
+.notification-box p {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #adadad;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.notification-content {
+    background-color: #283141;
+    padding: 10px;
+    border-radius: 10px;
+}

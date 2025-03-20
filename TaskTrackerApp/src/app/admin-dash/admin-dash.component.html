@@ -4,10 +4,17 @@
     <div class="first-container">
         <div class="header-div">
             <h2>All Employees</h2>
-            <button class="add-user-btn" (click)="showCreateUserDialog()">
-                <img src="assets\icons\user-plus.svg" alt="" />
-                Add New User
-            </button>
+            <div
+                style="display: flex; justify-content: space-between; gap: 10px"
+            >
+                <button (click)="showNotification(overlay)" class="add-user-btn" style="padding: 10px 12px">
+                    <img src="assets\icons\bell.svg" alt="" />
+                </button>
+                <button class="add-user-btn" (click)="showCreateUserDialog()">
+                    <img src="assets\icons\user-plus.svg" alt="" />
+                    Add New User
+                </button>
+            </div>
         </div>
         <div class="emp-grid-card">
             @for (stat of userTaskStats; track $index) {
@@ -184,24 +191,30 @@
                                     project.projectName
                                 }}</p-accordion-header>
                                 <p-accordion-content>
-                                    <p class="client-dtl">Start:</p>
-                                    <p class="client-dtl-res">
-                                        {{
-                                            project
-                                                .startDate!.toString()
-                                                .split("T")[0]
-                                                | date : "mediumDate"
-                                        }}
-                                    </p>
-                                    <p class="client-dtl">Dead Line:</p>
-                                    <p class="client-dtl-res">
-                                        {{
-                                            project
-                                                .endDate!.toString()
-                                                .split("T")[0]
-                                                | date : "mediumDate"
-                                        }}
-                                    </p>
+                                    <div class="grid-container">
+                                        <p class="client-dtl">
+                                            Start:
+                                            <span class="client-dtl-res">
+                                                {{
+                                                    project
+                                                        .startDate!.toString()
+                                                        .split("T")[0]
+                                                        | date : "mediumDate"
+                                                }}
+                                            </span>
+                                        </p>
+                                        <p class="client-dtl">
+                                            Dead Line:
+                                            <span class="client-dtl-res">
+                                                {{
+                                                    project
+                                                        .endDate!.toString()
+                                                        .split("T")[0]
+                                                        | date : "mediumDate"
+                                                }}
+                                            </span>
+                                        </p>
+                                    </div>
                                     <p class="client-dtl">Description:</p>
                                     <p class="client-dtl-res">
                                         {{ project.description }}
@@ -490,3 +503,26 @@
 >
     <ng-container *ngComponentOutlet="createClientComp"></ng-container>
 </p-dialog>
+
+<!-- Overlay -->
+<div class="overlay" #overlay>
+    <!-- Notification Box -->
+    <div class="notification-box with-anim">
+        <h3>Notification Center</h3>
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+            <div class="notification-content">
+                <h4 style="color: #f8f8f8; text-align: left; margin: 0;">Notification Title</h4>
+                <p>
+                This is a sample notification message. You can customize it as
+                needed.
+                </p>
+            </div>
+            <div class="notification-content">
+                <h4 style="color: #f8f8f8; text-align: left; margin: 0;">It’s so quiet here</h4>
+                <p>
+                    You’re all caught up! Go outside or something.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

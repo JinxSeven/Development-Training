@@ -54,6 +54,7 @@ import { CreateNewClientComponent } from './create-new-client/create-new-client.
     providers: [MessageService],
 })
 export class AdminDashComponent {
+
     apiServe = inject(ApiService);
     userTaskStats: TaskStats[] = [];
 
@@ -110,6 +111,10 @@ export class AdminDashComponent {
         })
 
         this.loggedUser = this.getLoggedUser();
+    }
+
+    showNotification(overlay: HTMLDivElement) {
+        overlay.style.display = 'flex';
     }
 
     getLoggedUser(): User {
@@ -291,9 +296,16 @@ export class AdminDashComponent {
                 this.showToast(
                     `success`,
                     `Compliance Assigned!`,
-                    `Your compliance is now assigned to ${this.selectedUserToAssign.username}!`
+                    `${this.selectedUserToAssign.username.split(".")[0]} is now assigned to this compliance.`
                 );
                 this.selectedUserToAssign = null;
+            }
+            else if (response.status === 409) {
+                this.showToast(
+                    `warn`,
+                    `Already Assigned!`,
+                    `${this.selectedUserToAssign.username} is already assigned to this compliance.`
+                );
             }
             else {
                 this.showToast(
