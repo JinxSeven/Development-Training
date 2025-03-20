@@ -74,6 +74,7 @@
                                 <button
                                     class="assign-comp"
                                     (click)="assignCompliance(compliance.id)"
+                                    [disabled]="selectedUserToAssign === null"
                                 >
                                     <img
                                         style="height: 17px"

@@ -101,6 +101,27 @@
   },
   {
     "ContainingType": "TaskTracker.Controllers.ComplianceController",
+    "Method": "AssignCompliance",
+    "RelativePath": "api/Compliance/AssignCompliance",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "compId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.ComplianceController",
     "Method": "GetComplianceDetails",
     "RelativePath": "api/Compliance/GetComplianceDetails",
     "HttpMethod": "GET",

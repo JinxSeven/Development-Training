@@ -15,6 +15,18 @@ import { ComplianceDTO } from './interfaces/compliance-dto';
     providedIn: 'root',
 })
 export class ApiService {
+    async assignCompliance(userId: string, complianceId: string): Promise<Response> {
+        const link = `https://localhost:7042/api/Compliance/AssignCompliance?userId=${userId}&compId=${complianceId}`;
+
+        const response = await fetch(link, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        return response
+    }
     constructor(private http: HttpClient) {}
 
     private editMode = new BehaviorSubject<boolean>(false);

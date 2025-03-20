@@ -145,3 +145,4 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.genruntimeconfig.cache
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\ref\TaskTracker.dll
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Data;
@@ -92,6 +94,33 @@ namespace TaskTracker.Repo
             }
 
             return compsList;
+        }
+
+        public async Task<int> AssignCompliance(Guid userId, Guid compId)
+        {
+            using (SqlConnection conn = _dataAccess.ReturnConn())
+            {
+                await conn.OpenAsync();
+                SqlCommand checkCmd = new("usp_IsComplianceAlreadyAssigned", conn);
+                checkCmd.Parameters.AddWithValue("@user_id", userId);
+                checkCmd.Parameters.AddWithValue("@comp_id", compId);
+
+                int res = (int)checkCmd.ExecuteScalar();
+
+                if (res == 1)
+                {
+                    throw new Exception("Compliance has already been assigned!");
+                }
+
+                SqlCommand assignCmd = new
+                    (
+                    "INSERT INTO UserCompliances (user_id, comp_id) VALUES (@user_id, @comp_id)", conn
+                    );
+                assignCmd.Parameters.AddWithValue("@user_id", userId);
+                assignCmd.Parameters.AddWithValue("@comp_id", compId);
+
+                return await assignCmd.ExecuteNonQueryAsync();
+            }
         }
     }
 }

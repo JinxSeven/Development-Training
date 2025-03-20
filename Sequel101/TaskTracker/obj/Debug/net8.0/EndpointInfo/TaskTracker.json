@@ -166,6 +166,36 @@
         }
       }
     },
+    "/api/Compliance/AssignCompliance": {
+      "post": {
+        "tags": [
+          "Compliance"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "compId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
     "/api/Compliance/GetComplianceDetails": {
       "get": {
         "tags": [

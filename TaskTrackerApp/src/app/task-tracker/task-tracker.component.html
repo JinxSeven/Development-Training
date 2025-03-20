@@ -11,7 +11,7 @@
     </div>
 
     <div class="date-section">
-        <label for="date">Date:</label>
+        <!-- <label for="date">Select:</label> -->
         <!-- <input type="date" id="date"
             [(ngModel)]="this.selectedDate"
             (ngModelChange)="onDateChange($event)"
@@ -20,6 +20,7 @@
             [(ngModel)]="todayDate"
             dateFormat="dd.mm.yy"
             [showIcon]="false"
+            [iconDisplay]="'input'" [showIcon]="true"
             (ngModelChange)="onDateChange($event)"
         />
     </div>
@@ -32,12 +33,12 @@
                     <th>Task Title</th>
                     <th>Client</th>
                     <th>Project</th>
-                    <th>Assigned To</th>
+                    <!-- <th>Assigned To</th> -->
                     <th>Assigned By</th>
                     <th>ETA</th>
                     <th>Task Priority</th>
                     <th>Task State</th>
-                    <th>Add Activity</th>
+                    <th>Add</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 </tr>
@@ -47,7 +48,7 @@
                     <td>{{ task.taskTitle }}</td>
                     <td>{{ task.clientName }}</td>
                     <td>{{ task.projectName }}</td>
-                    <td>{{ task.assignedTo }}</td>
+                    <!-- <td>{{ task.assignedTo }}</td> -->
                     <td>{{ task.assignedBy }}</td>
                     <td>{{ task.hours }}</td>
                     <td>
@@ -119,7 +120,7 @@
                     <td colspan="11" class="no-tasks">
                         <!-- <img src="assets\no-data-img.webp" style="height: 250px;"> -->
                         Tasks not found for the selected date: {{ selectedDate }}
-                        
+
                     </td>
                 </tr>
             </ng-template>
@@ -134,10 +135,10 @@
         <p-table [value]="dataByDate" [tableStyle]="{ 'min-width': '50rem' }">
             <ng-template #header>
                 <tr>
+                    <th>Activity Title</th>
+                    <th>Task Title</th>
                     <th>Client</th>
                     <th>Project</th>
-                    <th>Task Title</th>
-                    <th>Activity Title</th>
                     <th>Description</th>
                     <th>Hours</th>
                 </tr>

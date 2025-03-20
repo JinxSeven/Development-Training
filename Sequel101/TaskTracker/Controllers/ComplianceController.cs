@@ -22,12 +22,25 @@ namespace TaskTracker.Controllers
             try
             {
                 await _complianceRepo.AddNewComplianceAsync(compliance);
-                //return Ok(new { message = "Compliance added successfully!" });
-                return Ok();
+                return Ok(new { message = "Compliance added successfully!" });
             }
             catch (Exception ex)
             {
                 return StatusCode(500, new { message = "Error adding compliance", error = ex.Message });
+            }
+        }
+
+        [HttpPost("AssignCompliance")]
+        public async Task<IActionResult> AssignCompliance(Guid userId, Guid compId) 
+        {
+            int rowsAffected = await _complianceRepo.AssignCompliance(userId, compId);
+            if (rowsAffected > 0)
+            {
+                return Ok(new { Message = "Compliance assigned successfully." });
+            }
+            else
+            {
+                return BadRequest(new { Message = "Failed to assign compliance." });
             }
         }
 

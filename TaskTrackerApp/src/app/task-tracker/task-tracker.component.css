@@ -28,10 +28,13 @@ p-tag {
 
 select {
     width: 100%;
-    padding: 1.5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
     margin: -8px;
+    color-scheme: dark;
+    border: none;
+    padding: 5px 2px;
+    border: 1px solid #52525b;
+    transition: all 0.3s ease-in-out;
 }
 
 .total-tasks {
@@ -98,35 +101,50 @@ select {
     color: #d6def7;
 }
 
+:host ::ng-deep .p-datatable tbody tr:nth-child(odd) td {
+    text-align: center;
+    /* background-color: #111827; */
+    color: #d6def7;
+}
+
+:host ::ng-deep .p-datatable tbody tr:nth-child(even) td {
+    text-align: center;
+    background-color: #19222e;
+    color: #d6def7;
+}
+
 :host ::ng-deep .p-datatable th {
     font-weight: 600;
     background-color: #6950E8;
 }
 
+:host ::ng-deep .p-datatable td:first-child,
 :host ::ng-deep .p-datatable th:first-child {
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
 }
 
+:host ::ng-deep .p-datatable td:last-child,
 :host ::ng-deep .p-datatable th:last-child {
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
 }
 
-:host ::ng-deep .p-datatable tr .no-tasks:last-child {
-    border: none;
+:host ::ng-deep .p-datatable th:nth-child(7) {
+    width: 12%;
+}
+
+:host ::ng-deep .p-datatable th:nth-child(5) {
+    width: 3.5%;
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-input {
-    width: 110px;
-    border: none;
+    width: 150px;
     font-size: 14px;
-    /* box-shadow: 0 0 5px #6950E86c; */
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-input:focus {
-    border: none;
-    box-shadow: 0 0 5px #6950E86c;
+    border: 1px solid #6950E8;
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-prev-button,
@@ -143,6 +161,11 @@ button {
 
 button:focus {
     outline: none;
+}
+
+:host ::ng-deep .p-datatable td {
+    border: none;
+    font-size: 14px;
 }
 
 :host ::ng-deep .p-datatable td.no-tasks {
@@ -176,7 +199,7 @@ button:focus {
 
 input:focus, select:focus, textarea:focus {
     outline: none;
-    box-shadow: 0 0 5px #6950E86c;
+    border: 1px solid #6950E8;
 }
 
 input {
@@ -185,13 +208,6 @@ input {
     box-shadow: 0 0 5px #6950E86c;
     border: none;
     color-scheme: dark;
-}
-
-select {
-    color-scheme: dark;
-    border: none;
-    /* box-shadow: 0 0 5px #6950E86c; */
-    padding: 5px 7px;
 }
 
 .cnfm-dialog-btns {

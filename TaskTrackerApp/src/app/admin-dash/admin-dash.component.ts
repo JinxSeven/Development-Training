@@ -85,7 +85,7 @@ export class AdminDashComponent {
 
     loggedUser!: User;
 
-    selectedUserToAssign: any;
+    selectedUserToAssign: any | null = null;
 
     constructor(private messageService: MessageService) {
         this.apiServe.getUserTaskStats().subscribe((taskStats) => {
@@ -286,17 +286,23 @@ export class AdminDashComponent {
             return;
         }
 
-        /*this.apiServe.assignCompliance(complianceId, this.selectedUserToAssign.id).subscribe({
-            next: () => {
-                console.log('POST request successful');
+        this.apiServe.assignCompliance(this.selectedUserToAssign.id, complianceId).then((response) => {
+            if (response.status === 200) {
                 this.showToast(
                     `success`,
                     `Compliance Assigned!`,
                     `Your compliance is now assigned to ${this.selectedUserToAssign.username}!`
                 );
-                this.showCreateCompliance = false;
-            },
-        });*/
+                this.selectedUserToAssign = null;
+            }
+            else {
+                this.showToast(
+                    `error`,
+                    `Assign Failed!`,
+                    `Could not assign compliance try again later.`
+                );
+            }
+        });
     }
 
     getProjectDataByClientId(clientId: string) {
