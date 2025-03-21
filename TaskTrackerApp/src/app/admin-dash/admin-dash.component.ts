@@ -54,7 +54,6 @@ import { CreateNewClientComponent } from './create-new-client/create-new-client.
     providers: [MessageService],
 })
 export class AdminDashComponent {
-
     apiServe = inject(ApiService);
     userTaskStats: TaskStats[] = [];
 
@@ -88,6 +87,7 @@ export class AdminDashComponent {
     loggedUser!: User;
 
     selectedUserToAssign: any | null = null;
+    isAdmin: boolean;
 
     constructor(private messageService: MessageService) {
         this.apiServe.getUserTaskStats().subscribe((taskStats) => {
@@ -106,12 +106,12 @@ export class AdminDashComponent {
                 });
         });
 
-
         this.apiServe.getComplianceDetails().subscribe((compliances) => {
             this.complianceData = compliances;
         })
 
         this.loggedUser = this.getLoggedUser();
+        this.isAdmin = this.loggedUser?.isAdmin;
     }
 
     showNotification() {

@@ -313,5 +313,21 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "TaskTracker.Controllers.UserController",
+    "Method": "GetUserStatsByIdAsync",
+    "RelativePath": "api/User/GetUserStatsById",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "userId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
   }
 ]

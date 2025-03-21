@@ -3,7 +3,10 @@
 <div class="dash-main-container">
     <div class="first-container">
         <div class="header-div">
-            <h2>All Employees</h2>
+            <h2>
+                @if (!isAdmin) { User Stats }
+                @else { Employee Stats }
+            </h2>
             <div
                 style="display: flex; justify-content: space-between; gap: 10px"
             >

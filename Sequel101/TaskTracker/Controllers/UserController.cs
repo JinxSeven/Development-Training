@@ -18,6 +18,21 @@ namespace TaskTracker.Controllers
         }
 
         [HttpGet]
+        [Route("GetUserStatsById")]
+        public async Task<IActionResult> GetUserStatsByIdAsync(Guid userId)
+        {
+            try
+            {
+                var response = await _userRepo.GetUserStatsByUserId(userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet]
         [Route("GetLoggedUser")]
         public IActionResult GetLoggedUser(string username, string password)
         {

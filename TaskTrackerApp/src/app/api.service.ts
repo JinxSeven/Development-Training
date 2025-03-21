@@ -10,6 +10,7 @@ import { Client } from './interfaces/client';
 import { Project } from './interfaces/project';
 import { compliance } from './interfaces/compliance';
 import { ComplianceDTO } from './interfaces/compliance-dto';
+import { UserStats } from './interfaces/user-stats';
 
 @Injectable({
     providedIn: 'root',
@@ -65,6 +66,12 @@ export class ApiService {
     LoggingUser(username: string, password: string): Observable<User> {
         return this.http.get<User>(
             `https://localhost:7042/api/User/GetLoggedUser?username=${username}&password=${password}`
+        );
+    }
+
+    GetUserStatsById(userId: string): Observable<UserStats> {
+        return this.http.get<UserStats>(
+            `https://localhost:7042/api/User/GetUserStatsById?userId=${userId}`
         );
     }
 

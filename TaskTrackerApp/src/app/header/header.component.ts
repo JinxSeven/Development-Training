@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
 export class HeaderComponent {
     router = inject(Router);
     apiServe = inject(ApiService);
+
     logout() {
         this.router.navigate(['/login']);
         // this.apiServe.setAuthenticated(false);
@@ -23,6 +24,7 @@ export class HeaderComponent {
             'LoggedUser',
             JSON.stringify(null));
     }
+    
     loggedUser!: User;
     isAdmin: boolean;
 

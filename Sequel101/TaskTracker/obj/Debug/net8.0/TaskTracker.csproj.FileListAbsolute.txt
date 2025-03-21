@@ -70,6 +70,7 @@ D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\refint\TaskTr
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.pdb
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.genruntimeconfig.cache
 D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\ref\TaskTracker.dll
+D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\appsettings.json
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\TaskTracker.staticwebassets.endpoints.json
@@ -80,6 +81,7 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\TaskTracker.pdb
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Azure.Core.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Azure.Identity.dll
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Dapper.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Microsoft.Data.SqlClient.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Microsoft.Identity.Client.dll
@@ -93,6 +95,7 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Microsoft.OpenApi.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Microsoft.SqlServer.Server.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -144,5 +147,3 @@ C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.pdb
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\TaskTracker.genruntimeconfig.cache
 C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\obj\Debug\net8.0\ref\TaskTracker.dll
-D:\Skills\JinxSeven\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.dll
-C:\Users\samuel.koilraj\OneDrive - ClaySys Technologies\Documents\ClaySys\Sequel101\TaskTracker\bin\Debug\net8.0\Newtonsoft.Json.Bson.dll

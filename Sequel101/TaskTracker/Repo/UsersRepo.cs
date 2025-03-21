@@ -1,6 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using System.Data;
 using TaskTracker.Models;
+using TaskTracker.Models.DTOs;
 
 namespace TaskTracker.Data
 {
@@ -115,6 +117,19 @@ namespace TaskTracker.Data
             }
 
             return userUsers!;
+        }
+
+        public async Task<UserStatsDTO> GetUserStatsByUserId(Guid userId)
+        {
+            using (SqlConnection conn = _dataAccess.ReturnConn())
+            {
+                await conn.OpenAsync();
+                
+                DynamicParameters spParams = new DynamicParameters();
+                spParams.Add("UserId", userId);
+
+                return conn.QuerySingleOrDefault<UserStatsDTO>("usp_GetUserStatsById", spParams, commandType: CommandType.StoredProcedure)!;
+            }
         }
     }
 }
