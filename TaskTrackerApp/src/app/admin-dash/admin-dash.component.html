@@ -7,7 +7,7 @@
             <div
                 style="display: flex; justify-content: space-between; gap: 10px"
             >
-                <button (click)="showNotification(overlay)" class="add-user-btn" style="padding: 10px 12px">
+                <button (click)="showNotificationPanel = true" class="add-user-btn" style="padding: 10px 12px">
                     <img src="assets\icons\bell.svg" alt="" />
                 </button>
                 <button class="add-user-btn" (click)="showCreateUserDialog()">
@@ -504,8 +504,9 @@
     <ng-container *ngComponentOutlet="createClientComp"></ng-container>
 </p-dialog>
 
-<!-- Overlay -->
-<div class="overlay" #overlay>
+@if (showNotificationPanel) {
+    <!-- Overlay -->
+    <div class="overlay" (click)="showNotificationPanel = false"></div>
     <!-- Notification Box -->
     <div class="notification-box with-anim">
         <h3>Notification Center</h3>
@@ -525,4 +526,4 @@
             </div>
         </div>
     </div>
-</div>
+}

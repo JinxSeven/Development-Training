@@ -34,7 +34,7 @@ select {
     border: none;
     padding: 5px 2px;
     border: 1px solid #52525b;
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s;
 }
 
 .total-tasks {
@@ -139,7 +139,7 @@ select {
 }
 
 :host ::ng-deep .p-datepicker .p-datepicker-input {
-    width: 150px;
+    width: 130px !important;
     font-size: 14px;
 }
 
@@ -231,4 +231,35 @@ input {
 
 :host ::ng-deep .p-dialog .p-dialog-close-button:focus {
     outline: none;
+}
+
+:host ::ng-deep .p-datepicker table {
+    font-size: 12px !important; /* Reduce font size for the calendar */
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header {
+    padding: 0.5rem !important; /* Reduce header padding */
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-calendar td > span {
+    width: 1.5rem !important; /* Reduce size of date cells */
+    height: 1.5rem !important;
+    line-height: 1.0rem !important;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-calendar th {
+    padding: 0.25rem !important; /* Reduce padding for table headers */
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-header {
+    padding: 0.5rem !important;
+    padding-top: 0 !important;
+}
+
+:host ::ng-deep .p-datepicker .p-datepicker-title {
+    font-size: 12px !important; /* Reduce font size for the title */
+}
+
+:host {
+    --p-datepicker-date-selected-background: #6950E8;
 }

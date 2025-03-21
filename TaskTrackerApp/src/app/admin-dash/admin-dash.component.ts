@@ -66,6 +66,7 @@ export class AdminDashComponent {
     showCreateUser = false;
     showCreateCompliance = false;
     showCreateClient = false;
+    showNotificationPanel = false;
 
     createClientComp = CreateNewClientComponent;
 
@@ -113,8 +114,7 @@ export class AdminDashComponent {
         this.loggedUser = this.getLoggedUser();
     }
 
-    showNotification(overlay: HTMLDivElement) {
-        overlay.style.display = 'flex';
+    showNotification() {
     }
 
     getLoggedUser(): User {

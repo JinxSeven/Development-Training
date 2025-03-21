@@ -224,6 +224,10 @@ label {
     background-color: #1f2937;
 }
 
+:host ::ng-deep .p-accordion .p-accordionpanel:last-child {
+    border-bottom: none;
+}
+
 :host ::ng-deep .p-button {
     height: 0;
     padding: 16px 16px;
@@ -235,33 +239,46 @@ label {
     border: 1px solid #4c5666;
 }
 
+/* Accordion Styles */
 :host {
-    --p-accordion-header-hover-background: #28313f;
+    --p-accordion-header-last-bottom-border-radius: 10px;
     --p-accordion-header-active-background: #28313f;
     --p-accordion-header-first-top-border-radius: 10px;
-    --p-accordion-header-last-bottom-border-radius: 10px;
+    --p-accordion-header-hover-background: #28313f;
     --p-accordion-header-active-hover-background: #28313f;
+}
 
-    --p-button-primary-color: #f3f3f3;
-    --p-button-primary-hover-color: #f3f3f3;
-    --p-button-primary-active-color: #f3f3f3;
-
+/* Primary Button Styles */
+:host {
     --p-button-primary-background: #6950e8;
-    --p-button-primary-border-color: #6950e8;
-    --p-button-primary-hover-background: #592be7;
-    --p-stepper-step-title-active-color: #6950e8;
-    --p-stepper-step-number-active-color: #6950e8;
-    --p-button-primary-active-background: #592be7;
-    --p-button-primary-hover-border-color: #592be7;
+    --p-button-primary-hover-color: #f3f3f3;
     --p-button-primary-active-border-color: #592be7;
-    --p-stepper-separator-active-background: #6950e8;
-    --p-stepper-step-number-active-border-color: #6950e8;
+    --p-button-primary-active-color: #f3f3f3;
+    --p-button-primary-border-color: #6950e8;
+    --p-button-primary-active-background: #592be7;
+    --p-button-primary-color: #f3f3f3;
+    --p-button-primary-hover-background: #592be7;
+    --p-button-primary-hover-border-color: #592be7;
+}
 
+/* Button Label Font Weight */
+:host {
     --p-button-label-font-weight: 400;
+}
 
-    --p-select-focus-border-color: #6950e8;
+/* Stepper Styles */
+:host {
+    --p-stepper-step-title-active-color: #6950e8;
+    --p-stepper-step-number-active-border-color: #6950e8;
+    --p-stepper-separator-active-background: #6950e8;
+    --p-stepper-step-number-active-color: #6950e8;
+}
+
+/* Select Dropdown Styles */
+:host {
     --p-select-option-selected-background: #5a2be730;
     --p-select-option-selected-focus-background: #5a2be730;
+    --p-select-focus-border-color: #6950e8;
 }
 
 .compliance-details,
@@ -318,11 +335,6 @@ label {
     color: #9ca3af;
     margin-bottom: 5px;
 }
-
-/* .compliance-details input::placeholder,
-.question-form input::placeholder {
-    color: #9ca3af;
-} */
 
 .content-upload,
 #options-container {
@@ -444,7 +456,7 @@ input[type="file"]::file-selector-button,
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.45); /* Semi-transparent background */
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -458,10 +470,11 @@ input[type="file"]::file-selector-button,
     border-radius: 16px; /* Rounded corners */
     backdrop-filter: blur(5px); /* Blur effect */
     padding: 20px;
-    background-color: rgba(105, 80, 232, 0.05);
-    width: 400px;
+    background-color: rgba(105, 80, 232, 0.075);
+    width: 30%;
     top: 25.75%;
     right: 2%;
+    z-index: 1001; /* Ensure it's on top */
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
 }
