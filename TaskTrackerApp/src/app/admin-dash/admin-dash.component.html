@@ -128,6 +128,13 @@
                         }}</span>
                     </p-accordion-content>
                 </p-accordion-panel>
+                } @empty {
+                    <p-accordion-panel [value]="0">
+                        <p-accordion-header>No Compliances</p-accordion-header>
+                        <p-accordion-content>
+                            <p>No compliances are currently assigned to you.</p>
+                        </p-accordion-content>
+                    </p-accordion-panel>
                 }
             </p-accordion>
         </div>
@@ -224,10 +231,24 @@
                                     </p>
                                 </p-accordion-content>
                             </p-accordion-panel>
+                            } @empty {
+                                <p-accordion-panel [value]="0">
+                                    <p-accordion-header>No Projects</p-accordion-header>
+                                    <p-accordion-content>
+                                        <p>No projects have been added to the system.</p>
+                                    </p-accordion-content>
+                                </p-accordion-panel>
                             }
                         </p-accordion>
                     </p-accordion-content>
                 </p-accordion-panel>
+                } @empty {
+                    <p-accordion-panel [value]="0">
+                        <p-accordion-header>No Clients</p-accordion-header>
+                        <p-accordion-content>
+                            <p>No clients have been added to the system.</p>
+                        </p-accordion-content>
+                    </p-accordion-panel>
                 }
             </p-accordion>
         </div>
@@ -325,7 +346,7 @@
                             <input
                                 type="file"
                                 (change)="onFileChange($event)"
-                                accept=".ppt, .pptx"
+                                accept=".pdf, application/pdf"
                                 required
                             />
                             <!-- <br>

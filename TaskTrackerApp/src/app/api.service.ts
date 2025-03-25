@@ -11,6 +11,8 @@ import { Project } from './interfaces/project';
 import { compliance } from './interfaces/compliance';
 import { ComplianceDTO } from './interfaces/compliance-dto';
 import { UserStats } from './interfaces/user-stats';
+import { AssignedComplianceDTO } from './interfaces/assigned-compliance-dto';
+import { Presentation } from './interfaces/presentation';
 
 @Injectable({
     providedIn: 'root',
@@ -69,10 +71,14 @@ export class ApiService {
         );
     }
 
-    GetUserStatsById(userId: string): Observable<UserStats> {
-        return this.http.get<UserStats>(
-            `https://localhost:7042/api/User/GetUserStatsById?userId=${userId}`
-        );
+    async GetUserStatsById(userId: string): Promise<UserStats> {
+        const response = await fetch(`https://localhost:7042/api/User/GetUserStatsById?userId=${userId}`);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        return await response.json(); // Parse response body as JSON
     }
 
     addNewUser(postData: User): Observable<any> {
@@ -92,6 +98,18 @@ export class ApiService {
     getComplianceDetails(): Observable<ComplianceDTO[]> {
         return this.http.get<ComplianceDTO[]>(
             `https://localhost:7042/api/Compliance/GetComplianceDetails`
+        );
+    }
+
+    getAssignedCompliancesById(userId: string): Observable<AssignedComplianceDTO[]>  {
+        return this.http.get<AssignedComplianceDTO[]>(
+            `https://localhost:7042/api/Compliance/GetAssignedCompliancesById?userId=${userId}`
+        );
+    }
+
+    getPptByComplianceId(compId: string): Observable<Presentation> {
+        return this.http.get<Presentation>(
+            `https://localhost:7042/api/Compliance/GetPptByComplianceId?compId=${compId}`,
         );
     }
 

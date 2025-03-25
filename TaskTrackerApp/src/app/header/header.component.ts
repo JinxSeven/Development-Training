@@ -24,7 +24,7 @@ export class HeaderComponent {
             'LoggedUser',
             JSON.stringify(null));
     }
-    
+
     loggedUser!: User;
     isAdmin: boolean;
 
@@ -36,5 +36,13 @@ export class HeaderComponent {
     getLoggedUser(): User {
         const loggedUser = sessionStorage.getItem("LoggedUser");
         return JSON.parse(loggedUser!);
+    }
+
+    navigateToDashboard() {
+        if (this.isAdmin) {
+            this.router.navigate(['/admindash']);
+            return;
+        }
+        this.router.navigate(['/userdash']);
     }
 }

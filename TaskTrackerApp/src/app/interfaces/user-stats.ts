@@ -8,4 +8,5 @@ export interface UserStats {
     totalHoursLogged: number;
     totalHoursWorkedForWeek: number;
     totalHoursWorkedForDay: number;
+    value: { label: string; color: string; value: number }[]
 }

@@ -3,7 +3,7 @@
         <img style="height: 50px;" src="assets\pbm-logo.png" alt="">
         <!-- <span class="gradient-text">...</span> -->
         <a routerLink="/tasktracker" class="link">Task Tracker</a>
-        <a routerLink="/admindash" class="link">
+        <a (click)="navigateToDashboard()" class="link">
             @if (!isAdmin) { User }
             @else { Admin }
             Dashboard

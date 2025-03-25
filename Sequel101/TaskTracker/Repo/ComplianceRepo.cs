@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using Dapper;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Data;
 using TaskTracker.Data;
@@ -64,7 +65,7 @@ namespace TaskTracker.Repo
 
         public async Task<List<ComplianceDTO>?> GetComplianceDetails()
         {
-            List<ComplianceDTO> compsList = new List<ComplianceDTO>(); 
+            List<ComplianceDTO> compsList = new List<ComplianceDTO>();
 
             using (var connection = _dataAccess.ReturnConn())
             {
@@ -117,6 +118,68 @@ namespace TaskTracker.Repo
                 assignCmd.Parameters.AddWithValue("@comp_id", compId);
 
                 return await assignCmd.ExecuteNonQueryAsync();
+            }
+        }
+
+        public async Task<List<AssignedComplianceDTO>?> GetAssignedCompliancesById(Guid userId)
+        {
+            using (SqlConnection conn = _dataAccess.ReturnConn())
+            {
+                await conn.OpenAsync();
+
+                DynamicParameters assignedCompsParams = new DynamicParameters();
+                assignedCompsParams.Add("UserId", userId);
+
+                var result = await conn.QueryAsync<AssignedComplianceDTO>("usp_GetAssignedCompliancesById", assignedCompsParams, commandType: CommandType.StoredProcedure)!;
+
+                return result.ToList();
+            }
+        }
+
+        public async Task<Presentation?> GetPptByComplianceId(Guid compId)
+        {
+            using (SqlConnection conn = _dataAccess.ReturnConn())
+            {
+                await conn.OpenAsync();
+
+                DynamicParameters compParams = new DynamicParameters();
+                compParams.Add("CompId", compId);
+
+                return await conn.QueryFirstOrDefaultAsync<Presentation>("usp_GetPptByComplianceId", compParams, commandType: CommandType.StoredProcedure)!;
+            }
+        }
+
+        public async Task<List<Question>> GetQuestionsByCompliancesId(Guid compId)
+        {
+            using (SqlConnection conn = _dataAccess.ReturnConn())
+            {
+                await conn.OpenAsync();
+
+                DynamicParameters compParams = new DynamicParameters();
+                compParams.Add("CompId", compId);
+
+                Dictionary<Guid, Question> questDict = [];
+
+                var result = await conn.QueryAsync<Question, Option, Question>("usp_GetQuestionsByCompliancesId",
+                (question, option) =>
+                {
+                    if (!questDict.TryGetValue(question.Id, out var existingQuestion))
+                    {
+                        existingQuestion = question;
+                        existingQuestion.Options = new List<Option>();
+                        questDict.Add(question.Id, existingQuestion);
+                    }
+
+                    if (option != null && option.Id != Guid.Empty)
+                    {
+                        existingQuestion.Options.Add(option);
+                    }
+
+                    return existingQuestion;
+                },
+                compParams, commandType: CommandType.StoredProcedure, splitOn: "OptionId")!;
+
+                return result.Distinct().ToList();
             }
         }
     }

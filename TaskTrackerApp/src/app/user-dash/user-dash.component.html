@@ -1,1 +1,438 @@
-<p>user-dash works!</p>
+<app-header></app-header>
+
+<div class="dash-main-container">
+    <div class="first-container">
+        <div class="header-div">
+            <h2>@if (!isAdmin) { User Stats } @else { Employee Stats }</h2>
+            <div
+                style="display: flex; justify-content: space-between; gap: 10px"
+            >
+                <button
+                    (click)="showNotificationPanel = true"
+                    class="add-user-btn"
+                    style="padding: 10px 12px"
+                >
+                    <img src="assets\icons\bell.svg" alt="" />
+                </button>
+            </div>
+        </div>
+        <div class="emp-grid-card">
+            <p-card
+                header="{{ loggedUser!.username }}"
+                [subheader]="
+                    loggedUser!.isAdmin
+                        ? 'Permissions: Admin'
+                        : 'Permissions: User'
+                "
+            >
+                <p class="m-0">
+                    <strong>Total Tasks:</strong> {{ userStats!.totalTasks }}
+                </p>
+                <p class="m-0">
+                    <strong>Email:</strong> {{ loggedUser!.email }}
+                </p>
+                <p-divider />
+                <p class="m-0">Employee Overall Performance</p>
+                <div class="metergroup-container">
+                    <p-metergroup [value]="userStats!.value" />
+                </div>
+            </p-card>
+            <p-card header="Additional Stats">
+                <p style="color: #8590ae; margin: -5px 0">Compliance Info</p>
+                <p class="m-0">
+                    <strong>Compliances Taken:</strong>
+                    {{ userStats!.completedCompliances }}
+                </p>
+                <p class="m-0">
+                    <strong>Compliances Pending:</strong>
+                    {{ userStats!.totalCompliances }}
+                </p>
+                <p-divider />
+                <p style="color: #8590ae; margin: -5px 0">Hours Clocked:</p>
+                <p class="m-0">
+                    <strong>This Day:</strong>
+                    {{ userStats!.totalHoursWorkedForDay }} / 8
+                </p>
+                <p class="m-0" style="margin-bottom: 0">
+                    <strong>This Week:</strong>
+                    {{ userStats!.totalHoursWorkedForWeek }} / 40
+                </p>
+            </p-card>
+            <p-card header="Pomodoro">
+                <p style="color: #8590ae; margin-top: -5px; margin-bottom: 9px">
+                    Time Tracker
+                </p>
+                <app-stop-watch></app-stop-watch>
+            </p-card>
+        </div>
+    </div>
+
+    <div class="second-container">
+        <div class="header-div">
+            <h2>Compliance</h2>
+        </div>
+
+        <div class="accordion">
+            <p-accordion [value]="0">
+                @for (compliance of complianceData; track $index) {
+                <p-accordion-panel [value]="$index">
+                    <p-accordion-header>{{
+                        compliance.complianceName
+                    }}</p-accordion-header>
+                    <p-accordion-content>
+                        <div class="header-div">
+                            <h3 class="m-0 client-dtl-head">
+                                Compliance Details
+                            </h3>
+                            <div class="flex-box">
+                                <div class="card flex justify-center"></div>
+                            </div>
+                        </div>
+                        <div class="grid-container">
+                            <p class="client-dtl">
+                                Required Percentage:
+                                <span class="client-dtl-res"
+                                    >{{ compliance.requiredPercentage }}%</span
+                                >
+                            </p>
+                            <p class="client-dtl">
+                                No of Questions:
+                                <span class="client-dtl-res">{{
+                                    compliance.questionCount
+                                }}</span>
+                            </p>
+                            <p class="client-dtl">
+                                Created On:
+                                <span class="client-dtl-res">{{
+                                    compliance.createdDate
+                                        .toString()
+                                        .split("T")[0] | date : "mediumDate"
+                                }}</span>
+                            </p>
+                            <p class="client-dtl">
+                                Assigned On:
+                                <span class="client-dtl-res">{{
+                                    compliance
+                                        .assignedDate!.toString()
+                                        .split("T")[0] | date : "mediumDate"
+                                }}</span>
+                            </p>
+                            <p class="client-dtl">
+                                Status: @if (compliance.isComplete) {
+                                <span class="client-dtl-res">Completed</span>
+                                } @else {
+                                <span class="client-dtl-res"
+                                    >Not Completed</span
+                                >
+                                }
+                            </p>
+                            <p class="client-dtl">
+                                Created By:
+                                <span class="client-dtl-res">{{
+                                    compliance.createdBy
+                                }}</span>
+                            </p>
+                        </div>
+                        <div
+                            style="
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                            "
+                        >
+                            <div>
+                                <p class="client-dtl">Description:</p>
+                                <span class="client-dtl-res">
+                                    {{ compliance.complianceDescription }}
+                                </span>
+                            </div>
+                            <button
+                                class="take-assesment"
+                                (click)="openAssesment(compliance.id, compliance.complianceName)"
+                            >
+                                Take Assesment
+                            </button>
+                        </div>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                } @empty {
+                <p-accordion-panel [value]="0">
+                    <p-accordion-header>No Compliances</p-accordion-header>
+                    <p-accordion-content>
+                        <p>No compliances are currently assigned to you.</p>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                }
+            </p-accordion>
+        </div>
+    </div>
+
+    <div class="third-container">
+        <div class="header-div">
+            <h2>Clients</h2>
+        </div>
+
+        <div class="accordion">
+            <p-accordion [value]="0">
+                @for (client of clientData; track $index) {
+                <p-accordion-panel
+                    [value]="$index"
+                    (click)="getProjectDataByClientId(client.id)"
+                >
+                    <p-accordion-header>{{
+                        client.clientName
+                    }}</p-accordion-header>
+                    <p-accordion-content>
+                        <h3 class="m-0 client-dtl-head">Client Details</h3>
+                        <p class="client-dtl">Phone:</p>
+                        <p class="client-dtl-res">{{ client.contactPhone }}</p>
+                        <p class="client-dtl">Email:</p>
+                        <p class="client-dtl-res">{{ client.contactEmail }}</p>
+                        <p class="client-dtl">Created:</p>
+                        <p class="client-dtl-res">
+                            {{
+                                client.createdDate.toString().split("T")[0]
+                                    | date : "mediumDate"
+                            }}
+                        </p>
+                        <p-accordion>
+                            <div class="header-div">
+                                <h3 style="font-weight: 500; font-size: 16px">
+                                    Client Projects:
+                                </h3>
+                            </div>
+                            @for (project of projectsByClient; track $index) {
+                            <p-accordion-panel [value]="$index">
+                                <p-accordion-header>{{
+                                    project.projectName
+                                }}</p-accordion-header>
+                                <p-accordion-content>
+                                    <div class="grid-container">
+                                        <p class="client-dtl">
+                                            Start:
+                                            <span class="client-dtl-res">
+                                                {{
+                                                    project
+                                                        .startDate!.toString()
+                                                        .split("T")[0]
+                                                        | date : "mediumDate"
+                                                }}
+                                            </span>
+                                        </p>
+                                        <p class="client-dtl">
+                                            Dead Line:
+                                            <span class="client-dtl-res">
+                                                {{
+                                                    project
+                                                        .endDate!.toString()
+                                                        .split("T")[0]
+                                                        | date : "mediumDate"
+                                                }}
+                                            </span>
+                                        </p>
+                                    </div>
+                                    <p class="client-dtl">Description:</p>
+                                    <p class="client-dtl-res">
+                                        {{ project.description }}
+                                    </p>
+                                </p-accordion-content>
+                            </p-accordion-panel>
+                            }
+                        </p-accordion>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                } @empty {
+                <p-accordion-panel [value]="0">
+                    <p-accordion-header>No Clients</p-accordion-header>
+                    <p-accordion-content>
+                        <p>No clients have been added to the system.</p>
+                    </p-accordion-content>
+                </p-accordion-panel>
+                }
+            </p-accordion>
+        </div>
+    </div>
+    <!-- <p-divider /> -->
+    <div class="card flex justify-center">
+        <p-toast position="bottom-right" />
+    </div>
+</div>
+
+<!-- Compliance Dialog -->
+<p-dialog
+    class="compliance-form"
+    [header]="compName"
+    [modal]="true"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [maximizable]="true"
+    draggable="false"
+    [(visible)]="showTakeCompliance"
+    [style]="{ width: '70rem' }"
+>
+    <p-stepper [value]="1" class="basis-[50rem]" [linear]="true">
+        <p-step-list>
+            <p-step [value]="1">Learn</p-step>
+            <p-step [value]="2">Test</p-step>
+            <p-step [value]="3">Reflect</p-step>
+        </p-step-list>
+        <p-step-panels>
+            <p-step-panel [value]="1">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            style="margin-bottom: 10px;"
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                        @if (selectedPdftUrl) {
+                            <iframe
+                                style="border-radius: 10px; height: 39em;"
+                                [src]="selectedPdftUrl"
+                                width="100%"
+                                frameborder="0"
+                            >
+                            </iframe>
+                        }
+                        </div>
+                        <div class="flex pt-6 justify-end">
+                            <p-button
+                                label="Take Test"
+                                [style]="{ 'font-size': '14px' }"
+                                [disabled]="complianceForm.invalid"
+                                (onClick)="activateCallback(2)"
+                            />
+                        </div>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="2">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            class="content-upload border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium"
+                        >
+                            <label>Upload PPT:</label>
+                            <input type="file" accept=".ppt, .pptx" required />
+                            <!-- <br>
+                            <button type="submit">
+                                <img src="assets\icons\upload.svg" alt="" >
+                                Upload
+                            </button> -->
+                        </div>
+                        <br />
+                    </div>
+                    <div class="flex pt-6 justify-between question-btns">
+                        <p-button
+                            label="Back"
+                            [style]="{ 'font-size': '14px' }"
+                            severity="secondary"
+                            (onClick)="activateCallback(1)"
+                        />
+                        <p-button
+                            label="Continue"
+                            [style]="{ 'font-size': '14px' }"
+                            (onClick)="activateCallback(3)"
+                            [disabled]="false"
+                        />
+                    </div>
+                </ng-template>
+            </p-step-panel>
+
+            <p-step-panel [value]="3">
+                <ng-template #content let-activateCallback="activateCallback">
+                    <div class="flex flex-col h-48">
+                        <div
+                            class="border-2 border-dashed border-surface-200 dark:border-surface-700 rounded bg-surface-50 dark:bg-surface-950 flex-auto flex justify-center items-center font-medium question-form"
+                        >
+                            <label>Question:</label>
+                            <textarea
+                                type="text"
+                                id="question"
+                                placeholder="Enter your question"
+                                required
+                                [(ngModel)]="question"
+                            ></textarea>
+                            <br />
+                            <label>Options:</label>
+                            <div id="options-container">
+                                @for (items of optionCount; track $index) {
+                                <div class="option-row">
+                                    <input
+                                        type="radio"
+                                        name="correctOption"
+                                        class="option-radio"
+                                        value="{{ $index }}"
+                                        (change)="setCorrectOption($index)"
+                                    />
+                                    <input
+                                        type="text"
+                                        class="option-input"
+                                        placeholder="Option {{ $index + 1 }}"
+                                        [(ngModel)]="options[$index]"
+                                    />
+                                </div>
+                                }
+                            </div>
+                            <br />
+                            <div class="question-btns">
+                                <button
+                                    (click)="addOption(optionCount.length + 1)"
+                                    [disabled]="optionCount.length >= 4"
+                                >
+                                    Add Option
+                                </button>
+                                <button
+                                    (click)="removeOption()"
+                                    [disabled]="optionCount.length <= 2"
+                                >
+                                    Remove Option
+                                </button>
+                                <button>Save Question</button>
+                            </div>
+                            <br />
+                        </div>
+                    </div>
+                    <div class="flex pt-6 justify-start question-btns">
+                        <p-button
+                            label="Back"
+                            [style]="{ 'font-size': '14px' }"
+                            (onClick)="activateCallback(2)"
+                        />
+                        <button (onClick)="activateCallback(1)">
+                            Save Compliance
+                        </button>
+                        <button class="qcount">
+                            Questions Added: {{ questions.length }}
+                        </button>
+                    </div>
+                </ng-template>
+            </p-step-panel>
+        </p-step-panels>
+    </p-stepper>
+</p-dialog>
+
+@if (showNotificationPanel) {
+<!-- Overlay -->
+<div class="overlay" (click)="showNotificationPanel = false"></div>
+<!-- Notification Box -->
+<div class="notification-box with-anim">
+    <h3>Notification Center</h3>
+    <div style="display: flex; flex-direction: column; gap: 10px">
+        <div class="notification-content">
+            <h4 style="color: #f8f8f8; text-align: left; margin: 0">
+                Notification Title
+            </h4>
+            <p>
+                This is a sample notification message. You can customize it as
+                needed.
+            </p>
+        </div>
+        <div class="notification-content">
+            <h4 style="color: #f8f8f8; text-align: left; margin: 0">
+                It’s so quiet here
+            </h4>
+            <p>You’re all caught up! Go outside or something.</p>
+        </div>
+    </div>
+</div>
+}

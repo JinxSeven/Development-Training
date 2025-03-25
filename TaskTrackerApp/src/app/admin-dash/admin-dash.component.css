@@ -250,10 +250,10 @@ label {
 
 /* Primary Button Styles */
 :host {
-    --p-button-primary-background: #6950e8;
     --p-button-primary-hover-color: #f3f3f3;
     --p-button-primary-active-border-color: #592be7;
     --p-button-primary-active-color: #f3f3f3;
+    --p-button-primary-background: #6950e8;
     --p-button-primary-border-color: #6950e8;
     --p-button-primary-active-background: #592be7;
     --p-button-primary-color: #f3f3f3;

@@ -99,11 +99,13 @@ export class AdminDashComponent {
 
         this.apiServe.getAllClients().subscribe((clients) => {
             this.clientData = clients;
+            if (this.clientData.length > 0) {
             this.apiServe
                 .getProjectsByClientId(this.clientData[0].id)
                 .subscribe((projects) => {
                     this.projectsByClient = projects;
                 });
+            }
         });
 
         this.apiServe.getComplianceDetails().subscribe((compliances) => {
@@ -126,18 +128,22 @@ export class AdminDashComponent {
         const file = event.target.files[0]; // Get the selected file
 
         if (file) {
-            // List of allowed file types (MIME types for .ppt and .pptx)
+            // List of allowed file types (MIME types for .pdf)
             const allowedTypes = [
-                'application/vnd.ms-powerpoint',
-                'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'application/pdf',
+                'application/x-pdf',
+                'application/acrobat',
+                'applications/vnd.pdf',
+                'text/pdf',
+                'text/x-pdf'
             ];
 
             // Check if the selected file type is allowed
             if (!allowedTypes.includes(file.type)) {
                 this.showToast(
                     `error`,
-                    `Nope!`,
-                    `Please choose a .ppt or .pptx file to continue.`
+                    `Thats Odd!`,
+                    `Please select a .pdf file to continue.`
                 );
                 event.target.value = ''; // Reset the input field to allow another selection
                 this.selectedPresentation = null;

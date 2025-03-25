@@ -1,0 +1,522 @@
+.dash-main-container {
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 100%;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.425);
+    background-color: #111827;
+    color: #f3f4f6;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+.emp-grid-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(455.33px, 1fr));
+    gap: 15px;
+    max-height: 290px;
+    min-height: 290px;
+    overflow: auto;
+}
+
+:host ::ng-deep .p-card .p-card-body {
+    border-radius: 10px;
+    background-color: #1f2937;
+    color: #f3f4f6;
+    min-height: 290px;
+    min-width: 350px;
+}
+
+:host ::ng-deep .p-metergroup .p-metergroup-label-text {
+    font-size: 14px;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+    font-size: 1.6em;
+    font-weight: 600;
+}
+
+:host ::ng-deep .p-card .p-card-subtitle {
+    color: #8590ae;
+    margin-top: -5px;
+}
+
+:host ::ng-deep .p-dialog {
+    background-color: #111827;
+}
+
+:host ::ng-deep .p-dialog .p-dialog-maximize-button:focus,
+:host ::ng-deep .p-dialog .p-dialog-close-button:focus {
+    outline: none;
+}
+
+.reg-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.reg-form form select,
+.reg-form form input {
+    font-size: 16px;
+    text-align: left;
+    color: #f3f4f6;
+    background-color: #111827;
+}
+
+.reg-form label,
+.reg-form input::placeholder {
+    text-align: left;
+    color: #9ca3af;
+}
+
+label {
+    margin-bottom: -10px;
+}
+
+.reg-form form select,
+.reg-form form input[type="text"],
+.reg-form form input[type="email"],
+.reg-form form input[type="password"] {
+    padding: 10px;
+    border: 1px solid #283141;
+    border-radius: 5px;
+    width: 100%;
+    font-size: 16px;
+}
+
+.reg-form form input[type="submit"] {
+    background-color: #6950e8;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    width: 100%;
+    text-align: center;
+}
+
+.reg-form form input[type="submit"]:not(:disabled):hover {
+    background-color: #592be7;
+    cursor: pointer;
+    box-shadow: 0 0 5px #592be7;
+}
+
+.reg-form form input[type="submit"]:disabled {
+    background-color: #6950e8cb;
+    cursor: default;
+    color: #cfcdcd;
+}
+
+.reg-form form input:focus,
+.reg-form form select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #6950e86c;
+}
+
+.header-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: top;
+}
+
+.content-upload button,
+.add-user-btn {
+    margin-top: -5px;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    background-color: #6950e8;
+    padding: 10px 18px 10px 10px;
+    height: fit-content;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.assign-comp {
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    background-color: #6950e8;
+    padding: 10px 12px;
+    height: fit-content;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}
+
+.assign-comp:disabled:hover,
+.assign-comp:disabled {
+    background-color: #6950e8cb;
+    cursor: default;
+    box-shadow: none;
+    color: #cfcdcd;
+}
+
+.flex-box {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.assign-comp:hover,
+.add-user-btn:hover {
+    background-color: #592be7;
+    cursor: pointer;
+    box-shadow: 0 0 5px #592be7;
+}
+
+.add-user-btn img,
+.content-upload button img {
+    height: 17px;
+}
+
+.client-dtl-head {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.grid-container {
+    display: grid;
+    width: 70%;
+    grid-template-columns: repeat(3, 1fr); /* Three equal-width columns */
+    align-items: center; /* Vertically align items */
+}
+
+.client-dtl {
+    font-weight: 700;
+    color: #f3f4f6;
+}
+
+.client-dtl-res {
+    font-weight: 400;
+    color: #8590ae;
+    margin-top: -10px;
+}
+
+:host ::ng-deep .p-accordion .p-accordionheader {
+    background-color: #1f2937;
+}
+
+:host ::ng-deep .p-accordion .p-accordionheader:focus {
+    outline: none;
+}
+
+:host ::ng-deep .p-accordion .p-accordioncontent {
+    background-color: #1f2937;
+}
+
+:host ::ng-deep .p-accordion .p-accordioncontent .p-accordioncontent-content {
+    background-color: #1f2937;
+}
+
+:host ::ng-deep .p-accordion .p-accordionpanel:last-child {
+    border-bottom: none;
+}
+
+:host ::ng-deep .p-button {
+    height: 0;
+    padding: 16px 16px;
+}
+
+:host ::ng-deep .p-select {
+    width: 250px;
+    background-color: #1f2937;
+    border: 1px solid #4c5666;
+}
+
+/* Accordion Styles */
+:host {
+    --p-accordion-header-last-bottom-border-radius: 10px;
+    --p-accordion-header-active-background: #28313f;
+    --p-accordion-header-first-top-border-radius: 10px;
+    --p-accordion-header-hover-background: #28313f;
+    --p-accordion-header-active-hover-background: #28313f;
+}
+
+/* Primary Button Styles */
+:host {
+    --p-button-primary-background: #6950e8;
+    --p-button-primary-hover-color: #f3f3f3;
+    --p-button-primary-active-border-color: #592be7;
+    --p-button-primary-active-color: #f3f3f3;
+    --p-button-primary-border-color: #6950e8;
+    --p-button-primary-active-background: #592be7;
+    --p-button-primary-color: #f3f3f3;
+    --p-button-primary-hover-background: #592be7;
+    --p-button-primary-hover-border-color: #592be7;
+}
+
+/* Button Label Font Weight */
+:host {
+    --p-button-label-font-weight: 400;
+}
+
+/* Stepper Styles */
+:host {
+    --p-stepper-step-title-active-color: #6950e8;
+    --p-stepper-step-number-active-border-color: #6950e8;
+    --p-stepper-separator-active-background: #6950e8;
+    --p-stepper-step-number-active-color: #6950e8;
+}
+
+/* Select Dropdown Styles */
+:host {
+    --p-select-option-selected-background: #5a2be730;
+    --p-select-option-selected-focus-background: #5a2be730;
+    --p-select-focus-border-color: #6950e8;
+}
+
+.compliance-details,
+.question-form {
+    display: flex;
+    flex-direction: column;
+    /* flex: 1 1 calc(33.33% - 10px); */
+}
+
+.question-form select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.compliance-details input,
+.question-form input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    /* border: 1px solid #ccc; */
+}
+
+.compliance-details textarea,
+.question-form textarea {
+    margin-top: 5px;
+    border-radius: 5px;
+    min-width: 100%;
+    padding: 10px;
+    max-width: 100%;
+    flex-basis: 100%;
+    min-height: 150px;
+    border: 1px solid #283141;
+    background-color: #1f2937;
+    font-size: 15px;
+    color-scheme: dark;
+}
+
+.compliance-details input,
+.question-form input,
+.question-form select {
+    margin-top: 5px;
+    color-scheme: dark;
+    border: 1px solid #283141;
+    color: #f3f4f6;
+    background-color: #1f2937;
+    font-size: 15px;
+}
+
+.content-upload label,
+.compliance-details label,
+.question-form label {
+    color: #9ca3af;
+    margin-bottom: 5px;
+}
+
+.content-upload,
+#options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds space between each option row */
+    width: 50%;
+}
+
+.option-row {
+    display: flex;
+    align-items: center; /* Aligns radio button and input vertically */
+    gap: 10px; /* Adds space between the radio button and input */
+}
+
+.option-radio {
+    flex-shrink: 7; /* Prevent radio button from shrinking */
+    /* or you could set a fixed width: width: 20px; */
+}
+
+.option-input {
+    flex-grow: 1;
+}
+
+.question-btns {
+    display: flex;
+    gap: 15px;
+}
+
+input[type="file"]::file-selector-button,
+.content-upload button,
+.question-btns button {
+    background-color: #6950e8;
+    color: #ffffff;
+    border-radius: 5px;
+    text-align: center;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    padding: 8px 16px;
+    border: none;
+}
+
+.content-upload button:disabled,
+.question-btns button:disabled {
+    background-color: #463a9b;
+    color: #9596a2;
+}
+
+.content-upload button:disabled:hover,
+.question-btns button:disabled:hover {
+    background-color: #463a9b;
+    color: #9596a2;
+    cursor: default;
+    box-shadow: none;
+}
+
+.content-upload button:hover,
+.question-btns button:hover {
+    box-shadow: 0 0 5px #592be7;
+    background-color: #592be7;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    transform: scale(1.2);
+    width: 5px;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    box-shadow: 0 0 5px #6950e86c;
+}
+
+input[type="file"] {
+    border: 1px dashed #592be7;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+input[type="file"]::file-selector-button,
+.content-upload button {
+    width: 110px;
+    font-size: 14px;
+    font-family: "Onest";
+    margin-right: 10px;
+}
+
+.details-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.details-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+
+.details-layout > * {
+    flex-grow: 1;
+    flex-basis: 0; /* Ensures equal distribution regardless of content */
+}
+
+.qcount {
+    pointer-events: none;
+    background-color: #111827 !important;
+    box-shadow: 0 0 5px #6950e86c;
+    /* border: 1px solid #592BE7; */
+}
+
+/* Overlay Styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top */
+}
+
+/* Notification Box Styling */
+.notification-box {
+    position: absolute;
+    backdrop-filter: blur(10px); /* Additional blur inside the box */
+    border-radius: 16px; /* Rounded corners */
+    backdrop-filter: blur(5px); /* Blur effect */
+    padding: 20px;
+    background-color: rgba(105, 80, 232, 0.075);
+    width: 30%;
+    top: 25.75%;
+    right: 2%;
+    z-index: 1001; /* Ensure it's on top */
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}
+
+/* Title Styling */
+.notification-box h3 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: #f8f8f8;
+}
+
+/* Message Styling */
+.notification-box p {
+    text-align: left;
+    font-size: 0.9rem;
+    color: #adadad;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.notification-content {
+    background-color: #283141;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.take-assesment {
+    height: 40px;
+    color: #ffffff;
+    background-color: #6950E8;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    border: none;
+}
+
+.take-assesment:hover {
+    background-color: #592BE7;
+    cursor: pointer;
+    box-shadow: 0 0 5px #592BE7;
+}

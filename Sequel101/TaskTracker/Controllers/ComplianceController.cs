@@ -61,5 +61,46 @@ namespace TaskTracker.Controllers
                 return StatusCode(500, new { message = "Error getting compliance", error = ex.Message });
             }
         }
+
+        [HttpGet("GetAssignedCompliancesById")]
+        public async Task<IActionResult> GetAssignedCompliancesById(Guid userId)
+        {
+            try
+            {
+                var response = await _complianceRepo.GetAssignedCompliancesById(userId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error getting compliance", error = ex.Message });
+            }
+        }
+
+        [HttpGet("GetPptByComplianceId")]
+        public async Task<IActionResult> GetPptByComplianceId(Guid compId)
+        {
+            try
+            {
+                var response = await _complianceRepo.GetPptByComplianceId(compId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error getting presentation", error = ex.Message });
+            }
+        }
+
+        [HttpGet("GetQuestionsByCompliancesId")]
+        public async Task<IActionResult> GetQuestionsByCompliancesId(Guid compId) {
+            try 
+            {
+                var response = await _complianceRepo.GetQuestionsByCompliancesId(compId);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = "Error getting questions", error = ex.Message });
+            }
+        }
     }
 }
