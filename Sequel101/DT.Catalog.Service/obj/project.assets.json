@@ -2128,11 +2128,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
+      "projectUniqueName": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
       "projectName": "DT.Catalog.Service",
-      "projectPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
+      "projectPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
       "packagesPath": "C:\\Users\\GodBless\\.nuget\\packages\\",
-      "outputPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\DT.Catalog.Service\\obj\\",
+      "outputPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\GodBless\\AppData\\Roaming\\NuGet\\NuGet.Config"

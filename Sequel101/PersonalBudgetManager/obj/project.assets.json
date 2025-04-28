@@ -2109,11 +2109,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\PersonalBudgetManager\\PersonalBudgetManager.csproj",
+      "projectUniqueName": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\PersonalBudgetManager\\PersonalBudgetManager.csproj",
       "projectName": "PersonalBudgetManager",
-      "projectPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\PersonalBudgetManager\\PersonalBudgetManager.csproj",
+      "projectPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\PersonalBudgetManager\\PersonalBudgetManager.csproj",
       "packagesPath": "C:\\Users\\GodBless\\.nuget\\packages\\",
-      "outputPath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\PersonalBudgetManager\\obj\\",
+      "outputPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\PersonalBudgetManager\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\GodBless\\AppData\\Roaming\\NuGet\\NuGet.Config"

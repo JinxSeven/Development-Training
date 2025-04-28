@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "u+sKkppz038=",
+  "dgSpecHash": "/vapSs+jFWA=",
   "success": true,
-  "projectFilePath": "D:\\Skills\\JinxSeven\\ClaySys\\Sequel101\\TodoApp(SqLite)\\TodoApp(SqLite).csproj",
+  "projectFilePath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\TodoApp(SqLite)\\TodoApp(SqLite).csproj",
   "expectedPackageFiles": [
     "C:\\Users\\GodBless\\.nuget\\packages\\microsoft.data.sqlite.core\\8.0.10\\microsoft.data.sqlite.core.8.0.10.nupkg.sha512",
     "C:\\Users\\GodBless\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.10\\sqlitepclraw.bundle_e_sqlite3.2.1.10.nupkg.sha512",
