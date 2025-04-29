@@ -28,7 +28,10 @@
                 <div><i class="fa-solid fa-money-bill-transfer fa-2xl"></i></div>
                 <label>+ Transaction</label>
             </button>
-            <button id="dummy-btn"></button>
+            <button id="new-bnkacc-btn" (click)="openNewAccPopup(overlay, newAccPopup)">
+                <div><i class="fa-solid fa-building-columns fa-2xl"></i></div>
+                <label>+ Bank Account</label>
+            </button>
         </div>
     </div>
     <div class="mid-section-two">
@@ -40,6 +43,11 @@
                 >
                     <i class="fa-solid fa-arrow-rotate-right"></i>
                 </button>
+                <button class="chart-reset-btn" id="chart-filter-reset"
+                (click)="openFilterPopup(overlay, expFltrPopup)"
+                >
+                <i class="fa-solid fa-filter-circle-dollar"></i>
+            </button>
             </div>
             <div class="category-btns">
                 <button id="chart-filter-entertain"
@@ -89,8 +97,60 @@
             ></canvas>
         </div>
     </div>
+    <div class="exp-fltr-div" id="expense-filter-popup" #expFltrPopup>
+        <h2 style="margin-top: 8px" id="goal-complete-name">Filter Expense</h2>
+        <button class="close-popup" id="goal-complete-close-popup"
+            (click)="closeFilterPopup(overlay, expFltrPopup, expFltrForm)">
+            &times;
+        </button>
+        <form #expFltrForm="ngForm" id="exp-fltr-form" (ngSubmit)="applyExpenseChartFilter(expFltrForm, overlay, expFltrPopup)">
+            <h4 style="display: inline">From:</h4>
+                <input type="date" required ngModel name="fromDate" #startDate="ngModel">
+            <h4 style="display: inline">To:</h4>
+            <input type="date" required ngModel name="toDate" #endDate="ngModel">
+            <input
+                type="submit"
+                value="Filter Expense"
+                [disabled]="expFltrForm.invalid || (startDate.value && endDate.value && startDate.value > endDate.value)"
+            >
+            <p class="popup-errors" id="exp-fltr-error">
+                @if (startDate.value && endDate.value && startDate.value > endDate.value) {
+                    To date must be later than from date!
+                } @else { {{errorOut}} }
+            </p>
+        </form>
+    </div>
     <div class="mid-section-three">
-        <h3>Transaction History</h3>
+        <div class="source-filter">
+            <h3>Transaction History</h3>
+            <button class="transact-history-btns" id="download-csv-btn"
+                (click)="downloadTransactionsCsv(transactFilterForm)"
+            >
+                <i class="fa-solid fa-file-export" style="margin-right: 5px;"></i>
+                Export CSV
+            </button>
+            <a href="https://jinxseven.github.io/Cloud-Banking-Solution/" target="_blank" rel="noopener noreferrer" routerLinkActive="router-link-active" ><button class="transact-history-btns" id="visualize-csv-btn">
+                <i class="fa-solid fa-chart-pie" style="margin-right: 5px;"></i>
+                Visualize CSV
+            </button></a>
+            <form #transactFilterForm="ngForm">
+                <select
+                    ngModel
+                    name="accSel"
+                    (change)="loadAptTransactions
+                    (transactFilterForm.controls['accSel'].value)"
+                >
+                    <option value="">Select an account</option>
+                    @for (acc of arrOfAccounts; track $index) {
+                        <option
+                            value="{{acc.accno}}"
+                        >{{acc.accname}}</option>
+                    } @empty {
+                        <option>No account on file</option>
+                    }
+                </select>
+            </form>
+        </div>
         <div class="transaction-history-table">
             <table>
                 <thead>
@@ -104,7 +164,7 @@
                     </tr>
                 </thead>
                 <tbody id="table-tbody">
-                @for (transact of loggedUserDashData.transactions; track $index) {
+                @for (transact of transactionsToShow; track $index) {
                     @if (transact.category != "savings") {
                         <tr>
                             <td>{{transact.type}}</td>
@@ -132,9 +192,7 @@
                             font-size: 15px;
                         "
                     >
-                    <h3 style="color: #b3b2b2;">
-                        Add transactions to see here
-                    </h3>
+                    <h3 style="color: #b3b2b2;">Add transactions to see here</h3>
                 </div>
                 }
                 </tbody>
@@ -269,8 +327,25 @@
             />
             <label>Select transaction date</label>
             <input type="date" id="new-transaction-date-inp" name="transactDate" ngModel required/>
+            <label>Make transaction to/from</label>
+            <select id="new-transaction-purpose-select"
+                name="transactToOrFrom"
+                ngModel required>
+                @for (acc of arrOfAccounts; track acc) {
+                    <option
+                        style="font-weight: 600; font-size: 17px"
+                        value="{{acc.accno}}"
+                    >
+                        {{acc.accname}} - {{acc.accno}}
+                    </option>
+                } @empty {
+                    <option>No account on file</option>
+                }
+            </select>
             <label>Select transaction source/purpose</label>
-            <select id="new-transaction-purpose-select" name="transactCateg" ngModel required>
+            <select id="new-transaction-purpose-select"
+                name="transactCateg"
+                ngModel required>
                 @for (option of arrOfOptions; track option) {
                     <option
                         style="font-weight: 600; font-size: 17px"
@@ -314,14 +389,119 @@
                     A valid date must be selected!
                 } @else if (
                     newTransactForm.form.get("transactCateg")?.touched &&
-                    (newTransactForm.form.get("transactTypeSel")?.value == "" ||
-                    newTransactForm.form.get("transactTypeSel")?.value == null)
+                    (newTransactForm.form.get("transactCateg")?.value == "" ||
+                    newTransactForm.form.get("transactCateg")?.value == null)
                 ) {
                     Transaction category can't be empty!
-                } @else {
+                } @else if (
+                    newTransactForm.form.get("transactToOrFrom")?.touched &&
+                    (newTransactForm.form.get("transactToOrFrom")?.value == "" ||
+                    newTransactForm.form.get("transactToOrFrom")?.value == null)
+                ) {
+                    Transaction account must be selected!
+                }@else {
                     {{errorOut}}
                 }
             </span>
+        </form>
+    </div>
+    <div class="acc-form-div" id="new-acc-popup" #newAccPopup>
+        <h2>New Account</h2>
+        <button class="close-popup" id="close-goal-popup" (click)="closeNewAccPopup(newAccForm, overlay, newAccPopup)">&times;</button>
+        <form action="" id="new-acc-form"
+            (ngSubmit)="addNewAccount(
+            newAccForm, overlay, newAccPopup
+            )"
+            #newAccForm="ngForm"
+            >
+            <label>Enter account name</label>
+            <input
+                placeholder="Account name"
+                type="text"
+                id="new-acc-name-inp"
+                name="accName"
+                maxlength="25"
+                ngModel
+                required
+            />
+            <label>Enter account number</label>
+            <input
+                placeholder="Account number"
+                type="number"
+                id="new-acc-num-inp"
+                name="accNumber"
+                pattern="[0-9]+"
+                ngModel
+                required
+                minlength="9"
+                maxlength="18"
+            />
+            <label>Enter IFSC Code</label>
+            <input
+                placeholder="IFSC code"
+                type="text"
+                id="new-acc-ifsc-inp"
+                ngModel
+                required
+                name="accIfsc"
+                pattern="^[A-Z]{4}\d{7}$"
+            />
+            <label>Enter Account Balance</label>
+            <input
+                placeholder="Account balance"
+                type="text"
+                id="new-acc-blnc-inp"
+                ngModel
+                required
+                name="accBalance"
+                pattern="[0-9]+"
+                min="25000"
+            />
+            <input id="save-acc-btn" type="submit" value="Save Account"
+                [disabled]="newAccForm.invalid"
+            >
+            <p class="popup-errors" id="new-acc-error">
+                @if (
+                    newAccForm.form.get('accName')?.touched &&
+                    newAccForm.form.get('accName')?.errors?.['required']
+                ) {
+                    Account name can't be empty!
+                } @else if (
+                    newAccForm.form.get('accName')?.dirty &&
+                    (checkDuplicateGoals(newGoalForm))
+                ) {
+                    Duplicate names not allowed!
+                } @else if (
+                    newAccForm.form.get('accNumber')?.touched &&
+                    newAccForm.form.get('accNumber')?.errors?.['required']
+                ) {
+                    Account number cant be empty!
+                } @else if (
+                    newAccForm.form.get('accNumber')?.touched &&
+                    newAccForm.form.get('accNumber')?.errors?.['minlength']
+                ) {
+                    Account number too short!
+                } @else if (
+                    newAccForm.form.get('accNumber')?.touched &&
+                    newAccForm.form.get('accNumber')?.errors?.['maxlength']
+                ) {
+                    Account number too long!
+                } @else if (
+                    newAccForm.form.get('accIfsc')?.touched &&
+                    newAccForm.form.get('accIfsc')?.errors?.['required'] ||
+                    newAccForm.form.get('accIfsc')?.errors?.['pattern']
+                ) {
+                    IFSC code invalid!
+                } @else if (
+                    newAccForm.form.get('accBalance')?.touched &&
+                    newAccForm.form.get('accBalance')?.errors?.['pattern'] ||
+                    newAccForm.form.get('accBalance')?.errors?.['min']
+                ) {
+                    Account balance can only be a +ve number!
+                } @else {
+                    {{errorOut}}
+                }
+            </p>
         </form>
     </div>
     <div class="transaction-form-div" id="edit-transaction-popup" #editTransactPopup>

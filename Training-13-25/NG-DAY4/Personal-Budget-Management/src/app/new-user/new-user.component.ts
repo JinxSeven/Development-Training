@@ -4,13 +4,13 @@ import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { User } from '../interfaces/user';
 import { UserDash } from '../interfaces/user-dash';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 
 @Component({
     selector: 'app-new-user',
     standalone: true,
-    imports: [FormsModule],
+    imports: [FormsModule, RouterModule],
     templateUrl: './new-user.component.html',
     styleUrl: './new-user.component.css',
 })
@@ -43,7 +43,8 @@ export class NewUserComponent {
             income: 0,
             expense: 0,
             transactions: [],
-            goals: []
+            goals: [],
+            accounts: []
         };
         userData.push(newUser);
         this.userService.setUserLoginData(userData);

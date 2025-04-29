@@ -50,7 +50,8 @@ export class GoalService {
                 type: "expense",
                 amount: newGoal.contribution,
                 date: date2Day,
-                category: "savings"
+                category: "savings",
+                toOrFrom: 777
             }
             this.loggedUserDashData.transactions.push(newTransaction);
             this.loggedUserDashData.expense += newTransaction.amount;
@@ -76,7 +77,8 @@ export class GoalService {
                 type: "expense",
                 amount: parseInt(editGoalForm.form.get('fundGoal')?.value),
                 date: date2Day,
-                category: "savings"
+                category: "savings",
+                toOrFrom: 420
             }
             this.loggedUserDashData.transactions.push(newTransaction);
             this.loggedUserDashData.expense += newTransaction.amount;
@@ -105,8 +107,8 @@ export class GoalService {
         overlay: HTMLDivElement,
         goalPopup: HTMLDivElement
     ) {
+        goalPopup.style.display = "none";
         goalForm.reset();
         overlay.style.display = "none";
-        goalPopup.style.display = "none";
     }
 }

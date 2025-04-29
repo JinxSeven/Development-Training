@@ -1,7 +1,8 @@
+import { AccountService } from './../../../services/account.service';
 import { Component, HostListener, inject } from '@angular/core';
-import { FormsModule, NgForm } from '@angular/forms';
+import { AbstractControl, FormsModule, NgForm } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
-import { UserDash } from '../../../interfaces/user-dash';
+import { Account, Transaction, UserDash } from '../../../interfaces/user-dash';
 import { GoalService } from '../../../services/goal.service';
 import { TransactionService } from '../../../services/transaction.service';
 import { Chart } from 'chart.js/auto';
@@ -19,6 +20,11 @@ export class SectionComponent {
     userService = inject(UserService);
     goalService = inject(GoalService);
     transactService = inject(TransactionService);
+    accountService = inject(AccountService);
+
+    filterEnabled: boolean = false;
+    filterToDate: string | null = null;
+    filterFromDate: string | null = null;
 
     userDashData: UserDash[] = this.userService.getUserDashData();
     loggedIndx: number = this.userService.getLoggedIndx();
@@ -26,10 +32,13 @@ export class SectionComponent {
 
     errorOut: string = "‎";
     arrOfOptions: string[] = this.transactService.returnAptCategories("expense");
+    arrOfAccounts: Account[] = this.accountService.updateAccountsArr();
     expenseChart: Chart | null = null;
     idx: number | null = null;
+    transactionsToShow: Transaction[] = this.loggedUserDashData.transactions;
+    csvString!: any;
 
-    constructor() {}
+    constructor() { }
 
     updateDashBoardData() {
         this.userDashData = this.userService.getUserDashData();
@@ -37,14 +46,59 @@ export class SectionComponent {
         this.loggedUserDashData = this.userDashData[this.loggedIndx];
     }
 
+    dateValidator(control: AbstractControl) {
+        const fromDate = new Date(control.get('startDate')?.value);
+        const toDate = new Date(control.get('endDate')?.value);
+
+        if (fromDate && toDate && fromDate > toDate) {
+            return { invalidDateRange: true };
+        }
+        return null;
+    }
+
     ngDoCheck() {
         this.updateDashBoardData();
         this.transactService.updateDashBoardData();
         this.goalService.updateDashBoardData();
+        this.accountService.updateDashBoardData();
         if (this.transactService.updateSignal) {
             this.updateChart();
+            this.updateDashBoardData();
+            this.arrOfAccounts = this.accountService.updateAccountsArr();
             this.transactService.updateSignal = false;
+            this.transactionsToShow = this.loggedUserDashData.transactions;
         }
+        if (this.filterEnabled) {
+            this.updateChart();
+            this.filterEnabled = false;
+            this.filterToDate = null;
+            this.filterFromDate = null;
+        }
+        this.csvString = [
+            [
+                "Type",
+                "Amount",
+                "Source/Destination",
+                "Account Num",
+                "Category",
+                "Date"
+            ],
+            ...this.transactionsToShow.map(transaction => {
+                const account = this.arrOfAccounts.find(
+                    acc => String(acc.accno) === String(transaction.toOrFrom)
+                );
+
+                const accountName = account?.accname;
+                return [
+                    transaction.type,
+                    transaction.amount,
+                    transaction.toOrFrom,
+                    accountName,
+                    transaction.category,
+                    transaction.date
+                ]
+            })
+        ];
     }
 
     addNewGoal(
@@ -101,8 +155,8 @@ export class SectionComponent {
         overlay: HTMLDivElement,
         newTransactPopup: HTMLDivElement
     ) {
-        console.log("newTransactAdded");
         this.transactService.addNewTransaction(newTransactForm, overlay, newTransactPopup);
+        console.log("newTransactAdded");
     }
 
     closeTransactionPopup(
@@ -123,6 +177,26 @@ export class SectionComponent {
 
     delTransaction(indx: number): void {
         this.transactService.delTransaction(indx);
+    }
+
+    openNewAccPopup(overlay: HTMLDivElement, newAccPopup: HTMLDivElement){
+        this.accountService.openNewAccPopup(overlay, newAccPopup);
+    }
+
+    addNewAccount(newAccForm: NgForm, overlay: HTMLDivElement, newAccPopup: HTMLDivElement) {
+        this.accountService.addNewAccount(newAccForm, overlay, newAccPopup);
+    }
+
+    closeNewAccPopup(
+        newAccForm: NgForm,
+        overlay: HTMLDivElement,
+        newAccPopup: HTMLDivElement
+    ) {
+        this.accountService.closeNewAccPopup(
+            overlay,
+            newAccPopup,
+            newAccForm
+        )
     }
 
     ngAfterViewInit() {
@@ -164,10 +238,26 @@ export class SectionComponent {
 
     updateExpenseChartData(): number[] {
         const transactions = this.loggedUserDashData.transactions || [];
-        const expenses = transactions.filter((itr: any) => itr.type === "expense");
+        let expenses = transactions.filter((itr: any) => itr.type === "expense");
+        let filteredExpenses: Transaction[] = [];
 
+        if (this.filterEnabled) {
+            filteredExpenses = expenses.filter((itr: Transaction) => {
+                const itrDate = new Date(itr.date);
+                const fromDate = new Date(this.filterFromDate!);
+                const toDate = new Date(this.filterToDate!);
+                return itrDate >= fromDate && itrDate <= toDate;
+            });
+        }
         const categories = ["Entertainment", "Health", "Shopping", "Travel", "Education", "Other"];
         const categoryMap = new Map(categories.map(categ => [categ, 0]));
+
+        if (this.filterEnabled && filteredExpenses.length < 1) {
+            return [];
+        }
+        if (filteredExpenses.length > 0) {
+            expenses = filteredExpenses;
+        }
 
         expenses.forEach(expense => {
             const category = this.getCategoryFromPurpose(expense.category);
@@ -202,6 +292,66 @@ export class SectionComponent {
         }
     }
 
+    loadAptTransactions(accNum: string): Transaction[] {
+        this.updateDashBoardData();
+        if (accNum == "") {
+            this.transactionsToShow = this.loggedUserDashData.transactions
+            return this.transactionsToShow;
+        }
+        this.transactionsToShow = [];
+        const userTransactions = this.loggedUserDashData.transactions;
+        userTransactions.forEach(transact => {
+            if (transact.toOrFrom == Number(accNum)) {
+                this.transactionsToShow.push(transact);
+            }
+        });
+        return this.transactionsToShow;
+    }
+
+    openFilterPopup(overlay: HTMLDivElement, expFltrPopup: HTMLDivElement) {
+        overlay.style.display = "block";
+        expFltrPopup.style.display = "block";
+    }
+
+    closeFilterPopup(overlay: HTMLDivElement, expFltrPopup: HTMLDivElement, expFltrForm: NgForm) {
+        overlay.style.display = "none";
+        expFltrPopup.style.display = "none";
+        expFltrForm.reset();
+    }
+
+    applyExpenseChartFilter(expFltrForm: NgForm, overlay: HTMLDivElement, expFltrPopup: HTMLDivElement) {
+        this.filterFromDate = expFltrForm.form.get('fromDate')?.value;
+        this.filterToDate = expFltrForm.form.get('toDate')?.value;
+        this.filterEnabled = true;
+        this.closeFilterPopup(overlay, expFltrPopup, expFltrForm);
+    }
+
+    downloadTransactionsCsv(transactFilterForm: NgForm) {
+        let fileName: string;
+        const account: Account[] = this.arrOfAccounts.filter(acc => {
+            return acc.accno == transactFilterForm.form.get('accSel')?.value;
+        });
+        if (account.length > 0) {
+            fileName = `${this.loggedUserDashData.username}-${account[0].accname}`
+        } else {
+            fileName = `${this.loggedUserDashData.username}-overall`;
+        }
+        const csvContent = this.csvString
+            .map((row: any) => row
+            .map((cell: any) => `"${cell}"`)
+            .join(","))
+            .join("\n");
+
+        const blob = new Blob([csvContent], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `${fileName}.csv`;
+        link.click();
+
+        URL.revokeObjectURL(url);
+    }
 
     updateChartData() {
         const chartDataXSmall = ["Ent..", "Hea..", "Shp..", "Tra..", "Edu..", "Oth.."];
@@ -223,7 +373,6 @@ export class SectionComponent {
         this.expenseChart!.data.labels = expname;
         this.expenseChart!.config.data.datasets[0].data = exp;
         this.expenseChart!.update();
-        console.log("filter_chart_reset");
         this.updateChart()
         if (window.innerWidth < 1404 && window.innerWidth > 1079) this.updateChartData();
         if (window.innerWidth < 608) this.updateChartData();
