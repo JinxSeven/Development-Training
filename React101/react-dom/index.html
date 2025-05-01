@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>React DOM</title>
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <!-- <link rel="stylesheet" href="./main.css"> -->
+        <style>
+            * {
+                font-style: italic;
+            }
+
+            .btn {
+                background-color: bisque;
+                padding: 3px 8px;
+                border: none;
+                border-radius: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script>
+        const clickHandler = () => {
+            const msg = "Jello!"
+            console.log(msg);
+            alert(msg);
+        };
+
+        const App = () => {
+            return React.createElement("div", null, [
+                React.createElement("p", null, "DOM Bacix"),
+                React.createElement(
+                    "button",
+                    {
+                        className: "btn",
+                        onClick: clickHandler
+                    },
+                    "Click Me"
+                ),
+            ]);
+        };
+
+        ReactDOM.render(React.createElement(App), document.getElementById("root"));
+    </script>
+</html>
