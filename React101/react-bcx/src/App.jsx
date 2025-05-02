@@ -1,35 +1,69 @@
-import { useState } from 'react'
-import './App.css'
+import "./App.css";
+import AddTask from "./components/AddTask";
+import TaskItem from "./components/TaskItem";
+import { useState } from "react";
 
-function AlertButton() {
-  const raiseAlert = () => {
-    alert(`Yay!`);
-  } 
-
-  return (
-    <button onClick={raiseAlert}>Raise Alert</button>
-  )
-}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [taskData, addTaskData] = useState([]);
+  const [taskCount, addTaskCount] = useState(1);
+  
+  const proceedAddingTask = (taskTitle) => {
+    addTaskData((taskData) => [
+      ...taskData,
+      {
+        title: taskTitle,
+        isCompleted: false,
+        id: taskCount
+      }
+    ]);
+    addTaskCount((taskCount) => taskCount + 1);
+  }
+
+  const toggleTaskStatus = (taskId) => {
+    addTaskData((taskData) => 
+      taskData.map(task => 
+        task.id === taskId 
+          ? {...task, isCompleted: !task.isCompleted} 
+          : task
+      )
+    );
+  }
+
+  /**
+  const toggleTaskStatus = (taskId) => {
+  addTaskData(prevTasks => 
+    prevTasks.map(task => 
+      task.id === taskId 
+        ? {...task, isCompleted: !task.isCompleted} 
+        : task
+    )
+  );
+}
+   */
 
   return (
     <>
-      <AlertButton></AlertButton>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <AddTask onAddTask={proceedAddingTask}></AddTask>
+      <div style={
+        {
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          marginTop: "10px"
+        }
+      }>
+        {taskData.map((task) => (
+          <TaskItem key={task.id}
+            id={task.id}
+            title={task.title}
+            isCompleted={task.isCompleted}
+            toggleTaskStatus={toggleTaskStatus}
+          ></TaskItem>
+        ))}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
