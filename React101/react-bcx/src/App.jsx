@@ -30,17 +30,11 @@ function App() {
     );
   }
 
-  /**
-  const toggleTaskStatus = (taskId) => {
-  addTaskData(prevTasks => 
-    prevTasks.map(task => 
-      task.id === taskId 
-        ? {...task, isCompleted: !task.isCompleted} 
-        : task
-    )
-  );
-}
-   */
+  function deleteTask(taskId) {
+    addTaskData((taskData) => 
+      taskData.filter(task => task.id !== taskId)
+    );
+  }
 
   return (
     <>
@@ -59,6 +53,7 @@ function App() {
             title={task.title}
             isCompleted={task.isCompleted}
             toggleTaskStatus={toggleTaskStatus}
+            deleteTask={deleteTask}
           ></TaskItem>
         ))}
       </div>
