@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TodoApp(SqLite)")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+11ed09dd98b4065e318a560b13bef8f0cb579762")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+05e06a357edb8a214d646caaf7a717dd9198b468")]
 [assembly: System.Reflection.AssemblyProductAttribute("TodoApp(SqLite)")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TodoApp(SqLite)")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
