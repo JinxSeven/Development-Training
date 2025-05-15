@@ -8,8 +8,30 @@ import SkipNextIcon from "@mui/icons-material/SkipNext";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 import Slider from "@mui/joy/Slider";
+import { useEffect } from "react";
 
-export default function Player() {
+export default function Player({ activeSong, prevSong, nextSong }) {
+  const [currentTime, setCurrentTime] = React.useState(0);
+
+  useEffect(() => {
+    if (!activeSong) return;
+    const audio = activeSong.audio;
+    
+    const updateTime = () => setCurrentTime(audio.currentTime);
+    audio.addEventListener('timeupdate', updateTime);
+  
+    return () => {
+      audio.removeEventListener('timeupdate', updateTime);
+    }
+  }, [activeSong])
+
+  const convertor = (duration) => {
+    const [minutes, seconds] = duration.split(":").map(Number);
+    return (minutes * 60) + seconds;
+  }
+
+  const maxDuration = activeSong ? convertor(activeSong.duration) : 0;
+
   return (
     <Card orientation="horizontal" variant="soft" sx={{ width: "25%" }}>
       <CardContent>
@@ -25,10 +47,13 @@ export default function Player() {
             textColor="primary.plainColor"
             sx={{ fontWeight: "md", fontSize: "sm" }}
           >
-            Mocking Bird
+            {activeSong?.name ?? ''}
           </Typography>
           <Typography level="body-sm" sx={{ fontWeight: "sm", fontSize: "sm" }}>
-          <span>-</span> Eminem
+            <span>{activeSong ? '-' : 'Pick a song from library'}</span>
+          </Typography>
+          <Typography level="body-sm" sx={{ fontWeight: "sm", fontSize: "sm" }}>
+            {activeSong?.artist ?? ''}
           </Typography>
         </div>
         <div
@@ -38,13 +63,13 @@ export default function Player() {
             justifyContent: "center",
           }}
         >
-          <IconButton variant="soft" color="primary">
+          <IconButton variant="soft" color="primary" onClick={() => prevSong()}>
             <SkipPreviousIcon />
           </IconButton>
           <IconButton variant="soft" color="primary">
             <PlayArrowIcon />
           </IconButton>
-          <IconButton variant="soft" color="primary">
+          <IconButton variant="soft" color="primary" onClick={() => nextSong()}>
             <SkipNextIcon />
           </IconButton>
         </div>
@@ -56,8 +81,8 @@ export default function Player() {
           }}
         >
           <p>0:00</p>
-          <Slider />
-          <p>5:20</p>
+          <Slider value={currentTime} max={maxDuration}/>
+          <p>{activeSong?.duration ?? '0:00'}</p>
         </div>
       </CardContent>
     </Card>

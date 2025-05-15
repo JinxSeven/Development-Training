@@ -11,12 +11,11 @@ function App() {
   
   useEffect(() => {
     console.log("This runs first");
-  
     return () => {
       console.log("this runs second");
     }
   }, [taskData]);
-  
+
 
   const proceedAddingTask = (taskTitle) => {
     addTaskData((taskData) => [

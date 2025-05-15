@@ -1,48 +1,49 @@
-import * as React from 'react';
-import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
-import Button from '@mui/joy/Button';
-import Drawer from '@mui/joy/Drawer';
-import DialogTitle from '@mui/joy/DialogTitle';
-import DialogContent from '@mui/joy/DialogContent';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
-import Typography from '@mui/joy/Typography';
-import ModalClose from '@mui/joy/ModalClose';
+import * as React from "react";
+import Button from "@mui/joy/Button";
+import Drawer from "@mui/joy/Drawer";
+import DialogTitle from "@mui/joy/DialogTitle";
+import DialogContent from "@mui/joy/DialogContent";
+import List from "@mui/joy/List";
+import ListItem from "@mui/joy/ListItem";
+import ModalClose from "@mui/joy/ModalClose";
+import Song from "./Song";
+import ListItemButton from "@mui/joy/ListItemButton";
 
-export default function DrawerScrollable() {
-  const [openLibrary, setOpenLibrary] = React.useState(false);
+export default function Library({ songData, songClickHandler }) {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  function onSongClick(songId) {
+    songClickHandler(songId);
+    setIsOpen(false);
+  }
 
   return (
     <React.Fragment>
-      <Button variant="outlined" color="neutral" onClick={() => setOpenLibrary(true)}>
-        Open drawer
+      <Button variant="soft" color="neutral" onClick={() => setIsOpen(true)}>
+        Open Library
       </Button>
-      <Drawer open={openLibrary} onClose={() => setOpenLibrary(false)}>
+      <Drawer open={isOpen} onClose={() => setIsOpen(false)}>
         <ModalClose />
-        <DialogTitle>Title</DialogTitle>
+        <DialogTitle>Songs Library</DialogTitle>
         <DialogContent>
           <List>
-
+            {songData.map((song, index) => (
+              <ListItem key={index}>
+                <ListItemButton
+                  onClick={() => onSongClick(song.id)}
+                >
+                  <Song
+                    image={song.cover}
+                    name={song.name}
+                    artist={song.artist}
+                    duration={song.duration}
+                    state={song.active}
+                  />
+                </ListItemButton>
+              </ListItem>
+            ))}
           </List>
         </DialogContent>
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 1,
-            p: 1.5,
-            pb: 2,
-            borderTop: '1px solid',
-            borderColor: 'divider',
-          }}
-        >
-          <Avatar size="lg" />
-          <div>
-            <Typography level="title-md">Username</Typography>
-            <Typography level="body-sm">joined 20 Jun 2023</Typography>
-          </div>
-        </Box>
       </Drawer>
     </React.Fragment>
   );
