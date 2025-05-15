@@ -1,8 +1,14 @@
 import * as React from "react";
+import IconButton from '@mui/joy/IconButton';
+import DeleteForeverSharpIcon from '@mui/icons-material/DeleteForeverSharp';
 
-export default function TaskItem({ title, isCompleted, id, toggleTaskStatus }) {
+export default function TaskItem({ title, isCompleted, id, toggleTaskStatus, deleteTask }) {
   function onTaskClick(taskId) {
     toggleTaskStatus(taskId);
+  }
+
+  function onDelClick(taskId) {
+    deleteTask(taskId);
   }
 
   return (
@@ -10,16 +16,23 @@ export default function TaskItem({ title, isCompleted, id, toggleTaskStatus }) {
       style={{
         display: "flex",
         padding: "10px",
-        flexDirection: "column",
-        backgroundColor: "#C2C2C2",
+        flexDirection: "row",
+        backgroundColor: "#2b2f3e",
         color: "#000",
+        justifyContent: "space-between",
         borderRadius: "10px",
         textAlign: "left"
       }}
       onClick={() => onTaskClick(id)}
     >
-      <p style={{margin: "0"}}><span>{id}) </span>{title}</p>
-      <p style={{margin: "0"}}>{isCompleted ? "Task completed" : "Task not completed"}</p>
+      <div>
+        <p style={{margin: "0", color: "#f4f8f9"}}><span>{id}. </span>{title}</p>
+        <p style={{margin: "0", color: isCompleted ? "#27c93f" : "#ff5f56"}} className="">{isCompleted ? "Task completed" : "Task not completed"}</p>
+      </div>
+      <IconButton
+        style={{color: "#ff5f56", padding: "5px 10px", borderRadius: "20%"}}
+        onClick={() => onDelClick(id)}
+      ><DeleteForeverSharpIcon /></IconButton>
     </div>
   );
 }
