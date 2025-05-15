@@ -12,7 +12,6 @@ dist
 dist-ssr
 *.local
 public/music
-utils
 
 # Editor directories and files
 .vscode/*

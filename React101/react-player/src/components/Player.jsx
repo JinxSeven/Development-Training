@@ -12,6 +12,7 @@ import { useEffect } from "react";
 
 export default function Player({ activeSong, prevSong, nextSong }) {
   const [currentTime, setCurrentTime] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
 
   useEffect(() => {
     if (!activeSong) return;
@@ -31,6 +32,17 @@ export default function Player({ activeSong, prevSong, nextSong }) {
   }
 
   const maxDuration = activeSong ? convertor(activeSong.duration) : 0;
+
+  const handleSliderChange = (event, updatedValue) => {
+    activeSong.audio.currentTime = updatedValue;
+    setCurrentTime(updatedValue);
+  };
+
+  const handlePlayOrPause = () => {
+    if (paused) { activeSong.audio.play(); }
+    else { activeSong.audio.pause(); }
+    setPaused(!paused);
+  }
 
   return (
     <Card orientation="horizontal" variant="soft" sx={{ width: "25%" }}>
@@ -66,8 +78,8 @@ export default function Player({ activeSong, prevSong, nextSong }) {
           <IconButton variant="soft" color="primary" onClick={() => prevSong()}>
             <SkipPreviousIcon />
           </IconButton>
-          <IconButton variant="soft" color="primary">
-            <PlayArrowIcon />
+          <IconButton variant="soft" color="primary" onClick={() => handlePlayOrPause()}>
+            {!paused ? <PauseIcon/> : <PlayArrowIcon />}
           </IconButton>
           <IconButton variant="soft" color="primary" onClick={() => nextSong()}>
             <SkipNextIcon />
@@ -81,7 +93,7 @@ export default function Player({ activeSong, prevSong, nextSong }) {
           }}
         >
           <p>0:00</p>
-          <Slider value={currentTime} max={maxDuration}/>
+          <Slider value={currentTime} max={maxDuration} onChange={handleSliderChange}/>
           <p>{activeSong?.duration ?? '0:00'}</p>
         </div>
       </CardContent>

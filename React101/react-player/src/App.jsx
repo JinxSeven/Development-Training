@@ -7,7 +7,6 @@ import "./App.scss";
 export default function App() {
   const [songs, setSongs] = React.useState(getSongData())
   const [activeSong, setActiveSong] = React.useState(null);
-  
 
   const handleNextSong = () => {
     const index = songs.findIndex(song => activeSong.id === song.id);
