@@ -2,7 +2,7 @@ using System;
 
 namespace HPlusSport.Core.Test;
 
-public class ShoppingCartManager
+public class ShoppingCartManager: IShoppingCartManager
 {
     private List<AddToCartItem> _cartList { get; set; }
 
@@ -24,5 +24,10 @@ public class ShoppingCartManager
         {
             CartItems = _cartList.ToArray()
         };
+    }
+
+    public AddToCartItem[] GetCart()
+    {
+        return _cartList.ToArray();
     }
 }
