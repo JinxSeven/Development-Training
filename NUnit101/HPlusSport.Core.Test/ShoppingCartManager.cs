@@ -4,13 +4,25 @@ namespace HPlusSport.Core.Test;
 
 public class ShoppingCartManager
 {
+    private List<AddToCartItem> _cartList { get; set; }
+
+    public ShoppingCartManager()
+    {
+        _cartList = new List<AddToCartItem>();
+    }
+
     public AddToCartResponse AddToCart(AddToCartRequest request)
     {
-#pragma warning disable CS8601 // Possible null reference assignment.
+        int indx = _cartList.FindIndex(item => item.Id == request.Item!.Id);
+        if (indx != -1)
+        {
+            _cartList[indx].Quantity += request.Item!.Quantity;
+        }
+        else _cartList.Add(request.Item!);
+
         return new AddToCartResponse()
         {
-            CartItems = new AddToCartItem[] { request.Item }
+            CartItems = _cartList.ToArray()
         };
-#pragma warning restore CS8601 // Possible null reference assignment.
     }
 }
