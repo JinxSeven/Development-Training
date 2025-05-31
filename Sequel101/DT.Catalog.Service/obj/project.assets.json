@@ -2123,19 +2123,19 @@
     ]
   },
   "packageFolders": {
-    "/home/xsxhx/.nuget/packages/": {}
+    "C:\\Users\\GodBless\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/xsxhx/Documents/Development-Training/Sequel101/DT.Catalog.Service/DT.Catalog.Service.csproj",
+      "projectUniqueName": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
       "projectName": "DT.Catalog.Service",
-      "projectPath": "/home/xsxhx/Documents/Development-Training/Sequel101/DT.Catalog.Service/DT.Catalog.Service.csproj",
-      "packagesPath": "/home/xsxhx/.nuget/packages/",
-      "outputPath": "/home/xsxhx/Documents/Development-Training/Sequel101/DT.Catalog.Service/obj/",
+      "projectPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\DT.Catalog.Service.csproj",
+      "packagesPath": "C:\\Users\\GodBless\\.nuget\\packages\\",
+      "outputPath": "D:\\Skills\\JinxSeven\\Training-Web-Development\\Sequel101\\DT.Catalog.Service\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/home/xsxhx/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\GodBless\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
@@ -2191,11 +2191,15 @@
             "version": "[8.0.13, 8.0.13]"
           },
           {
-            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "name": "Microsoft.NETCore.App.Host.win-x64",
             "version": "[8.0.13, 8.0.13]"
           },
           {
             "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.13, 8.0.13]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
             "version": "[8.0.13, 8.0.13]"
           }
         ],
@@ -2207,7 +2211,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
