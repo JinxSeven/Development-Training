@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from 'react';
 import { NavLink } from "react-router-dom"
 
 function TopNavigation() {
@@ -21,13 +21,13 @@ function TopNavigation() {
               </li>
               <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Other
+                  More
               </a>
               <ul className="dropdown-menu">
-                  <li><a className="dropdown-item" href="#">Action</a></li>
-                  <li><a className="dropdown-item" href="#">Another action</a></li>
+                  <li><a className="dropdown-item" href="#">Cart</a></li>
+                  <li><a className="dropdown-item" href="#">Wishlist</a></li>
                   <li><hr className="dropdown-divider"></hr></li>
-                  <li><a classNameName="dropdown-item" href="#">Something else here</a></li>
+                  <li><a className="dropdown-item" href="#">Profile</a></li>
               </ul>
               </li>
               <li className="nav-item">
