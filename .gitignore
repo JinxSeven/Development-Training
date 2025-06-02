@@ -42,4 +42,6 @@ testem.log
 .DS_Store
 Thumbs.db
 
-Sequel101
+
+// git ls-files Sequel101 | xargs -I{} git update-index --no-assume-unchanged "{}"
+// Revert: git update-index --no-assume-unchanged path/to/folder/*

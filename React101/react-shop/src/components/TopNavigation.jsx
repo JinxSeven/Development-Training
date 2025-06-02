@@ -1,7 +1,19 @@
 import React from 'react';
 import { NavLink } from "react-router-dom"
+import Badge from '@mui/material/Badge';
+import { styled } from '@mui/material/styles';
+import IconButton from '@mui/material/IconButton';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
-function TopNavigation() {
+function TopNavigation({ cartCount }) {
+  const StyledBadge = styled(Badge)(({ theme }) => ({
+    '& .MuiBadge-badge': {
+      right: -3,
+      top: 13,
+      border: `2px solid ${(theme.vars ?? theme).palette.background.paper}`,
+      padding: '0 4px',
+    },
+  }));
 
   return ( 
     <>
@@ -35,6 +47,11 @@ function TopNavigation() {
               </li>
           </ul>
           <form className="d-flex" role="search">
+              <IconButton aria-label="cart" className='me-2 ms-2'>
+                <StyledBadge badgeContent={cartCount} color="secondary">
+                  <ShoppingCartIcon />
+                </StyledBadge>
+              </IconButton>
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
               <button className="btn btn-outline-primary" type="submit">Search</button>
           </form>
