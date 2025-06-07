@@ -4,6 +4,10 @@ import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../features/cart/cartManager";
+import Icon from '@mui/material/Icon';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
+import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
+import { addToWishlist } from "../features/wishlist/wishlistManager";
 
 function Products() {
   const [products, setProducts] = useState([{}])
@@ -24,10 +28,16 @@ function Products() {
   }, [])
 
   const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cart.cartItems)
+  const cartItems = useSelector(state => state.cart.cartItems);
+  const wishlistedItems = useSelector(state => state.wishlist.wishlistedItems)
 
   const handleAddToCart = (prod) => {
     dispatch(addToCart(prod));
+  }
+
+  const handleAddToWishlist = (prod) => {
+    console.log(`Click registered`);
+    dispatch(addToWishlist(prod));
   }
 
   useEffect(() => {
@@ -64,6 +74,10 @@ function Products() {
                 <Stack direction="row" spacing={1} className="m-2">
                   <Rating name="read-only" value={prod.rating?.rate} readOnly />
                   <span>({prod.rating?.count})</span>
+                  {
+                    wishlistedItems.includes(prod) ? 
+                    (<FavoriteRoundedIcon/>) : (<FavoriteBorderRoundedIcon onClick={() => handleAddToWishlist(prod)}/>)
+                  }
                 </Stack>
                 <Stack direction="row" spacing={1}>
                   <a className="btn btn-primary">${prod.price}</a>
