@@ -1,11 +1,11 @@
 ﻿using Dapper;
-using KnowledgeBaseApi.Models;
-using KnowledgeBaseApi.Models.DTOs;
+using KnowledgeBaseService.Models;
+using KnowledgeBaseService.Models.DTOs;
 using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using System.Data;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public class ComplianceRepo
     {

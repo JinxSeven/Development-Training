@@ -1,11 +1,10 @@
-using KnowledgeBaseApi.Repo;
+using KnowledgeBaseService.Repo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.IdentityModel.Tokens.Experimental;
 using System.Text;
 using WatchDog;
 
-namespace KnowledgeBaseApi;
+namespace KnowledgeBaseService;
 
 public class Program
 {
@@ -42,7 +41,8 @@ public class Program
                 policy.RequireRole("Admin");
             });
             options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser().Build();
+                .RequireAuthenticatedUser()
+                .Build();
         });
 
         builder.Logging.AddWatchDogLogger();
@@ -81,7 +81,7 @@ public class Program
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.MapControllers();
+        app.MapControllers().AllowAnonymous();
 
         app.UseWatchDog(options =>
         {

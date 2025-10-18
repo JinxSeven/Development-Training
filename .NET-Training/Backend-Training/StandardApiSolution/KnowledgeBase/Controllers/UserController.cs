@@ -1,9 +1,9 @@
-﻿using KnowledgeBaseApi.Models;
-using KnowledgeBaseApi.Repo;
+﻿using KnowledgeBaseService.Models;
+using KnowledgeBaseService.Repo;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KnowledgeBaseApi.Controllers
+namespace KnowledgeBaseService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -17,7 +17,6 @@ namespace KnowledgeBaseApi.Controllers
 
         [HttpGet]
         [Route("GetUserStatsById")]
-        [Authorize]
         public async Task<IActionResult> GetUserStatsByIdAsync(Guid userId)
         {
             try

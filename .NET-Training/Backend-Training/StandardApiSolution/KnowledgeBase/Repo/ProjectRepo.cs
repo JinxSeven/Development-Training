@@ -1,8 +1,8 @@
 using System.Data;
-using KnowledgeBaseApi.Models;
+using KnowledgeBaseService.Models;
 using Microsoft.Data.SqlClient;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public class ProjectRepo
     {

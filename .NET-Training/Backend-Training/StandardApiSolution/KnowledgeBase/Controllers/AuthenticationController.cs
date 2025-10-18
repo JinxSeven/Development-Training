@@ -1,18 +1,16 @@
-﻿using KnowledgeBaseApi.Models;
-using KnowledgeBaseApi.Repo;
+﻿using KnowledgeBaseService.Models;
+using KnowledgeBaseService.Repo;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace KnowledgeBaseApi.Controllers
+namespace KnowledgeBaseService.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     [AllowAnonymous]
     public class AuthenticationController : ControllerBase
     {
@@ -84,7 +82,7 @@ namespace KnowledgeBaseApi.Controllers
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                _logger.LogError(ex.Message, loggedUser);
             }
 
             return loggedUser;

@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public class TasksRepo
     {

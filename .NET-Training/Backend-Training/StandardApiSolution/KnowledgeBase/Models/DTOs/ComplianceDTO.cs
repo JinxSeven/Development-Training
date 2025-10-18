@@ -1,4 +1,4 @@
-﻿namespace KnowledgeBaseApi.Models.DTOs
+﻿namespace KnowledgeBaseService.Models.DTOs
 {
     public class ComplianceDTO
     {

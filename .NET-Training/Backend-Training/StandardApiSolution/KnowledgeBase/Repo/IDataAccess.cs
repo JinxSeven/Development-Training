@@ -1,6 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public interface IDataAccess
     {

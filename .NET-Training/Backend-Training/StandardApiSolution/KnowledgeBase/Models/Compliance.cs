@@ -1,4 +1,4 @@
-﻿namespace KnowledgeBaseApi.Models
+﻿namespace KnowledgeBaseService.Models
 {
     public class Compliance
     {

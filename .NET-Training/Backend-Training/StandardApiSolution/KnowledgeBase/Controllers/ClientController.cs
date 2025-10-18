@@ -1,8 +1,8 @@
-﻿using KnowledgeBaseApi.Repo;
-using Microsoft.AspNetCore.Mvc;
-using KnowledgeBaseApi.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using KnowledgeBaseService.Models;
+using KnowledgeBaseService.Repo;
 
-namespace KnowledgeBaseApi.Controllers
+namespace KnowledgeBaseService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

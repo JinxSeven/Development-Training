@@ -1,8 +1,8 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using KnowledgeBaseService.Repo;
+using Microsoft.Data.SqlClient;
 using System.Diagnostics;
-using KnowledgeBaseApi.Models;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public class ActivitiesRepo
     {

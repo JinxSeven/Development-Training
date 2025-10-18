@@ -1,7 +1,8 @@
-﻿using KnowledgeBaseApi.Models;
+﻿using KnowledgeBaseService.Models;
+using KnowledgeBaseService.Repo;
 using Microsoft.Data.SqlClient;
 
-namespace KnowledgeBaseApi.Repo
+namespace KnowledgeBaseService.Repo
 {
     public class ClientRepo
     {

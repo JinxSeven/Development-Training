@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace KnowledgeBaseApi.Models
+namespace KnowledgeBaseService.Models
 {
     public class User
     {
