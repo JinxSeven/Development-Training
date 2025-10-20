@@ -14,5 +14,6 @@ export interface UserLoginRequest {
 export interface UserLoginResponse {
   id: string,
   username: string,
-  email: string
+  email: string,
+  token: string
 }
