@@ -20,6 +20,18 @@ public class Program
 
         builder.Services.AddWatchDogServices();
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddDefaultPolicy(policy =>
+            {
+                policy
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithExposedHeaders("Authorization");
+            });
+        });
+
         builder.Services.AddAuthentication("Bearer")
             .AddJwtBearer(options =>
             {

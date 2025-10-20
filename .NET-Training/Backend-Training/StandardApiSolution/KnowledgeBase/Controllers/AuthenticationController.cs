@@ -47,7 +47,8 @@ namespace KnowledgeBaseService.Controllers
             {
                 Id = user.Id,
                 Username = user.Username,
-                Email = user.Email
+                Email = user.Email,
+                Token = jwt
             };
 
             return Ok(userData);
