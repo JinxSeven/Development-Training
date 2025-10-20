@@ -50,7 +50,24 @@ export default function Register() {
                 name="password"
                 type="password"
                 required
-                autoComplete="current-password"
+                autoComplete="new-password"
+                min={8}
+              />
+            </div>
+          </div>
+
+          <div>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="password" className="pl-1 font-thin text-base">Confirm password</Label>
+              <div className="text-sm"></div>
+            </div>
+            <div className="mt-2">
+              <Input
+                id="confirm-password"
+                name="confirm-password"
+                type="password"
+                required
+                autoComplete="new-password"
               />
             </div>
           </div>
@@ -61,9 +78,9 @@ export default function Register() {
         </form>
 
         <p className="mt-10 text-center text-sm/6 text-gray-400">
-          Already have an account?{" "}
+          Already a member?{" "}
           <Link
-            href="/register"
+            href="/login"
             className="font-semibold text-indigo-400 hover:text-indigo-300"
           >
             Sign In
