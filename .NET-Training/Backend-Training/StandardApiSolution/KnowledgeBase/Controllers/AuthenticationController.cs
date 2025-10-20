@@ -28,9 +28,9 @@ namespace KnowledgeBaseService.Controllers
         public record AuthenticationData(string? Username, string? Password);
 
         [HttpPost("TokenAuth")]
-        public async Task<ActionResult<User>> AuthenticateUser([FromBody] AuthenticationData data)
+        public async Task<ActionResult<UserRes>> AuthenticateUser([FromBody] AuthenticationData data)
         {
-            var user = await ValidateUser(data);
+            User? user = await ValidateUser(data);
 
             if (user is null)
             {
@@ -40,7 +40,17 @@ namespace KnowledgeBaseService.Controllers
             var jwt = GenerateJWToken(user);
 
             _logger.LogInformation("User ID {UserId}", user.Id);
-            return Ok(jwt);
+
+            Response.Headers.Append("Authorization", $"Bearer {jwt}");
+
+            UserRes userData = new()
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email
+            };
+
+            return Ok(userData);
         }
 
         private string GenerateJWToken(User user)

@@ -40,9 +40,9 @@ public class Program
             {
                 policy.RequireRole("Admin");
             });
-            options.FallbackPolicy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .Build();
+            //options.FallbackPolicy = new AuthorizationPolicyBuilder()
+            //    .RequireAuthenticatedUser()
+            //    .Build();
         });
 
         builder.Logging.AddWatchDogLogger();

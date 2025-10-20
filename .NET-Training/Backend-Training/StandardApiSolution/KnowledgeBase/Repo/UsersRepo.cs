@@ -45,7 +45,7 @@ public class UsersRepo
                         Id = Guid.Parse(reader["id"].ToString()!),
                         Username = reader["username"].ToString()!,
                         Email = reader["email"].ToString()!,
-                        Password = "********",
+                        Password = "",
                         IsAdmin = Convert.ToBoolean(reader["is_admin"])
                         
                     };
