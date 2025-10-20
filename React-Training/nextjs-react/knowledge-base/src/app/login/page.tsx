@@ -7,8 +7,11 @@ import { Label } from "@/components/ui/label";
 import { UserLoginRequest, FormFieldValidations } from "../interfaces/user";
 import { useEffect, useMemo, useState } from "react";
 import { authLogin } from "../api/userService";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
   const [errors, setErrors] = useState<FormFieldValidations>({});
   const disableSubmit = useMemo(() => {
     return errors.username !== null || errors.password !== null;
@@ -42,9 +45,19 @@ export default function Login() {
     const loginCred: UserLoginRequest = {
       username: e.target.username.value,
       password: e.target.password.value
+    };
+
+    try {
+      const result = await authLogin(loginCred);
+    } catch (error) {
+      toast.warning("Username or password invalid");
+      return
     }
 
-    authLogin(loginCred)
+    toast.success("Login successful")
+    setTimeout(() => {
+      router.push('/dashboard')
+    }, 1000)
   }
 
   return (
