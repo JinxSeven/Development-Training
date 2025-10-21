@@ -1,5 +1,5 @@
 import { UserLoginRequest, UserLoginResponse } from "../interfaces/user";
-import { setUserLocalStorage } from "../lib/localStorageUtils";
+import { setUserSession } from "../lib/sessionStorageUtils";
 
 export async function authLogin(cred: UserLoginRequest): Promise<UserLoginResponse> {
   try {
@@ -22,7 +22,7 @@ export async function authLogin(cred: UserLoginRequest): Promise<UserLoginRespon
     }
 
     const data = await res.json() 
-    setUserLocalStorage(data)
+    setUserSession(data)
 
     return data;
   } catch (err) {
