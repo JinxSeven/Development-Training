@@ -14,23 +14,25 @@ export default function Login() {
   const router = useRouter();
   const [errors, setErrors] = useState<FormFieldValidations>({});
   const disableSubmit = useMemo(() => {
-    return errors.username !== null || errors.password !== null;
-  }, [errors.username, errors.password]);
+    return Object.values(errors).some(
+      (err) => err !== null && err !== undefined
+    );
+  }, [errors]);
 
-  const validateField = (e: React.FocusEvent<HTMLInputElement>) => {
+  const validateField = (e: React.FocusEvent<HTMLInputElement> | React.ChangeEvent<HTMLInputElement>) => {
     const fieldValidations: FormFieldValidations = {};
     const { name, value } = e.target;
 
     switch (name) {
       case "username":
-        if (!/^(?!.*(__|--|\.\.))(?=(.*[a-z]){3})[a-z0-9_.-]+$/.test(value)) {
-          fieldValidations.username = "Username not valid";
-        } else fieldValidations.username = null;
+        /^(?!.*(__|--|\.\.))(?=(.*[a-z]){3})[a-z0-9_.-]+$/.test(value)
+          ? (fieldValidations.username = undefined)
+          : (fieldValidations.username = "Username not valid");
         break;
       case "password":
-        if (value.trim() === "") {
-          fieldValidations.password = "Password cannot be empty";
-        } else fieldValidations.password = null;
+        value.trim() === ""
+          ? (fieldValidations.password = "Password cannot be empty")
+          : (fieldValidations.password = null);
         break;
     }
 
@@ -44,20 +46,20 @@ export default function Login() {
     e.preventDefault();
     const loginCred: UserLoginRequest = {
       username: e.target.username.value,
-      password: e.target.password.value
+      password: e.target.password.value,
     };
 
     try {
       const result = await authLogin(loginCred);
     } catch (error) {
       toast.warning("Username or password invalid");
-      return
+      return;
     }
 
-    toast.success("Login successful")
+    toast.success("Login successful");
     setTimeout(() => {
-      router.push('/dashboard')
-    }, 1000)
+      router.push("/dashboard");
+    }, 1000);
   }
 
   return (
