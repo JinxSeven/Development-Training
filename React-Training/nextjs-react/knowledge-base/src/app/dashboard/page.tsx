@@ -23,7 +23,6 @@ export default function Dashboard() {
           Id: {user.id?.toLocaleUpperCase()}
         </p>
       </div>
-      <Stats />
     </div>
   );
 }
